@@ -30,17 +30,6 @@
  .muted{color:var(--mut);} .nowrap{white-space:nowrap;}
  .pts{text-align:right;white-space:nowrap;} .tot td{border-top:2px solid var(--ink);font-weight:700;}
  ul{margin:6px 0;padding-left:22px;} li{margin:3px 0;}
- /* Each act is one card so the eye takes it as a single object. Three stacked tables
-    with only <h3>s between them read as one undifferentiated wall. */
- .act{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;
-      padding:14px 18px 10px;margin:18px 0;background:#fcfaf8;}
- .act > h3{margin:0 0 2px;font-size:17px;color:var(--accent);}
- .act > .when{font-size:13px;color:var(--mut);margin:0 0 10px;}
- .act table{margin:0;background:transparent;}
- .act th{background:#f4efe9;}
- .act tbody tr:nth-child(even){background:rgba(255,255,255,.6);}
- .act tbody tr:last-child td{border-bottom:none;}
- .act > .note{font-size:12.5px;color:var(--mut);margin:8px 0 2px;}
  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--mut);}
 </style>
 </head>
@@ -89,58 +78,32 @@
 </ul>
 
 <h2 id="schedule">Schedule</h2>
-<p class="muted">Dates follow the Miami FA26 academic calendar. Readings from <em>Write What Matters</em> (WWM) are assigned “for the next meeting.” One-Pagers are due Fridays via Canvas. Day outlines link as each week goes up.</p>
-
-<section class="act">
- <h3>Act I — Become a Writer</h3>
- <p class="when">Aug 24 – Sep 23</p>
+<p class="muted">The course runs <strong>August 24 – December 2, 2026</strong>. We meet Mondays and Wednesdays; there is no finals-week meeting. Readings from <em>Write What Matters</em> (WWM) are assigned “for the next meeting,” and One-Pagers are due Fridays via Canvas. Due dates are listed under <a href="#work">Deliverables</a>.</p>
 <table>
- <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
+ <thead><tr><th style="width:7.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Class pages</th></tr></thead>
  <tbody>
-  <tr><td class="nowrap"><strong>1</strong> Aug 24, 26<br><a href="week-01-trust-the-gush/week-01-mon.html">Mon</a> · <a href="week-01-trust-the-gush/week-01-wed.html">Wed</a></td><td>Why we write; trust the gush. Baseline free-write: <em>why do we write?</em></td><td>Edwards, “Who's Cheating Whom?” · WWM Intro–ch2</td><td><strong>OP1</strong> Fri Aug 28</td></tr>
-  <tr><td class="nowrap"><strong>2</strong> Aug 31, Sep 2</td><td>The notebook; writing place; privacy &amp; redaction</td><td>Daspit, “‘None of Us’” · WWM ch3–5</td><td><strong>OP2</strong> Fri Sep 4</td></tr>
-  <tr><td class="nowrap"><strong>3</strong> Sep 9*</td><td>Voice print: rendering a person in their own voice</td><td>J. Edwards, “Beyond Presence” · WWM ch6–9</td><td><strong>OP3</strong> Fri Sep 11</td></tr>
-  <tr><td class="nowrap"><strong>4</strong> Sep 14, 16</td><td>Show, don't tell; <strong>Generation Loss lab</strong> (AI as foil)</td><td>O'Hara, “Moviehouse Poems” · Chiang, “ChatGPT Is a Blurry JPEG of the Web”</td><td><strong>OP4</strong> Fri Sep 18</td></tr>
-  <tr><td class="nowrap"><strong>5</strong> Sep 21, 23</td><td>Breaking the rules (Grammar B); the <strong>Look-Back</strong> → your currere thread</td><td>Romano, “The Anchor, the Bridge, the Lesson” · Moore, “Starting the Conversation”</td><td><strong>OP5</strong> Fri Sep 25</td></tr>
+  <tr class="acthead"><td colspan="4">Act I — Become a Writer · Aug 24 – Sep 23</td></tr>
+  <tr><td class="nowrap">Week 1 · Aug 24</td><td>Why we write; trust the gush</td><td>Edwards, “Who's Cheating Whom?” · WWM Intro–ch2</td><td class="nowrap"><a href="week-01-trust-the-gush/week-01-mon.html">Mon</a> · <a href="week-01-trust-the-gush/week-01-wed.html">Wed</a></td></tr>
+  <tr><td class="nowrap">Week 2 · Aug 31</td><td>The notebook; writing place; privacy &amp; redaction</td><td>Daspit, “‘None of Us’” · WWM ch3–5</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 3 · Sep 9*</td><td>Voice print: rendering a person in their own voice</td><td>J. Edwards, “Beyond Presence” · WWM ch6–9</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 4 · Sep 14</td><td>Show, don't tell; <strong>Generation Loss lab</strong></td><td>O'Hara, “Moviehouse Poems” · Chiang, “Blurry JPEG”</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 5 · Sep 21</td><td>Breaking the rules (Grammar B); the <strong>Look-Back</strong></td><td>Romano, “The Anchor, the Bridge, the Lesson” · Moore</td><td class="muted">soon</td></tr>
+  <tr class="acthead"><td colspan="4">Act II — The Currere · Sep 28 – Oct 30</td></tr>
+  <tr><td class="nowrap">Week 6 · Sep 28</td><td>Launch the currere; the four moments; find your thread</td><td>Currere Guidelines · a published currere (CEJ)</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 7 · Oct 5</td><td><strong>Conference Day 1</strong>; storyboard six scenes across time</td><td>WWM ch18</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 8 · Oct 12</td><td>Render load-bearing scenes; break-a-rule workshop</td><td>—</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 9 · Oct 19</td><td>Read-aloud revision &amp; peer review; <strong>Conference Day 2</strong></td><td>WWM ch16–17</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 10 · Oct 26</td><td>Mentors &amp; the synthetical close; author-page audio</td><td>WWM ch19</td><td class="muted">soon</td></tr>
+  <tr class="acthead"><td colspan="4">Act III — Multimodal Research Project · Nov 2 – Dec 2</td></tr>
+  <tr><td class="nowrap">Week 11 · Nov 2</td><td>Launch the MRP; Topic Map; set up NotebookLM</td><td>your own gathered sources</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 12 · Nov 9</td><td>NotebookLM lab &amp; the flattening demo; drafting genres</td><td>your sources</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 13 · Nov 16</td><td>Assemble the draft; peer review; artifact studio</td><td>your sources</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Week 14 · Nov 23</td><td class="muted">No class — Thanksgiving</td><td class="muted">revise toward final</td><td class="muted">—</td></tr>
+  <tr><td class="nowrap">Week 15 · Nov 30</td><td>Specific-over-generic revision; <strong>share-out</strong>; the <strong>Look-Back Letter</strong></td><td>—</td><td class="muted">soon</td></tr>
+  <tr><td class="nowrap">Finals</td><td><strong>Final project + reflective note + Look-Back Letter due Wed, Dec 2</strong> (via Canvas)</td><td>—</td><td class="muted">—</td></tr>
  </tbody>
 </table>
- <p class="note">*Mon Sep 7 is Labor Day (no class); Week 3 meets Wednesday only.</p>
-</section>
-
-
-<section class="act">
- <h3>Act II — The Currere</h3>
- <p class="when">Sep 28 – Oct 30</p>
-<table>
- <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
- <tbody>
-  <tr><td class="nowrap"><strong>6</strong> Sep 28, 30</td><td>Launch the currere; the four moments as a reading lens; find your thread</td><td>Currere Guidelines · a published currere (CEJ)</td><td>Conference Packet Sun Oct 4</td></tr>
-  <tr><td class="nowrap"><strong>7</strong> Oct 5, 7</td><td><strong>Conference Day 1 (topic)</strong>; storyboard six scenes across time</td><td>WWM ch18</td><td class="muted">rough all six scenes over break</td></tr>
-  <tr><td class="nowrap"><strong>8</strong> Oct 12, 14</td><td>Render load-bearing scenes; break-a-rule workshop</td><td>—</td><td><strong>First Draft</strong> Fri Oct 16</td></tr>
-  <tr><td class="nowrap"><strong>9</strong> Oct 19, 21</td><td>Read-aloud revision &amp; peer review; <strong>Conference Day 2 (draft)</strong></td><td>WWM ch16–17</td><td class="muted">revised draft + cover page before conference</td></tr>
-  <tr><td class="nowrap"><strong>10</strong> Oct 26, 28</td><td>Mentors &amp; the synthetical close; author-page audio; the hinge to research</td><td>WWM ch19</td><td><strong>Final Draft + audio</strong> Fri Oct 30</td></tr>
- </tbody>
-</table>
- <p class="note">Fall Break Oct 9–11 costs no MW session. Conference days meet one-to-one (no whole-class meeting).</p>
-</section>
-
-
-<section class="act">
- <h3>Act III — Multimodal Research Project</h3>
- <p class="when">Nov 2 – Dec 2</p>
-<table>
- <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
- <tbody>
-  <tr><td class="nowrap"><strong>11</strong> Nov 2, 4</td><td>Launch the MRP; Topic Map; source rings; set up NotebookLM</td><td>your own gathered sources</td><td><strong>Proposal</strong> Fri Nov 6</td></tr>
-  <tr><td class="nowrap"><strong>12</strong> Nov 9, 11</td><td>NotebookLM lab &amp; the flattening demo; drafting genres</td><td>your sources</td><td>—</td></tr>
-  <tr><td class="nowrap"><strong>13</strong> Nov 16, 18</td><td>Assemble the draft; read-aloud + peer review; artifact studio</td><td>your sources</td><td><strong>Draft</strong> Fri Nov 20</td></tr>
-  <tr><td class="nowrap"><strong>14</strong> Nov 23–27</td><td class="muted"><strong>Thanksgiving Break — no class</strong></td><td class="muted">revise toward final</td><td>—</td></tr>
-  <tr><td class="nowrap"><strong>15</strong> Nov 30, Dec 2</td><td>Specific-over-generic revision; reflective note; <strong>share-out</strong>; the <strong>Look-Back Letter</strong></td><td>—</td><td><strong>Final project + AI artifact + reflective note + Look-Back Letter</strong> Wed Dec 2</td></tr>
- </tbody>
-</table>
- <p class="note">No finals-week meeting; the course does not meet Dec 7–11.</p>
-</section>
-
+<p class="muted">*Mon Sep 7 is Labor Day (no class); Week 3 meets Wednesday only. Fall Break Oct 9–11 costs no MW session. The course does not meet during finals week, Dec 7–11.</p>
 
 <h2 id="work">Deliverables &amp; grading</h2>
 <p>The course is worth <strong>200 points</strong>. The grade rests on the three projects plus your writer's notebook.</p>
