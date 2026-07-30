@@ -5,110 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCE 284 — Writing for Educators (Fall 2026)</title>
 <!--
-  Course home for TCE 284 (Fall 2026). Public, student-facing, FERPA-safe.
-  Schedule frame + act structure come from the private calendar; readings stay in Canvas.
-  NO points ledger or policies here yet — those must come from the syllabus, not be invented.
-  Week links appear as each week is published; unpublished weeks are plain text on purpose.
+  Course home / web syllabus for TCE 284 (Fall 2026). Public, student-facing, FERPA-safe.
+  Structure and stylesheet deliberately parallel tce318p-fa26; accent is the only change.
+  Content is drawn from syllabus/syllabus.md in the private repo — nothing invented here.
+  STILL PLACEHOLDERED IN THE SOURCE, so deliberately absent below: grading scale, section
+  number, room, meeting time, office hours, and Miami's standard accessibility/Title IX
+  block. Add them here once they are filled in the syllabus.
 -->
 <style>
- :root{--accent:#7A3B10;--ink:#2C2416;--mut:#8A7C6C;--line:#D8CBAF;--parch:#F8F4EC;}
+ :root{--accent:#7A3B10;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;}
  *{box-sizing:border-box;}
- body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:24px 18px 64px;color:var(--ink);line-height:1.55;background:var(--parch);}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:24px 18px 64px;color:var(--ink);line-height:1.55;}
  h1{font-size:26px;margin:0 0 2px;} h2{font-size:19px;margin:34px 0 10px;padding-bottom:4px;border-bottom:2px solid var(--accent);}
  h3{font-size:15px;margin:18px 0 4px;} .sub{color:var(--mut);font-size:14px;margin-bottom:4px;}
- a{color:#8a4a14;} p{margin:8px 0;}
- nav{background:#EFEBE2;border-radius:8px;padding:10px 14px;margin:16px 0 8px;font-size:14px;}
+ a{color:#2563eb;} p{margin:8px 0;}
+ nav{background:#f3f4f6;border-radius:8px;padding:10px 14px;margin:16px 0 8px;font-size:14px;}
  nav a{margin-right:14px;white-space:nowrap;display:inline-block;}
- .lead{background:#FFFCF5;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:14px 0;}
- .callout{border-left:4px solid var(--accent);background:#FFFCF5;padding:12px 16px;border-radius:2px;margin:14px 0;}
- table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;background:#fff;}
+ .lead{background:#fdf6ef;border-radius:8px;padding:14px 16px;margin:14px 0;}
+ .callout{border-left:4px solid var(--accent);background:#fdf6ef;padding:12px 16px;border-radius:2px;margin:14px 0;}
+ table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
- th{background:#EFEBE2;font-size:13px;}
- .acthead td{font-weight:700;color:var(--accent);background:#F3EEE2;}
+ th{background:#f9fafb;font-size:13px;} tbody tr:nth-child(even){background:#fafafa;}
+ .acthead td{font-weight:700;color:var(--accent);background:#faf0e6 !important;}
  .muted{color:var(--mut);} .nowrap{white-space:nowrap;}
+ .pts{text-align:right;white-space:nowrap;} .tot td{border-top:2px solid var(--ink);font-weight:700;}
+ ul{margin:6px 0;padding-left:22px;} li{margin:3px 0;}
  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--mut);}
 </style>
 </head>
 <body>
 
 <h1>TCE 284 — Writing for Educators</h1>
-<div class="sub">Miami University · Fall 2026 · Instructor: Michael Todd Edwards · <a href="mailto:edwardm2@miamioh.edu">edwardm2@miamioh.edu</a></div>
-<div class="sub">Mondays &amp; Wednesdays, 80 minutes · Aug 24 – Dec 2</div>
+<div class="sub">Miami University · Fall 2026 · Instructor: Dr. Todd Edwards · <a href="mailto:edwardm2@miamioh.edu">edwardm2@miamioh.edu</a> · 401H McGuffey Hall</div>
+<div class="sub">MW seminar, 80 minutes · Aug 24 – Dec 2 · Miami Plan Advanced Writing Requirement · 200 points</div>
+<div class="sub">The public course home — schedule, deliverables, policies, and tools all live here. You submit work and see your grades in <strong>Canvas</strong>.</div>
 
 <nav>
-  <a href="#app">The app</a>
-  <a href="#arc">The arc</a>
-  <a href="#schedule">Schedule</a>
-  <a href="#readings">Readings</a>
+ <a href="#about">About</a>
+ <a href="#objectives">Objectives</a>
+ <a href="#schedule">Schedule</a>
+ <a href="#work">Deliverables &amp; Grading</a>
+ <a href="#ai">Working with AI</a>
+ <a href="#policies">Policies</a>
+ <a href="#support">Support</a>
+ <a href="#tools">Tools</a>
 </nav>
 
+<h2 id="about">About this course</h2>
+<p>TCE 284 is a writing course for future teachers. You will strengthen your own written voice, write across a range of genres, study how successful writers work, respond to each other's drafts, meet one-to-one in conferences, and revise. Everyone in the room is preparing to teach, so the stakes are real: you will model for a room of children what a writer is and does.</p>
+<p>This semester the course writes under one condition. <strong>When a machine can generate fluent prose, images, audio, and video on demand, what is left that only you can do?</strong> We answer that question by making things. AI is not a unit in this course; it is the water we write in. In every act you will work alongside it, test it, and learn where it helps and where it hands you the generic version of what you meant to say. The writer's job is the specific, the particular, and the true, which is the one thing an averaging machine cannot manufacture for you.</p>
+
 <div class="lead">
-  This semester you write about your own life. Not a topic assigned to you — your life, across
-  time: what shaped you, where you are now, where you are going. That is your material, and it
-  is the one material a machine cannot generate. It can write a poem about anything. It cannot
-  run your life for you.
+ <p><strong>The arc of the semester.</strong> Three acts, each deepening a single writing gesture, and in each one AI plays a different role.</p>
+ <ul>
+  <li><strong>Act I — Become a Writer (Wks 1–5).</strong> Five short One-Pagers, each a tiny scene from your own life plus a reflection on what it means now. You draft each one in Journaler under a timer, so the writing is yours by construction. Act I closes with the <strong>Generation Loss lab</strong>: you press one of your own pieces through an AI over and over and watch it decay toward the generic. Here AI is a <strong>foil</strong>.</li>
+  <li><strong>Act II — The Currere (Wks 6–10).</strong> One thread from your life, traced across past, present, and an imagined future, then woven into a single piece. You will storyboard it, render its key scenes, meet twice in one-to-one conferences, and revise. Here AI is a <strong>studio tool</strong>: it can help you explore and question, but it never writes your words.</li>
+  <li><strong>Act III — Multimodal Research Project (Wks 11–15).</strong> A research project on a topic you care about, built from real sources (including one you gather yourself) and rendered across many forms: writing, image, audio, video. Here AI is a <strong>research partner</strong>, grounded in your own sources.</li>
+ </ul>
+ <p>Running underneath all three: the <strong>look-back spine.</strong> In Week 1 you write to the question <em>why do we write?</em> In the last week you write a letter back to that Week 1 writer. Reflection on writing you actually did is the part of this course a machine cannot fake for you.</p>
 </div>
 
-<h2 id="app">The app</h2>
-<p><strong><a href="https://ohiomathteacher.github.io/journaler-284/">Journaler</a></strong> is
-where you write this term — the timed gush and the One-Pagers, the currere moments, close reading
-with highlights, and a dated notebook you export as one PDF to hand in.</p>
-<div class="callout">
-  <strong>It runs in your browser and nothing you write is uploaded.</strong> That also means
-  clearing your browser data erases it. Use <strong>⤓ Save my work</strong> often and keep the
-  file somewhere you own — Drive, Dropbox, a thumb drive. That file is your real backup, and it
-  reopens on any computer.
-</div>
-
-<h2 id="arc">The arc</h2>
-<p><em>Currere</em> is Latin for “to run.” It is the root of <em>curriculum</em>, which means “the
-course to be run.” Currere turns that noun back into a verb: not the course you are handed, but
-the running of it.</p>
+<h2 id="objectives">Course objectives</h2>
+<p>By the end of the course you will be able to:</p>
 <ul>
-  <li><strong>Weeks 1–5 — tiny curreres.</strong> Five One-Pagers. Short pieces, each rooted in one
-    moment and reaching across your life.</li>
-  <li><strong>Weeks 6–10 — the currere.</strong> You gather the threads into one longer self-study,
-    and we name the method that has been under your hand all along.</li>
-  <li><strong>Weeks 11–15 — the multimodal research project.</strong> You open that work into many
-    forms. One life, told many ways.</li>
+ <li>Draft with less self-censoring and revise with more purpose, using the habits of practicing writers.</li>
+ <li>Write in several genres and adapt voice, form, and structure to your subject and audience.</li>
+ <li>Read published writing as a writer, naming the craft moves that make it work.</li>
+ <li>Give and use honest peer response, and revise across drafts and conferences.</li>
+ <li>Compose across modes (writing, image, audio, video) and choose the form a piece needs.</li>
+ <li>Use AI deliberately and disclose it honestly, judging where it serves your writing and where it flattens it.</li>
+ <li>Reflect on your own writing in a way that no tool can do for you.</li>
 </ul>
 
 <h2 id="schedule">Schedule</h2>
-<p class="muted">Week pages go up as we reach them. Readings and due dates are in each day’s
-outline; you submit everything in Canvas.</p>
+<p class="muted">Dates follow the Miami FA26 academic calendar. Readings from <em>Write What Matters</em> (WWM) are assigned “for the next meeting.” One-Pagers are due Fridays via Canvas. Day outlines link as each week goes up.</p>
+
+<h3>Act I — Become a Writer (Aug 24 – Sep 23)</h3>
 <table>
-  <thead><tr><th style="width:6em">Week</th><th>Focus</th><th style="width:11em" class="nowrap">Materials</th></tr></thead>
-  <tbody>
-    <tr class="acthead"><td colspan="3">Act I — Become a Writer · Aug 24 – Sep 23</td></tr>
-    <tr><td class="nowrap">1 · Aug 24</td><td>Trust the Gush</td><td><a href="week-01-trust-the-gush/week-01-mon.html">Mon</a> · <a href="week-01-trust-the-gush/week-01-wed.html">Wed</a></td></tr>
-    <tr><td class="nowrap">2 · Aug 31</td><td>A Writing Place</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">3 · Sep 7</td><td>Voice Print <span class="muted">(Labor Day — Wed only)</span></td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">4 · Sep 14</td><td>Show, Don’t Tell</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">5 · Sep 21</td><td>Breaking the Rules</td><td class="muted">soon</td></tr>
-    <tr class="acthead"><td colspan="3">Act II — The Currere</td></tr>
-    <tr><td class="nowrap">6</td><td>What is currere?</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">7</td><td>Regressive — the scene</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">8</td><td>Dramatize and break rules</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">9</td><td>Metaphor and leads</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">10</td><td>Mentors and the hinge</td><td class="muted">soon</td></tr>
-    <tr class="acthead"><td colspan="3">Act III — The Multimodal Research Project</td></tr>
-    <tr><td class="nowrap">11</td><td>Launch and topic</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">12</td><td>Sources into genres</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">13</td><td>Cohere and review</td><td class="muted">soon</td></tr>
-    <tr><td class="nowrap">14 · Nov 23</td><td class="muted">Thanksgiving break — no class</td><td class="muted">—</td></tr>
-    <tr><td class="nowrap">15</td><td>Revise and share</td><td class="muted">soon</td></tr>
-  </tbody>
+ <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
+ <tbody>
+  <tr><td class="nowrap"><strong>1</strong> Aug 24, 26<br><a href="week-01-trust-the-gush/week-01-mon.html">Mon</a> · <a href="week-01-trust-the-gush/week-01-wed.html">Wed</a></td><td>Why we write; trust the gush. Baseline free-write: <em>why do we write?</em></td><td>Edwards, “Who's Cheating Whom?” · WWM Intro–ch2</td><td><strong>OP1</strong> Fri Aug 28</td></tr>
+  <tr><td class="nowrap"><strong>2</strong> Aug 31, Sep 2<br><a href="week-02-writing-place/week-02-mon.html">Mon</a> · <a href="week-02-writing-place/week-02-wed.html">Wed</a></td><td>The notebook; writing place; privacy &amp; redaction</td><td>Daspit, “‘None of Us’” · WWM ch3–5</td><td><strong>OP2</strong> Fri Sep 4</td></tr>
+  <tr><td class="nowrap"><strong>3</strong> Sep 9*<br><a href="week-03-voice-print/week-03-wed.html">Wed</a></td><td>Voice print: rendering a person in their own voice</td><td>J. Edwards, “Beyond Presence” · WWM ch6–9</td><td><strong>OP3</strong> Fri Sep 11</td></tr>
+  <tr><td class="nowrap"><strong>4</strong> Sep 14, 16<br><a href="week-04-show-dont-tell/week-04-mon.html">Mon</a> · <a href="week-04-show-dont-tell/week-04-wed.html">Wed</a></td><td>Show, don't tell; <strong>Generation Loss lab</strong> (AI as foil)</td><td>O'Hara, “Moviehouse Poems” · Chiang, “ChatGPT Is a Blurry JPEG of the Web”</td><td><strong>OP4</strong> Fri Sep 18</td></tr>
+  <tr><td class="nowrap"><strong>5</strong> Sep 21, 23<br><a href="week-05-breaking-the-rules/week-05-mon.html">Mon</a> · <a href="week-05-breaking-the-rules/week-05-wed.html">Wed</a></td><td>Breaking the rules (Grammar B); the <strong>Look-Back</strong> → your currere thread</td><td>Romano, “The Anchor, the Bridge, the Lesson” · Moore, “Starting the Conversation”</td><td><strong>OP5</strong> Fri Sep 25</td></tr>
+ </tbody>
+</table>
+<p class="muted">*Mon Sep 7 is Labor Day (no class); Week 3 meets Wednesday only.</p>
+
+<h3>Act II — The Currere (Sep 28 – Oct 30)</h3>
+<table>
+ <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
+ <tbody>
+  <tr><td class="nowrap"><strong>6</strong> Sep 28, 30</td><td>Launch the currere; the four moments as a reading lens; find your thread</td><td>Currere Guidelines · a published currere (CEJ)</td><td>Conference Packet Sun Oct 4</td></tr>
+  <tr><td class="nowrap"><strong>7</strong> Oct 5, 7</td><td><strong>Conference Day 1 (topic)</strong>; storyboard six scenes across time</td><td>WWM ch18</td><td class="muted">rough all six scenes over break</td></tr>
+  <tr><td class="nowrap"><strong>8</strong> Oct 12, 14</td><td>Render load-bearing scenes; break-a-rule workshop</td><td>—</td><td><strong>First Draft</strong> Fri Oct 16</td></tr>
+  <tr><td class="nowrap"><strong>9</strong> Oct 19, 21</td><td>Read-aloud revision &amp; peer review; <strong>Conference Day 2 (draft)</strong></td><td>WWM ch16–17</td><td class="muted">revised draft + cover page before conference</td></tr>
+  <tr><td class="nowrap"><strong>10</strong> Oct 26, 28</td><td>Mentors &amp; the synthetical close; author-page audio; the hinge to research</td><td>WWM ch19</td><td><strong>Final Draft + audio</strong> Fri Oct 30</td></tr>
+ </tbody>
+</table>
+<p class="muted">Fall Break Oct 9–11 costs no MW session. Conference days meet one-to-one (no whole-class meeting).</p>
+
+<h3>Act III — Multimodal Research Project (Nov 2 – Dec 2)</h3>
+<table>
+ <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
+ <tbody>
+  <tr><td class="nowrap"><strong>11</strong> Nov 2, 4</td><td>Launch the MRP; Topic Map; source rings; set up NotebookLM</td><td>your own gathered sources</td><td><strong>Proposal</strong> Fri Nov 6</td></tr>
+  <tr><td class="nowrap"><strong>12</strong> Nov 9, 11</td><td>NotebookLM lab &amp; the flattening demo; drafting genres</td><td>your sources</td><td>—</td></tr>
+  <tr><td class="nowrap"><strong>13</strong> Nov 16, 18</td><td>Assemble the draft; read-aloud + peer review; artifact studio</td><td>your sources</td><td><strong>Draft</strong> Fri Nov 20</td></tr>
+  <tr><td class="nowrap"><strong>14</strong> Nov 23–27</td><td class="muted"><strong>Thanksgiving Break — no class</strong></td><td class="muted">revise toward final</td><td>—</td></tr>
+  <tr><td class="nowrap"><strong>15</strong> Nov 30, Dec 2</td><td>Specific-over-generic revision; reflective note; <strong>share-out</strong>; the <strong>Look-Back Letter</strong></td><td>—</td><td><strong>Final project + AI artifact + reflective note + Look-Back Letter</strong> Wed Dec 2</td></tr>
+ </tbody>
+</table>
+<p class="muted">No finals-week meeting; the course does not meet Dec 7–11.</p>
+
+<h2 id="work">Deliverables &amp; grading</h2>
+<p>The course is worth <strong>200 points</strong>. The grade rests on the three projects plus your writer's notebook.</p>
+<table>
+ <thead><tr><th>Deliverable</th><th style="width:9em">When</th><th class="pts">Points</th></tr></thead>
+ <tbody>
+  <tr class="acthead"><td colspan="3">Act I — Five One-Pagers (10 each)</td></tr>
+  <tr><td><a href="week-01-trust-the-gush/OP1%20Why%20You%20Write.docx">OP1 — Why You Write</a></td><td>Fri Aug 28</td><td class="pts">10</td></tr>
+  <tr><td><a href="week-02-writing-place/OP2%20Writing%20Place.docx">OP2 — Writing Place</a></td><td>Fri Sep 4</td><td class="pts">10</td></tr>
+  <tr><td><a href="week-03-voice-print/OP3%20Voice%20Print.docx">OP3 — Voice Print</a></td><td>Fri Sep 11</td><td class="pts">10</td></tr>
+  <tr><td><a href="week-04-show-dont-tell/OP4%20Show%20Dont%20Tell.docx">OP4 — Show, Don't Tell</a></td><td>Fri Sep 18</td><td class="pts">10</td></tr>
+  <tr><td><a href="week-05-breaking-the-rules/OP5%20Breaking%20the%20Rules.docx">OP5 — Breaking the Rules</a></td><td>Fri Sep 25</td><td class="pts">10</td></tr>
+  <tr class="acthead"><td colspan="3">Act II — The Currere</td></tr>
+  <tr><td>Conference prep (2 × 5)</td><td>Wks 7, 9</td><td class="pts">10</td></tr>
+  <tr><td>First draft</td><td>Fri Oct 16</td><td class="pts">10</td></tr>
+  <tr><td><strong>Final draft</strong></td><td>Fri Oct 30</td><td class="pts">30</td></tr>
+  <tr class="acthead"><td colspan="3">Act III — Multimodal Research Project</td></tr>
+  <tr><td>Proposal</td><td>Fri Nov 6</td><td class="pts">5</td></tr>
+  <tr><td>Draft</td><td>Fri Nov 20</td><td class="pts">10</td></tr>
+  <tr><td>Holistic quality</td><td>Wed Dec 2</td><td class="pts">10</td></tr>
+  <tr><td>Required elements</td><td>Wed Dec 2</td><td class="pts">10</td></tr>
+  <tr><td>Reflection on AI use</td><td>Wed Dec 2</td><td class="pts">10</td></tr>
+  <tr><td>Transformed artifact</td><td>Wed Dec 2</td><td class="pts">5</td></tr>
+  <tr class="acthead"><td colspan="3">All term</td></tr>
+  <tr><td><strong>Writer's Notebook</strong> — graded on kept practice, not polish</td><td>Due at term's end</td><td class="pts">50</td></tr>
+  <tr class="tot"><td>Total</td><td></td><td class="pts">200</td></tr>
+ </tbody>
 </table>
 
-<h2 id="readings">Readings</h2>
-<p>Chapters from Tom Romano’s <em>Write What Matters</em> and the model curreres are posted in
-<strong>Canvas</strong>, not here. Download them, then point Journaler’s <strong>Readings</strong>
-tab at the folder you keep them in — the app ships with no course readings inside it, and the
-files never leave your computer.</p>
+<h3>The Writer's Notebook</h3>
+<p>Your notebook is where the everyday writing of this course lives. You write in it in nearly every class and on your own, and you turn the whole thing in at the end of the term. It is graded on <strong>kept practice, not polish</strong>: the point is that you wrote, often, without stopping to fix or judge. No one red-pens a free-write. Aim for <strong>at least one entry per class meeting</strong> — expect roughly 25 to 40 entries by December.</p>
+<p>Into the notebook go: every <strong>free-write</strong>, including the Week 1 <em>why do we write?</em> baseline and the daily openers; the raw <strong>timed gushes</strong> behind your One-Pagers, before you compose them; in-class <strong>quick-writes and exercises</strong>; your currere <strong>gushes, brainstorms, and storyboard notes</strong>; your research <strong>topic map and source notes</strong>; and the Week 15 <strong>letter back</strong> to your Week 1 self.</p>
+<div class="callout">
+ <p>The polished projects are turned in separately — the notebook is the raw material behind them. <strong>Journaler</strong> is the recommended home and makes turning it in easy, but a physical notebook works too, <em>except</em> for the timed One-Pager drafts, which happen in Journaler.</p>
+</div>
+
+<h2 id="ai">Working with AI</h2>
+<p><strong>AI is part of this course, and using it well is one of the things you are here to learn.</strong> That is different from letting it do your writing. The policy follows the three acts.</p>
+<ul>
+ <li><strong>Act I (One-Pagers).</strong> You draft in Journaler under a timer that locks editing while it runs. That timed, in-app session is the proof the writing is yours. Do not paste in outside or generated text. After the timer, an AI reflection partner may ask you about the <em>experience</em> of writing, never about the words themselves.</li>
+ <li><strong>Act II (Currere).</strong> AI is a studio partner for thinking and questioning. Your currere is hand-written. AI does not draft your scenes or your close.</li>
+ <li><strong>Act III (Research Project).</strong> You will use AI as a grounded research partner and you must <strong>transform</strong> what it produces. Raw, unedited AI output does not count as your work, and there is a cap on how much raw output a project may include. A short reflective note on how you used AI is part of the grade.</li>
+</ul>
+<div class="callout">
+ <p><strong>Disclosure is required everywhere.</strong> Every piece you turn in carries a short note on how you used AI — what tool, for what, at which step. <strong>Honest disclosure is never penalized.</strong> Undisclosed or prohibited use is an integrity violation.</p>
+</div>
+
+<h2 id="policies">Policies</h2>
+
+<h3>Academic integrity</h3>
+<p>Your work in this course must be honest. Cheating, plagiarism, fabrication, unauthorized collaboration, and misrepresentation are prohibited and handled under Miami University's Academic Integrity Policy. Cite every source you use, <strong>including AI assistance</strong>.</p>
+
+<h3>Privacy</h3>
+<div class="callout">
+ <p>Everything on this public site is <strong>de-identified</strong> — no student names, work, or grades. Much of what you write this term is about your own life. You choose what a finished piece shows: redact, blur, or code what stays private. <strong>Withholding is part of the composition</strong>, and you are graded on craft and judgment, never on candor or how much you reveal.</p>
+</div>
+
+<h3>Your writing stays yours</h3>
+<p>Journaler runs entirely in your browser. Nothing you write is uploaded and there is no account and no server. Because of that, your work lives in one browser on one machine — use <strong>⤓ Save my work</strong> often and keep the file somewhere you own.</p>
+
+<h2 id="support">Student support</h2>
+<ul>
+ <li><strong><a href="http://miamioh.edu/howe/">Howe Writing Center</a></strong> — free, individualized help with writing at any stage, for any Miami undergraduate.</li>
+ <li><strong><a href="https://miamioh.edu/student-life/rinella-learning-center/">Rinella Learning Center</a></strong> — academic counseling, workshops, tutoring, and supplemental instruction.</li>
+ <li><strong><a href="https://miamioh.edu/centers-institutes/english-language-learner-writing-center/">English Language Learner Writing Center (ELLWC)</a></strong> — writing support for students whose first language is not English.</li>
+ <li><strong><a href="https://miamioh.edu/life-at-miami/health-well-being/student-counseling-service/">Student Counseling Service</a></strong> — therapy, workshops, and wellness programming.</li>
+ <li><strong><a href="http://miamioh.edu/student-life/student-wellness/">Office of Student Wellness</a></strong> — health and wellness education, prevention, and resources.</li>
+</ul>
+
+<h2 id="tools">Course tools</h2>
+<p>The app we use through the semester. It runs in any browser and keeps your work on your own machine.</p>
+<ul>
+ <li><strong><a href="https://ohiomathteacher.github.io/journaler-284/">Journaler-284</a></strong> — where you write this term: the timed gush and the five One-Pagers, the currere moments, close reading with highlights and margin notes, and a dated writer's notebook you export as one PDF to turn in. Nothing you write is uploaded.</li>
+</ul>
+<p><strong>Textbook:</strong> Tom Romano, <em>Write What Matters</em> — the one book, read in order, about a chapter a week across Acts I and II. Chapters and the model curreres are posted in <strong>Canvas</strong>, not here; download them and point Journaler's <strong>Readings</strong> tab at the folder you keep them in.</p>
 
 <footer>
-  Miami University · TCE 284 · Fall 2026 · Submissions and grades live in Canvas.
-  <a href="https://github.com/OhioMathTeacher/tce284-fa26">Source</a>
+ © 2026 Michael Todd Edwards. Materials licensed under AGPL-3.0 with the Commons Clause (source-available; not for sale) — see <a href="LICENSE">LICENSE</a>. Public and FERPA-safe; planning docs live in a separate private repository.
 </footer>
 
 </body>
