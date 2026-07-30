@@ -19,8 +19,9 @@ Source: [OhioMathTeacher/journaler-284](https://github.com/OhioMathTeacher/journ
 
 - **[`week-01-trust-the-gush/`](week-01-trust-the-gush/)** — Week 1 (Trust the Gush):
   the Monday and Wednesday day-outlines and **One-Pager 1 — Why You Write**.
+- **Weeks 2–5** — the One-Pager assignments (OP2–OP5), linked from the course home.
 
-More weeks will be added here as the semester unfolds.
+Day outlines go up as each week arrives. Later assignments are released with their act.
 
 ## What is *not* here
 
