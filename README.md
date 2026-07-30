@@ -17,11 +17,18 @@ Source: [OhioMathTeacher/journaler-284](https://github.com/OhioMathTeacher/journ
 
 ## What's here
 
-- **[`week-01-trust-the-gush/`](week-01-trust-the-gush/)** — Week 1 (Trust the Gush):
-  the Monday and Wednesday day-outlines and **One-Pager 1 — Why You Write**.
-- **Weeks 2–5** — the One-Pager assignments (OP2–OP5), linked from the course home.
+**All fifteen weeks.** Every week folder holds that week's day-outlines, and the weeks
+that carry an assignment hold its handout:
 
-Day outlines go up as each week arrives. Later assignments are released with their act.
+- **Act I** — `week-01`…`week-05`: the five One-Pagers (OP1–OP5).
+- **Act II** — `week-06` Currere Guidelines · `week-07` Conference Packet · `week-08`
+  First Draft · `week-09` Draft Conference · `week-10` Final Draft.
+- **Act III** — `week-11`: Multimodal Research Project, Topic Brainstorming Worksheet,
+  AI Multimodal Moves List.
+- `week-14` is Thanksgiving break and is intentionally empty.
+
+Every assignment is linked from the [course home](https://ohiomathteacher.github.io/tce284-fa26/).
+Day outlines are published for all weeks; only Week 1's are linked from the schedule.
 
 ## What is *not* here
 
