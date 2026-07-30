@@ -30,6 +30,17 @@
  .muted{color:var(--mut);} .nowrap{white-space:nowrap;}
  .pts{text-align:right;white-space:nowrap;} .tot td{border-top:2px solid var(--ink);font-weight:700;}
  ul{margin:6px 0;padding-left:22px;} li{margin:3px 0;}
+ /* Each act is one card so the eye takes it as a single object. Three stacked tables
+    with only <h3>s between them read as one undifferentiated wall. */
+ .act{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;
+      padding:14px 18px 10px;margin:18px 0;background:#fcfaf8;}
+ .act > h3{margin:0 0 2px;font-size:17px;color:var(--accent);}
+ .act > .when{font-size:13px;color:var(--mut);margin:0 0 10px;}
+ .act table{margin:0;background:transparent;}
+ .act th{background:#f4efe9;}
+ .act tbody tr:nth-child(even){background:rgba(255,255,255,.6);}
+ .act tbody tr:last-child td{border-bottom:none;}
+ .act > .note{font-size:12.5px;color:var(--mut);margin:8px 0 2px;}
  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--mut);}
 </style>
 </head>
@@ -80,7 +91,9 @@
 <h2 id="schedule">Schedule</h2>
 <p class="muted">Dates follow the Miami FA26 academic calendar. Readings from <em>Write What Matters</em> (WWM) are assigned “for the next meeting.” One-Pagers are due Fridays via Canvas. Day outlines link as each week goes up.</p>
 
-<h3>Act I — Become a Writer (Aug 24 – Sep 23)</h3>
+<section class="act">
+ <h3>Act I — Become a Writer</h3>
+ <p class="when">Aug 24 – Sep 23</p>
 <table>
  <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
  <tbody>
@@ -91,9 +104,13 @@
   <tr><td class="nowrap"><strong>5</strong> Sep 21, 23<br><a href="week-05-breaking-the-rules/week-05-mon.html">Mon</a> · <a href="week-05-breaking-the-rules/week-05-wed.html">Wed</a></td><td>Breaking the rules (Grammar B); the <strong>Look-Back</strong> → your currere thread</td><td>Romano, “The Anchor, the Bridge, the Lesson” · Moore, “Starting the Conversation”</td><td><strong>OP5</strong> Fri Sep 25</td></tr>
  </tbody>
 </table>
-<p class="muted">*Mon Sep 7 is Labor Day (no class); Week 3 meets Wednesday only.</p>
+ <p class="note">*Mon Sep 7 is Labor Day (no class); Week 3 meets Wednesday only.</p>
+</section>
 
-<h3>Act II — The Currere (Sep 28 – Oct 30)</h3>
+
+<section class="act">
+ <h3>Act II — The Currere</h3>
+ <p class="when">Sep 28 – Oct 30</p>
 <table>
  <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
  <tbody>
@@ -104,9 +121,13 @@
   <tr><td class="nowrap"><strong>10</strong> Oct 26, 28</td><td>Mentors &amp; the synthetical close; author-page audio; the hinge to research</td><td>WWM ch19</td><td><strong>Final Draft + audio</strong> Fri Oct 30</td></tr>
  </tbody>
 </table>
-<p class="muted">Fall Break Oct 9–11 costs no MW session. Conference days meet one-to-one (no whole-class meeting).</p>
+ <p class="note">Fall Break Oct 9–11 costs no MW session. Conference days meet one-to-one (no whole-class meeting).</p>
+</section>
 
-<h3>Act III — Multimodal Research Project (Nov 2 – Dec 2)</h3>
+
+<section class="act">
+ <h3>Act III — Multimodal Research Project</h3>
+ <p class="when">Nov 2 – Dec 2</p>
 <table>
  <thead><tr><th style="width:5.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Due</th></tr></thead>
  <tbody>
@@ -117,7 +138,9 @@
   <tr><td class="nowrap"><strong>15</strong> Nov 30, Dec 2</td><td>Specific-over-generic revision; reflective note; <strong>share-out</strong>; the <strong>Look-Back Letter</strong></td><td>—</td><td><strong>Final project + AI artifact + reflective note + Look-Back Letter</strong> Wed Dec 2</td></tr>
  </tbody>
 </table>
-<p class="muted">No finals-week meeting; the course does not meet Dec 7–11.</p>
+ <p class="note">No finals-week meeting; the course does not meet Dec 7–11.</p>
+</section>
+
 
 <h2 id="work">Deliverables &amp; grading</h2>
 <p>The course is worth <strong>200 points</strong>. The grade rests on the three projects plus your writer's notebook.</p>
