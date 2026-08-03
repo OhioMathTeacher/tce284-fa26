@@ -17,14 +17,15 @@ Source: [OhioMathTeacher/journaler-284](https://github.com/OhioMathTeacher/journ
 
 ### What you need
 
-A **laptop or desktop computer**: macOS, Windows, Linux, or a Chromebook. Any current
-browser works, including Chrome, Edge, Firefox, and Safari. Nothing to install, no
-account to create.
+Any current browser works, including Chrome, Edge, Firefox, and Safari, on macOS,
+Windows, Linux, or a Chromebook. Nothing to install, no account to create.
 
-**Write on a computer, not on a phone or tablet.** The timed One-Pager drafts lock
-editing while the timer runs, and that lock needs a physical keyboard. Both turn-in
-artifacts, the One-Pagers and the writer's notebook, are produced by printing to PDF
-from the browser, which phones and tablets handle inconsistently.
+**We recommend writing on a laptop or desktop.** You turn in both the One-Pagers and the
+writer's notebook by printing them to PDF from your browser, and phones and tablets
+handle printing inconsistently. A larger screen also makes the timed drafts easier.
+
+Journaler also works on an iPad. We recommend testing Journaler early and getting in the
+habit of using it on the same device each week.
 
 Your work is saved in the browser and on the computer you used, and does not follow
 you elsewhere on its own. Use **⤓ Save my work** at the end of every session and keep
