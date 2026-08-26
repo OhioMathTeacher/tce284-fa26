@@ -23,6 +23,7 @@
   report itself as current. A stamp that can go stale and be noticed beats one that lies.
 -->
 <style>
+.nav-sep{color:#9ca3af;margin:0 .15rem}
  :root{--accent:#7A3B10;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;}
  *{box-sizing:border-box;}
  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:24px 18px 64px;color:var(--ink);line-height:1.55;}
@@ -68,9 +69,8 @@
 <body>
 
 <h1>TCE 284 — Writing for Educators</h1>
-<div class="sub">Miami University · Fall 2026 · Instructor: Dr. Todd Edwards · <a href="mailto:edwardm2@miamioh.edu">edwardm2@miamioh.edu</a> · 401H McGuffey Hall</div>
-<div class="sub">MW seminar, 80 minutes · Aug 24 – Dec 9 · Miami Plan Advanced Writing Requirement · 200 points</div>
-<div class="sub">The public course home — schedule, deliverables, policies, and tools all live here. You submit work and see your grades in <strong>Canvas</strong>.</div>
+<div class="sub">Miami University · Fall 2026 · Instructor: Dr. Todd Edwards · <a href="mailto:edwardm2@miamioh.edu">edwardm2@miamioh.edu</a></div>
+<div class="sub">The public course home — schedule, deliverables, policies, and tools all live here. You submit work and see your grades in <strong>Canvas</strong> (<a href="https://miamioh.instructure.com/courses/258319">link</a>).</div>
 
 <nav>
  <a href="#logistics">Logistics</a>
@@ -82,6 +82,10 @@
  <a href="#policies">Policies</a>
  <a href="#support" title="Student support">Support</a>
  <a href="#tools" title="Course tools">Tools</a>
+ <span class="nav-sep">·</span>
+ <a href="#act1" title="Weeks 1–5 — schedule and daily outlines">Act I</a>
+ <a href="#act2" title="Weeks 6–10 — schedule and daily outlines">Act II</a>
+ <a href="#act3" title="Weeks 11–15 — schedule and daily outlines">Act III</a>
  <button id="toggleAll" type="button" title="Expand every section" aria-label="Expand every section" hidden>⊞</button>
 </nav>
 
@@ -133,7 +137,7 @@
 <details class="sect">
 <summary><h2 id="schedule">Schedule</h2></summary>
 <p class="muted">We meet Mondays and Wednesdays from <strong>August 24 to December 2, 2026</strong>. There is no finals-week meeting, but the Multimodal Research Project is due <strong>Wednesday, December 9</strong>. The <strong>Reading</strong> column lists what to have read <em>that</em> week — readings are assigned the meeting before, so what you are given on a Wednesday is for the following Monday. One-Pagers are due Fridays via Canvas. Due dates are listed under <a href="#work">Deliverables</a>.</p>
-<details class="part">
+<details class="part" id="act1">
 <summary><h3>Act I — Become a Writer · Aug 24 – Sep 23</h3></summary>
 <table>
  <thead><tr><th style="width:7.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Class pages</th></tr></thead>
@@ -147,7 +151,7 @@
 </table>
 </details>
 
-<details class="part">
+<details class="part" id="act2">
 <summary><h3>Act II — The Currere · Sep 28 – Oct 30</h3></summary>
 <table>
  <thead><tr><th style="width:7.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Class pages</th></tr></thead>
@@ -161,7 +165,7 @@
 </table>
 </details>
 
-<details class="part">
+<details class="part" id="act3">
 <summary><h3>Act III — Multimodal Research Project · Nov 2 – Dec 2</h3></summary>
 <table>
  <thead><tr><th style="width:7.5em">Week</th><th>Focus</th><th>Reading</th><th style="width:8em">Class pages</th></tr></thead>
@@ -460,6 +464,23 @@
     if (before) secs.forEach(function (d, i) { d.open = before[i]; });
     before = null;
   });
+})();
+</script>
+<script>
+(function () {
+  function openAct(hash) {
+    if (!hash) return;
+    var el = document.querySelector(hash);
+    if (!el || el.tagName !== 'DETAILS') return;
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  window.addEventListener('hashchange', function () { openAct(location.hash); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#act"]');
+    if (a) setTimeout(function () { openAct(a.getAttribute('href')); }, 0);
+  });
+  if (location.hash) openAct(location.hash);
 })();
 </script>
 </body>
