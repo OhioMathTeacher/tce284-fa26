@@ -1,155 +1,920 @@
-<title>TCE 284 — Review Index</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCE 284 — course review</title>
 <style>
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:0 auto;
-padding:24px 18px 60px;color:#1f2937;line-height:1.5;font-size:15px;background:#fff}
-h1{font-size:22px;margin:0 0 4px} .sub{color:#6b7280;font-size:13px;margin-bottom:20px}
-.note{background:#fff3cd;border-left:4px solid #d97706;padding:10px 14px;border-radius:4px;margin:14px 0;font-size:13.5px}
-.wk{border:1px solid #e5e7eb;border-radius:8px;padding:12px 16px;margin:12px 0}
-.wk h2{font-size:15px;margin:0 0 8px;color:#0f766e}
-.wk h2 .slug{font-weight:400;color:#6b7280;font-size:13px}
-ul{margin:5px 0 10px;padding-left:20px} li{margin:3px 0}
-a{color:#2563eb} code{background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:12.5px;color:#374151}
-.lbl{display:inline-block;min-width:82px;color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
-.none{color:#b45309;font-style:italic}
+ :root{--accent:#0f766e;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:14px;}
+ h1{font-size:20px;margin:0 0 2px;} .sub{color:#6b7280;font-size:12px;margin-bottom:16px;}
+ .note{background:#e7f3ff;padding:12px 16px;border-radius:6px;margin:12px 0;}
+ h2{font-size:14px;margin:22px 0 6px;color:#374151;border-bottom:1px solid #e5e7eb;padding-bottom:4px;}
+ .bar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 0;margin:14px 0 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+ .bar .tally{font-size:12px;color:#6b7280;flex:1;min-width:150px;}
+ .row{border-left:4px solid var(--accent);background:#f9fafb;padding:8px 12px;margin:6px 0;border-radius:2px;}
+ .row.support{border-left-color:#c7cdd4;background:#fcfcfd;}
+ .line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+ a.outline{color:#2563eb;text-decoration:none;flex:1;min-width:220px;}
+ a.outline:hover{text-decoration:underline;}
+ .badge{font-size:10px;color:#6b7280;background:#eef0f3;border-radius:3px;padding:1px 5px;}
+ .dot{color:var(--accent);font-size:11px;}
+ button{font:inherit;font-size:12px;padding:4px 11px;border:1px solid #d1d5db;background:#fff;border-radius:4px;cursor:pointer;color:#374151;}
+ button:hover{border-color:var(--accent);color:var(--accent);}
+ button.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+ button.primary:hover{opacity:.9;color:#fff;}
+ .panel{margin-top:8px;}
+ textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;padding:8px;border:1px solid #d1d5db;border-radius:4px;resize:vertical;}
+ textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;}
+ .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap;}
+ .count{font-size:12px;color:#6b7280;}
+ .saved{font-size:11px;color:#6b7280;margin:6px 0 0;font-style:italic;}
+ .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ #printout[hidden]{display:none;}
+ #printout h1{font-size:18px;margin-bottom:4px;}
+ #printout .entry{margin:0 0 18px;page-break-inside:avoid;}
+ #printout .entry h3{font-size:14px;margin:0 0 2px;}
+ #printout .entry .src{font-size:11px;color:#6b7280;margin:0 0 6px;word-break:break-all;}
+ #printout .entry .txt{white-space:pre-wrap;margin:0;}
+ @media print {
+  #app{display:none !important;}
+  #printout{display:block !important;}
+  body{max-width:none;padding:0;font-size:12px;}
+  a{color:#000;text-decoration:none;}
+ }
 </style>
-<h1>TCE 284 — Review Index</h1>
-<p class="sub">TCE 284 C · Fall 2026 · every published page, in order. Working index for review — not linked from the course home.</p>
-<div class="wk">
-<h2>Week 1 <span class="slug">trust-the-gush</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-01-trust-the-gush/week-01-mon.html">Week 1 · Monday — Welcome</a> &nbsp;<code>week-01-mon.html</code></li>
-<li><a href="week-01-trust-the-gush/week-01-wed.html">Week 1 · Wednesday — Read it, then write it</a> &nbsp;<code>week-01-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-01-trust-the-gush/OP1 Why You Write.docx">OP1 Why You Write.docx</a></li>
-</ul>
+</head>
+<body>
+<main>
+<div id="app">
+<a class="home" href="index.html">← Course home</a>
+<h1>TCE 284 — course review</h1>
+<div class="sub">Every session outline and handout · 27 sessions, 15 handouts</div>
+
+<div class="note">
+ <strong>How this works.</strong> Open any page in a new tab, then use <strong>Feedback</strong> to write notes on it.
+ Work through as many as you like in one sitting — your notes save automatically in this browser, so you can close the tab and come back.
+ When you're ready to send them, use the bar below: <strong>Copy all notes</strong> puts everything on your clipboard to paste into one email,
+ or <strong>Save as PDF</strong> opens your print dialog — choose <em>Save as PDF</em> as the destination.
+ Nothing is uploaded anywhere; your notes stay in this browser until you copy or print them.
 </div>
-<div class="wk">
-<h2>Week 2 <span class="slug">writing-place</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-02-writing-place/week-02-mon.html">Week 2 · Monday — Your Writing Place</a> &nbsp;<code>week-02-mon.html</code></li>
-<li><a href="week-02-writing-place/week-02-wed.html">Week 2 · Wednesday — Build the page</a> &nbsp;<code>week-02-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-02-writing-place/OP2 Writing Place.docx">OP2 Writing Place.docx</a></li>
-</ul>
+
+<div class="bar">
+ <span class="tally" id="tally">No notes yet</span>
+ <button type="button" id="copyAll">Copy all notes</button>
+ <button type="button" id="savePdf" class="primary">Save as PDF</button>
 </div>
-<div class="wk">
-<h2>Week 3 <span class="slug">voice-print</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-03-voice-print/week-03-wed.html">Week 3 · Wednesday — Voices</a> &nbsp;<code>week-03-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-03-voice-print/OP3 Voice Print.docx">OP3 Voice Print.docx</a></li>
-</ul>
+
+<h2>Week 1 · Trust The Gush</h2>
+<div class="row" data-key="week-01-trust-the-gush/week-01-mon.html"
+     data-title="Week 1 · Monday — Welcome" data-week="Week 1 · Trust The Gush"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-01-trust-the-gush/week-01-mon.html">
+ <div class="line">
+  <a class="outline" href="week-01-trust-the-gush/week-01-mon.html" target="_blank" rel="noopener">Week 1 · Monday — Welcome</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 4 <span class="slug">show-dont-tell</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-04-show-dont-tell/week-04-mon.html">Week 4 · Monday — Show, Don&#x27;t Tell</a> &nbsp;<code>week-04-mon.html</code></li>
-<li><a href="week-04-show-dont-tell/week-04-wed.html">Week 4 · Wednesday — Build the moment</a> &nbsp;<code>week-04-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-04-show-dont-tell/OP4 Show Dont Tell.docx">OP4 Show Dont Tell.docx</a></li>
-</ul>
+<div class="row" data-key="week-01-trust-the-gush/week-01-wed.html"
+     data-title="Week 1 · Wednesday — Read it, then write it" data-week="Week 1 · Trust The Gush"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-01-trust-the-gush/week-01-wed.html">
+ <div class="line">
+  <a class="outline" href="week-01-trust-the-gush/week-01-wed.html" target="_blank" rel="noopener">Week 1 · Wednesday — Read it, then write it</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 5 <span class="slug">breaking-the-rules</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-05-breaking-the-rules/week-05-mon.html">Week 5 · Monday — Break the Rules</a> &nbsp;<code>week-05-mon.html</code></li>
-<li><a href="week-05-breaking-the-rules/week-05-wed.html">Week 5 · Wednesday — Draft it, flatten it, look back</a> &nbsp;<code>week-05-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-05-breaking-the-rules/OP5 Breaking the Rules.docx">OP5 Breaking the Rules.docx</a></li>
-</ul>
-<div><span class="lbl">Other</span></div><ul>
-<li><a href="week-05-breaking-the-rules/grammar-b-examples.html">Grammar B — Four Moves, with Examples</a> &nbsp;<code>grammar-b-examples.html</code></li>
-</ul>
+<div class="row support" data-key="week-01-trust-the-gush/cognition-craft-and-the-voice-of-the-one-pager.pdf"
+     data-title="cognition-craft-and-the-voice-of-the-one-pager.pdf" data-week="Week 1 · Trust The Gush"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-01-trust-the-gush/cognition-craft-and-the-voice-of-the-one-pager.pdf">
+ <div class="line">
+  <a class="outline" href="week-01-trust-the-gush/cognition-craft-and-the-voice-of-the-one-pager.pdf" target="_blank" rel="noopener">cognition-craft-and-the-voice-of-the-one-pager.pdf</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 6 <span class="slug">what-is-currere</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-06-what-is-currere/week-06-mon.html">Week 6 · Monday — The Currere Begins</a> &nbsp;<code>week-06-mon.html</code></li>
-<li><a href="week-06-what-is-currere/week-06-wed.html">Week 6 · Wednesday — Currere in the Wild</a> &nbsp;<code>week-06-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-06-what-is-currere/Currere Guidelines.docx">Currere Guidelines.docx</a></li>
-</ul>
+<div class="row support" data-key="week-01-trust-the-gush/OP1 Why You Write.docx"
+     data-title="OP1 Why You Write.docx" data-week="Week 1 · Trust The Gush"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-01-trust-the-gush/OP1 Why You Write.docx">
+ <div class="line">
+  <a class="outline" href="week-01-trust-the-gush/OP1 Why You Write.docx" target="_blank" rel="noopener">OP1 Why You Write.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 7 <span class="slug">regressive-the-scene</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-07-regressive-the-scene/week-07-mon.html">Week 7 · Monday — Currere Topic Conferences</a> &nbsp;<code>week-07-mon.html</code></li>
-<li><a href="week-07-regressive-the-scene/week-07-wed.html">Week 7 · Wednesday — Storyboard Your Scenes</a> &nbsp;<code>week-07-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-07-regressive-the-scene/Conference Packet.docx">Conference Packet.docx</a></li>
-</ul>
+<h2>Week 2 · Writing Place</h2>
+<div class="row" data-key="week-02-writing-place/week-02-mon.html"
+     data-title="Week 2 · Monday — Your Writing Place" data-week="Week 2 · Writing Place"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-02-writing-place/week-02-mon.html">
+ <div class="line">
+  <a class="outline" href="week-02-writing-place/week-02-mon.html" target="_blank" rel="noopener">Week 2 · Monday — Your Writing Place</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 8 <span class="slug">dramatize-and-break-rules</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-08-dramatize-and-break-rules/week-08-mon.html">Week 8 · Monday — Render the Scenes That Carry the Weight</a> &nbsp;<code>week-08-mon.html</code></li>
-<li><a href="week-08-dramatize-and-break-rules/week-08-wed.html">Week 8 · Wednesday — Break a Rule, Share the Room</a> &nbsp;<code>week-08-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-08-dramatize-and-break-rules/Currere First Draft.docx">Currere First Draft.docx</a></li>
-</ul>
+<div class="row" data-key="week-02-writing-place/week-02-wed.html"
+     data-title="Week 2 · Wednesday — Build the page" data-week="Week 2 · Writing Place"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-02-writing-place/week-02-wed.html">
+ <div class="line">
+  <a class="outline" href="week-02-writing-place/week-02-wed.html" target="_blank" rel="noopener">Week 2 · Wednesday — Build the page</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 9 <span class="slug">metaphor-and-leads</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-09-metaphor-and-leads/week-09-mon.html">Week 9 · Monday — Read It Aloud: Leads &amp;amp; Metaphor</a> &nbsp;<code>week-09-mon.html</code></li>
-<li><a href="week-09-metaphor-and-leads/week-09-wed.html">Week 9 · Wednesday — Currere Draft Conferences</a> &nbsp;<code>week-09-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-09-metaphor-and-leads/Draft Conference.docx">Draft Conference.docx</a></li>
-</ul>
+<div class="row support" data-key="week-02-writing-place/OP2 Writing Place.docx"
+     data-title="OP2 Writing Place.docx" data-week="Week 2 · Writing Place"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-02-writing-place/OP2 Writing Place.docx">
+ <div class="line">
+  <a class="outline" href="week-02-writing-place/OP2 Writing Place.docx" target="_blank" rel="noopener">OP2 Writing Place.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 10 <span class="slug">mentors-and-the-hinge</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-10-mentors-and-the-hinge/week-10-mon.html">Week 10 · Monday — How a Currere Lands</a> &nbsp;<code>week-10-mon.html</code></li>
-<li><a href="week-10-mentors-and-the-hinge/week-10-wed.html">Week 10 · Wednesday — Your Voice, and the Genres Buried Inside</a> &nbsp;<code>week-10-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-10-mentors-and-the-hinge/Currere Final Draft.docx">Currere Final Draft.docx</a></li>
-</ul>
+<h2>Week 3 · Voice Print</h2>
+<div class="row" data-key="week-03-voice-print/week-03-wed.html"
+     data-title="Week 3 · Wednesday — Voices" data-week="Week 3 · Voice Print"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-03-voice-print/week-03-wed.html">
+ <div class="line">
+  <a class="outline" href="week-03-voice-print/week-03-wed.html" target="_blank" rel="noopener">Week 3 · Wednesday — Voices</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 11 <span class="slug">launch-and-topic</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-11-launch-and-topic/week-11-mon.html">Week 11 · Monday — Launching the Research Project</a> &nbsp;<code>week-11-mon.html</code></li>
-<li><a href="week-11-launch-and-topic/week-11-wed.html">Week 11 · Wednesday — Sources &amp;amp; Setup</a> &nbsp;<code>week-11-wed.html</code></li>
-</ul>
-<div><span class="lbl">Handouts</span></div><ul>
-<li><a href="week-11-launch-and-topic/AI Multimodal Moves List TCE 284.docx">AI Multimodal Moves List TCE 284.docx</a></li>
-<li><a href="week-11-launch-and-topic/Multimodal Research Project TCE 284.docx">Multimodal Research Project TCE 284.docx</a></li>
-<li><a href="week-11-launch-and-topic/Topic Brainstorming Worksheet TCE 284.docx">Topic Brainstorming Worksheet TCE 284.docx</a></li>
-</ul>
+<div class="row support" data-key="week-03-voice-print/OP3 Voice Print.docx"
+     data-title="OP3 Voice Print.docx" data-week="Week 3 · Voice Print"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-03-voice-print/OP3 Voice Print.docx">
+ <div class="line">
+  <a class="outline" href="week-03-voice-print/OP3 Voice Print.docx" target="_blank" rel="noopener">OP3 Voice Print.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 12 <span class="slug">sources-into-genres</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-12-sources-into-genres/week-12-mon.html">Week 12 · Monday — Interrogate &amp;amp; Draft</a> &nbsp;<code>week-12-mon.html</code></li>
-<li><a href="week-12-sources-into-genres/week-12-wed.html">Week 12 · Wednesday — Poem, Image &amp;amp; the First AI Move</a> &nbsp;<code>week-12-wed.html</code></li>
-</ul>
+<h2>Week 4 · Show Dont Tell</h2>
+<div class="row" data-key="week-04-show-dont-tell/week-04-mon.html"
+     data-title="Week 4 · Monday — Show, Don&#x27;t Tell" data-week="Week 4 · Show Dont Tell"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-04-show-dont-tell/week-04-mon.html">
+ <div class="line">
+  <a class="outline" href="week-04-show-dont-tell/week-04-mon.html" target="_blank" rel="noopener">Week 4 · Monday — Show, Don&#x27;t Tell</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 13 <span class="slug">cohere-and-review</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-13-cohere-and-review/week-13-mon.html">Week 13 · Monday — Making It One Thing</a> &nbsp;<code>week-13-mon.html</code></li>
-<li><a href="week-13-cohere-and-review/week-13-wed.html">Week 13 · Wednesday — Read, Respond, Finish the Artifact</a> &nbsp;<code>week-13-wed.html</code></li>
-</ul>
+<div class="row" data-key="week-04-show-dont-tell/week-04-wed.html"
+     data-title="Week 4 · Wednesday — Build the moment" data-week="Week 4 · Show Dont Tell"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-04-show-dont-tell/week-04-wed.html">
+ <div class="line">
+  <a class="outline" href="week-04-show-dont-tell/week-04-wed.html" target="_blank" rel="noopener">Week 4 · Wednesday — Build the moment</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 14 <span class="slug">thanksgiving-break</span></h2>
-<div><span class="lbl">Outlines</span> <span class="none">none published</span></div>
+<div class="row support" data-key="week-04-show-dont-tell/OP4 Show Dont Tell.docx"
+     data-title="OP4 Show Dont Tell.docx" data-week="Week 4 · Show Dont Tell"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-04-show-dont-tell/OP4 Show Dont Tell.docx">
+ <div class="line">
+  <a class="outline" href="week-04-show-dont-tell/OP4 Show Dont Tell.docx" target="_blank" rel="noopener">OP4 Show Dont Tell.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
-<div class="wk">
-<h2>Week 15 <span class="slug">revise-and-share</span></h2>
-<div><span class="lbl">Outlines</span></div><ul>
-<li><a href="week-15-revise-and-share/week-15-mon.html">Week 15 · Monday — Revise for the Particular</a> &nbsp;<code>week-15-mon.html</code></li>
-<li><a href="week-15-revise-and-share/week-15-wed.html">Week 15 · Wednesday — The Share-Out</a> &nbsp;<code>week-15-wed.html</code></li>
-</ul>
+<h2>Week 5 · Breaking The Rules</h2>
+<div class="row" data-key="week-05-breaking-the-rules/week-05-mon.html"
+     data-title="Week 5 · Monday — Break the Rules" data-week="Week 5 · Breaking The Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-05-breaking-the-rules/week-05-mon.html">
+ <div class="line">
+  <a class="outline" href="week-05-breaking-the-rules/week-05-mon.html" target="_blank" rel="noopener">Week 5 · Monday — Break the Rules</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
 </div>
+<div class="row" data-key="week-05-breaking-the-rules/week-05-wed.html"
+     data-title="Week 5 · Wednesday — Draft it, flatten it, look back" data-week="Week 5 · Breaking The Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-05-breaking-the-rules/week-05-wed.html">
+ <div class="line">
+  <a class="outline" href="week-05-breaking-the-rules/week-05-wed.html" target="_blank" rel="noopener">Week 5 · Wednesday — Draft it, flatten it, look back</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-05-breaking-the-rules/grammar-b-examples.html"
+     data-title="Grammar B — Four Moves, with Examples" data-week="Week 5 · Breaking The Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-05-breaking-the-rules/grammar-b-examples.html">
+ <div class="line">
+  <a class="outline" href="week-05-breaking-the-rules/grammar-b-examples.html" target="_blank" rel="noopener">Grammar B — Four Moves, with Examples</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-05-breaking-the-rules/OP5 Breaking the Rules.docx"
+     data-title="OP5 Breaking the Rules.docx" data-week="Week 5 · Breaking The Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-05-breaking-the-rules/OP5 Breaking the Rules.docx">
+ <div class="line">
+  <a class="outline" href="week-05-breaking-the-rules/OP5 Breaking the Rules.docx" target="_blank" rel="noopener">OP5 Breaking the Rules.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 6 · What Is Currere</h2>
+<div class="row" data-key="week-06-what-is-currere/week-06-mon.html"
+     data-title="Week 6 · Monday — The Currere Begins" data-week="Week 6 · What Is Currere"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-06-what-is-currere/week-06-mon.html">
+ <div class="line">
+  <a class="outline" href="week-06-what-is-currere/week-06-mon.html" target="_blank" rel="noopener">Week 6 · Monday — The Currere Begins</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-06-what-is-currere/week-06-wed.html"
+     data-title="Week 6 · Wednesday — Currere in the Wild" data-week="Week 6 · What Is Currere"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-06-what-is-currere/week-06-wed.html">
+ <div class="line">
+  <a class="outline" href="week-06-what-is-currere/week-06-wed.html" target="_blank" rel="noopener">Week 6 · Wednesday — Currere in the Wild</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-06-what-is-currere/Currere Guidelines.docx"
+     data-title="Currere Guidelines.docx" data-week="Week 6 · What Is Currere"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-06-what-is-currere/Currere Guidelines.docx">
+ <div class="line">
+  <a class="outline" href="week-06-what-is-currere/Currere Guidelines.docx" target="_blank" rel="noopener">Currere Guidelines.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 7 · Regressive The Scene</h2>
+<div class="row" data-key="week-07-regressive-the-scene/week-07-mon.html"
+     data-title="Week 7 · Monday — Currere Topic Conferences" data-week="Week 7 · Regressive The Scene"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-07-regressive-the-scene/week-07-mon.html">
+ <div class="line">
+  <a class="outline" href="week-07-regressive-the-scene/week-07-mon.html" target="_blank" rel="noopener">Week 7 · Monday — Currere Topic Conferences</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-07-regressive-the-scene/week-07-wed.html"
+     data-title="Week 7 · Wednesday — Storyboard Your Scenes" data-week="Week 7 · Regressive The Scene"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-07-regressive-the-scene/week-07-wed.html">
+ <div class="line">
+  <a class="outline" href="week-07-regressive-the-scene/week-07-wed.html" target="_blank" rel="noopener">Week 7 · Wednesday — Storyboard Your Scenes</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-07-regressive-the-scene/Conference Packet.docx"
+     data-title="Conference Packet.docx" data-week="Week 7 · Regressive The Scene"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-07-regressive-the-scene/Conference Packet.docx">
+ <div class="line">
+  <a class="outline" href="week-07-regressive-the-scene/Conference Packet.docx" target="_blank" rel="noopener">Conference Packet.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 8 · Dramatize And Break Rules</h2>
+<div class="row" data-key="week-08-dramatize-and-break-rules/week-08-mon.html"
+     data-title="Week 8 · Monday — Render the Scenes That Carry the Weight" data-week="Week 8 · Dramatize And Break Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-08-dramatize-and-break-rules/week-08-mon.html">
+ <div class="line">
+  <a class="outline" href="week-08-dramatize-and-break-rules/week-08-mon.html" target="_blank" rel="noopener">Week 8 · Monday — Render the Scenes That Carry the Weight</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-08-dramatize-and-break-rules/week-08-wed.html"
+     data-title="Week 8 · Wednesday — Break a Rule, Share the Room" data-week="Week 8 · Dramatize And Break Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-08-dramatize-and-break-rules/week-08-wed.html">
+ <div class="line">
+  <a class="outline" href="week-08-dramatize-and-break-rules/week-08-wed.html" target="_blank" rel="noopener">Week 8 · Wednesday — Break a Rule, Share the Room</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-08-dramatize-and-break-rules/Currere First Draft.docx"
+     data-title="Currere First Draft.docx" data-week="Week 8 · Dramatize And Break Rules"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-08-dramatize-and-break-rules/Currere First Draft.docx">
+ <div class="line">
+  <a class="outline" href="week-08-dramatize-and-break-rules/Currere First Draft.docx" target="_blank" rel="noopener">Currere First Draft.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 9 · Metaphor And Leads</h2>
+<div class="row" data-key="week-09-metaphor-and-leads/week-09-mon.html"
+     data-title="Week 9 · Monday — Read It Aloud: Leads &amp;amp; Metaphor" data-week="Week 9 · Metaphor And Leads"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-09-metaphor-and-leads/week-09-mon.html">
+ <div class="line">
+  <a class="outline" href="week-09-metaphor-and-leads/week-09-mon.html" target="_blank" rel="noopener">Week 9 · Monday — Read It Aloud: Leads &amp;amp; Metaphor</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-09-metaphor-and-leads/week-09-wed.html"
+     data-title="Week 9 · Wednesday — Currere Draft Conferences" data-week="Week 9 · Metaphor And Leads"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-09-metaphor-and-leads/week-09-wed.html">
+ <div class="line">
+  <a class="outline" href="week-09-metaphor-and-leads/week-09-wed.html" target="_blank" rel="noopener">Week 9 · Wednesday — Currere Draft Conferences</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-09-metaphor-and-leads/Draft Conference.docx"
+     data-title="Draft Conference.docx" data-week="Week 9 · Metaphor And Leads"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-09-metaphor-and-leads/Draft Conference.docx">
+ <div class="line">
+  <a class="outline" href="week-09-metaphor-and-leads/Draft Conference.docx" target="_blank" rel="noopener">Draft Conference.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 10 · Mentors And The Hinge</h2>
+<div class="row" data-key="week-10-mentors-and-the-hinge/week-10-mon.html"
+     data-title="Week 10 · Monday — How a Currere Lands" data-week="Week 10 · Mentors And The Hinge"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-10-mentors-and-the-hinge/week-10-mon.html">
+ <div class="line">
+  <a class="outline" href="week-10-mentors-and-the-hinge/week-10-mon.html" target="_blank" rel="noopener">Week 10 · Monday — How a Currere Lands</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-10-mentors-and-the-hinge/week-10-wed.html"
+     data-title="Week 10 · Wednesday — Your Voice, and the Genres Buried Inside" data-week="Week 10 · Mentors And The Hinge"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-10-mentors-and-the-hinge/week-10-wed.html">
+ <div class="line">
+  <a class="outline" href="week-10-mentors-and-the-hinge/week-10-wed.html" target="_blank" rel="noopener">Week 10 · Wednesday — Your Voice, and the Genres Buried Inside</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-10-mentors-and-the-hinge/Currere Final Draft.docx"
+     data-title="Currere Final Draft.docx" data-week="Week 10 · Mentors And The Hinge"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-10-mentors-and-the-hinge/Currere Final Draft.docx">
+ <div class="line">
+  <a class="outline" href="week-10-mentors-and-the-hinge/Currere Final Draft.docx" target="_blank" rel="noopener">Currere Final Draft.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 11 · Launch And Topic</h2>
+<div class="row" data-key="week-11-launch-and-topic/week-11-mon.html"
+     data-title="Week 11 · Monday — Launching the Research Project" data-week="Week 11 · Launch And Topic"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-11-launch-and-topic/week-11-mon.html">
+ <div class="line">
+  <a class="outline" href="week-11-launch-and-topic/week-11-mon.html" target="_blank" rel="noopener">Week 11 · Monday — Launching the Research Project</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-11-launch-and-topic/week-11-wed.html"
+     data-title="Week 11 · Wednesday — Sources &amp;amp; Setup" data-week="Week 11 · Launch And Topic"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-11-launch-and-topic/week-11-wed.html">
+ <div class="line">
+  <a class="outline" href="week-11-launch-and-topic/week-11-wed.html" target="_blank" rel="noopener">Week 11 · Wednesday — Sources &amp;amp; Setup</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-11-launch-and-topic/AI Multimodal Moves List TCE 284.docx"
+     data-title="AI Multimodal Moves List TCE 284.docx" data-week="Week 11 · Launch And Topic"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-11-launch-and-topic/AI Multimodal Moves List TCE 284.docx">
+ <div class="line">
+  <a class="outline" href="week-11-launch-and-topic/AI Multimodal Moves List TCE 284.docx" target="_blank" rel="noopener">AI Multimodal Moves List TCE 284.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-11-launch-and-topic/Multimodal Research Project TCE 284.docx"
+     data-title="Multimodal Research Project TCE 284.docx" data-week="Week 11 · Launch And Topic"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-11-launch-and-topic/Multimodal Research Project TCE 284.docx">
+ <div class="line">
+  <a class="outline" href="week-11-launch-and-topic/Multimodal Research Project TCE 284.docx" target="_blank" rel="noopener">Multimodal Research Project TCE 284.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row support" data-key="week-11-launch-and-topic/Topic Brainstorming Worksheet TCE 284.docx"
+     data-title="Topic Brainstorming Worksheet TCE 284.docx" data-week="Week 11 · Launch And Topic"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-11-launch-and-topic/Topic Brainstorming Worksheet TCE 284.docx">
+ <div class="line">
+  <a class="outline" href="week-11-launch-and-topic/Topic Brainstorming Worksheet TCE 284.docx" target="_blank" rel="noopener">Topic Brainstorming Worksheet TCE 284.docx</a><span class="badge">handout</span>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 12 · Sources Into Genres</h2>
+<div class="row" data-key="week-12-sources-into-genres/week-12-mon.html"
+     data-title="Week 12 · Monday — Interrogate &amp;amp; Draft" data-week="Week 12 · Sources Into Genres"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-12-sources-into-genres/week-12-mon.html">
+ <div class="line">
+  <a class="outline" href="week-12-sources-into-genres/week-12-mon.html" target="_blank" rel="noopener">Week 12 · Monday — Interrogate &amp;amp; Draft</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-12-sources-into-genres/week-12-wed.html"
+     data-title="Week 12 · Wednesday — Poem, Image &amp;amp; the First AI Move" data-week="Week 12 · Sources Into Genres"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-12-sources-into-genres/week-12-wed.html">
+ <div class="line">
+  <a class="outline" href="week-12-sources-into-genres/week-12-wed.html" target="_blank" rel="noopener">Week 12 · Wednesday — Poem, Image &amp;amp; the First AI Move</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 13 · Cohere And Review</h2>
+<div class="row" data-key="week-13-cohere-and-review/week-13-mon.html"
+     data-title="Week 13 · Monday — Making It One Thing" data-week="Week 13 · Cohere And Review"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-13-cohere-and-review/week-13-mon.html">
+ <div class="line">
+  <a class="outline" href="week-13-cohere-and-review/week-13-mon.html" target="_blank" rel="noopener">Week 13 · Monday — Making It One Thing</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-13-cohere-and-review/week-13-wed.html"
+     data-title="Week 13 · Wednesday — Read, Respond, Finish the Artifact" data-week="Week 13 · Cohere And Review"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-13-cohere-and-review/week-13-wed.html">
+ <div class="line">
+  <a class="outline" href="week-13-cohere-and-review/week-13-wed.html" target="_blank" rel="noopener">Week 13 · Wednesday — Read, Respond, Finish the Artifact</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<h2>Week 15 · Revise And Share</h2>
+<div class="row" data-key="week-15-revise-and-share/week-15-mon.html"
+     data-title="Week 15 · Monday — Revise for the Particular" data-week="Week 15 · Revise And Share"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-15-revise-and-share/week-15-mon.html">
+ <div class="line">
+  <a class="outline" href="week-15-revise-and-share/week-15-mon.html" target="_blank" rel="noopener">Week 15 · Monday — Revise for the Particular</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+<div class="row" data-key="week-15-revise-and-share/week-15-wed.html"
+     data-title="Week 15 · Wednesday — The Share-Out" data-week="Week 15 · Revise And Share"
+     data-url="https://ohiomathteacher.github.io/tce284-fa26/week-15-revise-and-share/week-15-wed.html">
+ <div class="line">
+  <a class="outline" href="week-15-revise-and-share/week-15-wed.html" target="_blank" rel="noopener">Week 15 · Wednesday — The Share-Out</a>
+  <span class="dot" hidden title="You have notes on this page">●</span>
+  <button class="toggle" type="button">Feedback</button>
+ </div>
+ <div class="panel" hidden>
+  <textarea rows="6" placeholder="Notes on this session — what worked, what to cut, what's missing…"></textarea>
+  <div class="meta">
+   <span class="count">0 characters</span>
+   <span class="actions"><button class="copy" type="button">Copy this one</button></span>
+  </div>
+  <p class="saved" hidden>Draft saved in this browser.</p>
+ </div>
+</div>
+</div>
+
+<div id="printout" hidden></div>
+
+<script>
+(function () {
+  var COURSE = 'TCE 284';
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
+
+  function entries() {
+    return rows.map(function (row) {
+      return {
+        week:  row.dataset.week,
+        title: row.dataset.title,
+        url:   row.dataset.url,
+        text:  row.querySelector('textarea').value.trim()
+      };
+    }).filter(function (e) { return e.text !== ''; });
+  }
+
+  function tally() {
+    var n = entries().length, el = document.getElementById('tally');
+    el.textContent = n === 0 ? 'No notes yet'
+                   : n === 1 ? '1 page with notes'
+                             : n + ' pages with notes';
+  }
+
+  function asText() {
+    var lines = [COURSE + ' — course feedback', new Date().toLocaleDateString(), ''];
+    entries().forEach(function (e) {
+      lines.push('== ' + e.week + ' · ' + e.title, e.url, '', e.text, '');
+    });
+    return lines.join('\n');
+  }
+
+  rows.forEach(function (row) {
+    var key   = 'fb:' + row.dataset.key,
+        ta    = row.querySelector('textarea'),
+        panel = row.querySelector('.panel'),
+        count = row.querySelector('.count'),
+        saved = row.querySelector('.saved'),
+        dot   = row.querySelector('.dot');
+
+    var stored = null;
+    try { stored = localStorage.getItem(key); } catch (e) {}
+    if (stored) { ta.value = stored; panel.hidden = false; saved.hidden = false; }
+
+    function refresh() {
+      var n = ta.value.length;
+      count.textContent = n + (n === 1 ? ' character' : ' characters');
+      dot.hidden = ta.value.trim() === '';
+    }
+    refresh();
+    tally();
+
+    ta.addEventListener('input', function () {
+      refresh();
+      tally();
+      try { localStorage.setItem(key, ta.value); saved.hidden = ta.value === ''; } catch (e) {}
+    });
+
+    row.querySelector('.toggle').addEventListener('click', function () {
+      panel.hidden = !panel.hidden;
+      if (!panel.hidden) ta.focus();
+    });
+
+    row.querySelector('.copy').addEventListener('click', function (e) {
+      var text = '== ' + row.dataset.week + ' · ' + row.dataset.title + '\n'
+               + row.dataset.url + '\n\n' + ta.value.trim();
+      copy(text, e.currentTarget, 'Copy this one');
+    });
+  });
+
+  function copy(text, btn, label) {
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1500); }
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, done); }
+    else {
+      var t = document.createElement('textarea');
+      t.value = text; document.body.appendChild(t); t.select();
+      document.execCommand('copy'); document.body.removeChild(t); done();
+    }
+  }
+
+  document.getElementById('copyAll').addEventListener('click', function (e) {
+    if (!entries().length) { alert('No notes written yet.'); return; }
+    copy(asText(), e.currentTarget, 'Copy all notes');
+  });
+
+  document.getElementById('savePdf').addEventListener('click', function () {
+    var list = entries();
+    if (!list.length) { alert('No notes written yet — nothing to save.'); return; }
+
+    var out = document.getElementById('printout');
+    var when = new Date().toLocaleDateString();
+    out.innerHTML = '';
+
+    var h = document.createElement('h1');
+    h.textContent = COURSE + ' — course feedback';
+    var d = document.createElement('div');
+    d.className = 'sub';
+    d.textContent = when + ' · ' + list.length + (list.length === 1 ? ' page' : ' pages');
+    out.appendChild(h); out.appendChild(d);
+
+    list.forEach(function (e) {
+      var wrap = document.createElement('div'); wrap.className = 'entry';
+      var t = document.createElement('h3');  t.textContent = e.week + ' · ' + e.title;
+      var s = document.createElement('p');   s.className = 'src'; s.textContent = e.url;
+      var p = document.createElement('p');   p.className = 'txt'; p.textContent = e.text;
+      wrap.appendChild(t); wrap.appendChild(s); wrap.appendChild(p);
+      out.appendChild(wrap);
+    });
+
+    out.hidden = false;
+    var original = document.title;
+    document.title = COURSE + ' feedback — ' + when;   // browsers use this as the PDF filename
+    window.print();
+    document.title = original;
+    out.hidden = true;
+  });
+})();
+</script>
+</main>
+</body>
+</html>
