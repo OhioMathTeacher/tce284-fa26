@@ -19,6 +19,13 @@
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
  ol.count{margin:6px 0;padding-left:22px;} ol.count li{margin:5px 0;}
  blockquote{margin:8px 0 8px 6px;padding:8px 12px;border-left:3px solid #93c5fd;background:#f8fbff;color:#374151;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"▾";font-size:10px;color:#4b5563;line-height:1.6;}
+ details.block:not([open]) > summary::before{content:"▸";}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ details.block:not([open]){padding-top:12px;padding-bottom:12px;}
  details.fold{border-left:2px solid rgba(15,118,110,.30);padding-left:9px;margin:2px 0;}
  details.fold > summary{cursor:pointer;font-weight:600;color:#0f5f59;}
  details.fold[open] > summary{margin-bottom:5px;}
@@ -36,58 +43,52 @@
 
 <div class="goals"><strong>Today's goals:</strong> Post your writing-place photos to the class board, loosen up with Lamott and take Romano's dare to write without holding back, sharpen your details until we can see them, and compose <strong>OP2</strong> — words and photos on one page, with music on. Due Friday.</div>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "Sick" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem" open>
+ <summary><h2>0 · Daily Poem — "Sick" <span class="time">(~10 min)</span></h2></summary>
  <ul>
-  <li>Shel Silverstein, Sick (https://poets.org/poem/sick). Read it aloud. In today's reading, Romano discusses writing place, risk and all, seeking surprise, and seeking pleasure in language. Which of these do you see on display in Silverstein's classic children's poem?</li>
+  <li>Shel Silverstein, <a href="https://poets.org/poem/sick">&quot;Sick&quot;</a>. Read it aloud. In today's reading, Romano discusses writing place, risk and all, seeking surprise, and seeking pleasure in language. Which of these do you see on display in Silverstein's classic children's poem?</li>
  </ul>
  <p class="purpose">Purpose: the standing ritual — the writer's place as a dwelling, on the day you build your own.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>1 · Housekeeping: post your photos <span class="time">(~5 min)</span></h2>
+<details class="block b-house" open>
+ <summary><h2>1 · Housekeeping: post your photos <span class="time">(~5 min)</span></h2></summary>
  <ul>
   <li><strong>Right now, from your phone:</strong> post your writing-place photos to our class <a href="https://docs.google.com/presentation/d/1LXgxgQv-C9rTjprhHSc41Jcyr9i4qujO/edit?usp=sharing&amp;ouid=115064343017416442145&amp;rtpof=true&amp;sd=true">&quot;Writer's Desk&quot; slides</a>. I've included blank slides at the end. Feel free to add more. Put your name on your slide.</li>
   <li>No photos? No problem. Look through <strong>Jill Krementz's <em>The Writer's Desk</em></strong> portraits and find one that catches your attention. Be prepared to share/discuss.</li>
  </ul>
  <p class="purpose">Purpose: prepare for gallery walk</p>
-</div>
+</details>
 
-<div class="block b-risk">
- <h2>2 · Permission and the dare — Lamott + Romano ch6–8 <span class="time">(~15 min)</span></h2>
+<details class="block b-risk" open>
+ <summary><h2>2 · Permission and the dare — Lamott + Romano ch6–8 <span class="time">(~15 min)</span></h2></summary>
  <ul>
   <li><strong>Permission first.</strong> Watch <a href="https://www.youtube.com/watch?v=SkYJCADawY8">Anne Lamott's writing tips</a>. As you watch, jot one thing she says about how drafting really works — you'll use it in thirty seconds. (Her "let it be bad" comes back in Week 5 with the essay.)</li>
   <li><strong>Then the dare.</strong> Lamott gives you permission for the first pass to be terrible. Romano asks for something harder in the same breath — that you spend everything you have on it anyway (remember the student in Romano's office? What did she write about?). Hold both today.</li>
   <li><strong>Guided Freewrite.</strong> Take 8 minutes to write about a difficult time or experience that left you transformed. Don't hold back. Help the reader understand how you felt.</li>
  </ul>
  <p class="purpose">Purpose: loosen the grip <em>and</em> raise the stakes before composing — Lamott says it's allowed to be bad, Romano says don't hold back. Length is as long as it needs to be, correctness comes later, significance is the whole game.</p>
-</div>
+</details>
 
-<div class="block b-share">
- <h2>3 · Gallery walk — the class writing places <span class="time">(~20 min)</span></h2>
+<details class="block b-share" open>
+ <summary><h2>3 · Gallery walk — the class writing places <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li><strong>Silent walk (5 min).</strong> Scroll the <a href="https://docs.google.com/presentation/d/1LXgxgQv-C9rTjprhHSc41Jcyr9i4qujO/edit?usp=sharing&amp;ouid=115064343017416442145&amp;rtpof=true&amp;sd=true">class slides</a> on your own screen. Comment on <strong>two</strong> posts that aren't yours — and the comment must name <em>one concrete thing you can actually see</em>. "Nice setup!" doesn't count. "The mug is holding down a stack of paper" counts.</li>
   <li><strong>Pairs walk (5 min).</strong> Find an author page that piques your interest or curiosity: <em>What's in the frame? What isn't? What is the writer doing? What angle and distance was it shot from? Be prepared to share your findings with classmates.</em></li>
   <li><strong>Whole room (10 min).</strong> We share findings.</li>
  </ul>
  <p class="purpose">Purpose: seeing others' places sharpens your own — and the comment rule makes everyone practice the concrete noticing before they're asked to write it.</p>
-</div>
+</details>
 
-<div class="block b-craft">
- <h2>4 · Imagery — the pencil test, then write it <span class="time">(~20 min)</span></h2>
+<details class="block b-craft" open>
+ <summary><h2>4 · Imagery — the pencil test, then write it <span class="time">(~20 min)</span></h2></summary>
  <ul>
-  <li><details class="fold" open>
-   <summary>Mini-lesson (4 min) — the pencil test.</summary>
-   Romano <em>could</em> have written: "In a coffee mug I keep pens, markers, highlighters, scissors, and pencils." Here's what he wrote instead:
+  <li><strong>Mini-lesson (4 min) — the pencil test.</strong> Romano <em>could</em> have written: "In a coffee mug I keep pens, markers, highlighters, scissors, and pencils." Here's what he wrote instead:
    <blockquote>In a coffee mug filled with pens, markers, highlighters, and pair of scissors, stand half a dozen Dixon Tri-Conderoga No. 2 HB pencils. They are black with soft graphite. Even the eraser is black. The shaft is triangular and thicker than standard pencils. They're good to grip.</blockquote>
-   What does the second version give you that the first doesn't? Name it: a brand, a color, a shape, a reason — and a writer who <em>cares about pencils</em>. That's the whole move.
-  </details></li>
-  <li><details class="fold" open>
-   <summary>And one from a student</summary>
-   — same assignment, your seat:
+   What does the second version give you that the first doesn't? Name it: a brand, a color, a shape, a reason — and a writer who <em>cares about pencils</em>. That's the whole move.</li>
+  <li><strong>And one from a student</strong> — same assignment, your seat:
    <blockquote>These tables stand by my side like a trusty dog, encouraging me to write. I am a lone knight of my own round table. My sword, a pen. I bleed black ink.</blockquote>
-   Name the devices: the dog is a <strong>simile</strong>, the knight is a <strong>metaphor</strong>. And the student whose IKEA desk "snuggles up next to the foot of my bed" is using <strong>personification</strong>. (Metaphor gets a whole day in Week 9.)
-  </details></li>
+   Name the devices: the dog is a <strong>simile</strong>, the knight is a <strong>metaphor</strong>. And the student whose IKEA desk "snuggles up next to the foot of my bed" is using <strong>personification</strong>. (Metaphor gets a whole day in Week 9.)</li>
   <li><strong>Count off 1–2–3.</strong> Your number is your subject. Write it for <strong>6 minutes</strong> in Journaler — no general words, name the actual thing:
    <ol class="count">
     <li><strong>Sound and light.</strong> What do you hear when you write, and what's the light? Romano wants silence "save the voice in my head"; King writes inside heavy metal; Murray wrote to loud classical; one student matched the music to the subject — Italian opera for Latin class, German folk music for German folktales — and burned a scented candle.</li>
@@ -99,16 +100,16 @@
   <li><strong>Whole room (4 min).</strong> Three or four read one line. Then Romano's ch7 question: <em>did anything surprise you as you wrote it?</em></li>
  </ul>
  <p class="purpose">Purpose: everyone writes, everyone talks, and no two people in a trio brought the same material — so the sharing is an exchange, not a round of repeats. This is the language OP2 needs, and it plants the senses OP3 builds on.</p>
-</div>
+</details>
 
-<div class="block b-write">
- <h2>5 · Compose OP2 in Journaler <span class="time">(~10 min)</span></h2>
+<details class="block b-write" open>
+ <summary><h2>5 · Compose OP2 in Journaler <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Build your <a href="OP2 Writing Place.docx">Writing Place</a> One-Pager: your observations + 2–3 photos (one of you at work), one page. Pull the strongest lines from Monday's gush and today's quick-write. <em>Spend it all</em> — don't save the good detail for later.</li>
   <li>Trade with a neighbor for one read: what do they see clearly, and where do they want a sharper detail?</li>
  </ul>
  <p class="purpose">Purpose: get most of the page down in the room, with a reader and a soundtrack, so the take-home is polish, not a blank start.</p>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; at home:</strong>
