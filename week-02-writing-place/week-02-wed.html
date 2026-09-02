@@ -29,6 +29,10 @@
  details.fold{border-left:2px solid rgba(15,118,110,.30);padding-left:9px;margin:2px 0;}
  details.fold > summary{cursor:pointer;font-weight:600;color:#0f5f59;}
  details.fold[open] > summary{margin-bottom:5px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
  .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
@@ -42,6 +46,7 @@
 <div class="sub">Act I · Writing Place · <em>what does your place look, sound, and feel like?</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Post your writing-place photos to the class board, loosen up with Lamott and take Romano's dare to write without holding back, sharpen your details until we can see them, and compose <strong>OP2</strong> — words and photos on one page, with music on. Due Friday.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
 <details class="block b-poem">
  <summary><h2>0 · Daily Poem — "Sick" <span class="time">(~10 min)</span></h2></summary>
@@ -118,6 +123,24 @@
   <li>Read <strong><a href="https://cej.lib.miamioh.edu/index.php/CEJ/article/view/149">Daspit, "'None of Us'"</a></strong> + listen to Romano reading <strong><a href="https://drive.google.com/file/d/1nBnBLC1dJvbwoLGdn6TSG39AvuuRnvl4/view?usp=sharing">"My Father's Voice"</a></strong> + <strong>WWM</strong> <a href="https://miamioh.instructure.com/courses/258319/files/40154866">ch9</a> · <a href="https://miamioh.instructure.com/courses/258319/files/40154843">ch10</a> (Hearkening to Voices; Dialog) for <strong>Wed Sep 9</strong> — no class Labor Day Monday.</li>
  </ul>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 
 </main>
 </body>
