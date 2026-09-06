@@ -16,8 +16,20 @@
  .block h2{font-size:15px;margin:0 0 8px;} .block .time{font-weight:400;font-size:12px;color:#6b7280;}
  .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
  .tag{background:#fff3a8;padding:1px 4px;border-radius:3px;font-weight:600;}
- .q{background:rgba(255,255,255,.6);border-radius:4px;padding:8px 12px;margin:8px 0;white-space:pre-line;}
+ .q{margin:8px 0 8px 6px;padding:8px 12px;border-left:3px solid #93c5fd;background:#f8fbff;color:#374151;white-space:pre-line;}
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"▾";font-size:10px;color:#4b5563;line-height:1.6;}
+ details.block:not([open]) > summary::before{content:"▸";}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ details.block:not([open]){padding-top:12px;padding-bottom:12px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
  .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
@@ -33,24 +45,23 @@
 <div class="note"><strong>Only class this week</strong> — Monday, Sept 7 is Labor Day. Voice Print launches, drafts, and heads home to compose today.</div>
 
 <div class="goals"><strong>Today's goals:</strong> Hear how one remembered voice brings a person alive, learn what makes dialog feel real, and launch <strong>Voice Print</strong> — a moment with a voice you don't hear anymore, in pure dialog.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "Words" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>0 · Daily Poem — "Words" <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Missing Persons, <a href="https://genius.com/Missing-persons-words-lyrics">"Words"</a> (1982). Read the lyric on the page first, then <a href="https://www.youtube.com/watch?v=fIgJs0Hwp6E">hear it sung</a>. The whole song is one voice asking whether anybody on the other end is actually listening. What does the singing do to those words that the page alone doesn't — and what happens to a question when it's repeated that many times?</li>
  </ul>
- <p class="purpose">Purpose: the standing ritual — the week's move from the other side, a voice straining to be heard rather than one strained after.</p>
-</div>
+ <p class="purpose">Purpose: the standing ritual — the week's move from the other side, a voice straining to be heard rather than one strained after.</p></details>
 
-<div class="block b-house">
- <h2>1 · Housekeeping + Writing Place debrief <span class="time">(~5 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>1 · Housekeeping + Writing Place debrief <span class="time">(~5 min)</span></h2></summary>
  <ul>
   <li>One thing you learned photographing your writing place.</li>
- </ul>
-</div>
+ </ul></details>
 
-<div class="block b-listen">
- <h2>2 · Listen — "My Father's Voice" + Daspit <span class="time">(~20 min)</span></h2>
+<details class="block b-listen">
+ <summary><h2>2 · Listen — "My Father's Voice" + Daspit <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li><strong>Romano, pens down</strong> (~4 min): listen to <a href="https://drive.google.com/file/d/1nBnBLC1dJvbwoLGdn6TSG39AvuuRnvl4/view?usp=sharing">"My Father's Voice"</a> — WMUB 88.5, Father's Day 2006, three and a half minutes. <strong>Write down every word you hear him put in quotation marks.</strong></li>
   <li><strong>The revision</strong> (~6 min): here is the radio, at the moment his father calls him in from the game —
@@ -72,11 +83,10 @@ none of us."</div>
    The action sits <strong>inside the question, between its halves</strong> — the pause is real. Neither says a word about love or dying; it is a question about tubes. <strong>Now go find more.</strong> Bring back two: the line that surprised you, and one you don't think is Dad speaking at all.</li>
   <li><strong>Whole group</strong> (~4 min): read your finds aloud. Romano's claim, flatly — <em>"We remember the voice, and the person comes alive."</em> Voice Print asks for one moment in pure dialog. <strong>What did Romano gain by cutting his four words to one — and what would Daspit lose if you did that to his ending?</strong></li>
  </ul>
- <p class="purpose">Purpose: the author revising description into quotation, in his own two versions, is the lesson — they don't have to take it on trust. <strong>Back pocket</strong> — the radio carries what the chapter drops (his father dead at 59, hit head-on by drag racers; Romano was 15) and the chapter carries what the radio drops (lightning bugs, Whitey Ford, "Tom!"). In Daspit: 12.10.17, where "the forest" and "beyond" read as dementia until Mom explains they are clubs on the old highway. Not-Dad lines: Mom's "Dad never liked Hank Williams much." and the cafeteria worker's "back honey?"</p>
-</div>
+ <p class="purpose">Purpose: the author revising description into quotation, in his own two versions, is the lesson — they don't have to take it on trust. <strong>Back pocket</strong> — the radio carries what the chapter drops (his father dead at 59, hit head-on by drag racers; Romano was 15) and the chapter carries what the radio drops (lightning bugs, Whitey Ford, "Tom!"). In Daspit: 12.10.17, where "the forest" and "beyond" read as dementia until Mom explains they are clubs on the old highway. Not-Dad lines: Mom's "Dad never liked Hank Williams much." and the cafeteria worker's "back honey?"</p></details>
 
-<div class="block b-craft">
- <h2>3 · What makes dialog real (ch10) <span class="time">(~20 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>3 · What makes dialog real (ch10) <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li><strong>The model</strong> (~4 min): ch10 prints a coffee-shop exchange Romano had with a math education colleague. <strong>Pure dialog — not one tag, not one line of description, and you never lose track of who is speaking.</strong>
    <div class="q">"Fun? That's easy: a rich mathematical problem!"
@@ -98,17 +108,15 @@ none of us."</div>
   <li><strong>The exception</strong> (~5 min): <a href="https://www.youtube.com/watch?v=tn48hUyFrKQ">Birdman</a> opens as an exchange — "It's my chance to finally do work that means something." / <strong>"Means something to who?"</strong> — and then stops being one. His daughter talks for a solid minute and he never gets a turn back, down to "You're doing this because you're scared to death, like the rest of us, that you don't matter. And you know what? You're right. You don't." <strong>Romano says people don't deliver speeches. She delivers one. Why does it work here — and what did it cost her to be the only one talking?</strong></li>
   <li><strong>Romano's rules, checkable</strong> (~5 min): record exact words, don't tell "the gist"; simple tags, used only when needed; no adverbs propping them up (<em>he asked questioningly</em>); new paragraph per speaker; brief exchanges — "people usually talk to each other; they don't deliver speeches"; say it aloud. He prints an imagined conversation with his dying friend Ken Brewer and hands you the tally — <strong>21 turns, 8 tags, 7 of them "says"</strong> — go count him. And the ten-second test: "Ah, I love the smell of the ocean. It's so strong you can taste it," <em>he said as he sucked the air deep within his lungs.</em> <strong>Try speaking and inhaling at once.</strong> Romano: "I'll call the life squad."</li>
  </ul>
- <p class="purpose">Purpose: a pure-dialog model, a scene that works by fragments, and a scene that breaks the rule on purpose — then the rules, verifiable by counting. <strong>Note:</strong> the two film passages are transcribed from auto-captions; check them against the clips before printing.</p>
-</div>
+ <p class="purpose">Purpose: a pure-dialog model, a scene that works by fragments, and a scene that breaks the rule on purpose — then the rules, verifiable by counting. <strong>Note:</strong> the two film passages are transcribed from auto-captions; check them against the clips before printing.</p></details>
 
-<div class="block b-launch">
- <h2>4 · Launch Voice Print + gush the voice <span class="time">(~25 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>4 · Launch Voice Print + gush the voice <span class="time">(~25 min)</span></h2></summary>
  <ul>
   <li>Meet <a href="OP3 Voice Print.docx">Voice Print</a>: one moment with a voice you don't hear anymore, in pure dialog.</li>
   <li>In Journaler, <strong>5-minute timer</strong>, gush the exchange — just the two voices, back and forth, the words only they used. Real or imagined. Gush mode locks editing.</li>
  </ul>
- <p class="purpose">Purpose: get the voices on the page while the sound of them is close.</p>
-</div>
+ <p class="purpose">Purpose: get the voices on the page while the sound of them is close.</p></details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; at home:</strong>
@@ -120,5 +128,22 @@ none of us."</div>
 </div>
 
 </main>
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 </body>
 </html>
