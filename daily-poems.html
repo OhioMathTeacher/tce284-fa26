@@ -3,316 +3,432 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Readings — TCE 284</title>
+<title>TCE 284 Daily Poems</title>
 <!--
   Every poem, song lyric and book read aloud at the top of class. Public, student-facing.
-
-  SOURCE OF TRUTH IS THE OUTLINES. Author, title, link, question and purpose are copied from
-  the "0 - Daily Poem" block of the day's outline. When an outline changes, change it here --
-  a schedule that disagreed with the outlines is the bug this page was built out of.
-
-  Weeks 11-15 are not yet written into their outlines; those entries live here first.
-  Aug 24 (Week 1 Monday) is deliberately absent: that session opened with Housekeeping.
-
-  Outlines are NOT linked from here: index.html publishes them a few weeks at a time.
-
-  Portraits in assets/poets/ are 240x300 crops. All are freely licensed; five are drawn
-  illustrations because no free photograph exists. See the footer.
-
-  BUMP THE "Last updated" STAMP ON EVERY EDIT, same as index.html.
+  Design is deliberately its own thing, not the syllabus stylesheet: this page is a reading
+  list people browse, not a document they scan.
+  SOURCE OF TRUTH IS THE OUTLINES for Weeks 1-10. Weeks 11-15 live here before their
+  outlines are written; when those are written, block 0 comes from here.
+  Portraits: assets/poets/*.jpg, 240x300. Five are drawn illustrations -- see the footer.
+  BUMP THE "Last updated" STAMP ON EVERY EDIT.
 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Archivo:wght@400;500;600;700&display=swap">
 <style>
- :root{--accent:#7A3B10;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;}
- *{box-sizing:border-box;}
- body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:24px 18px 64px;color:var(--ink);line-height:1.55;}
- h1{font-size:26px;margin:0 0 2px;} .sub{color:var(--mut);font-size:14px;margin-bottom:4px;}
- h2{font-size:19px;margin:34px 0 10px;padding-bottom:4px;border-bottom:2px solid var(--accent);}
- h3{font-size:17px;margin:0 0 4px;}
- a{color:#2563eb;} p{margin:8px 0;}
- .home{display:inline-block;margin:0 0 10px;font-size:12px;color:var(--mut);text-decoration:none;}
- .home:hover{color:#2563eb;text-decoration:underline;}
- .lead{background:#fdf6ef;border-radius:8px;padding:14px 16px;margin:14px 0;}
- .entry{display:flex;gap:16px;align-items:flex-start;background:#f3e8d6;border-left:4px solid var(--accent);border-radius:2px;padding:14px 16px;margin:14px 0;}
- .face{flex:0 0 84px;line-height:0;}
- .face img{width:84px;height:105px;object-fit:cover;border:1px solid rgba(0,0,0,.15);border-radius:2px;}
- .body{flex:1 1 auto;min-width:0;}
- .who{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4b5563;margin:0 0 2px;}
- .ask{margin:6px 0 0;}
- .meta{margin:8px 0 0;font-size:12px;color:var(--mut);}
- footer{margin-top:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--mut);}
- @media (max-width:520px){.entry{flex-direction:column;} .face img{width:96px;height:120px;}}
- @media print{.home{display:none;} .entry{break-inside:avoid;}}
+  *{box-sizing:border-box;}
+  body{margin:0;} img{max-width:100%;}
+  .home{display:inline-block; margin:0 0 1.25rem; font-size:.78rem; font-weight:700;
+        letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);
+        text-decoration:none; border-bottom:1.5px solid var(--rule);}
+  .home:hover{color:var(--accent); border-bottom-color:var(--accent);}
+  .stamp{font-weight:700; color:var(--ink-soft);}
+
+  :root{
+    --paper:#F3EEE2; --panel:#E9E1D1;
+    --ink:#16120B; --ink-soft:#383126; --ink-faint:#6A6153;
+    --accent:#1D5140; --accent-soft:#3F7461; --quiet:#6E6152;
+    --rule:#CFC2AC; --rule-soft:#DED3BE;
+    --display:"Bricolage Grotesque","Archivo","Helvetica Neue",Arial,sans-serif;
+    --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  }
+
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans);
+       font-size:16.5px; line-height:1.58; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:50rem; margin:0 auto; padding:clamp(2rem,6vw,4.5rem) clamp(1.15rem,5vw,2rem) 4rem;}
+
+  header{display:flex; flex-direction:column; gap:1rem; padding-bottom:1.75rem;
+         border-bottom:3px solid var(--ink);}
+  .eyebrow{font-family:var(--sans); font-size:.73rem; font-weight:700; letter-spacing:.15em;
+           text-transform:uppercase; color:var(--accent);}
+  h1{font-family:var(--display); font-weight:800; font-size:clamp(2.6rem,8vw,4.1rem);
+     line-height:1.0; letter-spacing:-.035em; margin:0; text-wrap:balance; color:var(--ink);}
+  h1 em{font-style:normal; color:var(--accent);}
+  .standfirst{font-family:var(--sans); font-size:1.06rem; font-weight:400; line-height:1.58;
+              color:var(--ink-soft); max-width:36em; margin:0;}
+  .facts{display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; font-size:.76rem; font-weight:600;
+         letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint);
+         font-variant-numeric:tabular-nums;}
+  .facts b{color:var(--ink); font-weight:700;}
+
+  .band{margin-top:2.75rem;}
+  .band-head{display:flex; align-items:baseline; gap:.85rem; padding-bottom:.55rem;
+             border-bottom:2px solid var(--rule);}
+  .band-wk{font-family:var(--display); font-size:.8rem; font-weight:800; letter-spacing:.1em;
+           text-transform:uppercase; color:var(--accent); font-variant-numeric:tabular-nums;
+           white-space:nowrap;}
+  .band-topic{font-family:var(--sans); font-weight:500; font-size:.94rem; color:var(--ink-faint);}
+
+  .entry{display:grid; grid-template-columns:5rem 84px 1fr; gap:0 1.4rem;
+         padding:1.45rem 0; border-bottom:1px solid var(--rule-soft); align-items:start;}
+  .face{display:flex; align-items:center; justify-content:center; margin-top:.35rem;
+        width:84px; height:104px; overflow:hidden; background:var(--panel);
+        border:1px solid var(--rule); border-radius:2px; text-decoration:none;
+        transition:border-color .12s ease;}
+  .face img{width:100%; height:100%; object-fit:cover; display:block;}
+  .face img+.ini{display:none;}
+  .ini{font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.02em;
+       color:var(--ink-faint);}
+  .face:hover{border-color:var(--accent);} .face:hover .ini{color:var(--accent);}
+  .face:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .when{font-size:.78rem; font-weight:600; color:var(--ink-faint);
+        font-variant-numeric:tabular-nums; padding-top:.5rem; line-height:1.45;}
+  .when .d{display:block; color:var(--ink-soft); font-weight:700;}
+  .mark{display:block; margin-top:.4rem; font-size:.66rem; font-weight:700; letter-spacing:.1em;
+        text-transform:uppercase; color:var(--quiet);}
+  .mark.next{color:var(--accent);}
+  .yr{font-weight:500; color:var(--ink-faint); letter-spacing:.06em;}
+  .poet{font-family:var(--sans); font-size:.79rem; font-weight:700; letter-spacing:.08em;
+        text-transform:uppercase; color:var(--ink-soft); margin:0 0 .3rem;}
+  .poem{font-family:var(--display); font-size:1.72rem; font-weight:700; font-style:normal;
+        line-height:1.12; letter-spacing:-.02em; margin:0; text-wrap:balance;}
+  .poem a{color:var(--ink); text-decoration:none;
+          box-shadow:inset 0 -.09em 0 var(--accent-soft); padding-bottom:.04em;}
+  .poem a:hover{color:var(--accent); box-shadow:inset 0 -.14em 0 var(--accent);}
+  .poem a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;}
+  .ask{font-family:var(--sans); font-size:1rem; font-weight:400; line-height:1.56;
+       color:var(--ink-soft); margin:.5rem 0 0; max-width:40em;}
+  .extra{margin:.55rem 0 0; font-size:.79rem; font-weight:600; letter-spacing:.02em;
+         color:var(--ink-faint);}
+  .extra a{color:var(--accent); text-decoration:none; border-bottom:1.5px solid var(--rule);}
+  .extra a:hover{border-bottom-color:var(--accent);}
+  .extra a:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .kind{display:inline-block; margin-top:.45rem; padding:.1rem .4rem; border-radius:2px;
+        font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+        border:1px solid var(--rule); color:var(--ink-faint);}
+  .k-song{border-color:var(--accent-soft); color:var(--accent);}
+  .k-book{border-color:var(--ink-faint); color:var(--ink-soft);}
+  .face.illus{background:#fff;}
+  .face{position:relative;}
+  .len{color:var(--ink-faint); font-weight:700;}
+  footer{margin-top:3.25rem; padding-top:1.5rem; border-top:3px solid var(--ink);
+         font-size:.88rem; color:var(--ink-faint); font-weight:500;
+         display:flex; flex-direction:column; gap:.6rem;}
+  footer p{margin:0; max-width:44em;}
+  @media (max-width:34rem){
+    .entry{grid-template-columns:64px 1fr; gap:.35rem .9rem;}
+    .when{grid-column:1 / -1; padding-top:0; display:flex; gap:.7rem; align-items:baseline;}
+    .when .d{display:inline;} .mark{margin-top:0;}
+    .face{width:64px; height:78px; margin-top:.15rem;}
+  }
 </style>
 </head>
 <body>
 
-<a class="home" href="index.html">&larr; Course home</a>
-<h1>Daily Readings</h1>
-<div class="sub">TCE 284 &middot; Writing for Educators &middot; Fall 2026</div>
 
-<div class="lead">
- <p>Most sessions open with something read aloud &mdash; a poem, a song lyric, once a book &mdash;
- talked about for ten minutes, then left to do its work. <strong>Nothing to prepare and nothing to
- turn in.</strong> They are collected here with the question each one opens, so you can find one
- again afterwards, catch up on a session you missed, or read ahead.</p>
- <p class="muted">Twenty-six of them, Weeks 1&ndash;15. Every title links to the text.</p>
+<div class="wrap">
+  <a class="home" href="index.html">&larr; Course home</a>
+  <header>
+    <span class="eyebrow">TCE 284 · Fall 2026</span>
+    <h1>The poem we <em>open</em> with</h1>
+    <p class="standfirst">Every session starts with something read aloud — a poem, a song lyric, once a
+      picture book — talked about for ten minutes, then left to do its work. Nothing to prepare
+      and nothing to turn in. They're collected here with the question each one opens, so you can
+      find one again afterwards, catch up on a session you missed, or read ahead.</p>
+    <div class="facts">
+      <span><b>27</b> readings</span><span><b>Weeks 1–15</b></span>
+      <span><b>Aug 24 – Dec 2</b></span><span>every one linked</span>
+    </div>
+  </header>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 1</span><span class="band-topic">Trust the gush</span></div>
+    <article class="entry" data-date="2026-08-24">
+      <div class="when"><span class="d">Mon</span>Aug 24<span class="kind k-poem">poem</span></div>
+      <a class="face illus" href="https://poets.org/poet/lucille-clifton" title="About Lucille Clifton" aria-label="About Lucille Clifton"><img src="assets/poets/clifton.jpg" alt="Lucille Clifton, illustration" width="240" height="300" loading="lazy">><span class="ini" hidden>LC</span></a>
+      <div><p class="poet">Lucille Clifton</p>
+        <p class="poem"><a href="https://poets.org/poem/wont-you-celebrate-me">won’t you celebrate with me</a></p>
+        <p class="ask">“come celebrate / with me that everyday / something has tried to kill me / and has failed.” Day one: what is the thing only you can write?</p>
+        <p class="extra"><span class="len">15 lines</span> · <a href="https://poets.org/poem/wont-you-celebrate-me">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-08-26">
+      <div class="when"><span class="d">Wed</span>Aug 26<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/paul-laurence-dunbar" title="About Paul Laurence Dunbar" aria-label="About Paul Laurence Dunbar"><img src="assets/poets/dunbar.jpg" alt="Paul Laurence Dunbar" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>PLD</span></a>
+      <div><p class="poet">Paul Laurence Dunbar</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/44203/we-wear-the-mask">We Wear the Mask</a></p>
+        <p class="ask">What do you notice? Who is the “we”? What does the mask cost, and what does it protect?</p>
+        <p class="extra"><span class="len">Dayton, Ohio · ~5 min</span> · <a href="https://www.poetryfoundation.org/poems/44203/we-wear-the-mask">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 2</span><span class="band-topic">Writing place</span></div>
+    <article class="entry" data-date="2026-08-31">
+      <div class="when"><span class="d">Mon</span>Aug 31<span class="kind k-poem">poem</span></div>
+      <a class="face illus" href="https://poets.org/poet/george-ella-lyon" title="About George Ella Lyon" aria-label="About George Ella Lyon"><img src="assets/poets/lyon.jpg" alt="George Ella Lyon, illustration" width="240" height="300" loading="lazy">><span class="ini" hidden>GEL</span></a>
+      <div><p class="poet">George Ella Lyon</p>
+        <p class="poem"><a href="http://www.georgeellalyon.com/where.html">Where I’m From</a></p>
+        <p class="ask">What do you notice — the lists, the specific names, the foods and sayings? The poem is built to be borrowed. Where are you from?</p>
+        <p class="extra"><span class="len">built to be borrowed</span> · <a href="http://www.georgeellalyon.com/where.html">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-09-02">
+      <div class="when"><span class="d">Wed</span>Sep 2<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/shel-silverstein" title="About Shel Silverstein" aria-label="About Shel Silverstein"><img src="assets/poets/silverstein.jpg" alt="Shel Silverstein" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>SS</span></a>
+      <div><p class="poet">Shel Silverstein</p>
+        <p class="poem"><a href="https://poets.org/poem/sick">Sick</a></p>
+        <p class="ask">Romano writes about place, risk, seeking surprise, and seeking pleasure in language. Which of those do you see on display in a classic children’s poem?</p>
+        <p class="extra"><span class="len">children’s verse</span> · <a href="https://poets.org/poem/sick">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 3</span><span class="band-topic">Voice print</span></div>
+    <article class="entry" data-date="2026-09-09">
+      <div class="when"><span class="d">Wed</span>Sep 9<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Missing_Persons_(band)" title="About Missing Persons" aria-label="About Missing Persons"><img src="assets/poets/missing_persons.jpg" alt="Missing Persons" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>MP</span></a>
+      <div><p class="poet">Missing Persons</p>
+        <p class="poem"><a href="https://genius.com/Missing-persons-words-lyrics">Words</a></p>
+        <p class="ask">Read the lyric, then hear it sung. One voice asking whether anybody on the other end is listening. What does the singing do to those words that the page doesn’t?</p>
+        <p class="extra"><span class="len">1982 · lyric</span> · <a href="https://genius.com/Missing-persons-words-lyrics">open it &rarr;</a> · <a href="https://www.youtube.com/watch?v=fIgJs0Hwp6E">hear it sung &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 4</span><span class="band-topic">Show, don’t tell</span></div>
+    <article class="entry" data-date="2026-09-14">
+      <div class="when"><span class="d">Mon</span>Sep 14<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/galway-kinnell" title="About Galway Kinnell" aria-label="About Galway Kinnell"><img src="assets/poets/kinnell.jpg" alt="Galway Kinnell" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>GK</span></a>
+      <div><p class="poet">Galway Kinnell</p>
+        <p class="poem"><a href="https://poets.org/poem/blackberry-eating">Blackberry Eating</a></p>
+        <p class="ask">Which words make you <em>taste</em> it — “the black art of blackberry-making,” the lumpy words he loves to “squeeze, squinch open, and splurge”? Point to the exact ones.</p>
+        <p class="extra"><span class="len">words you can taste</span> · <a href="https://poets.org/poem/blackberry-eating">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-09-16">
+      <div class="when"><span class="d">Wed</span>Sep 16<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/seamus-heaney" title="About Seamus Heaney" aria-label="About Seamus Heaney"><img src="assets/poets/heaney.jpg" alt="Seamus Heaney" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>SH</span></a>
+      <div><p class="poet">Seamus Heaney</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/57041/mid-term-break">Mid-Term Break</a></p>
+        <p class="ask">Heaney never says he’s grieving — he shows it: the knelling bells, the baby cooing, the old men standing to shake his hand, and the last line. Where does the grief land?</p>
+        <p class="extra"><span class="len">shown, never told</span> · <a href="https://www.poetryfoundation.org/poems/57041/mid-term-break">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 5</span><span class="band-topic">Breaking the rules</span></div>
+    <article class="entry" data-date="2026-09-21">
+      <div class="when"><span class="d">Mon</span>Sep 21<span class="kind k-poem">poem</span></div>
+      <a class="face illus" href="https://poets.org/poet/jim-daniels" title="About Jim Daniels" aria-label="About Jim Daniels"><img src="assets/poets/daniels.jpg" alt="Jim Daniels, illustration" width="240" height="300" loading="lazy">><span class="ini" hidden>JD</span></a>
+      <div><p class="poet">Jim Daniels</p>
+        <p class="poem"><a href="https://poets.org/poem/short-order-cook">Short Order Cook</a></p>
+        <p class="ask">Where does the poem move fast, break, and refuse to sit still? What rules is it not following — and why does it work anyway?</p>
+        <p class="extra"><span class="len">breaks rules in style</span> · <a href="https://poets.org/poem/short-order-cook">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-09-23">
+      <div class="when"><span class="d">Wed</span>Sep 23<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman" aria-label="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>WW</span></a>
+      <div><p class="poet">Walt Whitman</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/51568/o-me-o-life">O Me! O Life!</a></p>
+        <p class="ask">“That the powerful play goes on, and you may contribute a verse.” On the last day of Act I, what is the verse that only you can add?</p>
+        <p class="extra"><span class="len">closes Act I</span> · <a href="https://www.poetryfoundation.org/poems/51568/o-me-o-life">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 6</span><span class="band-topic">What is currere?</span></div>
+    <article class="entry" data-date="2026-09-28">
+      <div class="when"><span class="d">Mon</span>Sep 28<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/linda-pastan" title="About Linda Pastan" aria-label="About Linda Pastan"><img src="assets/poets/pastan.jpg" alt="Linda Pastan" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>LP</span></a>
+      <div><p class="poet">Linda Pastan</p>
+        <p class="poem"><a href="https://www.poetrynook.com/poem/ethics">Ethics</a></p>
+        <p class="ask">Don’t get stuck on “ethics class.” When has the meaning of something a teacher asked or said only caught up with you years later?</p>
+        <p class="extra"><span class="len">+ the poet reading it</span> · <a href="https://www.poetrynook.com/poem/ethics">open it &rarr;</a> · <a href="https://voca.arizona.edu/track/id/63414">hear Pastan read it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-09-30">
+      <div class="when"><span class="d">Wed</span>Sep 30<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/emily-dickinson" title="About Emily Dickinson" aria-label="About Emily Dickinson"><img src="assets/poets/dickinson.jpg" alt="Emily Dickinson" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>ED</span></a>
+      <div><p class="poet">Emily Dickinson</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/56824/tell-all-the-truth-but-tell-it-slant-1263">Tell all the truth but tell it slant</a></p>
+        <p class="ask">What does she mean by telling the truth “slant” instead of straight out? When have you told something true by coming at it sideways?</p>
+        <p class="extra"><span class="len">scene, not statement</span> · <a href="https://www.poetryfoundation.org/poems/56824/tell-all-the-truth-but-tell-it-slant-1263">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 7</span><span class="band-topic">Regressive: the scene</span></div>
+    <article class="entry" data-date="2026-10-05">
+      <div class="when"><span class="d">Mon</span>Oct 5<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/naomi-shihab-nye" title="About Naomi Shihab Nye" aria-label="About Naomi Shihab Nye"><img src="assets/poets/nye.jpg" alt="Naomi Shihab Nye" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>NSN</span></a>
+      <div><p class="poet">Naomi Shihab Nye</p>
+        <p class="poem"><a href="https://poets.org/poem/valentine-ernest-mann">Valentine for Ernest Mann</a></p>
+        <p class="ask">“You can’t order a poem like you order a taco.” Poems hide in the ordinary until someone looks. Read it while you wait — then tell me the thread you want to chase.</p>
+        <p class="extra"><span class="len">29 lines · conference day</span> · <a href="https://poets.org/poem/valentine-ernest-mann">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-10-07">
+      <div class="when"><span class="d">Wed</span>Oct 7<span class="kind k-poem">poem</span></div>
+      <a class="face illus" href="https://poets.org/poet/robert-hayden" title="About Robert Hayden" aria-label="About Robert Hayden"><img src="assets/poets/hayden.jpg" alt="Robert Hayden, illustration" width="240" height="300" loading="lazy">><span class="ini" hidden>RH</span></a>
+      <div><p class="poet">Robert Hayden</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/46461/those-winter-sundays">Those Winter Sundays</a></p>
+        <p class="ask">The meaning arrives only at the end — “What did I know, what did I know / of love’s austere and lonely offices?” How does one scene carry a whole relationship?</p>
+        <p class="extra"><span class="len">one scene, whole life</span> · <a href="https://www.poetryfoundation.org/poems/46461/those-winter-sundays">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 8</span><span class="band-topic">Dramatize &amp; break rules</span></div>
+    <article class="entry" data-date="2026-10-12">
+      <div class="when"><span class="d">Mon</span>Oct 12<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/li-young-lee" title="About Li-Young Lee" aria-label="About Li-Young Lee"><img src="assets/poets/lee.jpg" alt="Li-Young Lee" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>LYL</span></a>
+      <div><p class="poet">Li-Young Lee</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/43010/the-gift-56d221adc12b8">The Gift</a></p>
+        <p class="ask">One remembered moment — a father pulling out a splinter — carries a whole life of tenderness. Where does the poem show instead of tell?</p>
+        <p class="extra"><span class="len">a load-bearing scene</span> · <a href="https://www.poetryfoundation.org/poems/43010/the-gift-56d221adc12b8">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-10-14">
+      <div class="when"><span class="d">Wed</span>Oct 14<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/e-e-cummings" title="About E. E. Cummings" aria-label="About E. E. Cummings"><img src="assets/poets/cummings.jpg" alt="E. E. Cummings" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>EEC</span></a>
+      <div><p class="poet">E. E. Cummings</p>
+        <p class="poem"><a href="https://poets.org/poem/feeling-first">[since feeling is first]</a></p>
+        <p class="ask">Watch what he does to grammar on purpose: “who pays any attention / to the syntax of things / will never wholly kiss you.” When does breaking the rule tell it truer?</p>
+        <p class="extra"><span class="len">syntax bent on purpose</span> · <a href="https://poets.org/poem/feeling-first">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 9</span><span class="band-topic">Metaphor &amp; ledes</span></div>
+    <article class="entry" data-date="2026-10-19">
+      <div class="when"><span class="d">Mon</span>Oct 19<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/sylvia-plath" title="About Sylvia Plath" aria-label="About Sylvia Plath"><img src="assets/poets/plath.jpg" alt="Sylvia Plath" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>SP</span></a>
+      <div><p class="poet">Sylvia Plath</p>
+        <p class="poem"><a href="https://www.poetryverse.com/sylvia-plath-poems/metaphors">Metaphors</a></p>
+        <p class="ask">The whole poem is a riddle built only of images — “an elephant, a ponderous house” — and she never says the plain word. What does the metaphor do that the plain word couldn’t?</p>
+        <p class="extra"><span class="len">a riddle of images</span> · <a href="https://www.poetryverse.com/sylvia-plath-poems/metaphors">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-10-21">
+      <div class="when"><span class="d">Wed</span>Oct 21<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Leonard_Cohen" title="About Leonard Cohen" aria-label="About Leonard Cohen"><img src="assets/poets/cohen.jpg" alt="Leonard Cohen" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>LC</span></a>
+      <div><p class="poet">Leonard Cohen</p>
+        <p class="poem"><a href="https://genius.com/Leonard-cohen-anthem-lyrics">Anthem</a></p>
+        <p class="ask">“There is a crack, a crack in everything / That’s how the light gets in.” You are bringing me a draft that is not finished. That is the point of it.</p>
+        <p class="extra"><span class="len">1992 · conference day</span> · <a href="https://genius.com/Leonard-cohen-anthem-lyrics">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 10</span><span class="band-topic">Mentors &amp; the hinge</span></div>
+    <article class="entry" data-date="2026-10-26">
+      <div class="when"><span class="d">Mon</span>Oct 26<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/robert-frost" title="About Robert Frost" aria-label="About Robert Frost"><img src="assets/poets/frost.jpg" alt="Robert Frost" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>RF</span></a>
+      <div><p class="poet">Robert Frost</p>
+        <p class="poem"><a href="https://www.poetryfoundation.org/poems/44272/the-road-not-taken">The Road Not Taken</a></p>
+        <p class="ask">The speaker isn’t in the woods — he’s <em>looking back</em>, “ages and ages hence,” making a story out of a choice. How does meaning get made only in the looking-back?</p>
+        <p class="extra"><span class="len">made in the looking-back</span> · <a href="https://www.poetryfoundation.org/poems/44272/the-road-not-taken">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-10-28">
+      <div class="when"><span class="d">Wed</span>Oct 28<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman" aria-label="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>WW</span></a>
+      <div><p class="poet">Walt Whitman</p>
+        <p class="poem"><a href="https://poets.org/poem/song-myself-51">Song of Myself, 51</a></p>
+        <p class="ask">“Do I contradict myself? / Very well then I contradict myself, / (I am large, I contain multitudes.)” Your currere is one voice — how many kinds of writing are packed inside it?</p>
+        <p class="extra"><span class="len">I contain multitudes</span> · <a href="https://poets.org/poem/song-myself-51">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 11</span><span class="band-topic">Launch &amp; topic</span></div>
+    <article class="entry" data-date="2026-11-02">
+      <div class="when"><span class="d">Mon</span>Nov 2<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman" aria-label="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>WW</span></a>
+      <div><p class="poet">Walt Whitman</p>
+        <p class="poem"><a href="https://poets.org/poem/when-i-heard-learnd-astronomer">When I Heard the Learn’d Astronomer</a></p>
+        <p class="ask">The lecture has the charts, the proofs, the columns. He walks out and looks up at the stars in silence. On the day you start researching: what does the summary miss?</p>
+        <p class="extra"><span class="len">8 lines</span> · <a href="https://poets.org/poem/when-i-heard-learnd-astronomer">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-11-04">
+      <div class="when"><span class="d">Wed</span>Nov 4<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Tracy_Chapman" title="About Tracy Chapman" aria-label="About Tracy Chapman"><img src="assets/poets/chapman.jpg" alt="Tracy Chapman" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>TC</span></a>
+      <div><p class="poet">Tracy Chapman</p>
+        <p class="poem"><a href="https://genius.com/Tracy-chapman-fast-car-lyrics">Fast Car</a></p>
+        <p class="ask">A whole life — a father, a shelter, a checkout job, a plan — told in four verses and no explanation. You have to gather one source yourself. Whose story has nobody asked for?</p>
+        <p class="extra"><span class="len">1988 · lyric</span> · <a href="https://genius.com/Tracy-chapman-fast-car-lyrics">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 12</span><span class="band-topic">Sources into genres</span></div>
+    <article class="entry" data-date="2026-11-09">
+      <div class="when"><span class="d">Mon</span>Nov 9<span class="kind k-poem">poem</span></div>
+      <a class="face" href="https://poets.org/poet/elizabeth-bishop" title="About Elizabeth Bishop" aria-label="About Elizabeth Bishop"><img src="assets/poets/bishop.jpg" alt="Elizabeth Bishop" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>EB</span></a>
+      <div><p class="poet">Elizabeth Bishop</p>
+        <p class="poem"><a href="https://poets.org/poem/filling-station">Filling Station</a></p>
+        <p class="ask">A grubby station rendered detail by detail until “Somebody loves us all.” The machine gives you the average station. What does Bishop see that an average could not?</p>
+        <p class="extra"><span class="len">41 lines</span> · <a href="https://poets.org/poem/filling-station">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-11-11">
+      <div class="when"><span class="d">Wed</span>Nov 11<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Hurt_(Nine_Inch_Nails_song)" title="About Nine Inch Nails · Johnny Cash" aria-label="About Nine Inch Nails · Johnny Cash"><img src="assets/poets/cash.jpg" alt="Nine Inch Nails · Johnny Cash" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>NIN</span></a>
+      <div><p class="poet">Nine Inch Nails · Johnny Cash</p>
+        <p class="poem"><a href="https://genius.com/Nine-inch-nails-hurt-lyrics">Hurt</a></p>
+        <p class="ask">Same words, two voices: Reznor at 29 writing it, Cash at 70 singing it into something else entirely. On the day you start your transformed artifact — what did the second version <em>do</em> to the first?</p>
+        <p class="extra"><span class="len">1994 / 2002 · two versions</span> · <a href="https://genius.com/Nine-inch-nails-hurt-lyrics">open it &rarr;</a> · <a href="https://genius.com/Johnny-cash-hurt-lyrics">Cash’s version &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 13</span><span class="band-topic">Cohere &amp; review</span></div>
+    <article class="entry" data-date="2026-11-16">
+      <div class="when"><span class="d">Mon</span>Nov 16<span class="kind k-poem">poem</span></div>
+      <a class="face illus" href="https://poets.org/poet/jane-kenyon" title="About Jane Kenyon" aria-label="About Jane Kenyon"><img src="assets/poets/kenyon.jpg" alt="Jane Kenyon, illustration" width="240" height="300" loading="lazy">><span class="ini" hidden>JK</span></a>
+      <div><p class="poet">Jane Kenyon</p>
+        <p class="poem"><a href="https://poets.org/poem/otherwise">Otherwise</a></p>
+        <p class="ask">Ordinary mornings, one after another, held together by a line that keeps returning: “But one day, I know, / it will be otherwise.” That repeated line is a unifying element doing its job.</p>
+        <p class="extra"><span class="len">26 lines</span> · <a href="https://poets.org/poem/otherwise">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-11-18">
+      <div class="when"><span class="d">Wed</span>Nov 18<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Dolly_Parton" title="About Dolly Parton" aria-label="About Dolly Parton"><img src="assets/poets/parton.jpg" alt="Dolly Parton" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>DP</span></a>
+      <div><p class="poet">Dolly Parton</p>
+        <p class="poem"><a href="https://genius.com/Dolly-parton-coat-of-many-colors-lyrics">Coat of Many Colors</a></p>
+        <p class="ask">A coat sewn out of rags and scraps that nobody else valued, and it holds together as one thing — because of how it was put together, and who put it there. That is your multimodal project.</p>
+        <p class="extra"><span class="len">1971 · lyric</span> · <a href="https://genius.com/Dolly-parton-coat-of-many-colors-lyrics">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><span class="band-wk">Week 15</span><span class="band-topic">Revise &amp; share</span></div>
+    <article class="entry" data-date="2026-11-30">
+      <div class="when"><span class="d">Mon</span>Nov 30<span class="kind k-song">song</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Talking_Heads" title="About Talking Heads" aria-label="About Talking Heads"><img src="assets/poets/talking_heads.jpg" alt="Talking Heads" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>TH</span></a>
+      <div><p class="poet">Talking Heads</p>
+        <p class="poem"><a href="https://genius.com/Talking-heads-once-in-a-lifetime-lyrics">Once in a Lifetime</a></p>
+        <p class="ask">“And you may ask yourself — well, how did I get here?” You are writing your reflective note today: the looking-back that turns a pile of work into a story about how you got here.</p>
+        <p class="extra"><span class="len">1980 · lyric</span> · <a href="https://genius.com/Talking-heads-once-in-a-lifetime-lyrics">open it &rarr;</a></p></div>
+    </article>
+    <article class="entry" data-date="2026-12-02">
+      <div class="when"><span class="d">Wed</span>Dec 2<span class="kind k-book">book</span></div>
+      <a class="face" href="https://en.wikipedia.org/wiki/Dr._Seuss" title="About Dr. Seuss" aria-label="About Dr. Seuss"><img src="assets/poets/seuss.jpg" alt="Dr. Seuss" width="240" height="300" loading="lazy"> loading="lazy"><span class="ini" hidden>DS</span></a>
+      <div><p class="poet">Dr. Seuss</p>
+        <p class="poem"><a href="https://openlibrary.org/works/OL261196W">Oh, the Places You’ll Go!</a></p>
+        <p class="ask">“You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose.” The last day of the term, after you have shown the room what you made.</p>
+        <p class="extra"><span class="len">1990 · read from the book</span> · <a href="https://openlibrary.org/works/OL261196W">open it &rarr;</a></p></div>
+    </article>
+  </section>
+
+  <footer>
+    <p><span class="stamp">Last updated: 6 September 2026.</span> Authors, titles and questions are copied from the daily outlines; if this page and your instructor disagree, say so — one of us is on a cached copy.</p>
+    <p>Five portraits — George Ella Lyon, Jim Daniels, Robert Hayden, Lucille Clifton and Jane Kenyon — are drawn illustrations, not photographs: no freely-licensed photograph of them exists. The rest are photographs from Wikimedia Commons, cropped. Public domain except: Tracy Chapman (CC BY-SA 4.0, Hans Hillewaert); Leonard Cohen (CC BY-SA 3.0, Gorupdebesanez); Galway Kinnell (CC BY-SA 4.0, Barbara Hall); Li-Young Lee (GFDL 1.2, Slowking4); Missing Persons (CC BY-SA 4.0, Archangore11); Naomi Shihab Nye (CC BY 4.0, Larry D. Moore); Linda Pastan (GFDL 1.2, Slowking4).</p>
+    <p>Every title links to the full text. Poems are read aloud at the top of class — there is
+      nothing to prepare and nothing to hand in.</p>
+    <p>TCE 284 · Fall 2026 · the poems run Weeks 1–10; Act II turns to research and drafting.</p>
+  </footer>
+  <p style="margin-top:1rem">&copy; 2026 Michael Todd Edwards. Materials licensed under AGPL-3.0 with the Commons Clause (source-available; not for sale) — see <a href="LICENSE">LICENSE</a>. Texts are linked, not reproduced; each links to its publisher.</p>
 </div>
 
-<h2>Act I &mdash; Become a Writer</h2>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/paul-laurence-dunbar" title="About Paul Laurence Dunbar"><img src="assets/poets/dunbar.jpg" alt="Paul Laurence Dunbar" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Paul Laurence Dunbar</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/44203/we-wear-the-mask">We Wear the Mask</a></h3>
-  <p class="ask">What do you notice? Who is the “we”? What does the mask cost, and what does it protect?</p>
-  <p class="meta"><strong>Week 1 &middot; Wed, Aug 26</strong> &middot; poem &middot; Dayton, Ohio · ~5 min</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/george-ella-lyon" title="About George Ella Lyon"><img src="assets/poets/lyon.jpg" alt="George Ella Lyon" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">George Ella Lyon</p>
-  <h3><a href="http://www.georgeellalyon.com/where.html">Where I’m From</a></h3>
-  <p class="ask">What do you notice — the lists, the specific names, the foods and sayings? The poem is built to be borrowed. Where are you from?</p>
-  <p class="meta"><strong>Week 2 &middot; Mon, Aug 31</strong> &middot; poem &middot; built to be borrowed</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/shel-silverstein" title="About Shel Silverstein"><img src="assets/poets/silverstein.jpg" alt="Shel Silverstein" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Shel Silverstein</p>
-  <h3><a href="https://poets.org/poem/sick">Sick</a></h3>
-  <p class="ask">Romano writes about place, risk, seeking surprise, and seeking pleasure in language. Which of those do you see on display in a classic children’s poem?</p>
-  <p class="meta"><strong>Week 2 &middot; Wed, Sep 2</strong> &middot; poem &middot; children’s verse</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Missing_Persons_(band)" title="About Missing Persons"><img src="assets/poets/missing_persons.jpg" alt="Missing Persons" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Missing Persons</p>
-  <h3><a href="https://genius.com/Missing-persons-words-lyrics">Words</a></h3>
-  <p class="ask">Read the lyric, then hear it sung. One voice asking whether anybody on the other end is listening. What does the singing do to those words that the page doesn’t?</p>
-  <p class="meta"><strong>Week 3 &middot; Wed, Sep 9</strong> &middot; song lyric &middot; 1982 · lyric &middot; <a href="https://www.youtube.com/watch?v=fIgJs0Hwp6E">hear it sung</a></p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/galway-kinnell" title="About Galway Kinnell"><img src="assets/poets/kinnell.jpg" alt="Galway Kinnell" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Galway Kinnell</p>
-  <h3><a href="https://poets.org/poem/blackberry-eating">Blackberry Eating</a></h3>
-  <p class="ask">Which words make you <em>taste</em> it — “the black art of blackberry-making,” the lumpy words he loves to “squeeze, squinch open, and splurge”? Point to the exact ones.</p>
-  <p class="meta"><strong>Week 4 &middot; Mon, Sep 14</strong> &middot; poem &middot; words you can taste</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/seamus-heaney" title="About Seamus Heaney"><img src="assets/poets/heaney.jpg" alt="Seamus Heaney" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Seamus Heaney</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/57041/mid-term-break">Mid-Term Break</a></h3>
-  <p class="ask">Heaney never says he’s grieving — he shows it: the knelling bells, the baby cooing, the old men standing to shake his hand, and the last line. Where does the grief land?</p>
-  <p class="meta"><strong>Week 4 &middot; Wed, Sep 16</strong> &middot; poem &middot; shown, never told</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/jim-daniels" title="About Jim Daniels"><img src="assets/poets/daniels.jpg" alt="Jim Daniels" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Jim Daniels</p>
-  <h3><a href="https://poets.org/poem/short-order-cook">Short Order Cook</a></h3>
-  <p class="ask">Where does the poem move fast, break, and refuse to sit still? What rules is it not following — and why does it work anyway?</p>
-  <p class="meta"><strong>Week 5 &middot; Mon, Sep 21</strong> &middot; poem &middot; breaks rules in style</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Walt Whitman</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/51568/o-me-o-life">O Me! O Life!</a></h3>
-  <p class="ask">“That the powerful play goes on, and you may contribute a verse.” On the last day of Act I, what is the verse that only you can add?</p>
-  <p class="meta"><strong>Week 5 &middot; Wed, Sep 23</strong> &middot; poem &middot; closes Act I</p>
- </div>
-</div>
-
-<h2>Act II &mdash; The Currere</h2>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/linda-pastan" title="About Linda Pastan"><img src="assets/poets/pastan.jpg" alt="Linda Pastan" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Linda Pastan</p>
-  <h3><a href="https://www.poetrynook.com/poem/ethics">Ethics</a></h3>
-  <p class="ask">Don’t get stuck on “ethics class.” When has the meaning of something a teacher asked or said only caught up with you years later?</p>
-  <p class="meta"><strong>Week 6 &middot; Mon, Sep 28</strong> &middot; poem &middot; + the poet reading it &middot; <a href="https://voca.arizona.edu/track/id/63414">hear Pastan read it</a></p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/emily-dickinson" title="About Emily Dickinson"><img src="assets/poets/dickinson.jpg" alt="Emily Dickinson" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Emily Dickinson</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/56824/tell-all-the-truth-but-tell-it-slant-1263">Tell all the truth but tell it slant</a></h3>
-  <p class="ask">What does she mean by telling the truth “slant” instead of straight out? When have you told something true by coming at it sideways?</p>
-  <p class="meta"><strong>Week 6 &middot; Wed, Sep 30</strong> &middot; poem &middot; scene, not statement</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/naomi-shihab-nye" title="About Naomi Shihab Nye"><img src="assets/poets/nye.jpg" alt="Naomi Shihab Nye" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Naomi Shihab Nye</p>
-  <h3><a href="https://poets.org/poem/valentine-ernest-mann">Valentine for Ernest Mann</a></h3>
-  <p class="ask">“You can’t order a poem like you order a taco.” Poems hide in the ordinary until someone looks. Read it while you wait — then tell me the thread you want to chase.</p>
-  <p class="meta"><strong>Week 7 &middot; Mon, Oct 5</strong> &middot; poem &middot; 29 lines · conference day</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/robert-hayden" title="About Robert Hayden"><img src="assets/poets/hayden.jpg" alt="Robert Hayden" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Robert Hayden</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/46461/those-winter-sundays">Those Winter Sundays</a></h3>
-  <p class="ask">The meaning arrives only at the end — “What did I know, what did I know / of love’s austere and lonely offices?” How does one scene carry a whole relationship?</p>
-  <p class="meta"><strong>Week 7 &middot; Wed, Oct 7</strong> &middot; poem &middot; one scene, whole life</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/li-young-lee" title="About Li-Young Lee"><img src="assets/poets/lee.jpg" alt="Li-Young Lee" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Li-Young Lee</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/43010/the-gift-56d221adc12b8">The Gift</a></h3>
-  <p class="ask">One remembered moment — a father pulling out a splinter — carries a whole life of tenderness. Where does the poem show instead of tell?</p>
-  <p class="meta"><strong>Week 8 &middot; Mon, Oct 12</strong> &middot; poem &middot; a load-bearing scene</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/e-e-cummings" title="About E. E. Cummings"><img src="assets/poets/cummings.jpg" alt="E. E. Cummings" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">E. E. Cummings</p>
-  <h3><a href="https://poets.org/poem/feeling-first">[since feeling is first]</a></h3>
-  <p class="ask">Watch what he does to grammar on purpose: “who pays any attention / to the syntax of things / will never wholly kiss you.” When does breaking the rule tell it truer?</p>
-  <p class="meta"><strong>Week 8 &middot; Wed, Oct 14</strong> &middot; poem &middot; syntax bent on purpose</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/sylvia-plath" title="About Sylvia Plath"><img src="assets/poets/plath.jpg" alt="Sylvia Plath" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Sylvia Plath</p>
-  <h3><a href="https://www.poetryverse.com/sylvia-plath-poems/metaphors">Metaphors</a></h3>
-  <p class="ask">The whole poem is a riddle built only of images — “an elephant, a ponderous house” — and she never says the plain word. What does the metaphor do that the plain word couldn’t?</p>
-  <p class="meta"><strong>Week 9 &middot; Mon, Oct 19</strong> &middot; poem &middot; a riddle of images</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Leonard_Cohen" title="About Leonard Cohen"><img src="assets/poets/cohen.jpg" alt="Leonard Cohen" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Leonard Cohen</p>
-  <h3><a href="https://genius.com/Leonard-cohen-anthem-lyrics">Anthem</a></h3>
-  <p class="ask">“There is a crack, a crack in everything / That’s how the light gets in.” You are bringing me a draft that is not finished. That is the point of it.</p>
-  <p class="meta"><strong>Week 9 &middot; Wed, Oct 21</strong> &middot; song lyric &middot; 1992 · conference day</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/robert-frost" title="About Robert Frost"><img src="assets/poets/frost.jpg" alt="Robert Frost" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Robert Frost</p>
-  <h3><a href="https://www.poetryfoundation.org/poems/44272/the-road-not-taken">The Road Not Taken</a></h3>
-  <p class="ask">The speaker isn’t in the woods — he’s <em>looking back</em>, “ages and ages hence,” making a story out of a choice. How does meaning get made only in the looking-back?</p>
-  <p class="meta"><strong>Week 10 &middot; Mon, Oct 26</strong> &middot; poem &middot; made in the looking-back</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Walt Whitman</p>
-  <h3><a href="https://poets.org/poem/song-myself-51">Song of Myself, 51</a></h3>
-  <p class="ask">“Do I contradict myself? / Very well then I contradict myself, / (I am large, I contain multitudes.)” Your currere is one voice — how many kinds of writing are packed inside it?</p>
-  <p class="meta"><strong>Week 10 &middot; Wed, Oct 28</strong> &middot; poem &middot; I contain multitudes</p>
- </div>
-</div>
-
-<h2>Act III &mdash; Multimodal Research Project</h2>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/walt-whitman" title="About Walt Whitman"><img src="assets/poets/whitman.jpg" alt="Walt Whitman" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Walt Whitman</p>
-  <h3><a href="https://poets.org/poem/when-i-heard-learnd-astronomer">When I Heard the Learn’d Astronomer</a></h3>
-  <p class="ask">The lecture has the charts, the proofs, the columns. He walks out and looks up at the stars in silence. On the day you start researching: what does the summary miss?</p>
-  <p class="meta"><strong>Week 11 &middot; Mon, Nov 2</strong> &middot; poem &middot; 8 lines</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Tracy_Chapman" title="About Tracy Chapman"><img src="assets/poets/chapman.jpg" alt="Tracy Chapman" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Tracy Chapman</p>
-  <h3><a href="https://genius.com/Tracy-chapman-fast-car-lyrics">Fast Car</a></h3>
-  <p class="ask">A whole life — a father, a shelter, a checkout job, a plan — told in four verses and no explanation. You have to gather one source yourself. Whose story has nobody asked for?</p>
-  <p class="meta"><strong>Week 11 &middot; Wed, Nov 4</strong> &middot; song lyric &middot; 1988 · lyric</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/elizabeth-bishop" title="About Elizabeth Bishop"><img src="assets/poets/bishop.jpg" alt="Elizabeth Bishop" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Elizabeth Bishop</p>
-  <h3><a href="https://poets.org/poem/filling-station">Filling Station</a></h3>
-  <p class="ask">A grubby station rendered detail by detail until “Somebody loves us all.” The machine gives you the average station. What does Bishop see that an average could not?</p>
-  <p class="meta"><strong>Week 12 &middot; Mon, Nov 9</strong> &middot; poem &middot; 41 lines</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Hurt_(Nine_Inch_Nails_song)" title="About Nine Inch Nails · Johnny Cash"><img src="assets/poets/cash.jpg" alt="Nine Inch Nails · Johnny Cash" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Nine Inch Nails · Johnny Cash</p>
-  <h3><a href="https://genius.com/Nine-inch-nails-hurt-lyrics">Hurt</a></h3>
-  <p class="ask">Same words, two voices: Reznor at 29 writing it, Cash at 70 singing it into something else entirely. On the day you start your transformed artifact — what did the second version <em>do</em> to the first?</p>
-  <p class="meta"><strong>Week 12 &middot; Wed, Nov 11</strong> &middot; song lyric &middot; 1994 / 2002 · two versions &middot; <a href="https://genius.com/Johnny-cash-hurt-lyrics">Cash’s version</a></p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://poets.org/poet/jane-kenyon" title="About Jane Kenyon"><img src="assets/poets/kenyon.jpg" alt="Jane Kenyon" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Jane Kenyon</p>
-  <h3><a href="https://poets.org/poem/otherwise">Otherwise</a></h3>
-  <p class="ask">Ordinary mornings, one after another, held together by a line that keeps returning: “But one day, I know, / it will be otherwise.” That repeated line is a unifying element doing its job.</p>
-  <p class="meta"><strong>Week 13 &middot; Mon, Nov 16</strong> &middot; poem &middot; 26 lines</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Dolly_Parton" title="About Dolly Parton"><img src="assets/poets/parton.jpg" alt="Dolly Parton" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Dolly Parton</p>
-  <h3><a href="https://genius.com/Dolly-parton-coat-of-many-colors-lyrics">Coat of Many Colors</a></h3>
-  <p class="ask">A coat sewn out of rags and scraps that nobody else valued, and it holds together as one thing — because of how it was put together, and who put it there. That is your multimodal project.</p>
-  <p class="meta"><strong>Week 13 &middot; Wed, Nov 18</strong> &middot; song lyric &middot; 1971 · lyric</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Talking_Heads" title="About Talking Heads"><img src="assets/poets/talking_heads.jpg" alt="Talking Heads" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Talking Heads</p>
-  <h3><a href="https://genius.com/Talking-heads-once-in-a-lifetime-lyrics">Once in a Lifetime</a></h3>
-  <p class="ask">“And you may ask yourself — well, how did I get here?” You are writing your reflective note today: the looking-back that turns a pile of work into a story about how you got here.</p>
-  <p class="meta"><strong>Week 15 &middot; Mon, Nov 30</strong> &middot; song lyric &middot; 1980 · lyric</p>
- </div>
-</div>
-<div class="entry">
-<a class="face" href="https://en.wikipedia.org/wiki/Dr._Seuss" title="About Dr. Seuss"><img src="assets/poets/seuss.jpg" alt="Dr. Seuss" width="240" height="300" loading="lazy"></a>
- <div class="body">
-  <p class="who">Dr. Seuss</p>
-  <h3><a href="https://openlibrary.org/works/OL261196W">Oh, the Places You’ll Go!</a></h3>
-  <p class="ask">“You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose.” The last day of the term, after you have shown the room what you made.</p>
-  <p class="meta"><strong>Week 15 &middot; Wed, Dec 2</strong> &middot; read from the book &middot; 1990 · read from the book</p>
- </div>
-</div>
-
-<footer>
- <p id="stamp"><strong>Last updated: 6 September 2026.</strong> Authors, titles and questions are
- copied from the daily outlines; if this page and your instructor disagree, say so &mdash; one of
- us is on a cached copy.</p>
- <p>Portraits are 240&times;300 crops from Wikimedia Commons, public domain except: Tracy Chapman
- (CC BY-SA 4.0, Hans Hillewaert); Leonard Cohen (CC BY-SA 3.0, Gorupdebesanez); Galway Kinnell
- (CC BY-SA 4.0, Barbara Hall); Li-Young Lee and Linda Pastan (GFDL 1.2, Slowking4); Missing
- Persons (CC BY-SA 4.0, Archangore11); Naomi Shihab Nye (CC BY 4.0, Larry D. Moore); Nine Inch
- Nails (CC BY 2.0). Five portraits &mdash; George Ella Lyon, Jim Daniels, Robert Hayden, Lucille
- Clifton and Jane Kenyon &mdash; are drawn illustrations rather than photographs, because no
- freely-licensed photograph of them exists.</p>
- <p>&copy; 2026 Michael Todd Edwards. Materials licensed under AGPL-3.0 with the Commons Clause
- (source-available; not for sale) &mdash; see <a href="LICENSE">LICENSE</a>. Texts are linked, not
- reproduced; each links to its publisher.</p>
-</footer>
-
+<script>
+  (function(){
+    var today = new Date(); today.setHours(0,0,0,0);
+    var entries = Array.prototype.slice.call(document.querySelectorAll(".entry[data-date]"));
+    var nextFound = false;
+    entries.forEach(function(el){
+      var parts = el.getAttribute("data-date").split("-");
+      var d = new Date(+parts[0], +parts[1]-1, +parts[2]);
+      var slot = document.createElement("span");
+      slot.className = "mark";
+      if (d < today) { slot.textContent = "read"; }
+      else if (!nextFound) { slot.textContent = "up next"; slot.className = "mark next"; nextFound = true; }
+      else { return; }
+      el.querySelector(".when").appendChild(slot);
+    });
+  })();
+</script>
 </body>
 </html>
