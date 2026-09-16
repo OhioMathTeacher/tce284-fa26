@@ -15,10 +15,16 @@
  .text p{margin:0 0 18px;}
  .text p:first-child::first-letter{font-size:1.6em;font-weight:600;color:var(--accent);}
  .pg{font-size:12px;color:#6b7280;text-align:right;margin:-4px 0 14px;}
- mark{padding:1px 2px;border-radius:3px;color:inherit;}
- mark.t1{background:#cfe3ff;} mark.t2{background:#fde68a;} mark.t3{background:#fecaca;} mark.t4{background:#bbf7d0;}
- .key{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:system-ui,sans-serif;font-size:13px;color:#374151;margin:0 0 18px;}
- .key span{padding:2px 8px;border-radius:3px;}
+ :root{--t1:#cfe3ff;--t2:#fde68a;--t3:#fecaca;--t4:#bbf7d0;}
+ mark{padding:1px 2px;border-radius:3px;color:inherit;background:transparent;transition:background .15s;}
+ body.show-t1 mark.t1{background:var(--t1);} body.show-t2 mark.t2{background:var(--t2);}
+ body.show-t3 mark.t3{background:var(--t3);} body.show-t4 mark.t4{background:var(--t4);}
+ .key{display:flex;flex-wrap:wrap;gap:6px 10px;font-family:system-ui,sans-serif;font-size:13px;color:#374151;margin:0 0 18px;}
+ .key button{font:inherit;color:inherit;padding:2px 8px;border-radius:3px;border:1px solid transparent;background:#f3f4f6;cursor:pointer;opacity:.7;}
+ .key button::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c);}
+ .key button:hover{opacity:1;border-color:#d1d5db;}
+ .key button[aria-pressed="true"]{background:var(--c);opacity:1;}
+ .key .hint{width:100%;font-size:12px;color:#6b7280;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
 </style>
@@ -29,7 +35,7 @@
 <h1>"Don't Tell, but Show"</h1>
 <div class="sub">Natalie Goldberg, <em>Writing Down the Bones: Freeing the Writer Within</em> (Shambhala, 1986), pp. 75&ndash;76</div>
 <div class="note">Two pages, reproduced as text so you can select, search, and highlight it. Reproduced for classroom use in TCE 284 under fair use; the book is worth owning.</div>
-<div class="key"><span class="t1" style="background:#cfe3ff">Tip 1 · the big words</span><span class="t2" style="background:#fde68a">Tip 2 · "about" is an alarm</span><span class="t3" style="background:#fecaca">Tip 3 · be there</span><span class="t4" style="background:#bbf7d0">Tip 4 · back it with a picture</span></div>
+<div class="key"><button type="button" data-tip="t1" style="--c:var(--t1)" aria-pressed="false">Tip 1 · the big words</button><button type="button" data-tip="t2" style="--c:var(--t2)" aria-pressed="false">Tip 2 · "about" is an alarm</button><button type="button" data-tip="t3" style="--c:var(--t3)" aria-pressed="false">Tip 3 · be there</button><button type="button" data-tip="t4" style="--c:var(--t4)" aria-pressed="false">Tip 4 · back it with a picture</button><span class="hint">Click a tip to show or hide where Goldberg says it.</span></div>
 <div class="text">
 <p>There’s an old adage in writing: “Don’t tell, but show.” What does this actually mean? <mark class="t1">It means don’t tell us about anger (or any of those big words like honesty, truth, hate, love, sorrow, life, justice, etc.); show us what made you angry. We will read it and feel angry.</mark> Don’t tell readers what to feel. Show them the situation, and that feeling will awaken in them.</p>
 <p>Writing is not psychology. We do not talk “about” feelings. Instead the writer feels and through her words awakens those feelings in the reader. The writer takes the reader’s hand and guides him through the valley of sorrow and joy without ever having to mention those words.</p>
@@ -40,5 +46,11 @@
 <p>Several years ago I wrote down a story that someone had told me. My friends said it was boring. I couldn’t understand their reaction; I loved the story. <mark class="t3">What I realize now is that I wrote “about” the story, secondhand. I didn’t enter it and make friends with it. I was outside it; therefore, I couldn’t take anyone else into it. This does not mean you can’t write about something you did not actually experience firsthand; only make sure that you breathe life into it. Otherwise it is two times removed and you are not present.</mark></p>
 </div>
 </main>
+<script>
+ document.querySelectorAll('.key button').forEach(b=>b.addEventListener('click',()=>{
+  const on=document.body.classList.toggle('show-'+b.dataset.tip);
+  b.setAttribute('aria-pressed',on);
+ }));
+</script>
 </body>
 </html>
