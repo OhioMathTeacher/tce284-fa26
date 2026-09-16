@@ -42,6 +42,8 @@
  input#code:focus{outline:none;border-color:var(--accent);}
  .code{font-family:ui-monospace,Menlo,monospace;font-size:34px;font-weight:700;letter-spacing:.1em;color:var(--accent);}
  button.small{font-size:13px;padding:6px 12px;background:#6b7280;}
+ button.pick{font-size:13px;padding:5px 10px;background:#e5e7eb;color:#374151;margin-left:6px;}
+ button.pick.on{background:var(--accent);color:#fff;}
  .h{font-size:17px;margin:22px 0 4px;color:#374151;}
  .tools{margin:8px 0;padding-left:0;list-style:none;}
  .tools li{margin:8px 0;padding-left:28px;position:relative;font-size:15px;}
@@ -51,13 +53,9 @@
  .pv b{color:var(--accent);font-size:19px;margin-right:8px;}
  /* results */
  .cols{border-collapse:collapse;margin:12px 0;font-variant-numeric:tabular-nums;}
- .cols th{font-size:12px;color:#6b7280;font-weight:600;padding:4px 6px;text-align:center;white-space:nowrap;}
- .cols th.room{color:#111827;font-size:13px;}
- .cols td{border:1px solid #e5e7eb;text-align:center;padding:0;width:44px;height:44px;font-size:20px;font-weight:700;color:#374151;}
+ .cols th{font-size:13px;color:#6b7280;font-weight:600;padding:4px 8px;text-align:center;white-space:nowrap;}
+ .cols td{border:1px solid #e5e7eb;text-align:center;padding:0;width:52px;height:48px;font-size:24px;font-weight:700;color:var(--accent);}
  .cols td.r{width:auto;font-size:13px;color:#9ca3af;font-weight:600;padding:0 10px;border:0;text-align:right;}
- .cols td.mode{background:#d6f0e8;color:var(--accent);}
- .cols td.room{background:var(--accent);color:#fff;border-color:var(--accent);}
- .cols td.split{background:#fff;color:#9ca3af;font-weight:400;}
  .colwrap{overflow-x:auto;}
  .legend .mode,.n .mode{background:#d6f0e8;color:var(--accent);padding:0 4px;border-radius:3px;font-weight:600;}
  .grid{border-collapse:collapse;width:100%;margin:12px 0;font-variant-numeric:tabular-nums;}
@@ -79,10 +77,10 @@
 <main id="main">
 <a class="home" href="week-04-wed.html">&larr; Week 4 &middot; Wednesday</a>
 <h1>Rank them</h1>
-<div class="sub">Act I &middot; Show, Don't Tell &middot; two practice rounds, then share your sort</div>
+<div class="sub">Act I &middot; Show, Don't Tell &middot; three rounds &middot; one submission per pair per round</div>
 
 <div id="joinview">
-<div class="task"><strong>Share your sort.</strong> Your pair needs the <strong>room code</strong> from the board. One phone per pair. (Haven't practiced? <a href="rank.html">Start there.</a>)</div>
+<div class="task">Your pair needs the <strong>room code</strong> from the board. One phone per pair.</div>
 <div class="row"><input id="code" placeholder="WREN-24" maxlength="8" autocapitalize="characters" autocomplete="off"><button id="join">Join</button></div>
 <div id="joinmsg" class="n"></div>
 <div class="n" style="margin-top:28px"><a href="#" id="teacherlink">Teacher: start a room</a></div>
@@ -116,11 +114,10 @@
 </div>
 
 <div id="showview" class="results" hidden>
-<div class="tabs" id="showtabs"></div>
 <div class="n" id="count"></div>
 <div id="stages"></div>
+<div class="n" style="margin-top:14px"><a href="#" id="showpass">Show the passages</a></div>
 <div id="passages" hidden></div>
-<div class="n" id="legend">One column per pair, in the order they arrived. <span class="mode">Highlighted</span> = the letter most pairs put at that rank; <strong>The room</strong> is that consensus read top to bottom.</div>
 <div class="row" style="margin-top:28px"><button id="reset" class="small" hidden>Clear this room</button></div>
 </div>
 </main>
@@ -137,9 +134,9 @@ const $ = id => document.getElementById(id);
 const store = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
 
 const STAGES = [
- {letters:['A','B'], tab:'Practice 1 · two', title:'Practice 1 · two',  task:'Two people wrote the same Sunday. Drag the one that <strong>shows</strong> to the top. Easy — this one is just to learn the drag. Nothing is sent.'},
- {letters:['C','D','E'], tab:'Practice 2 · three', title:'Practice 2 · three', task:'Three new ones. Most <strong>showing</strong> on top, most <strong>telling</strong> on the bottom. Argue about it, then lock it in. Nothing is sent.'},
- {letters:['A','B','C','D','E','F'], tab:'Share · all six', title:'Share your sort · all six', task:'Your two practice rounds are already in order here. <strong>F is new.</strong> Put it where it belongs — and move anything else you\'ve changed your mind about. Most showing on top. This one is sent to the room.'}
+ {letters:['A','B'], tab:'Round 1 · two', title:'Round 1 · two',  task:'Two people wrote the same Sunday. Drag the one that <strong>shows</strong> to the top. Easy — this one is just to learn the drag.'},
+ {letters:['C','D','E'], tab:'Round 2 · three', title:'Round 2 · three', task:'Three new ones. Most <strong>showing</strong> on top, most <strong>telling</strong> on the bottom. Argue about it, then submit.'},
+ {letters:['A','B','C','D','E','F'], tab:'Round 3 · all six', title:'Round 3 · all six', task:'Your first two rounds are already in order here. <strong>F is new.</strong> Put it where it belongs — and move anything else you\'ve changed your mind about. Most showing on top.'}
 ];
 
 const PASSAGES = {
@@ -164,12 +161,6 @@ async function api(path, body){
  return j;
 }
 
-function goShare(){
- // the share round needs a room; ask for the code, then land on round 3
- $('rankview').hidden = true; $('joinview').hidden = false; $('code').focus();
- history.replaceState(null,'','?share=1');
-}
-
 async function join(code){
  code = code.trim().toUpperCase().replace(/[^A-Z0-9-]/g,'');
  if(/^[A-Z]+\d{2}$/.test(code)) code = code.replace(/(\d{2})$/,'-$1');
@@ -179,9 +170,8 @@ async function join(code){
   ROOM = code; store.set('rank-room', ROOM);
   history.replaceState(null,'',`?room=${ROOM}`);
   $('joinview').hidden = true; $('rankview').hidden = false;
-  document.querySelector('.sub').textContent = `Room ${ROOM} · share your sort · one submission per pair`;
-  submitBtn.onclick = submit;
-  showStage(2); const prev = alreadyDone(2); if(prev) showDone(prev);
+  document.querySelector('.sub').textContent = `Room ${ROOM} · three rounds · one submission per pair per round`;
+  boot();
  }catch(e){ $('joinmsg').textContent = e.message === 'No such room' ? "No room with that code — check the board." : "Couldn't reach the tally. Try again, or show your order to Dr. Edwards."; }
 }
 
@@ -204,18 +194,18 @@ let stage = 0, sortable = null;
 
 function renumber(){ [...list.children].forEach((li,i)=>li.querySelector('.rank').textContent = i+1); }
 function currentOrder(){ return [...list.children].map(li=>li.dataset.letter); }
-function key(i){ return i < 2 ? `rank-practice-${i}` : `rank-${ROOM}-${i}`; }
+function key(i){ return `rank-${ROOM}-${i}`; }
 function alreadyDone(i){ return store.get(key(i)); }
 function markDone(i,order){ store.set(key(i), order); }
 
 function startingOrder(i){
  const st = STAGES[i];
  if(i === 2){
-  // the share round opens pre-merged from this pair's practice: practice-1 top, practice-2 middle, practice-1 bottom; F on top, flagged new
+  // round 3 opens pre-merged from this pair's rounds 1 and 2: round-1 top, round-2 middle, round-1 bottom; F on top, flagged new
   const r1 = alreadyDone(0), r2 = alreadyDone(1);
   if(r1 && r2) return ['F', r1[0], ...r2.split(''), r1[1]];
  }
- // practice rounds are alphabetical: A over B means everyone has to drag; C·D·E leaves the one that shows at the bottom
+ // rounds 1 and 2 are alphabetical: A over B means everyone has to drag; C·D·E leaves the one that shows at the bottom
  return st.letters.slice();
 }
 
@@ -224,7 +214,7 @@ function drawTabs(){
   const done = !!alreadyDone(i), unlocked = i===0 || !!alreadyDone(i-1) || done;
   return `<button data-i="${i}" class="${i===stage?'on':''} ${done?'done':''}" ${unlocked?'':'disabled'}>${st.tab}</button>`;
  }).join('');
- document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{ const i = +b.dataset.i; if(i === 2 && !ROOM){ goShare(); return; } showStage(i); const p = alreadyDone(stage); if(p) showDone(p); }));
+ document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{ showStage(+b.dataset.i); const p = alreadyDone(stage); if(p) showDone(p); }));
 }
 
 function showStage(i){
@@ -237,7 +227,7 @@ function showStage(i){
  renumber();
  if(sortable) sortable.destroy();
  sortable = new Sortable(list,{animation:150,onSort:renumber});
- submitBtn.disabled = false; submitBtn.textContent = i < 2 ? 'Lock it in' : 'Submit to the room'; msg.textContent = '';
+ submitBtn.disabled = false; submitBtn.textContent = 'Submit our ranking'; msg.textContent = '';
  doneBox.hidden = true; $('tools').hidden = true;
  drawTabs();
  window.scrollTo({top:0,behavior:'smooth'});
@@ -246,17 +236,16 @@ function showStage(i){
 function showDone(order){
  submitBtn.disabled = true; msg.textContent = '';
  const next = stage < STAGES.length-1;
- doneBox.innerHTML = `<strong>${stage < 2 ? 'Locked in.' : 'Submitted to the room.'}</strong> Most showing up top; most telling down below.<ol>${order.split('').map((L,i)=>`<li><span class="rank">${i+1}</span><span class="letter">${L}</span></li>`).join('')}</ol><span class="n">${stage === 0 ? 'Now the next one.' : stage === 1 ? 'Practice done. When Dr. Edwards puts the code on the board, share your sort.' : "Look up — the room's answer is on the screen."}</span>`
-  + (next ? `<div class="row" style="margin:10px 0 0"><button id="next">${stage === 0 ? 'Next: three' : 'Share your sort →'}</button></div>` : '');
+ doneBox.innerHTML = `<strong>Submitted.</strong> Most showing up top; most telling down below.<ol>${order.split('').map((L,i)=>`<li><span class="rank">${i+1}</span><span class="letter">${L}</span></li>`).join('')}</ol><span class="n">${next ? 'Look up — we compare before the next round.' : "That's all three. Look up."}</span>`
+  + (next ? `<div class="row" style="margin:10px 0 0"><button id="next">Next round: ${STAGES[stage+1].title.split('· ')[1]}</button></div>` : '');
  doneBox.hidden = false;
  $('tools').hidden = next;
  drawTabs();
- if(next) $('next').addEventListener('click', ()=>{ if(stage === 1) goShare(); else showStage(stage+1); });
+ if(next) $('next').addEventListener('click', ()=>showStage(stage+1));
 }
 
 async function submit(){
  const order = currentOrder().join('');
- if(stage < 2){ markDone(stage,order); showDone(order); return; }
  submitBtn.disabled = true; msg.textContent = 'Sending…';
  try{
   await api(`/rooms/${ROOM}/rank`, {pair:PAIR, order});
@@ -264,45 +253,20 @@ async function submit(){
  }catch(e){ submitBtn.disabled = false; msg.textContent = "Didn't go through — try once more, or show your order to Dr. Edwards."; }
 }
 
-// ---- results view: one column per pair ----------------------------------
-let showStage_ = 2; // which round the projector shows (index into STAGES); newest with data by default
-let userPicked = false;
-
-function columnsFor(st, rows){
- const k = st.letters.length;
- rows = rows.slice().sort((a,b)=>a.pair<b.pair?-1:1); // stable, anonymous order
- // mode at each rank
- const modes = [], splits = [];
- for(let r=0;r<k;r++){
-  const c = {}; rows.forEach(x=>{ const L = x.order[r]; c[L] = (c[L]||0)+1; });
-  const best = Object.entries(c).sort((a,b)=>b[1]-a[1]);
-  modes[r] = best.length ? best[0][0] : ''; splits[r] = best.length>1 && best[0][1]===best[1][1];
- }
- let h = '<div class="colwrap"><table class="cols"><tr><th></th>' + rows.map((_,i)=>`<th>${i+1}</th>`).join('') + '<th class="room">The room</th></tr>';
- for(let r=0;r<k;r++){
-  h += `<tr><td class="r">${r===0?'1 · shows':r===k-1?k+' · tells':r+1}</td>`;
-  h += rows.map(x=>`<td class="${x.order[r]===modes[r] && !splits[r] ? 'mode':''}">${x.order[r]}</td>`).join('');
-  h += `<td class="${splits[r]?'split':'room'}">${splits[r]?'?':modes[r]}</td></tr>`;
- }
- return h + '</table></div>';
-}
-
+// ---- results view: each pair's ordering, side by side, one round at a time
+let shown = null; // index into STAGES; null = newest round with data
 function render(data){
- const total = data.n;
- $('count').textContent = `Room ${data.code} · ${total} pair${total===1?'':'s'} joined · updates every 4 s`;
- const rounds = STAGES.map(st => data.rounds[st.letters.length] || []);
- if(!userPicked){ let i = 2; while(i>0 && !rounds[i].length) i--; showStage_ = i; }
- $('showtabs').innerHTML = STAGES.map((st,i)=>`<button data-i="${i}" class="${i===showStage_?'on':''}">${st.tab} <span class="n">(${rounds[i].length})</span></button>`).join('') + `<button data-i="-1" class="${showStage_===-1?'on':''}">Passages</button>`;
- document.querySelectorAll('#showtabs button').forEach(b=>b.addEventListener('click',()=>{ showStage_ = +b.dataset.i; userPicked = true; render(data); }));
- if(showStage_ === -1){
-  $('stages').hidden = true; $('passages').hidden = false; $('legend').hidden = true;
-  const shown = params.get('letters') ? params.get('letters').toUpperCase().split('') : Object.keys(PASSAGES);
-  $('passages').innerHTML = shown.map(L=>`<div class="pv"><b>${L}</b>${PASSAGES[L]}</div>`).join('');
-  return;
+ const rounds = STAGES.map(st => (data.rounds[st.letters.length] || []).slice().sort((a,b)=>a.pair<b.pair?-1:1));
+ let i = shown; if(i === null){ i = 2; while(i > 0 && !rounds[i].length) i--; }
+ $('count').innerHTML = `Room ${data.code} &nbsp; ` + STAGES.map((st,j)=>`<button class="pick ${j===i?'on':''}" data-i="${j}">${st.tab} (${rounds[j].length})</button>`).join('');
+ document.querySelectorAll('#count .pick').forEach(b=>b.onclick = ()=>{ shown = +b.dataset.i; render(lastData); });
+ const rows = rounds[i], k = STAGES[i].letters.length, n = rows.length;
+ if(!n){ $('stages').innerHTML = '<p class="n">Waiting for the first submission…</p>'; return; }
+ let h = '<div class="colwrap"><table class="cols"><tr><td class="r"></td>' + rows.map((_,j)=>`<th>Pair ${j+1}</th>`).join('') + '</tr>';
+ for(let r=0;r<k;r++){
+  h += `<tr><td class="r">${r===0?'shows':r===k-1?'tells':''}</td>` + rows.map(x=>`<td>${x.order[r]}</td>`).join('') + '</tr>';
  }
- $('stages').hidden = false; $('passages').hidden = true; $('legend').hidden = false;
- const st = STAGES[showStage_], rows = rounds[showStage_];
- $('stages').innerHTML = `<h2>${st.title} <span class="n">· ${rows.length} pair${rows.length===1?'':'s'}</span></h2>` + (rows.length ? columnsFor(st, rows) : '<p class="n">Waiting for the first submission…</p>');
+ $('stages').innerHTML = h + '</table></div>';
 }
 
 let lastData = null;
@@ -315,10 +279,9 @@ async function poll(){
 // ---- boot ---------------------------------------------------------------
 function boot(){
  submitBtn.onclick = submit;
- // practice: resume at the first round this browser hasn't locked in
- let i = 0; while(i < 1 && alreadyDone(i)) i++;
- if(params.get('stage')) i = Math.min(2, Math.max(1, +params.get('stage'))) - 1;
- $('rankview').hidden = false;
+ // resume at the first round this browser hasn't submitted; ?stage=2 jumps there
+ let i = 0; while(i < STAGES.length-1 && alreadyDone(i)) i++;
+ if(params.get('stage')) i = Math.min(STAGES.length, Math.max(1, +params.get('stage'))) - 1;
  showStage(i);
  const prev = alreadyDone(i); if(prev) showDone(prev);
 }
@@ -326,7 +289,8 @@ function boot(){
 if(params.get('show') && ROOM){
  $('joinview').hidden = true; $('showview').hidden = false;
  document.querySelector('h1').textContent = "The room's answer";
- document.querySelector('.sub').textContent = 'most showing (1) up top, most telling at the bottom';
+ document.querySelector('.sub').textContent = 'most showing up top, most telling at the bottom';
+ $('showpass').onclick = e=>{ e.preventDefault(); const pv = $('passages'); pv.hidden = !pv.hidden; if(!pv.innerHTML) pv.innerHTML = Object.keys(PASSAGES).map(L=>`<div class="pv"><b>${L}</b>${PASSAGES[L]}</div>`).join(''); };
  const k = KEY || store.get('rank-teacher-'+ROOM);
  if(k){ $('reset').hidden = false; $('reset').onclick = async ()=>{ if(confirm(`Clear every ranking in room ${ROOM}?`)){ await api(`/rooms/${ROOM}/reset`,{key:k}); } }; }
  poll();
@@ -336,9 +300,7 @@ if(params.get('show') && ROOM){
  $('join').onclick = ()=>join($('code').value);
  $('code').addEventListener('keydown', e=>{ if(e.key==='Enter') join($('code').value); });
  $('teacherlink').onclick = e=>{ e.preventDefault(); $('joinview').hidden = true; $('teacherview').hidden = false; $('make').onclick = makeRoom; };
- if(ROOM) join(ROOM);
- else if(params.get('share')){ $('code').focus(); }
- else { $('joinview').hidden = true; boot(); }
+ if(ROOM) join(ROOM); else $('code').focus();
 }
 </script>
 </body>
