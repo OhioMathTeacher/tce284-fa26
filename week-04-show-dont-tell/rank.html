@@ -77,7 +77,7 @@
 <main id="main">
 <a class="home" href="week-04-wed.html">&larr; Week 4 &middot; Wednesday</a>
 <h1>Rank them</h1>
-<div class="sub">Act I &middot; Show, Don't Tell &middot; three rounds &middot; one submission per pair per round</div>
+<div class="sub">Act I &middot; Show, Don't Tell &middot; three rounds &middot; one phone per pair</div>
 
 <div id="joinview">
 <div class="task">Your pair needs the <strong>room code</strong> from the board. One phone per pair.</div>
@@ -149,7 +149,9 @@ const PASSAGES = {
 };
 
 // ---- room -----------------------------------------------------------------
-let ROOM = (params.get('room') || '').toUpperCase();
+// The class's standing room. Students never type it; ?room=… overrides for another section.
+const DEFAULT_ROOM = 'TERN-83';
+let ROOM = (params.get('room') || DEFAULT_ROOM).toUpperCase();
 const KEY = params.get('key') || '';
 // a pair is a browser: one random id, kept
 let PAIR = store.get('rank-pair'); if(!PAIR){ PAIR = Math.random().toString(36).slice(2,10); store.set('rank-pair', PAIR); }
@@ -168,9 +170,8 @@ async function join(code){
  try{
   await api('/rooms/' + code);
   ROOM = code; store.set('rank-room', ROOM);
-  history.replaceState(null,'',`?room=${ROOM}`);
+  if(ROOM !== DEFAULT_ROOM) history.replaceState(null,'',`?room=${ROOM}`);
   $('joinview').hidden = true; $('rankview').hidden = false;
-  document.querySelector('.sub').textContent = `Room ${ROOM} · three rounds · one submission per pair per round`;
   boot();
  }catch(e){ $('joinmsg').textContent = e.message === 'No such room' ? "No room with that code — check the board." : "Couldn't reach the tally. Try again, or show your order to Dr. Edwards."; }
 }
@@ -258,7 +259,7 @@ let shown = null; // index into STAGES; null = newest round with data
 function render(data){
  const rounds = STAGES.map(st => (data.rounds[st.letters.length] || []).slice().sort((a,b)=>a.pair<b.pair?-1:1));
  let i = shown; if(i === null){ i = 2; while(i > 0 && !rounds[i].length) i--; }
- $('count').innerHTML = `Room ${data.code} &nbsp; ` + STAGES.map((st,j)=>`<button class="pick ${j===i?'on':''}" data-i="${j}">${st.tab} (${rounds[j].length})</button>`).join('');
+ $('count').innerHTML = (data.code === DEFAULT_ROOM ? '' : `Room ${data.code} &nbsp; `) + STAGES.map((st,j)=>`<button class="pick ${j===i?'on':''}" data-i="${j}">${st.tab} (${rounds[j].length})</button>`).join('');
  document.querySelectorAll('#count .pick').forEach(b=>b.onclick = ()=>{ shown = +b.dataset.i; render(lastData); });
  const rows = rounds[i], k = STAGES[i].letters.length, n = rows.length;
  if(!n){ $('stages').innerHTML = '<p class="n">Waiting for the first submission…</p>'; return; }
