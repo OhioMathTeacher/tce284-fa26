@@ -117,7 +117,7 @@
 <div id="stages"></div>
 <div class="n" style="margin-top:14px"><a href="#" id="showpass">Show the passages</a></div>
 <div id="passages" hidden></div>
-<div class="row" style="margin-top:28px"><button id="reset" class="small" hidden>Clear this room</button></div>
+<div class="row" id="clears" style="margin-top:28px;flex-wrap:wrap" hidden><span class="n">Clear the results:</span><button class="small" data-r="1">Round 1</button><button class="small" data-r="2">Round 2</button><button class="small" data-r="3">Round 3</button><button class="small" data-r="0">Everything</button></div>
 </div>
 </main>
 
@@ -287,7 +287,7 @@ if(params.get('show') && ROOM){
  $('showpass').onclick = e=>{ e.preventDefault(); const pv = $('passages'); pv.hidden = !pv.hidden; if(!pv.innerHTML) pv.innerHTML = Object.keys(PASSAGES).map(L=>`<div class="pv"><b>${L}</b>${PASSAGES[L]}</div>`).join(''); };
  if(KEY) store.set('rank-teacher-'+ROOM, KEY); // open the key link once and this laptop keeps the Clear button
  const k = KEY || store.get('rank-teacher-'+ROOM);
- if(k){ $('reset').hidden = false; $('reset').onclick = async ()=>{ if(confirm(`Clear every ranking in room ${ROOM}?`)){ await api(`/rooms/${ROOM}/reset`,{key:k}); } }; }
+ if(k){ $('clears').hidden = false; document.querySelectorAll('#clears button').forEach(b=>b.onclick = async ()=>{ const r = +b.dataset.r; if(confirm(r ? `Clear every pair's round ${r}?` : 'Clear all three rounds?')){ await api(`/rooms/${ROOM}/reset`, r ? {key:k, round:r} : {key:k}); shown = null; lastData = await api('/rooms/' + ROOM); render(lastData); } }); }
  poll();
 }else if(params.get('teacher')){
  $('joinview').hidden = true; $('teacherview').hidden = false; $('make').onclick = makeRoom;
