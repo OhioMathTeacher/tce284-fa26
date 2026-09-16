@@ -76,7 +76,7 @@
 <body>
 <main id="main">
 <a class="home" href="week-04-wed.html">&larr; Week 4 &middot; Wednesday</a>
-<h1>Rank them</h1>
+<h1 id="title">Rank them</h1>
 <div class="sub">Act I &middot; Show, Don't Tell &middot; three rounds &middot; one phone per pair</div>
 
 <div id="joinview" hidden>
@@ -93,7 +93,6 @@
 </div>
 
 <div id="rankview" hidden>
-<div class="tabs" id="tabs"></div>
 <div class="task" id="task"></div>
 <div class="scale"><span class="s">&uarr; most showing</span><span class="t">most telling &darr;</span></div>
 <ol id="list"></ol>
@@ -131,6 +130,8 @@ const API = 'https://rank.mathaiproject.org';
 const SITE = 'https://ohiomathteacher.github.io/tce284-fa26/week-04-show-dont-tell/rank.html';
 const params = new URLSearchParams(location.search);
 const $ = id => document.getElementById(id);
+// Each round is its own link: rank.html?round=1, ?round=2, ?round=3. The page shows only that round.
+const ROUND = Math.min(3, Math.max(1, +(params.get('round') || 1)));
 const store = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
 
 const STAGES = [
@@ -210,18 +211,13 @@ function startingOrder(i){
  return st.letters.slice();
 }
 
-function drawTabs(){
- $('tabs').innerHTML = STAGES.map((st,i)=>{
-  const done = !!alreadyDone(i), unlocked = i===0 || !!alreadyDone(i-1) || done;
-  return `<button data-i="${i}" class="${i===stage?'on':''} ${done?'done':''}" ${unlocked?'':'disabled'}>${st.tab}</button>`;
- }).join('');
- document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{ showStage(+b.dataset.i); const p = alreadyDone(stage); if(p) showDone(p); }));
-}
+function drawTabs(){}
 
 function showStage(i){
  stage = i;
  const st = STAGES[i];
- taskBox.innerHTML = `<strong>${st.title}.</strong> ${st.task}`;
+ taskBox.innerHTML = st.task;
+ $('title').textContent = 'Rank them — ' + st.title;
  const order = startingOrder(i);
  const seen = new Set((alreadyDone(0)||'') + (alreadyDone(1)||''));
  list.innerHTML = order.map(L=>`<li data-letter="${L}" class="${i===2 && !seen.has(L) && seen.size ? 'new':''}"><span class="rank"></span><span class="letter">${L}</span><span class="txt">${PASSAGES[L]}</span><span class="grip">&#8942;</span></li>`).join('');
@@ -237,12 +233,11 @@ function showStage(i){
 function showDone(order){
  submitBtn.disabled = true; msg.textContent = '';
  const next = stage < STAGES.length-1;
- doneBox.innerHTML = `<strong>Submitted.</strong> Most showing up top; most telling down below.<ol>${order.split('').map((L,i)=>`<li><span class="rank">${i+1}</span><span class="letter">${L}</span></li>`).join('')}</ol><span class="n">${next ? 'Look up — we compare before the next round.' : "That's all three. Look up."}</span>`
-  + (next ? `<div class="row" style="margin:10px 0 0"><button id="next">Next round: ${STAGES[stage+1].title.split('· ')[1]}</button></div>` : '');
+ doneBox.innerHTML = `<strong>Submitted.</strong> Most showing up top; most telling down below.<ol>${order.split('').map((L,i)=>`<li><span class="rank">${i+1}</span><span class="letter">${L}</span></li>`).join('')}</ol><span class="n">${next ? 'Look up — we compare before the next round. The next one is its own link on the outline.' : "That's all three. Look up."}</span>`
+  ;
  doneBox.hidden = false;
  $('tools').hidden = next;
  drawTabs();
- if(next) $('next').addEventListener('click', ()=>showStage(stage+1));
 }
 
 async function submit(){
@@ -280,9 +275,7 @@ async function poll(){
 // ---- boot ---------------------------------------------------------------
 function boot(){
  submitBtn.onclick = submit;
- // resume at the first round this browser hasn't submitted; ?stage=2 jumps there
- let i = 0; while(i < STAGES.length-1 && alreadyDone(i)) i++;
- if(params.get('stage')) i = Math.min(STAGES.length, Math.max(1, +params.get('stage'))) - 1;
+ const i = ROUND - 1;
  showStage(i);
  const prev = alreadyDone(i); if(prev) showDone(prev);
 }
