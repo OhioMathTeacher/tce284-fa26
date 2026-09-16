@@ -19,11 +19,10 @@
  mark{padding:1px 2px;border-radius:3px;color:inherit;background:transparent;transition:background .15s;}
  body.show-t1 mark.t1{background:var(--t1);} body.show-t2 mark.t2{background:var(--t2);}
  body.show-t3 mark.t3{background:var(--t3);} body.show-t4 mark.t4{background:var(--t4);}
- .key{display:flex;flex-wrap:wrap;gap:6px 10px;font-family:system-ui,sans-serif;font-size:13px;color:#374151;margin:0 0 18px;}
- .key button{font:inherit;color:inherit;padding:2px 8px;border-radius:3px;border:1px solid transparent;background:#f3f4f6;cursor:pointer;opacity:.7;}
- .key button::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c);}
- .key button:hover{opacity:1;border-color:#d1d5db;}
- .key button[aria-pressed="true"]{background:var(--c);opacity:1;}
+ .key{display:flex;flex-wrap:wrap;gap:6px 8px;font-family:system-ui,sans-serif;font-size:13px;color:#374151;margin:0 0 18px;}
+ .key button{font:inherit;color:inherit;padding:1px 7px;border-radius:3px;border:1.5px solid var(--c);background:#fff;cursor:pointer;white-space:nowrap;}
+ .key button:hover{background:#f3f4f6;}
+ .key button[aria-pressed="true"]{background:var(--c);}
  .key .hint{width:100%;font-size:12px;color:#6b7280;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
