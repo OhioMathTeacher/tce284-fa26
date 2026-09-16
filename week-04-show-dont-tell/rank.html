@@ -285,6 +285,7 @@ if(params.get('show') && ROOM){
  document.querySelector('h1').textContent = "The room's answer";
  document.querySelector('.sub').textContent = 'most showing up top, most telling at the bottom';
  $('showpass').onclick = e=>{ e.preventDefault(); const pv = $('passages'); pv.hidden = !pv.hidden; if(!pv.innerHTML) pv.innerHTML = Object.keys(PASSAGES).map(L=>`<div class="pv"><b>${L}</b>${PASSAGES[L]}</div>`).join(''); };
+ if(KEY) store.set('rank-teacher-'+ROOM, KEY); // open the key link once and this laptop keeps the Clear button
  const k = KEY || store.get('rank-teacher-'+ROOM);
  if(k){ $('reset').hidden = false; $('reset').onclick = async ()=>{ if(confirm(`Clear every ranking in room ${ROOM}?`)){ await api(`/rooms/${ROOM}/reset`,{key:k}); } }; }
  poll();
