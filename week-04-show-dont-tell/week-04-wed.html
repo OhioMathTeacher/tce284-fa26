@@ -11,11 +11,24 @@
  h1{font-size:20px;margin:0 0 2px;} .sub{color:#6b7280;font-size:12px;margin-bottom:16px;}
  .goals{background:#e7f3ff;padding:12px 16px;border-radius:6px;margin:12px 0;}
  .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
- .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-craft{background:#e8dcf0;} .b-write{background:#d6f0e8;} .b-peer{background:#ffe8d6;}
+ .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-read{background:#e8dcf0;} .b-craft{background:#d6e8f0;} .b-write{background:#d6f0e8;} .b-peer{background:#ffe8d6;}
  .block h2{font-size:15px;margin:0 0 8px;} .block .time{font-weight:400;font-size:12px;color:#6b7280;}
+ details.block summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block summary::-webkit-details-marker{display:none;}
+ details.block summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] summary::before{transform:rotate(90deg);}
+ details.block summary h2{margin:0;}
+ details.block[open] summary{margin-bottom:8px;}
+ details.sub{margin:6px 0 6px 2px;padding:6px 10px;background:rgba(255,255,255,.55);border-radius:4px;}
+ details.sub summary{cursor:pointer;list-style:none;font-weight:600;font-size:14px;display:flex;align-items:baseline;gap:6px;}
+ details.sub summary::-webkit-details-marker{display:none;}
+ details.sub summary::before{content:"▸";color:var(--accent);font-size:12px;flex:none;transition:transform .15s;}
+ details.sub[open] summary::before{transform:rotate(90deg);}
+ details.sub ul{margin:6px 0 2px;}
  .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
  .tag{background:#fff3a8;padding:1px 4px;border-radius:3px;font-weight:600;}
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
+ ol{margin:6px 0 4px;padding-left:22px;} ol li{margin:4px 0;}
  .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
@@ -25,50 +38,74 @@
 <body>
 <main>
 <a class="home" href="../index.html">← Course home</a>
-<h1>Week 4 · Wednesday — Build the moment</h1>
-<div class="sub">Act I · Make Me Taste It · <em>what does your moment look, sound, and taste like?</em></div>
+<h1>Week 4 · Wednesday — Show or tell?</h1>
+<div class="sub">Act I · Make Me Taste It · <em>can you tell the difference — and fix it in someone else's page?</em></div>
 
-<div class="goals"><strong>Today's goals:</strong> Sharpen one sensory rep, then compose <strong>Show, Don't Tell</strong> — cut every word that tells instead of shows. Due Friday.</div>
+<div class="goals"><strong>Today's goals:</strong> Read Goldberg's two pages on showing, rank passages two, then three, then six from most showing to most telling and see the room's answer, fix the telliest with three tools, read the <em>Show, Don't Tell</em> handout closely — then gush your own moment and start the page. Due Friday.</div>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "Mid-Term Break" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>0 · Daily Poem — "Mid-Term Break" <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Seamus Heaney, <strong><a href="https://www.poetryfoundation.org/poems/57041/mid-term-break">"Mid-Term Break"</a></strong>. Read it aloud. Heaney never says he's grieving — he shows it: the knelling bells, the baby cooing, the old men standing to shake his hand, and the last line. Where does the grief land, and how does he get it there without naming it?</li>
  </ul>
  <p class="purpose">Purpose: the standing ritual — and the day's move at its highest level: an emotion shown, never told.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>1 · Housekeeping <span class="time">(~5 min)</span></h2>
+<details class="block b-read">
+ <summary><h2>1 · Goldberg: "Don't Tell, but Show" <span class="time">(~10 min)</span></h2></summary>
  <ul>
-  <li>Questions on the Show, Don't Tell one-pager. Everyone bring their gush?</li>
+  <li>Open <a href="goldberg-dont-tell-but-show.html">Natalie Goldberg, "Don't Tell, but Show"</a> (<em>Writing Down the Bones</em>, two pages). Read it aloud around the room, a paragraph each. <strong>Goldberg's four tips for showing, not telling:</strong>
+   <ol>
+    <li><strong>Don't write the big words.</strong> Anger, honesty, truth, hate, love, sorrow, life, justice. Show us what made you angry; we'll feel angry.</li>
+    <li><strong>"About" is an alarm.</strong> "This story is about my grandmother" — skip that line and go right into the kitchen.</li>
+    <li><strong>Be there.</strong> A story you heard secondhand and never entered comes out "two times removed." Breathe life into it or don't write it.</li>
+    <li><strong>A general statement is fine — if a concrete picture backs it.</strong> Her softer rule, and the one you'll actually use.</li>
+   </ol>
+  </li>
+  <li>Which of Goldberg's qualities do you see in Seamus Heaney's poem?</li>
+  <li>Which will you be most mindful of as you write today, and for OP4 — <em>Show, Don't Tell</em>?</li>
  </ul>
-</div>
+ <p class="purpose">Purpose: the day's move named by a writer who says it plainly — and a word to search for and a list to circle when you check your own draft in step 5.</p>
+</details>
 
-<div class="block b-craft">
- <h2>2 · "Make me taste it" — one revision rep (ch13) <span class="time">(~15 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>2 · Show or tell? <span class="time">(~20 min)</span></h2></summary>
  <ul>
-  <li>From your gush, find one line that <em>tells</em> ("it was scary," "the food was good"). Rewrite it so we feel it — the way Romano turns "melon and ham" into a description that makes your mouth water.</li>
-  <li>Read the before/after to a neighbor. Did the rewrite put them in the moment?</li>
+  <li><strong><a href="rank.html">Sorting practice</a> (~10 min):</strong> in pairs, one phone. Two passages, then three — most showing on top. Nothing is sent; argue, drag, check yourselves.</li>
+  <li><strong><a href="rank.html?share=1">Share your sort</a> (~5 min):</strong> all six. The room code is on the board. Submit once per pair.</li>
+  <li><strong>Discuss (~5 min):</strong> the screen — every pair's ranking side by side, no names. Highlighted letters are where the room agrees; the <strong>?</strong>s are where it split. We talk only about the splits. Be ready to defend your column.</li>
  </ul>
- <p class="purpose">Purpose: practice the exact cut-and-rebuild move on your own words before you build the whole page.</p>
-</div>
+ <p class="purpose">Purpose: see telling in someone else's words first — it's easier than seeing it in your own — and find out whether the room thinks detail alone can carry a feeling.</p>
+</details>
+<details class="block b-house">
+ <summary><h2>3 · The Show, Don't Tell handout <span class="time">(~10 min)</span></h2></summary>
+ <ul>
+  <li>Open the <a href="OP4 Show Dont Tell.docx">Show, Don't Tell</a> handout together — one small moment from your life, rendered through the senses, one page. <strong>No dialogue</strong>: if someone is there, we know them by what they do. No summary words.</li>
+  <li>Read the assessment table against what you just did: "shows, never tells" is the sort you just ran, turned on your own page. "The opposite of melon and ham" is passage A next to passage B.</li>
+  <li>Ask now — what's unclear about the page, the "no dialogue" rule, or the grading?</li>
+ </ul>
+ <p class="purpose">Purpose: read the assignment after the reps, not before — so every line of it points at something you've just done.</p>
+</details>
 
-<div class="block b-write">
- <h2>3 · Compose Show, Don't Tell in Journaler <span class="time">(~30 min)</span></h2>
+<details class="block b-write">
+ <summary><h2>4 · Gush the moment, then share <span class="time">(~15 min)</span></h2></summary>
  <ul>
-  <li>Build your <a href="OP4 Show Dont Tell.docx">Show, Don't Tell</a> one-pager from your gush — one small moment, one page, all senses. Cut every word that tells instead of shows.</li>
+  <li><strong>Gush in Journaler (~5 min):</strong> start the 5-minute timer. Pick one small, ordinary moment from your life — or go back into the one you started Monday. Stay on the surface: the light, the sounds, the smells, what your hands felt, what was on your tongue. Don't tell us how it felt; make us feel it. Gush mode locks editing.</li>
+  <li><strong>After the buzzer (~3 min):</strong> answer the app's few questions about how it went.</li>
+  <li><strong>Share (~7 min):</strong> read your gush to a neighbor. They tell you two things: the one line that put them <em>in</em> the moment, and the one place they were told instead of shown. Then the question that matters: <strong>what from this should I develop further?</strong> Circle it.</li>
  </ul>
- <p class="purpose">Purpose: get most of the page down in the room, so the take-home is polish, not a blank start.</p>
-</div>
+ <p class="purpose">Purpose: the raw material down in the room, and a reader's fast read on what's already working before you build.</p>
+</details>
 
-<div class="block b-peer">
- <h2>4 · Peer read <span class="time">(~20 min)</span></h2>
+<details class="block b-peer">
+ <summary><h2>5 · Start Show, Don't Tell <span class="time">(~15 min)</span></h2></summary>
  <ul>
-  <li>Trade with a neighbor. Mark the one line that most put you <em>in</em> the moment, and one place you still want to be shown instead of told.</li>
+  <li>Shape the page in Journaler from what you circled — one small moment, one page, all senses. Aim to leave with most of a page, so the take-home is polish, not a blank start.</li>
+  <li><strong>Cutting a telling word leaves a hole — fill it with one of the five tools</strong> at the bottom of <a href="rank.html?share=1">Rank them</a>: mind pictures, sensory detail, precise words, pump up the verbs, weed the garden.</li>
+  <li><strong>Before you leave, Goldberg's two tests:</strong> search your draft for <em>about</em> — every hit is an alarm. Then circle every big word — <em>happy, sad, nervous, amazing, special, free</em> — and ask whether a picture is standing behind it. If not, the picture goes in and the word comes out.</li>
  </ul>
- <p class="purpose">Purpose: a reader tells you fast where the showing is working and where it isn't.</p>
-</div>
+ <p class="purpose">Purpose: get the page started while the models and your reader's notes are still in the room, and leave with a two-step check you can run at home.</p>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; at home:</strong>

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rank them — Show, Don't Tell (Week 4)</title>
+<style>
+ :root{--accent:#0f766e;--show:#0f766e;--tell:#b45309;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:760px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:15px;}
+ h1{font-size:20px;margin:0 0 2px;} .sub{color:#6b7280;font-size:12px;margin-bottom:14px;}
+ .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ .tabs{display:flex;gap:6px;margin:10px 0 14px;border-bottom:2px solid #e5e7eb;}
+ .tabs button{background:none;color:#6b7280;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:8px 14px;border-radius:0;font-weight:600;font-size:14px;cursor:pointer;}
+ .tabs button.on{color:var(--accent);border-bottom-color:var(--accent);}
+ .tabs button.done::after{content:" ✓";color:var(--accent);}
+ .tabs button:disabled{color:#c4c8cf;cursor:default;background:none;}
+ #list li.new{border-left-color:var(--tell);background:#fff7ed;}
+ #list li.new .letter{color:var(--tell);}
+ #list li.new .letter::after{content:"new";display:block;font-size:10px;font-weight:600;color:var(--tell);letter-spacing:.04em;}
+ .task{background:#e7f3ff;padding:10px 14px;border-radius:6px;margin:10px 0 14px;font-size:14px;}
+ .scale{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin:6px 2px;}
+ .scale .s{color:var(--show);} .scale .t{color:var(--tell);}
+ #list{list-style:none;margin:0;padding:0;}
+ #list li{display:flex;gap:12px;align-items:flex-start;background:#f9fafb;border-left:4px solid var(--accent);border-radius:2px;padding:10px 12px;margin:8px 0;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;}
+ #list li:active{cursor:grabbing;}
+ #list li.sortable-ghost{opacity:.35;} #list li.sortable-chosen{box-shadow:0 2px 10px rgba(0,0,0,.15);background:#fff;}
+ .rank{flex:0 0 1.6em;font-size:20px;font-weight:700;color:#9ca3af;font-variant-numeric:tabular-nums;line-height:1.2;}
+ .letter{flex:0 0 1.4em;font-size:17px;font-weight:700;color:var(--accent);}
+ .txt{font-size:14px;color:#374151;}
+ .grip{margin-left:auto;color:#9ca3af;flex:none;font-size:18px;line-height:1;}
+ .row{display:flex;gap:10px;align-items:center;margin:16px 0;}
+ button{background:var(--accent);color:#fff;border:0;padding:10px 18px;border-radius:6px;font-weight:600;font-size:15px;cursor:pointer;}
+ button:disabled{background:#9ca3af;cursor:default;}
+ #msg{font-size:14px;color:#374151;}
+ .done{background:#d6f0e8;padding:12px 14px;border-radius:6px;margin:16px 0;font-size:15px;}
+ .done ol{margin:6px 0 8px;padding-left:0;list-style:none;}
+ .done ol li{display:flex;gap:10px;align-items:baseline;margin:2px 0;}
+ .done ol .rank{font-size:15px;} .done ol .letter{font-size:16px;}
+ .warn{background:#fff3cd;padding:10px 14px;border-radius:6px;margin:12px 0;font-size:13px;}
+ input#code{font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border:2px solid #d1d5db;border-radius:6px;width:9em;font-family:ui-monospace,Menlo,monospace;}
+ input#code:focus{outline:none;border-color:var(--accent);}
+ .code{font-family:ui-monospace,Menlo,monospace;font-size:34px;font-weight:700;letter-spacing:.1em;color:var(--accent);}
+ button.small{font-size:13px;padding:6px 12px;background:#6b7280;}
+ .h{font-size:17px;margin:22px 0 4px;color:#374151;}
+ .tools{margin:8px 0;padding-left:0;list-style:none;}
+ .tools li{margin:8px 0;padding-left:28px;position:relative;font-size:15px;}
+ .tools li::before{content:"☐";position:absolute;left:4px;top:-1px;color:var(--accent);font-size:17px;}
+ .tools b{color:#111827;}
+ .pv{margin:12px 0;padding:10px 14px;border-left:4px solid var(--accent);background:#f9fafb;border-radius:2px;font-size:17px;line-height:1.5;}
+ .pv b{color:var(--accent);font-size:19px;margin-right:8px;}
+ /* results */
+ .cols{border-collapse:collapse;margin:12px 0;font-variant-numeric:tabular-nums;}
+ .cols th{font-size:12px;color:#6b7280;font-weight:600;padding:4px 6px;text-align:center;white-space:nowrap;}
+ .cols th.room{color:#111827;font-size:13px;}
+ .cols td{border:1px solid #e5e7eb;text-align:center;padding:0;width:44px;height:44px;font-size:20px;font-weight:700;color:#374151;}
+ .cols td.r{width:auto;font-size:13px;color:#9ca3af;font-weight:600;padding:0 10px;border:0;text-align:right;}
+ .cols td.mode{background:#d6f0e8;color:var(--accent);}
+ .cols td.room{background:var(--accent);color:#fff;border-color:var(--accent);}
+ .cols td.split{background:#fff;color:#9ca3af;font-weight:400;}
+ .colwrap{overflow-x:auto;}
+ .legend .mode,.n .mode{background:#d6f0e8;color:var(--accent);padding:0 4px;border-radius:3px;font-weight:600;}
+ .grid{border-collapse:collapse;width:100%;margin:12px 0;font-variant-numeric:tabular-nums;}
+ .grid th,.grid td{border:1px solid #e5e7eb;text-align:center;padding:0;height:52px;font-size:16px;}
+ .grid th{background:#f3f4f6;font-size:13px;color:#374151;height:34px;}
+ .grid td.l{font-weight:700;color:var(--accent);font-size:18px;background:#f9fafb;width:3em;}
+ .grid td.c{color:#111827;font-weight:600;}
+ .grid td.avg{font-size:14px;color:#6b7280;background:#f9fafb;width:4.5em;}
+ .order{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0;font-size:15px;}
+ .order .chip{background:#f3f4f6;border-left:4px solid var(--accent);padding:6px 12px;border-radius:2px;font-weight:700;color:#111827;}
+ .order .chip small{display:block;font-weight:400;font-size:11px;color:#6b7280;}
+ .order .arrow{color:#9ca3af;}
+ .n{font-size:13px;color:#6b7280;}
+ .results h1{font-size:24px;} .results h2{font-size:18px;margin:22px 0 4px;color:#374151;} .results h2 .n{font-weight:400;}
+ @media (min-width:900px){.results{max-width:1100px;} .results .cols td{width:56px;height:56px;font-size:26px;}}
+</style>
+</head>
+<body>
+<main id="main">
+<a class="home" href="week-04-wed.html">&larr; Week 4 &middot; Wednesday</a>
+<h1>Rank them</h1>
+<div class="sub">Act I &middot; Show, Don't Tell &middot; two practice rounds, then share your sort</div>
+
+<div id="joinview">
+<div class="task"><strong>Share your sort.</strong> Your pair needs the <strong>room code</strong> from the board. One phone per pair. (Haven't practiced? <a href="rank.html">Start there.</a>)</div>
+<div class="row"><input id="code" placeholder="WREN-24" maxlength="8" autocapitalize="characters" autocomplete="off"><button id="join">Join</button></div>
+<div id="joinmsg" class="n"></div>
+<div class="n" style="margin-top:28px"><a href="#" id="teacherlink">Teacher: start a room</a></div>
+</div>
+
+<div id="teacherview" hidden>
+<div class="task"><strong>Start a room.</strong> You get a code for the board and a link for the projector.</div>
+<div class="row"><button id="make">Make a room</button></div>
+<div id="made" class="done" hidden></div>
+</div>
+
+<div id="rankview" hidden>
+<div class="tabs" id="tabs"></div>
+<div class="task" id="task"></div>
+<div class="scale"><span class="s">&uarr; most showing</span><span class="t">most telling &darr;</span></div>
+<ol id="list"></ol>
+<div class="row"><button id="submit">Submit our ranking</button><span id="msg"></span></div>
+<div id="done" class="done" hidden></div>
+<div id="tools" hidden>
+ <h2 class="h">Fix one — the five tools</h2>
+ <p class="n">Rewrite whichever of C, D, or F the room ranked telliest. Same moment, same people, none of its summary words. Use at least three of these.</p>
+ <ul class="tools">
+  <li><b>Create mind pictures.</b> Find the sentence that <em>summarizes</em> ("we waited for what felt like forever") and explode it into a scene: who moved, what they touched, what was on the TV nobody watched.</li>
+  <li><b>Add sensory detail.</b> One sense the passage hasn't used yet. What did the room smell like? What did the chair do under you?</li>
+  <li><b>Precise words.</b> Not <em>the car</em> — <em>her mom's silver CR-V</em>. Not <em>the food</em> — name the dish. (And notice: F has precise nouns and still tells. Precision helps only when it's doing the feeling's work.)</li>
+  <li><b>Pump up the verbs.</b> Did she <em>go</em> into the room, or <em>shuffle</em>, <em>limp</em>, <em>stride</em>? Mary Oliver didn't write that a man's eyes "turned into ice" — she wrote they <em>brittled</em> into it.</li>
+  <li><b>Weed the garden.</b> Cut the adverb that repeats the verb ("swaggered arrogantly"), and every big word that names the feeling: <em>warm, amazing, nervous, depressing, relief, excited, free.</em></li>
+ </ul>
+ <p class="n">Tools adapted from Penny Kittle, Tom Romano, Judy Rowe Michaels, and Maja Wilson, "Tinkering/Revising for Fearless Writing." Their list has eight; the other three — sound and rhythm, sentence length, placement and payoff — get their own day.</p>
+</div>
+</div>
+
+<div id="showview" class="results" hidden>
+<div class="tabs" id="showtabs"></div>
+<div class="n" id="count"></div>
+<div id="stages"></div>
+<div id="passages" hidden></div>
+<div class="n" id="legend">One column per pair, in the order they arrived. <span class="mode">Highlighted</span> = the letter most pairs put at that rank; <strong>The room</strong> is that consensus read top to bottom.</div>
+<div class="row" style="margin-top:28px"><button id="reset" class="small" hidden>Clear this room</button></div>
+</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js"></script>
+<script>
+// ---- config -------------------------------------------------------------
+// The tally lives in a Cloudflare Worker (repo: ~/Repos/rank-worker). Rooms are codes like WREN-24.
+const API = 'https://rank.mathaiproject.org';
+// Where students find this page. Printed on the teacher card even when the page is opened from disk.
+const SITE = 'https://ohiomathteacher.github.io/tce284-fa26/week-04-show-dont-tell/rank.html';
+const params = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+const store = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
+
+const STAGES = [
+ {letters:['A','B'], tab:'Practice 1 · two', title:'Practice 1 · two',  task:'Two people wrote the same Sunday. Drag the one that <strong>shows</strong> to the top. Easy — this one is just to learn the drag. Nothing is sent.'},
+ {letters:['C','D','E'], tab:'Practice 2 · three', title:'Practice 2 · three', task:'Three new ones. Most <strong>showing</strong> on top, most <strong>telling</strong> on the bottom. Argue about it, then lock it in. Nothing is sent.'},
+ {letters:['A','B','C','D','E','F'], tab:'Share · all six', title:'Share your sort · all six', task:'Your two practice rounds are already in order here. <strong>F is new.</strong> Put it where it belongs — and move anything else you\'ve changed your mind about. Most showing on top. This one is sent to the room.'}
+];
+
+const PASSAGES = {
+ A: "My grandmother's kitchen was always warm and welcoming. Every Sunday the whole family would gather there, and the food was amazing. She was a wonderful cook and everyone loved her. Being there made me feel safe and happy, and those are some of my favorite memories. I will never forget how special those Sundays were.",
+ B: "The linoleum by the stove had worn through to the brown underneath, right where her feet went. Two pots knocking their lids. My uncle's cigarette in the ashtray on the windowsill, sending up a thread that bent every time the back door opened. She never turned around. She reached back with the wooden spoon and I opened my mouth.",
+ C: "The gym smelled like floor wax and popcorn. It was so loud I couldn't hear myself think. My hands were shaking as I tied my laces for the third time. Coach walked past and tapped the top of my head twice with a rolled-up program. I was really nervous. Then the buzzer went and the bleachers started stomping.",
+ D: "The hospital waiting room was depressing. Everyone looked tired and sad. The chairs were uncomfortable and the TV was on but nobody was watching it. We waited for what felt like forever. A vending machine hummed in the corner, and every few minutes it made a clunk like it was thinking about something. Finally the nurse called our name and it was a huge relief.",
+ E: "Dad drove with two fingers. The heater ticked. Every mile marker lit up green and went dark behind us, and I counted them on the fogged window with my thumb until the glass squeaked and he glanced over. Neither of us reached for the radio. At the exit he put his whole hand on the wheel.",
+ F: "I was so excited and nervous the night I snuck out to the concert. I put on my black Levi's, my white Air Force 1s, and the gold hoops I got for my sixteenth birthday, and did my makeup with the Urban Decay palette my sister gave me. Maya picked me up in her mom's silver Honda CR-V at exactly 9:15. It was honestly the most fun and rebellious night of my life, and I felt so free. I will always remember it."
+};
+
+// ---- room -----------------------------------------------------------------
+let ROOM = (params.get('room') || '').toUpperCase();
+const KEY = params.get('key') || '';
+// a pair is a browser: one random id, kept
+let PAIR = store.get('rank-pair'); if(!PAIR){ PAIR = Math.random().toString(36).slice(2,10); store.set('rank-pair', PAIR); }
+
+async function api(path, body){
+ const r = await fetch(API + path, body ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)} : {});
+ const j = await r.json().catch(()=>({error:'Bad reply'}));
+ if(!r.ok) throw new Error(j.error || r.status);
+ return j;
+}
+
+function goShare(){
+ // the share round needs a room; ask for the code, then land on round 3
+ $('rankview').hidden = true; $('joinview').hidden = false; $('code').focus();
+ history.replaceState(null,'','?share=1');
+}
+
+async function join(code){
+ code = code.trim().toUpperCase().replace(/[^A-Z0-9-]/g,'');
+ if(/^[A-Z]+\d{2}$/.test(code)) code = code.replace(/(\d{2})$/,'-$1');
+ $('joinmsg').textContent = 'Joining…';
+ try{
+  await api('/rooms/' + code);
+  ROOM = code; store.set('rank-room', ROOM);
+  history.replaceState(null,'',`?room=${ROOM}`);
+  $('joinview').hidden = true; $('rankview').hidden = false;
+  document.querySelector('.sub').textContent = `Room ${ROOM} · share your sort · one submission per pair`;
+  submitBtn.onclick = submit;
+  showStage(2); const prev = alreadyDone(2); if(prev) showDone(prev);
+ }catch(e){ $('joinmsg').textContent = e.message === 'No such room' ? "No room with that code — check the board." : "Couldn't reach the tally. Try again, or show your order to Dr. Edwards."; }
+}
+
+async function makeRoom(){
+ $('make').disabled = true;
+ try{
+  const r = await api('/rooms', {name:'Show, Don\'t Tell'});
+  const base = location.protocol === 'file:' ? SITE : location.href.split('?')[0].split('#')[0];
+  $('made').innerHTML = `Code for the board: <div class="code">${r.code}</div>
+   <p>Projector: <a href="${base}?room=${r.code}&show=1&key=${r.key}">${base.replace(/^https?:\/\//,'')}?room=${r.code}&amp;show=1</a><br>
+   <span class="n">Students: <strong>${SITE.replace(/^https?:\/\//,'')}</strong>, then the code — or the passages page → <em>Rank them</em>. The projector link carries the key that lets you clear the room; keep it to yourself.</span></p>`;
+  $('made').hidden = false;
+  store.set('rank-teacher-'+r.code, r.key);
+ }catch(e){ $('make').disabled = false; alert("Couldn't make a room: " + e.message); }
+}
+
+// ---- ranking view -------------------------------------------------------
+const list = $('list'), msg = $('msg'), submitBtn = $('submit'), taskBox = $('task'), doneBox = $('done');
+let stage = 0, sortable = null;
+
+function renumber(){ [...list.children].forEach((li,i)=>li.querySelector('.rank').textContent = i+1); }
+function currentOrder(){ return [...list.children].map(li=>li.dataset.letter); }
+function key(i){ return i < 2 ? `rank-practice-${i}` : `rank-${ROOM}-${i}`; }
+function alreadyDone(i){ return store.get(key(i)); }
+function markDone(i,order){ store.set(key(i), order); }
+
+function startingOrder(i){
+ const st = STAGES[i];
+ if(i === 2){
+  // the share round opens pre-merged from this pair's practice: practice-1 top, practice-2 middle, practice-1 bottom; F on top, flagged new
+  const r1 = alreadyDone(0), r2 = alreadyDone(1);
+  if(r1 && r2) return ['F', r1[0], ...r2.split(''), r1[1]];
+ }
+ // practice rounds are alphabetical: A over B means everyone has to drag; C·D·E leaves the one that shows at the bottom
+ return st.letters.slice();
+}
+
+function drawTabs(){
+ $('tabs').innerHTML = STAGES.map((st,i)=>{
+  const done = !!alreadyDone(i), unlocked = i===0 || !!alreadyDone(i-1) || done;
+  return `<button data-i="${i}" class="${i===stage?'on':''} ${done?'done':''}" ${unlocked?'':'disabled'}>${st.tab}</button>`;
+ }).join('');
+ document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{ const i = +b.dataset.i; if(i === 2 && !ROOM){ goShare(); return; } showStage(i); const p = alreadyDone(stage); if(p) showDone(p); }));
+}
+
+function showStage(i){
+ stage = i;
+ const st = STAGES[i];
+ taskBox.innerHTML = `<strong>${st.title}.</strong> ${st.task}`;
+ const order = startingOrder(i);
+ const seen = new Set((alreadyDone(0)||'') + (alreadyDone(1)||''));
+ list.innerHTML = order.map(L=>`<li data-letter="${L}" class="${i===2 && !seen.has(L) && seen.size ? 'new':''}"><span class="rank"></span><span class="letter">${L}</span><span class="txt">${PASSAGES[L]}</span><span class="grip">&#8942;</span></li>`).join('');
+ renumber();
+ if(sortable) sortable.destroy();
+ sortable = new Sortable(list,{animation:150,onSort:renumber});
+ submitBtn.disabled = false; submitBtn.textContent = i < 2 ? 'Lock it in' : 'Submit to the room'; msg.textContent = '';
+ doneBox.hidden = true; $('tools').hidden = true;
+ drawTabs();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showDone(order){
+ submitBtn.disabled = true; msg.textContent = '';
+ const next = stage < STAGES.length-1;
+ doneBox.innerHTML = `<strong>${stage < 2 ? 'Locked in.' : 'Submitted to the room.'}</strong> Most showing up top; most telling down below.<ol>${order.split('').map((L,i)=>`<li><span class="rank">${i+1}</span><span class="letter">${L}</span></li>`).join('')}</ol><span class="n">${stage === 0 ? 'Now the next one.' : stage === 1 ? 'Practice done. When Dr. Edwards puts the code on the board, share your sort.' : "Look up — the room's answer is on the screen."}</span>`
+  + (next ? `<div class="row" style="margin:10px 0 0"><button id="next">${stage === 0 ? 'Next: three' : 'Share your sort →'}</button></div>` : '');
+ doneBox.hidden = false;
+ $('tools').hidden = next;
+ drawTabs();
+ if(next) $('next').addEventListener('click', ()=>{ if(stage === 1) goShare(); else showStage(stage+1); });
+}
+
+async function submit(){
+ const order = currentOrder().join('');
+ if(stage < 2){ markDone(stage,order); showDone(order); return; }
+ submitBtn.disabled = true; msg.textContent = 'Sending…';
+ try{
+  await api(`/rooms/${ROOM}/rank`, {pair:PAIR, order});
+  markDone(stage,order); showDone(order);
+ }catch(e){ submitBtn.disabled = false; msg.textContent = "Didn't go through — try once more, or show your order to Dr. Edwards."; }
+}
+
+// ---- results view: one column per pair ----------------------------------
+let showStage_ = 2; // which round the projector shows (index into STAGES); newest with data by default
+let userPicked = false;
+
+function columnsFor(st, rows){
+ const k = st.letters.length;
+ rows = rows.slice().sort((a,b)=>a.pair<b.pair?-1:1); // stable, anonymous order
+ // mode at each rank
+ const modes = [], splits = [];
+ for(let r=0;r<k;r++){
+  const c = {}; rows.forEach(x=>{ const L = x.order[r]; c[L] = (c[L]||0)+1; });
+  const best = Object.entries(c).sort((a,b)=>b[1]-a[1]);
+  modes[r] = best.length ? best[0][0] : ''; splits[r] = best.length>1 && best[0][1]===best[1][1];
+ }
+ let h = '<div class="colwrap"><table class="cols"><tr><th></th>' + rows.map((_,i)=>`<th>${i+1}</th>`).join('') + '<th class="room">The room</th></tr>';
+ for(let r=0;r<k;r++){
+  h += `<tr><td class="r">${r===0?'1 · shows':r===k-1?k+' · tells':r+1}</td>`;
+  h += rows.map(x=>`<td class="${x.order[r]===modes[r] && !splits[r] ? 'mode':''}">${x.order[r]}</td>`).join('');
+  h += `<td class="${splits[r]?'split':'room'}">${splits[r]?'?':modes[r]}</td></tr>`;
+ }
+ return h + '</table></div>';
+}
+
+function render(data){
+ const total = data.n;
+ $('count').textContent = `Room ${data.code} · ${total} pair${total===1?'':'s'} joined · updates every 4 s`;
+ const rounds = STAGES.map(st => data.rounds[st.letters.length] || []);
+ if(!userPicked){ let i = 2; while(i>0 && !rounds[i].length) i--; showStage_ = i; }
+ $('showtabs').innerHTML = STAGES.map((st,i)=>`<button data-i="${i}" class="${i===showStage_?'on':''}">${st.tab} <span class="n">(${rounds[i].length})</span></button>`).join('') + `<button data-i="-1" class="${showStage_===-1?'on':''}">Passages</button>`;
+ document.querySelectorAll('#showtabs button').forEach(b=>b.addEventListener('click',()=>{ showStage_ = +b.dataset.i; userPicked = true; render(data); }));
+ if(showStage_ === -1){
+  $('stages').hidden = true; $('passages').hidden = false; $('legend').hidden = true;
+  const shown = params.get('letters') ? params.get('letters').toUpperCase().split('') : Object.keys(PASSAGES);
+  $('passages').innerHTML = shown.map(L=>`<div class="pv"><b>${L}</b>${PASSAGES[L]}</div>`).join('');
+  return;
+ }
+ $('stages').hidden = false; $('passages').hidden = true; $('legend').hidden = false;
+ const st = STAGES[showStage_], rows = rounds[showStage_];
+ $('stages').innerHTML = `<h2>${st.title} <span class="n">· ${rows.length} pair${rows.length===1?'':'s'}</span></h2>` + (rows.length ? columnsFor(st, rows) : '<p class="n">Waiting for the first submission…</p>');
+}
+
+let lastData = null;
+async function poll(){
+ try{ lastData = await api('/rooms/' + ROOM); render(lastData); }
+ catch(e){ $('count').textContent = e.message === 'No such room' ? `No room ${ROOM}.` : 'Lost the connection — retrying…'; }
+ setTimeout(poll, 4000);
+}
+
+// ---- boot ---------------------------------------------------------------
+function boot(){
+ submitBtn.onclick = submit;
+ // practice: resume at the first round this browser hasn't locked in
+ let i = 0; while(i < 1 && alreadyDone(i)) i++;
+ if(params.get('stage')) i = Math.min(2, Math.max(1, +params.get('stage'))) - 1;
+ $('rankview').hidden = false;
+ showStage(i);
+ const prev = alreadyDone(i); if(prev) showDone(prev);
+}
+
+if(params.get('show') && ROOM){
+ $('joinview').hidden = true; $('showview').hidden = false;
+ document.querySelector('h1').textContent = "The room's answer";
+ document.querySelector('.sub').textContent = 'most showing (1) up top, most telling at the bottom';
+ const k = KEY || store.get('rank-teacher-'+ROOM);
+ if(k){ $('reset').hidden = false; $('reset').onclick = async ()=>{ if(confirm(`Clear every ranking in room ${ROOM}?`)){ await api(`/rooms/${ROOM}/reset`,{key:k}); } }; }
+ poll();
+}else if(params.get('teacher')){
+ $('joinview').hidden = true; $('teacherview').hidden = false; $('make').onclick = makeRoom;
+}else{
+ $('join').onclick = ()=>join($('code').value);
+ $('code').addEventListener('keydown', e=>{ if(e.key==='Enter') join($('code').value); });
+ $('teacherlink').onclick = e=>{ e.preventDefault(); $('joinview').hidden = true; $('teacherview').hidden = false; $('make').onclick = makeRoom; };
+ if(ROOM) join(ROOM);
+ else if(params.get('share')){ $('code').focus(); }
+ else { $('joinview').hidden = true; boot(); }
+}
+</script>
+</body>
+</html>
