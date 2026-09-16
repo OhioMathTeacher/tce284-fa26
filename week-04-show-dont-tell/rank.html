@@ -79,7 +79,7 @@
 <h1>Rank them</h1>
 <div class="sub">Act I &middot; Show, Don't Tell &middot; three rounds &middot; one phone per pair</div>
 
-<div id="joinview">
+<div id="joinview" hidden>
 <div class="task">Your pair needs the <strong>room code</strong> from the board. One phone per pair.</div>
 <div class="row"><input id="code" placeholder="WREN-24" maxlength="8" autocapitalize="characters" autocomplete="off"><button id="join">Join</button></div>
 <div id="joinmsg" class="n"></div>
@@ -173,7 +173,7 @@ async function join(code){
   if(ROOM !== DEFAULT_ROOM) history.replaceState(null,'',`?room=${ROOM}`);
   $('joinview').hidden = true; $('rankview').hidden = false;
   boot();
- }catch(e){ $('joinmsg').textContent = e.message === 'No such room' ? "No room with that code — check the board." : "Couldn't reach the tally. Try again, or show your order to Dr. Edwards."; }
+ }catch(e){ $('joinview').hidden = false; $('joinmsg').textContent = e.message === 'No such room' ? "No room with that code — check the board." : "Couldn't reach the tally. Try again, or show your order to Dr. Edwards."; }
 }
 
 async function makeRoom(){
@@ -301,7 +301,7 @@ if(params.get('show') && ROOM){
  $('join').onclick = ()=>join($('code').value);
  $('code').addEventListener('keydown', e=>{ if(e.key==='Enter') join($('code').value); });
  $('teacherlink').onclick = e=>{ e.preventDefault(); $('joinview').hidden = true; $('teacherview').hidden = false; $('make').onclick = makeRoom; };
- if(ROOM) join(ROOM); else $('code').focus();
+ if(ROOM) join(ROOM); else { $('joinview').hidden = false; $('code').focus(); }
 }
 </script>
 </body>
