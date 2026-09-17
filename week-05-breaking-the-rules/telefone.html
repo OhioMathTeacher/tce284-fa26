@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telefone — Generation Loss (Week 5)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#F2F3F1; --paper:#FCFCFB; --ink:#1A1C1B; --muted:#6B7370; --line:#D6DAD7;
+    --accent:#0f766e; --accent-ink:#0B5A54; --accent-soft:#DCEFEC;
+    --del:#B4443C; --del-soft:#F6E3E1; --ins:#0f766e; --ins-soft:#DCEFEC;
+    --tab-bg:#E7E9E6; --focus:#0f766e;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#181A19; --paper:#212423; --ink:#ECEEEB; --muted:#9AA39E; --line:#363B39;
+      --accent:#3FB8AC; --accent-ink:#6FD3C8; --accent-soft:#1E3A37;
+      --del:#E07B72; --del-soft:#3C2624; --ins:#3FB8AC; --ins-soft:#1E3A37;
+      --tab-bg:#2A2E2C; --focus:#3FB8AC;
+    }
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;margin:0}
+  .wrap{max-width:880px;margin:0 auto;padding:22px 20px 64px}
+  a{color:var(--accent-ink)}
+  .home{display:inline-block;margin:0 0 14px;font-size:12px;color:var(--muted);text-decoration:none}
+  .home:hover{color:var(--accent-ink);text-decoration:underline}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  h1{font-family:Literata,Georgia,serif;font-weight:600;font-size:30px;margin:0;letter-spacing:-.01em}
+  .title{appearance:none;background:none;border:0;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--ink);font:inherit}
+  .title .q{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;width:18px;height:18px;border-radius:50%;border:1px solid var(--line);color:var(--muted);display:inline-flex;align-items:center;justify-content:center}
+  .title:hover .q{border-color:var(--accent);color:var(--accent-ink)}
+  .title:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:4px}
+  dialog{border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);max-width:56ch;padding:22px 26px;font-size:15px;line-height:1.55}
+  dialog::backdrop{background:rgba(0,0,0,.35)}
+  dialog h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:24px;margin:2px 0 10px}
+  dialog p{margin:0 0 10px;color:var(--muted)} dialog p b{color:var(--ink);font-weight:500}
+  dialog form{margin-top:14px}
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* connection */
+  .conn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .conn .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+  .conn.on .dot{background:var(--accent)}
+  .conn b{color:var(--ink);font-weight:500}
+  .conn input{font:inherit;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink);width:220px}
+  .conn .lk{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--accent-ink);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+  .btn{appearance:none;font:inherit;font-weight:500;border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  .btn:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+  .btn.ghost{background:transparent;color:var(--accent-ink);border-color:var(--line)}
+  .btn.ghost:hover{background:var(--accent-soft)}
+  .btn.sm{padding:5px 10px;font-size:13px}
+  .btn:disabled{opacity:.45;cursor:default}
+  .btn:focus-visible,.tab:focus-visible,textarea:focus-visible,input:focus-visible,.switch input:focus-visible+span{outline:2px solid var(--focus);outline-offset:2px}
+
+  /* the request */
+  .ask{display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap;margin:0 0 12px;font-size:13px;color:var(--muted)}
+  .ask .lbl{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .ask label{display:inline-flex;align-items:center;gap:6px;color:var(--ink);cursor:pointer;white-space:nowrap}
+  .ask input{accent-color:var(--accent);width:15px;height:15px;margin:0}
+  .ask label:has(input:disabled){opacity:.55;cursor:default}
+
+  /* tab strip */
+  .strip{display:flex;align-items:flex-end;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:0 0 0 2px}
+  .tab{appearance:none;border:1px solid var(--line);border-bottom:none;background:var(--tab-bg);color:var(--muted);font:inherit;padding:8px 12px 7px;border-radius:6px 6px 0 0;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:66px;position:relative;top:1px}
+  .tab .n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;font-weight:500;color:var(--ink)}
+  .tab .n small{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:12px;margin-left:4px}
+  .tab .pct{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .tab.on{background:var(--paper);color:var(--ink)}
+  .tab.on .pct{color:var(--accent-ink)}
+  .tab.new{animation:pop .35s ease-out}
+  @keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+  .strip .actions{margin-left:auto;display:flex;gap:8px;align-items:center;padding-bottom:8px}
+
+  /* page */
+  .sheet{background:var(--paper);border:1px solid var(--line);border-top:none;padding:26px 30px 22px;border-radius:0 0 8px 8px}
+  .sheethead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+  .label{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .label b{color:var(--ink);font-weight:500}
+  .switch{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none;position:relative}
+  .switch input{position:absolute;opacity:0;width:0;height:0}
+  .switch span.k{width:30px;height:17px;border-radius:9px;background:var(--line);position:relative;transition:background .15s}
+  .switch span.k::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--paper);transition:left .15s}
+  .switch input:checked+span.k{background:var(--accent)}
+  .switch input:checked+span.k::after{left:15px}
+  .passage{font-family:Literata,Georgia,"Times New Roman",serif;font-size:17.5px;line-height:1.62;max-width:66ch}
+  .passage.diff{white-space:pre-line}
+  .passage p{margin:0 0 1em}
+  .passage p:last-child{margin-bottom:0}
+  textarea.passage{width:100%;max-width:none;min-height:280px;border:1px dashed var(--line);border-radius:6px;padding:14px 16px;background:transparent;color:var(--ink);resize:vertical}
+  textarea.passage::placeholder{color:var(--muted)}
+  del{color:var(--del);background:var(--del-soft);text-decoration:line-through;text-decoration-thickness:1.5px;border-radius:2px;padding:0 1px}
+  ins{color:var(--ins);background:var(--ins-soft);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;border-radius:2px;padding:0 1px}
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px}
+  .stat{display:flex;flex-direction:column;gap:1px}
+  .stat .v{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:17px;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .stat .k{font-size:12px;color:var(--muted)}
+  .status{font-size:13px;color:var(--muted);min-height:20px;margin-top:10px;font-variant-numeric:tabular-nums}
+  .status.err{color:var(--del)}
+
+  /* rounds */
+  .rounds{margin-top:30px}
+  .rounds .rh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .rounds h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:20px;margin:0}
+  .rounds .rh .meta{font-size:13px;color:var(--muted)}
+  .round{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:0 0 12px}
+  .round .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .round .top .label b{margin-right:6px}
+  .round .top .tools{display:flex;gap:6px}
+  .round .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .round .col h4{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+  .round .col h4 span{color:var(--accent-ink)}
+  .round .passage{font-size:15.5px;line-height:1.55}
+  .round.empty{color:var(--muted);font-size:13px;border-style:dashed;background:transparent}
+  @media (max-width:640px){.round .cols{grid-template-columns:1fr}}
+  @media print{
+    body{background:#fff;color:#000;font-size:12px}
+    .wrap{max-width:none;padding:0}
+    .home,header .conn,.title .q,.ask,.strip,.sheet,details.hand,.rounds .rh .tools,.round .tools,.status{display:none!important}
+    .rounds{margin-top:8px}
+    .round{break-inside:avoid;border:1px solid #bbb;background:#fff;color:#000;margin-bottom:10px}
+    .round .col h4,.round .top .label,.rounds .rh .meta{color:#444}
+    .round .passage{font-size:11.5px;line-height:1.4}
+  }
+
+  /* by hand */
+  details.hand{margin-top:22px;font-size:13px;color:var(--muted)}
+  details.hand summary{cursor:pointer;color:var(--accent-ink)}
+  details.hand .box{margin-top:10px;padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);display:flex;flex-direction:column;gap:8px}
+  details.hand textarea{font:inherit;font-family:Literata,Georgia,serif;font-size:15px;min-height:120px;padding:10px 12px;border:1px dashed var(--line);border-radius:6px;background:transparent;color:var(--ink);resize:vertical}
+  details.hand .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+  @media (max-width:560px){.sheet{padding:18px 16px}.passage{font-size:16.5px}.strip .actions{margin-left:0;width:100%}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="week-05-wed.html">← Week 5 · Wednesday</a>
+  <header>
+    <button class="title" id="aboutBtn" title="What is this?"><h1>Telefone</h1><span class="q">?</span></button>
+    <div class="conn" id="conn"></div>
+  </header>
+
+  <dialog id="about">
+    <div class="eyebrow">TCE 284 · Week 5 · Generation Loss</div>
+    <h2>Telefone</h2>
+    <p>Telephone, except the machine is every player. Pass zero is <b>your</b> Breaking the Rules page. Each time you press <b>AI Revise</b>, the machine gets the latest pass and whatever requests are ticked, and what comes back pops up as the next tab. Nothing it says is written back into your page.</p>
+    <p><b>Read the strip.</b> The percentage under each pass is how many of your pass-zero words are still on the page. Each pass is fed the one before it, the way a whisper is passed down a line. Watch what goes first, and what refuses to go.</p>
+    <p><b>For OP5:</b> save passes 0, 1, 5 and 10 (and the last one, if you went past ten) and write your reflection in Journaler: what did the machine fix first? What is gone by the end? When did it stop being yours?</p>
+    <p>Your page goes to Groq to be revised — that company, not Dr. Edwards. Passes stay in this browser only until you leave the page.</p>
+    <form method="dialog"><button class="btn">Close</button></form>
+  </dialog>
+
+  <div class="ask" id="ask"><span class="lbl">Ask it to</span></div>
+
+  <div class="strip" id="strip"></div>
+  <div class="sheet">
+    <div id="view"></div>
+    <div class="sheethead">
+      <div class="label" id="sheetLabel"></div>
+      <label class="switch" id="diffWrap"><input type="checkbox" id="diffToggle"><span class="k"></span><span>Show what this pass changed</span></label>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <section class="rounds" id="rounds"></section>
+
+  <details class="hand" id="hand">
+    <summary>No Groq key? Play by hand with any chatbot</summary>
+    <div class="box">
+      <p style="margin:0">Copy the prompt and the latest pass, paste them into the chatbot you have (Gemini, ChatGPT, Copilot), then paste its reply back here as the next pass. Same game, one player at a time.</p>
+      <div class="row"><button class="btn ghost sm" id="copyBtn">Copy prompt + latest pass</button><span id="copyNote"></span></div>
+      <textarea id="handIn" placeholder="Paste the chatbot's reply here."></textarea>
+      <div class="row"><button class="btn sm" id="handAdd">Add as the next pass</button></div>
+    </div>
+  </details>
+
+</div>
+
+<script>
+(function(){
+  // The requests, mildest first. Whatever is ticked is what the machine is asked;
+  // all three at once is the classroom default.
+  const ASKS = [
+    { say: 'Clean this up and correct it.',               short: 'clean it up & correct it' },
+    { say: 'Fix the grammar, spelling, and punctuation.', short: 'fix grammar, spelling, punctuation' },
+    { say: 'Rewrite this in clear, standard English.',    short: 'rewrite in clear, standard English' }
+  ];
+  const on = [true, true, true];
+  const asked = [];                      // asked[k] = the request text pass k was made under
+  const PROMPT = () => ASKS.filter((_, i) => on[i]).map(a => a.say).join(' ') + ' Return only the revised text.';
+  const MAX = 20;
+
+  // ── Groq. Same localStorage keys as Journaler-284, which lives on this origin,
+  //    so a student who connected Groq there is already connected here.
+  const GROQ_KEY = 'cr_groq_key', GROQ_MODEL_KEY = 'cr_groq_model';
+  const GROQ_MODEL_DEFAULT = 'openai/gpt-oss-120b';
+  const GROQ_PREFERRED = ['openai/gpt-oss-120b', 'qwen/qwen3.6-27b', 'openai/gpt-oss-20b'];
+  const EP = 'https://api.groq.com/openai/v1';
+  const getKey = () => localStorage.getItem(GROQ_KEY) || '';
+  const getModel = () => localStorage.getItem(GROQ_MODEL_KEY) || GROQ_MODEL_DEFAULT;
+  const usable = id => !!id && !/whisper|tts|guard|embed|moderation|rerank/.test(id.toLowerCase());
+  async function discoverModel(key){
+    const res = await fetch(EP + '/models', { headers: { Authorization: 'Bearer ' + key } });
+    if (!res.ok) return '';
+    const data = await res.json().catch(() => null);
+    const ids = ((data && data.data) || []).map(m => m && m.id).filter(usable);
+    for (const p of GROQ_PREFERRED) if (ids.includes(p)) return p;
+    const score = id => (/70b|100b|120b|405b/.test(id) ? 2 : 0) + (/versatile|instruct/.test(id) ? 1 : 0);
+    return ids.sort((a, b) => score(b) - score(a) || a.localeCompare(b))[0] || '';
+  }
+  async function groq(prompt, signal){
+    const key = getKey();
+    const ask = model => fetch(EP + '/chat/completions', {
+      method: 'POST', signal,
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+      body: JSON.stringify({ model, max_tokens: 2500, messages: [{ role: 'user', content: prompt }] })
+    });
+    let model = getModel();
+    let res = await ask(model);
+    let err = res.ok ? null : await res.json().catch(() => ({}));
+    if (err && res.status !== 401){
+      const msg = String(err.error && err.error.message || '').toLowerCase();
+      if (res.status === 404 || /decommission|deprecat|does not exist|not found|unsupported|invalid model/.test(msg)){
+        const fresh = await discoverModel(key).catch(() => '');
+        if (fresh && fresh !== model){ localStorage.setItem(GROQ_MODEL_KEY, fresh); model = fresh; res = await ask(model); err = res.ok ? null : await res.json().catch(() => ({})); }
+      }
+    }
+    if (!res.ok){
+      if (res.status === 401) throw new Error('Groq did not accept that key. Check it and connect again.');
+      if (res.status === 429) throw new Error('Groq says slow down — wait a minute, then press AI Revise again.');
+      throw new Error('Groq error ' + res.status + ': ' + ((err && err.error && err.error.message) || 'unknown'));
+    }
+    const data = await res.json();
+    const c = data.choices && data.choices[0];
+    if (c && c.finish_reason === 'length') throw new Error('The reply was cut off — the page is too long for one pass. Trim pass zero and start over.');
+    return (c && c.message && c.message.content) || '';
+  }
+
+  // ── rounds. Saved in this browser (same origin as Journaler), kept until deleted.
+  const ROUNDS_KEY = 'telefone_rounds';
+  function loadRounds(){ try { return JSON.parse(localStorage.getItem(ROUNDS_KEY) || '[]'); } catch (_) { return []; } }
+  function storeRounds(r){ try { localStorage.setItem(ROUNDS_KEY, JSON.stringify(r)); } catch (_) { say('Could not save — this browser is out of room.', true); } }
+  let rounds = loadRounds();
+
+  // ── state
+  let passes = [''];
+  let cur = 0, running = false, abort = null;
+  const $ = id => document.getElementById(id);
+  const strip = $('strip'), view = $('view'), stats = $('stats'), status = $('status'), sheetLabel = $('sheetLabel');
+  const diffToggle = $('diffToggle'), diffWrap = $('diffWrap'), conn = $('conn');
+
+  // ── words
+  const norm = w => w.toLowerCase().replace(/[^\p{L}\p{N}']/gu, '');
+  const words = t => t.split(/\s+/).filter(Boolean);
+  function survival(k){
+    if (k === 0) return 1;
+    const base = words(passes[0]).map(norm).filter(Boolean);
+    const have = new Map();
+    for (const w of words(passes[k]).map(norm)) if (w) have.set(w, (have.get(w) || 0) + 1);
+    let kept = 0;
+    for (const w of base){ const c = have.get(w) || 0; if (c > 0){ kept++; have.set(w, c - 1); } }
+    return base.length ? kept / base.length : 0;
+  }
+  function sentenceStats(t){
+    const s = t.split(/(?<=[.!?])\s+|\n+/).map(x => x.trim()).filter(Boolean);
+    const w = words(t).length;
+    return { words: w, sentences: s.length, avg: s.length ? w / s.length : 0 };
+  }
+  // Line breaks are tokens too, so the diff keeps the shape of the page.
+  const toks = t => t.replace(/\r/g, '').replace(/\n/g, ' \n ').split(/[ \t]+/).filter(Boolean);
+  function diff(a, b){
+    const A = toks(a), B = toks(b), n = A.length, m = B.length;
+    const L = new Array(n + 1);
+    for (let i = 0; i <= n; i++) L[i] = new Uint16Array(m + 1);
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+      L[i][j] = A[i] === B[j] ? L[i+1][j+1] + 1 : Math.max(L[i+1][j], L[i][j+1]);
+    const out = []; let i = 0, j = 0;
+    while (i < n && j < m){
+      if (A[i] === B[j]){ out.push(['eq', A[i]]); i++; j++; }
+      else if (L[i+1][j] >= L[i][j+1]){ out.push(['del', A[i]]); i++; }
+      else { out.push(['ins', B[j]]); j++; }
+    }
+    while (i < n) out.push(['del', A[i++]]);
+    while (j < m) out.push(['ins', B[j++]]);
+    return out;
+  }
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const paras = t => t.split(/\n\s*\n/).map(p => `<p>${esc(p.trim()).replace(/\n/g,'<br>')}</p>`).join('');
+
+  // ── render
+  let keyOpen = false;
+  function renderConn(){
+    const key = getKey();
+    if (key && !keyOpen){
+      conn.className = 'conn on';
+      conn.innerHTML = `<span class="dot"></span><span>Groq · ${esc(getModel())}</span><button class="lk" id="keyChange">change</button>`;
+      $('keyChange').addEventListener('click', () => { keyOpen = true; renderConn(); });
+    } else {
+      conn.className = 'conn';
+      conn.innerHTML = `<span class="dot"></span><span title="The same free key you use in Journaler">Groq key</span>
+        <input type="password" id="keyIn" placeholder="gsk_…" autocomplete="off" spellcheck="false">
+        <button class="btn sm" id="keySave">Connect</button>
+        <a href="https://console.groq.com/keys" target="_blank" rel="noopener">get one</a>`;
+      const save = () => { const v = $('keyIn').value.trim(); if (!v) return; localStorage.setItem(GROQ_KEY, v); keyOpen = false; renderConn(); render(); };
+      $('keySave').addEventListener('click', save);
+      $('keyIn').addEventListener('keydown', e => { if (e.key === 'Enter') save(); if (e.key === 'Escape' && key){ keyOpen = false; renderConn(); } });
+      if (keyOpen) $('keyIn').focus();
+    }
+  }
+  $('aboutBtn').addEventListener('click', () => $('about').showModal());
+  function renderAsk(){
+    $('ask').innerHTML = `<span class="lbl">Ask it to</span>` + ASKS.map((a, i) =>
+      `<label title="${esc(a.say)}"><input type="checkbox" data-i="${i}" ${on[i] ? 'checked' : ''} ${running ? 'disabled' : ''}>${esc(a.short)}</label>`).join('');
+    $('ask').querySelectorAll('input').forEach(c => c.addEventListener('change', () => { on[+c.dataset.i] = c.checked; renderStrip(); }));
+  }
+  function renderStrip(){
+    const canRun = !running && passes.length <= MAX && !!getKey() && on.some(Boolean);
+    strip.innerHTML = passes.map((_, i) => {
+      const pct = Math.round(survival(i) * 100);
+      return `<button class="tab${i === cur ? ' on' : ''}${i === passes.length - 1 && i > 0 ? ' new' : ''}" data-i="${i}" role="tab" aria-selected="${i === cur}">
+        <span class="n">Pass ${i}${i === 0 ? '<small>yours</small>' : ''}</span>
+        <span class="pct">${pct}%</span></button>`;
+    }).join('') + `<span class="actions">
+        <button class="btn ghost" id="resetBtn" ${passes.length > 1 && !running ? '' : 'disabled'}>Start over</button>
+        <button class="btn" id="runBtn" ${canRun ? '' : 'disabled'}>AI Revise</button>
+        <button class="btn ghost" id="runAllBtn" ${canRun ? '' : 'disabled'} title="Revise again and again, up to pass ${MAX}">×10</button>
+        <button class="btn ghost" id="stopBtn" style="${running ? '' : 'display:none'}">Stop</button>
+        <button class="btn ghost" id="saveBtn" ${passes.length > 1 && !running ? '' : 'disabled'} title="Keep pass zero and the last pass, with the model and the count">Save round</button>
+      </span>`;
+    strip.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { cur = +b.dataset.i; render(); }));
+    $('runBtn').addEventListener('click', () => run(1));
+    $('runAllBtn').addEventListener('click', () => run(Math.min(10, MAX + 1 - passes.length)));
+    $('stopBtn').addEventListener('click', () => { if (abort) abort.abort(); });
+    $('saveBtn').addEventListener('click', saveRound);
+    $('resetBtn').addEventListener('click', () => {
+      if (!confirm('Throw away every pass after pass zero?')) return;
+      passes = [passes[0]]; asked.length = 0; cur = 0; say(''); render();
+    });
+  }
+  function renderSheet(){
+    const editable = cur === 0 && passes.length === 1 && !running;
+    diffWrap.style.display = cur === 0 ? 'none' : '';
+    if (cur === 0){
+      sheetLabel.innerHTML = editable ? '<b>Pass 0</b> · your page — paste it, then AI Revise' : '<b>Pass 0</b> · your page';
+      if (editable){
+        view.innerHTML = `<textarea class="passage" id="editor" spellcheck="false" placeholder="Paste your Breaking the Rules page here — the shaped one from Journaler, rules broken on purpose.">${esc(passes[0])}</textarea>`;
+        $('editor').addEventListener('input', e => { passes[0] = e.target.value; renderStats(); });
+      } else view.innerHTML = `<div class="passage">${paras(passes[0])}</div>`;
+    } else {
+      sheetLabel.innerHTML = `<b>Pass ${cur}</b> · machine output${asked[cur] ? ' · asked to ' + esc(asked[cur]) : ''}`;
+      if (diffToggle.checked){
+        const d = diff(passes[cur - 1], passes[cur]);
+        const html = d.map(([t, w]) => w === '\n' ? (t === 'del' ? '' : '\n') : t === 'eq' ? esc(w) : t === 'del' ? `<del>${esc(w)}</del>` : `<ins>${esc(w)}</ins>`).join(' ');
+        view.innerHTML = `<div class="passage diff">${html}</div>`;
+      } else view.innerHTML = `<div class="passage">${paras(passes[cur])}</div>`;
+    }
+    renderStats();
+  }
+  function renderStats(){
+    const s = sentenceStats(passes[cur]);
+    const pct = Math.round(survival(cur) * 100);
+    let changed = '';
+    if (cur > 0){
+      const d = diff(passes[cur - 1], passes[cur]);
+      const del = d.filter(x => x[0] === 'del' && x[1] !== '\n').length, ins = d.filter(x => x[0] === 'ins' && x[1] !== '\n').length;
+      changed = `<div class="stat"><span class="v">−${del} / +${ins}</span><span class="k">words cut / added this pass</span></div>`;
+    }
+    stats.innerHTML = `
+      <div class="stat"><span class="v">${s.words}</span><span class="k">words</span></div>
+      <div class="stat"><span class="v">${s.sentences}</span><span class="k">sentences</span></div>
+      <div class="stat"><span class="v">${s.avg.toFixed(1)}</span><span class="k">words per sentence</span></div>
+      <div class="stat"><span class="v">${pct}%</span><span class="k">of your words remaining</span></div>
+      ${changed}`;
+  }
+  function render(){ renderAsk(); renderStrip(); renderSheet(); renderRounds(); }
+
+  // ── rounds
+  const fmtDate = iso => new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  function saveRound(){
+    if (passes.length < 2) return;
+    const n = passes.length - 1;
+    rounds.push({
+      id: Date.now().toString(36), when: new Date().toISOString(),
+      model: 'Groq · ' + getModel(), n,
+      asked: [...new Set(asked.slice(1).filter(Boolean))].join(' / '),
+      survival: Math.round(survival(n) * 100),
+      first: passes[0], last: passes[n], passes: passes.slice()
+    });
+    storeRounds(rounds); renderRounds();
+    say(`Round ${rounds.length} saved — ${n} pass${n === 1 ? '' : 'es'}, ${Math.round(survival(n) * 100)}% of your words left. Start over to play another.`);
+    $('rounds').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function renderRounds(){
+    const el = $('rounds');
+    if (!rounds.length){
+      el.innerHTML = `<div class="rh"><h2>Rounds</h2></div><div class="round empty">Nothing saved yet. Play a round, then press <b>Save round</b> to keep pass zero and the last pass here — three or four rounds make a set.</div>`;
+      return;
+    }
+    el.innerHTML = `<div class="rh"><h2>Rounds</h2><span class="meta">${rounds.length} saved in this browser</span><span class="tools"><button class="btn ghost sm" id="printBtn">Print / save as PDF</button></span></div>`
+      + rounds.map((r, i) => `<article class="round">
+        <div class="top"><div class="label"><b>Round ${i + 1}</b> ${fmtDate(r.when)} · ${esc(r.model)} · ${r.n} pass${r.n === 1 ? '' : 'es'} · ${r.survival}% of the words left${r.asked ? ' · asked to ' + esc(r.asked) : ''}</div>
+          <div class="tools"><button class="btn ghost sm" data-open="${r.id}" title="Put this round back in the tabs">Reopen</button><button class="btn ghost sm" data-del="${r.id}">Delete</button></div></div>
+        <div class="cols">
+          <div class="col"><h4>Pass 0 <span>· yours</span></h4><div class="passage">${paras(r.first)}</div></div>
+          <div class="col"><h4>Pass ${r.n} <span>· the machine's</span></h4><div class="passage">${paras(r.last)}</div></div>
+        </div></article>`).join('');
+    $('printBtn').addEventListener('click', () => window.print());
+    el.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => {
+      if (!confirm('Delete this round? It cannot be recovered.')) return;
+      rounds = rounds.filter(r => r.id !== b.dataset.del); storeRounds(rounds); renderRounds();
+    }));
+    el.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+      if (running) return;
+      const r = rounds.find(x => x.id === b.dataset.open); if (!r) return;
+      if (passes.length > 1 && !confirm('Replace the passes in the tabs with this round?')) return;
+      passes = r.passes.slice(); asked.length = 0; asked[passes.length - 1] = r.asked; cur = passes.length - 1;
+      say(''); render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
+  }
+  diffToggle.addEventListener('change', renderSheet);
+
+  // ── play
+  function say(msg, err){ status.textContent = msg; status.className = 'status' + (err ? ' err' : ''); }
+  function clean(text){ return String(text || '').trim().replace(/^"""\s*|\s*"""$/g, '').replace(/^```\w*\s*|\s*```$/g, '').trim(); }
+  function addPass(text, why){
+    passes.push(text); asked[passes.length - 1] = why; cur = passes.length - 1; render();
+    if (passes.length > MAX) say(`That's ${MAX} passes. ${Math.round(survival(MAX) * 100)}% of your words made it to the end of the line.`);
+  }
+  async function run(count){
+    if (running) return;
+    if (!passes[0].trim()){ say('Pass zero is empty — paste your page first.', true); return; }
+    running = true; abort = new AbortController(); render();
+    try {
+      for (let k = 0; k < count && passes.length <= MAX; k++){
+        const n = passes.length;
+        say(`Pass ${n}: the machine is revising pass ${n - 1}…`);
+        const why = ASKS.filter((_, i) => on[i]).map(a => a.short).join(' · ');
+        const text = clean(await groq(PROMPT() + '\n\n"""\n' + passes[n - 1] + '\n"""', abort.signal));
+        if (!text){ say('The machine returned nothing — try again.', true); break; }
+        if (passes.length <= MAX) say('');
+        addPass(text, why);
+      }
+    } catch (e){
+      if (e && e.name === 'AbortError') say(`Stopped at pass ${passes.length - 1}. The passes so far are kept.`);
+      else say((e && e.message) || String(e), true);
+    } finally { running = false; abort = null; render(); }
+  }
+
+  // ── by hand
+  $('copyBtn').addEventListener('click', async () => {
+    const last = passes[passes.length - 1];
+    if (!last.trim()){ $('copyNote').textContent = 'Paste your page into pass zero first.'; return; }
+    try { await navigator.clipboard.writeText(PROMPT() + '\n\n' + last); $('copyNote').textContent = `Copied pass ${passes.length - 1} with the prompt.`; }
+    catch (_) { $('copyNote').textContent = 'Could not copy — select the pass and copy it yourself.'; }
+  });
+  $('handAdd').addEventListener('click', () => {
+    const t = clean($('handIn').value);
+    if (!t) return;
+    if (!passes[0].trim()){ say('Pass zero is empty — paste your page first.', true); return; }
+    if (passes.length > MAX) return;
+    $('handIn').value = ''; addPass(t, 'by hand');
+  });
+
+  renderConn(); render();
+})();
+</script>
+</body>
+</html>
