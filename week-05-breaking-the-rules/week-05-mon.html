@@ -13,12 +13,12 @@
  .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
  .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-read{background:#e8dcf0;} .b-craft{background:#d6e8f0;} .b-launch{background:#d6f0e8;}
  .block h2{font-size:15px;margin:0 0 8px;} .block .time{font-weight:400;font-size:12px;color:#6b7280;}
- details.block summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
- details.block summary::-webkit-details-marker{display:none;}
- details.block summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
- details.block[open] summary::before{transform:rotate(90deg);}
- details.block summary h2{margin:0;}
- details.block[open] summary{margin-bottom:8px;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
  .moves{margin:6px 0;padding-left:20px;} .moves li{margin:5px 0;}
  details.sub{margin:6px 0 6px 2px;padding:6px 10px;background:rgba(255,255,255,.55);border-radius:4px;}
  details.sub summary{cursor:pointer;list-style:none;font-weight:600;font-size:14px;display:flex;align-items:baseline;gap:6px;}

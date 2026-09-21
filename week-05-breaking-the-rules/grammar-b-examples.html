@@ -12,13 +12,19 @@
  .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
  .b-frag{background:#d6e8f0;} .b-laby{background:#e8dcf0;} .b-spell{background:#fff3e0;} .b-voice{background:#d6f0e8;}
  .block h2{font-size:15px;margin:0 0 8px;}
- details.block summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
- details.block summary::-webkit-details-marker{display:none;}
- details.block summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
- details.block[open] summary::before{transform:rotate(90deg);}
- details.block summary h2{margin:0;}
- details.block[open] summary{margin-bottom:8px;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
  .move{font-style:italic;color:#374151;margin:0 0 10px;}
+ details.sub{margin:8px 0;padding:6px 10px;background:rgba(255,255,255,.45);border-radius:4px;}
+ details.sub summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:6px;}
+ details.sub summary::-webkit-details-marker{display:none;}
+ details.sub summary::before{content:"▸";color:var(--accent);font-size:12px;flex:none;transition:transform .15s;}
+ details.sub[open] summary::before{transform:rotate(90deg);}
+ details.sub summary .from{margin:0;}
  .from{font-size:12px;font-weight:600;color:#0f766e;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 4px;}
  .ex{background:rgba(255,255,255,.65);border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0;border-radius:2px;}
  .ex .by{font-size:12px;color:#6b7280;margin:0 0 6px;font-weight:600;}
@@ -46,7 +52,8 @@
  <summary><h2>1 · Sentence Fragments</h2></summary>
  <p class="move">Isolate an idea. Cut it loose from the sentence and let it land on its own. Romano: "perfect for isolating an important idea. For focusing readers' attention on one thing. For pointing up a reversal or dramatic outcome." (p. 66 — and notice he does it while saying it.)</p>
 
- <p class="from">From the reading — WWM ch14–15</p>
+ <details class="sub">
+  <summary><p class="from">From the reading — WWM ch14–15</p></summary>
  <div class="ex">
   <p class="by">Holly Jeric, a college freshman, quoted in WWM <span class="pg">p. 66</span></p>
   <p>… and you are basically at odds with life because things are going wrong and the future can only hold unpleasant surprises, someone smiles at you. <strong>Like warmth. Like yellow in the gray.</strong> It's amazing.</p>
@@ -63,7 +70,9 @@
   <p>She lists the rules she was never allowed to break — and breaks each one in the sentence that names it.</p>
  </div>
 
- <p class="from">Classic + student examples</p>
+ </details>
+ <details class="sub">
+  <summary><p class="from">Classic + student examples</p></summary>
  <div class="ex">
   <p class="by">Charles Dickens, <em>Bleak House</em> (1853) — public domain</p>
   <p class="verse">London. Michaelmas Term lately over, and the Lord Chancellor sitting in Lincoln's Inn Hall. Implacable November weather. … Fog everywhere. Fog up the river, where it flows among green aits and meadows; fog down the river, where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.</p>
@@ -97,6 +106,7 @@ holding the breath
 great care and restraint</p>
   <p>A list poem: fifteen lines and not one sentence. The title does all the explaining, and the list does the rest — the last line lands because everything before it didn't work. This is what Romano means by "the list" (WWM p. 64): fragments in a row, and nobody minds.</p>
  </div>
+ </details>
  <p class="try"><strong>2-minute try:</strong> take one ordinary moment and write it in fragments only. No complete sentences.</p>
 </details>
 
@@ -104,7 +114,8 @@ great care and restraint</p>
  <summary><h2>2 · Labyrinthine Sentence</h2></summary>
  <p class="move">One long, weaving, controlled sentence for something that goes on and on — "think labyrinth, not maze" (p. 65): in a maze you get lost; in a labyrinth the path leads somewhere. You hold the period until the very end.</p>
 
- <p class="from">From the reading — WWM ch15</p>
+ <details class="sub">
+  <summary><p class="from">From the reading — WWM ch15</p></summary>
  <div class="ex">
   <p class="by">Tom Wolfe, <em>The Right Stuff</em>, quoted in WWM <span class="pg">pp. 65–66</span></p>
   <p>To take off in an F-100 at dawn and cut in the afterburner and hurtle twenty-five thousand feet up into the sky so suddenly that you felt not like a bird but like a trajectory, yet with full control, full control of five tons of thrust, all of which flowed from your will and through your fingertips, with the huge engine right beneath you, so close that it was as if you were riding it bareback, until you leveled out and went supersonic … <em>(keep reading in the book — it's one sentence to the end)</em></p>
@@ -120,7 +131,9 @@ great care and restraint</p>
   <p>Your words carry readers on a roller-coaster ride, hurtling and careening, dipping and rising, nearly out of control but not, since you are the one guiding the ride, braking only when you provide the period.</p>
  </div>
 
- <p class="from">Classic + student examples</p>
+ </details>
+ <details class="sub">
+  <summary><p class="from">Classic + student examples</p></summary>
  <div class="ex">
   <p class="by">Charles Dickens, <em>A Tale of Two Cities</em> (1859) — public domain</p>
   <p>It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair…</p>
@@ -131,6 +144,7 @@ great care and restraint</p>
   <p>Waiting. For the bus. It takes a long time. In fact, it seems to take so long that your feet turn blue and your fingers become so numb that the book you were reading and were halfway through is now finished but the pages are stuck to your fingers so you have to pretend that you're still reading as you sway in and out of the bus shelter doorway hoping to catch a glimpse of the red rocket but instead your nose gets frostbitten and ice particles form in your hair, and as you return to safety your scarf blows away and you start coughing while out of the corner of your eye, you see the feeble lights on the bus approaching so you step up to the bus stop but the light turns yellow so the bus must stop and you feel that breath freezing in your throat and constricting your lungs, when all of a sudden the bus lurches forward and . . . <em>CHARTERED.</em></p>
   <p>Two fragments to open, then one sentence that refuses to end until the bus finally pulls up — and its sign says it's not in service. The length <em>is</em> the wait. (The "red rocket" is what Toronto calls its buses and streetcars.)</p>
  </div>
+ </details>
  <p class="try"><strong>2-minute try:</strong> describe something tedious or endless in a single sentence you refuse to end.</p>
 </details>
 
@@ -138,7 +152,8 @@ great care and restraint</p>
  <summary><h2>3 · Purposeful Misspelling</h2></summary>
  <p class="move">Bend or respell a word so the spelling itself carries meaning or voice. Romano's two kinds (pp. 67–68): respelling to capture how someone actually talks, and inventing or altering a word "for meaningful effect." Every "error" is one you meant.</p>
 
- <p class="from">From the reading — WWM ch15</p>
+ <details class="sub">
+  <summary><p class="from">From the reading — WWM ch15</p></summary>
  <div class="ex">
   <p class="by">Tom Romano, WWM <span class="pg">p. 68</span> — the typo he kept</p>
   <p>"I accidentally wrote once that someone self-satisfied and smug had become a victim of his own <strong>wisdoom</strong>. I appreciated the typo so much that I used it as a purposeful respelling."</p>
@@ -160,7 +175,9 @@ great care and restraint</p>
   <p>Respelling for voice: <em>far</em> is fire, <em>holler</em> is hollow. You hear him. (Romano's other dialect example, on p. 67, is Jim's speech in <em>Huckleberry Finn</em> — read it there.)</p>
  </div>
 
- <p class="from">Classic + student examples</p>
+ </details>
+ <details class="sub">
+  <summary><p class="from">Classic + student examples</p></summary>
  <div class="ex">
   <p class="by">Mark Twain, <em>Adventures of Huckleberry Finn</em> (1884) — public domain</p>
   <p>"You don't know about me without you have read a book by the name of <em>The Adventures of Tom Sawyer</em>; but that ain't no matter. … The Widow Douglas she took me for her son, and allowed she would <strong>sivilize</strong> me."</p>
@@ -171,6 +188,7 @@ great care and restraint</p>
   <p>The waves are crashing down on white, sandy beaches as we take our morning walk, for the third day in a row, to celebrate the spring break and a get away from city, schools, and familiar neighbors who seem to know all that happens whether at school, on a date, or inside our house, where no body should interfere, especially not those that are jealous because we get a Florida vacation while they sit at home, dreaming about palm trees, the shining sand, glistening water and savage tans. The sights are many and varied and fill me with memories of things I might never see again. Return soon though. <strong>Eye</strong> will never forget these seven <strong>daze</strong> of <strong>onederful</strong> <strong>sites</strong>, clear beautiful <strong>sees</strong>, and a gorgeous state. Can't wait to come back. Will come back. Planning.</p>
   <p>Read it once for the beach, then again for the spelling: <em>Eye</em> / I, <em>daze</em> / days, <em>onederful</em> / wonderful, <em>sites</em> / sights, <em>sees</em> / seas — each one means both things at once. And notice it's three moves in one page: a labyrinthine opening sentence, the respellings, and four fragments to close. <em>Planning.</em></p>
  </div>
+ </details>
  <p class="try"><strong>2-minute try:</strong> respell three words so the misspelling means something the correct spelling can't.</p>
 </details>
 
@@ -178,14 +196,17 @@ great care and restraint</p>
  <summary><h2>4 · Double Voice</h2></summary>
  <p class="move">Two voices at once, set side by side — the reader hears both, and the gap between them is the point.</p>
 
- <p class="from">From the reading — WWM ch14 (the nearest cousin)</p>
+ <details class="sub">
+  <summary><p class="from">From the reading — WWM ch14 (the nearest cousin)</p></summary>
  <div class="ex">
   <p class="by">Tom Romano, the Dunkin' Donuts scene, WWM ch14 <span class="pg">pp. 59–60</span></p>
   <p>"Don't be impatient. The line's moving fast."<br>"It's not moving at all," said the girl. "I don't even want a doughnut."<br>…<br>"That's not breakfast," Mom said, fluttering her eyelids.<br>The girl pounced. "But a doughnut is?"</p>
   <p>Ch14–15 don't have a true double-voice piece, but this is its cousin. Dramatic narrative: two voices, one exchange, no agreement — and they <em>take turns</em>. Double voice is what happens when you stop taking turns and let them run side by side.</p>
  </div>
 
- <p class="from">Student example + a model to hear</p>
+ </details>
+ <details class="sub">
+  <summary><p class="from">Student example + a model to hear</p></summary>
  <div class="ex">
   <p class="by">Untitled two-voice piece — S.R., grade 12 (de-identified)</p>
   <p class="two">Girl friend . . . Girl friend
@@ -200,6 +221,7 @@ Spend eternity together.
   <p>One voice vows eternity; the indented second voice keeps asking who she even is. Two people, one exchange, no agreement.</p>
  </div>
  <p class="aside">Modern model to hear read aloud (still in copyright, so not reprinted here): Paul Fleischman, "Fireflies," from <em>Joyful Noise: Poems for Two Voices</em> — printed in two columns for two readers, lines sometimes solo, sometimes spoken together. Both pieces, with the two columns laid out, are on Canvas: <a href="https://miamioh.instructure.com/courses/258319/pages/double-voice-poems">Double Voice poems</a>.</p>
+ </details>
  <p class="try"><strong>2-minute try:</strong> write a short exchange where a second voice (indented) interrupts the first — doubt, memory, or a whole other person. Or take the Dunkin' scene and stop letting them take turns.</p>
 </details>
 
