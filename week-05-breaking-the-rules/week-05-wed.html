@@ -12,8 +12,14 @@
  .goals{background:#e7f3ff;padding:12px 16px;border-radius:6px;margin:12px 0;}
  .note{background:#e7f0fd;padding:8px 14px;border-radius:6px;margin:12px 0;font-size:13px;color:#1e3a8a;}
  .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
- .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-write{background:#d6f0e8;} .b-lab{background:#e8dcf0;} .b-look{background:#d6e8f0;}
+ .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-write{background:#d6f0e8;} .b-read{background:#e8dcf0;} .b-lab{background:#ede0f7;} .b-look{background:#d6e8f0;}
  .block h2{font-size:15px;margin:0 0 8px;} .block .time{font-weight:400;font-size:12px;color:#6b7280;}
+ details.block summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block summary::-webkit-details-marker{display:none;}
+ details.block summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] summary::before{transform:rotate(90deg);}
+ details.block summary h2{margin:0;}
+ details.block[open] summary{margin-bottom:8px;}
  .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
  .tag{background:#fff3a8;padding:1px 4px;border-radius:3px;font-weight:600;}
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
@@ -33,57 +39,68 @@
 
 <div class="goals"><strong>Today's goals:</strong> Draft <strong>Breaking the Rules</strong>, run it through the machine and watch it normalize to the mean, then reread your five one-pagers and name the thread that keeps returning — your candidate currere.</div>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "O Me! O Life!" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>0 · Daily Poem — "O Me! O Life!" <span class="time">(~10 min)</span></h2></summary>
  <ul>
-  <li>Walt Whitman, <a href="https://www.poetryfoundation.org/poems/51568/o-me-o-life">"O Me! O Life!"</a>. Read it aloud. After all the doubt and the "empty and useless years," Whitman's answer: <em>"that the powerful play goes on, and you may contribute a verse."</em> On the last day of Act I — after the machine flattened your words — what is the verse that only you can add?</li>
+  <li>Walt Whitman, <a href="https://www.poetryfoundation.org/poems/51568/o-me-o-life">"O Me! O Life!"</a>. Read it aloud. After all the doubt and the "empty and useless years," Whitman's answer: <em>"that the powerful play goes on, and you may contribute a verse."</em> Hold onto that line. In an hour the machine will have flattened your page — and the question will be: what is the verse that only you can add?</li>
  </ul>
- <p class="purpose">Purpose: the standing ritual — and the note Act I ends on: the play goes on, and your verse is the un-fakeable thing you bring to it.</p>
-</div>
+ <p class="purpose">Purpose: the standing ritual — and the note Act I ends on: the play goes on, and your verse is the un-fakeable thing you bring to it. We come back to it in the Look-Back.</p>
+</details>
 
-<div class="block b-house">
- <h2>1 · Housekeeping <span class="time">(~5 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>1 · Housekeeping <span class="time">(~5 min)</span></h2></summary>
  <ul>
   <li>Bring your rule-breaking-in-the-wild find? Share one. Questions on finishing Act I.</li>
  </ul>
-</div>
+</details>
 
-<div class="block b-write">
- <h2>2 · Draft Breaking the Rules in Journaler <span class="time">(~20 min)</span></h2>
+<details class="block b-write">
+ <summary><h2>2 · Draft Breaking the Rules in Journaler <span class="time">(~15 min)</span></h2></summary>
  <ul>
   <li><strong>Freewrite/OPs → 5 · Breaking the Rules.</strong> Set the clock to <strong>5:00</strong> and <strong>Start the gush</strong> on something that matters to you — breaking the rules on purpose (at least two of the four moves). Gush mode locks editing, so break freely. Said it before the clock runs out? <strong>■ Done — stop the clock</strong> freezes it right there.</li>
   <li>Then <strong>Shape</strong> it a little in the right-hand column. Keep it broken; every "error" is one you meant. This is your Breaking the Rules draft — and <strong>pass zero</strong> for Telefone.</li>
-  <li>No "Reflecting on Writing" on this one — One-Pager 5's reflection comes after the machine has had its turn (step 3).</li>
+  <li>No "Reflecting on Writing" on this one — One-Pager 5's reflection comes after the machine has had its turn (step 4).</li>
  </ul>
  <p class="purpose">Purpose: get a genuinely rule-broken piece down — the more Grammar B, the more the lab will show.</p>
-</div>
+</details>
 
-<div class="block b-lab">
- <h2>3 · Generation Loss — Telefone <span class="time">(~25 min)</span></h2>
+<details class="block b-read">
+ <summary><h2>3 · Chiang, briefly — "ChatGPT Is a Blurry JPEG of the Web" <span class="time">(~5 min)</span></h2></summary>
+ <ul>
+  <li>The photocopier (<a href="https://www.upf.edu/documents/223252157/223457144/TedChiang+Chat+GPT.pdf/fd359c99-e130-3147-e364-790e9317a092?t=1734030638433">the article</a>, if you need it open). A German construction company copies a floor plan; the rooms are 14.13, 21.11 and 17.42 square metres; on the copy all three say 14.13. The copy looked right. What made that worse than a blurry copy?</li>
+  <li>His claim: "Think of ChatGPT as a blurry jpeg of all the text on the Web… the blurriness occurs in a way that doesn't make the picture as a whole look less sharp." Say it back in your own words. What's the "blur" — and why don't you notice it?</li>
+  <li>The lab, in his words: "Repeatedly resaving a jpeg creates more compression artifacts, because more information is lost every time. It's the digital equivalent of repeatedly making photocopies of photocopies." That's what you're about to do to your own page, twenty times.</li>
+  <li>Monday's Lamott, from the other side: "Your first draft isn't an unoriginal idea expressed clearly; it's an original idea expressed poorly." Pick one thing on your page you'd bet is un-blurrable — a fragment, a respelling, a line break. Put a finger on it. In a minute you'll find out.</li>
+ </ul>
+ <p class="purpose">Purpose: name the idea before the lab makes it visible, so what the strip shows has a word waiting for it.</p>
+</details>
+
+<details class="block b-lab">
+ <summary><h2>4 · Generation Loss — Telefone <span class="time">(~25 min)</span></h2></summary>
  <ul>
   <li>Telephone, except the machine is every player. Under your two columns, band <strong>3 · Generation Loss — play Telefone</strong>: press <strong>Send this page to Telefone →</strong>. That opens the <strong>Telefone</strong> tab (after Notebook) with your shaped page as <strong>Pass 0 · yours</strong>. No AI connected yet? <strong>Change model</strong> opens ⚙ Settings → AI — Groq is the one to pick.</li>
   <li><strong>Ask it to</strong> — three requests, all ticked: <em>clean it up &amp; correct it · fix grammar, spelling, punctuation · rewrite in clear, standard English</em>. Press <strong>AI Revise</strong>: the machine gets your page and those requests, and what comes back pops up as <strong>Pass 1</strong>. Press it again — pass two is made from pass one, not from yours. Then <strong>×10</strong> and watch the tabs fill (it stops at 20).</li>
-  <li><strong>Read the strip.</strong> Under each pass is how much of your page is still there. Where does it stop dropping? That flat line is the machine's idea of a finished page. Under the writing, switch on <strong>Show what this pass changed</strong> and go back to Pass 1: red is what it cut, green is what it put in. What went first?</li>
+  <li><strong>Read the strip.</strong> Under each pass is how much of your page is still there. Where does it stop dropping? That flat line is the machine's idea of a finished page — Chiang's blurry JPEG, except the picture is yours and you can watch the detail go. Under the writing, switch on <strong>Show what this pass changed</strong> and go back to Pass 1: red is what it cut, green is what it put in. What went first?</li>
   <li>Watch it: fragments become sentences, <em>wisdoom</em> becomes <em>wisdom</em>, the labyrinth untangles, the double voice merges into one — and the line breaks close up.</li>
   <li><strong>Save round</strong> — it keeps Pass 0 beside the last pass, with the model, the count and the date, in the <strong>Rounds</strong> list below. Then <strong>Start over</strong>, untick two of the requests or <strong>Change model</strong>, and play the same page again. Two or three rounds.</li>
   <li><strong>Reflect</strong> in the <strong>Generation Loss reflection</strong> box under your rounds (it's the same box back on One-Pager 5, under band 3): <em>What did the machine fix first? What is gone by the end that was there at the start? What refused to go? What does that mean for your writing — and for the writing of your students?</em></li>
  </ul>
  <p class="purpose">Purpose: feel, don't just hear, the machine's pull to the mean — and locate exactly what only you make. This is the hinge into the currere.</p>
-</div>
+</details>
 
-<div class="block b-look">
- <h2>4 · The Look-Back <span class="time">(~20 min)</span></h2>
+<details class="block b-look">
+ <summary><h2>5 · The Look-Back <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li>Reread all five one-pagers — Why You Write, Writing Place, Voice Print, Show Don't Tell, Breaking the Rules. The <strong>Look-Back</strong>: what keeps showing up? Across the place, the voices, the moment, the rules you break — name the thread that recurs.</li>
-  <li>Write one short entry naming that thread. It's a candidate for your <strong>currere</strong> — the longer self-study you begin in Act II.</li>
+  <li>Write one short entry in your <strong>Writer's Notebook</strong> naming that thread. It's a candidate for your <strong>currere</strong> — the longer self-study you begin in Act II. And Whitman's question from this morning, now that the machine has had its turn: what's the verse it couldn't take?</li>
  </ul>
  <p class="purpose">Purpose: five weeks of small pieces were laying down material — today you find the line running through them, and Act I hands off to Act II.</p>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; at home:</strong>
  <ul>
-  <li>Finish <strong>Breaking the Rules</strong> (keep it broken) and the reflection, then at the bottom of One-Pager 5 press <strong>Export One-Pager (PDF)</strong>. One PDF: your One-Pager, your writing session and AI-use log, your Generation Loss reflection, and your saved Telefone rounds. That's the whole submission. (<strong>Due Fri · Canvas.</strong>)</li>
+  <li>Finish <strong>Breaking the Rules</strong> (keep it broken) and the reflection. If the page changed much after class, play one more round on the finished version, so a saved round matches the page you submit. Then at the bottom of One-Pager 5 press <strong>Export One-Pager (PDF)</strong>. One PDF: your One-Pager, your writing session and AI-use log, your Generation Loss reflection, and your saved Telefone rounds. That's the whole submission. (<strong>Due Fri · Canvas.</strong>)</li>
   <li>Bring your <strong>currere thread</strong> to Week 6, and read <strong><a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277234">Moore, "Starting the Conversation"</a></strong> (the currere how-to). It's where your currere starts.</li>
  </ul>
 </div>

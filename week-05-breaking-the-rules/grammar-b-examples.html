@@ -9,14 +9,25 @@
  :root{--accent:#0f766e;}
  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:14px;}
  h1{font-size:20px;margin:0 0 2px;} .sub{color:#6b7280;font-size:12px;margin-bottom:16px;}
- h2{font-size:16px;margin:26px 0 4px;color:#0f766e;border-top:1px solid #e5e7eb;padding-top:16px;}
+ .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
+ .b-frag{background:#d6e8f0;} .b-laby{background:#e8dcf0;} .b-spell{background:#fff3e0;} .b-voice{background:#d6f0e8;}
+ .block h2{font-size:15px;margin:0 0 8px;}
+ details.block summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block summary::-webkit-details-marker{display:none;}
+ details.block summary::before{content:"▸";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] summary::before{transform:rotate(90deg);}
+ details.block summary h2{margin:0;}
+ details.block[open] summary{margin-bottom:8px;}
  .move{font-style:italic;color:#374151;margin:0 0 10px;}
- .ex{background:#f3f4f6;border-left:4px solid var(--accent);padding:10px 14px;margin:10px 0;border-radius:2px;}
+ .from{font-size:12px;font-weight:600;color:#0f766e;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 4px;}
+ .ex{background:rgba(255,255,255,.65);border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0;border-radius:2px;}
  .ex .by{font-size:12px;color:#6b7280;margin:0 0 6px;font-weight:600;}
+ .ex .by .pg{font-weight:400;}
  .ex p{margin:4px 0;}
  .verse{white-space:pre-wrap;}
  .two{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;white-space:pre;overflow-x:auto;}
- .try{font-size:13px;color:#0f766e;margin:6px 0 0;}
+ .try{font-size:13px;color:#0f766e;margin:10px 0 0;}
+ .aside{font-size:13px;color:#6b7280;margin:8px 0 0;}
  .note{font-size:12px;color:#9ca3af;border-top:1px solid #e5e7eb;margin-top:26px;padding-top:10px;}
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
@@ -29,56 +40,138 @@
 <h1>Grammar B — Four Moves, with Examples</h1>
 <div class="sub">TCE 284 · Week 5 · Break the Rules in Style (Weathers / Romano, WWM ch15) — be bad on purpose</div>
 
-<p>Four ways to break "Grammar A" for effect. For each move: read the examples, name what it's doing, then take two minutes to try it. Published models here are public-domain classics; the student examples (initials only) show the same moves by writers your students' age.</p>
+<p>Four ways to break "Grammar A" for effect. For each move: read the examples, name what it's doing, then take two minutes to try it. The first examples under each move come from the chapters you just read — <em>Write What Matters</em> ch14 and ch15, page numbers given so you can find them. After those: a public-domain classic or two, and student examples (initials only) showing the same move by writers your students' age.</p>
 
-<h2>1 · Sentence Fragments</h2>
-<p class="move">Isolate an idea. Cut it loose from the sentence and let it land on its own.</p>
-<div class="ex">
- <p class="by">Charles Dickens, <em>Bleak House</em> (1853) — public domain</p>
- <p class="verse">London. Michaelmas Term lately over, and the Lord Chancellor sitting in Lincoln's Inn Hall. Implacable November weather. … Fog everywhere. Fog up the river, where it flows among green aits and meadows; fog down the river, where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.</p>
- <p>Dickens opens a whole novel on fragments — <em>London.</em> … <em>Implacable November weather.</em> — then hammers the word <em>Fog</em> until the city disappears into it.</p>
-</div>
-<div class="ex">
- <p class="by">"Cat" — M.H., grade 12 (de-identified)</p>
- <p class="verse">I. Once. No. Many times.
+<details class="block b-frag">
+ <summary><h2>1 · Sentence Fragments</h2></summary>
+ <p class="move">Isolate an idea. Cut it loose from the sentence and let it land on its own. Romano: "perfect for isolating an important idea. For focusing readers' attention on one thing. For pointing up a reversal or dramatic outcome." (p. 66 — and notice he does it while saying it.)</p>
+
+ <p class="from">From the reading — WWM ch14–15</p>
+ <div class="ex">
+  <p class="by">Holly Jeric, a college freshman, quoted in WWM <span class="pg">p. 66</span></p>
+  <p>… and you are basically at odds with life because things are going wrong and the future can only hold unpleasant surprises, someone smiles at you. <strong>Like warmth. Like yellow in the gray.</strong> It's amazing.</p>
+  <p>A labyrinthine sentence piles up the bad morning, a full sentence delivers the smile — then two fragments land it. The fragments are the point of the whole paragraph.</p>
+ </div>
+ <div class="ex">
+  <p class="by">Tom Romano, "Bulldog Learning," WWM ch14, <span class="pg">p. 61</span></p>
+  <p>The teacher's role is important. <strong>In some cases, critical.</strong></p>
+  <p>A radio commentary, so the fragment is the pause you'd hear on air. Romano fragments his own prose all through both chapters — "Ho hum, I say. So what?" (p. 59); "Rules change, open up." (p. 69); and the two words the chapter is built on: <em>Who says?</em></p>
+ </div>
+ <div class="ex">
+  <p class="by">Melissa Podgorski, a college student, quoted in WWM <span class="pg">p. 64</span></p>
+  <p>Before college, I never broke any of them. <strong>No sentence fragments.</strong><br><strong>No one sentence paragraphs.</strong></p>
+  <p>She lists the rules she was never allowed to break — and breaks each one in the sentence that names it.</p>
+ </div>
+ <div class="ex">
+  <p class="by">Romano's on-ramp: the list — WWM <span class="pg">p. 64–65</span></p>
+  <p>"An accessible way to dip your toe into Grammar B is by writing a list." His swimming bag: goggles, trunks once black now faded brown, blue towel, loofah, peppermint soap, rubbing alcohol, Q-Tips, heel salve, comb, Visine — "from that list you learn my preferences, habits, ailments, loyalties." And Charles Blow's invented adjectives: "crack-the-bones work, lift-it, chop-it, empty-it, glide-it-in-smooth work; feel-the-flames work; crawl-down-in-there work."</p>
+  <p>A list is fragments in a row. If the fragment feels like a leap, start here.</p>
+ </div>
+
+ <p class="from">Classic + student examples</p>
+ <div class="ex">
+  <p class="by">Charles Dickens, <em>Bleak House</em> (1853) — public domain</p>
+  <p class="verse">London. Michaelmas Term lately over, and the Lord Chancellor sitting in Lincoln's Inn Hall. Implacable November weather. … Fog everywhere. Fog up the river, where it flows among green aits and meadows; fog down the river, where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.</p>
+  <p>Dickens opens a whole novel on fragments — <em>London.</em> … <em>Implacable November weather.</em> — then hammers the word <em>Fog</em> until the city disappears into it.</p>
+ </div>
+ <div class="ex">
+  <p class="by">"Cat" — M.H., grade 12 (de-identified)</p>
+  <p class="verse">I. Once. No. Many times.
 Tried to ignore it.
 But woke still. With my cat.
 Walking. On my chest.
 Licking. My face.</p>
-</div>
-<p class="try"><strong>2-minute try:</strong> take one ordinary moment and write it in fragments only. No complete sentences.</p>
+ </div>
+ <p class="try"><strong>2-minute try:</strong> take one ordinary moment and write it in fragments only. No complete sentences. (Or dip a toe: write the inside of your bag as a list, and see what it says about you.)</p>
+</details>
 
-<h2>2 · Labyrinthine Sentence</h2>
-<p class="move">One long, weaving, controlled sentence for something that goes on and on — think labyrinth, not maze; you hold the period until the very end.</p>
-<div class="ex">
- <p class="by">Charles Dickens, <em>A Tale of Two Cities</em> (1859) — public domain</p>
- <p>It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair…</p>
- <p>One sentence, riding parallel construction — <em>it was… it was… it was…</em> — until the rhythm itself becomes the meaning.</p>
-</div>
-<div class="ex">
- <p class="by">"Waiting for the Bus" — J.A., grade 11 (de-identified)</p>
- <p>Opens on fragments — <em>Waiting. For the bus.</em> — then runs on and on through a frostbitten nose, a scarf blowing away, coughing, the bus lurching forward, all the way to one blunt word at the end: <em>CHARTERED.</em> The length <em>is</em> the wait.</p>
-</div>
-<p class="try"><strong>2-minute try:</strong> describe something tedious or endless in a single sentence you refuse to end.</p>
+<details class="block b-laby">
+ <summary><h2>2 · Labyrinthine Sentence</h2></summary>
+ <p class="move">One long, weaving, controlled sentence for something that goes on and on — "think labyrinth, not maze" (p. 65): in a maze you get lost; in a labyrinth the path leads somewhere. You hold the period until the very end.</p>
 
-<h2>3 · Purposeful Misspelling</h2>
-<p class="move">Bend or respell a word so the spelling itself carries meaning or voice. Every "error" is one you meant.</p>
-<div class="ex">
- <p class="by">Mark Twain, <em>Adventures of Huckleberry Finn</em> (1884) — public domain</p>
- <p>"You don't know about me without you have read a book by the name of <em>The Adventures of Tom Sawyer</em>; but that ain't no matter. … The Widow Douglas she took me for her son, and allowed she would <strong>sivilize</strong> me."</p>
- <p>Huck's whole voice lives in the "wrong" grammar and spelling — <em>ain't no matter</em>, <em>sivilize</em> — a boy who's never been to school, spelled onto the page exactly as he'd say it.</p>
-</div>
-<div class="ex">
- <p class="by">"Spring Break" — E.K., grade 12 (de-identified)</p>
- <p>Ends by loading its misspellings with double meaning: <em>seven <strong>daze</strong> of <strong>onederful</strong> sites, clear beautiful <strong>sees</strong></em> — "days/daze," "wonderful/one-der-ful," "scenes/sees" all at once.</p>
-</div>
-<p class="try"><strong>2-minute try:</strong> respell three words so the misspelling means something the correct spelling can't.</p>
+ <p class="from">From the reading — WWM ch15</p>
+ <div class="ex">
+  <p class="by">Tom Wolfe, <em>The Right Stuff</em>, quoted in WWM <span class="pg">pp. 65–66</span></p>
+  <p>To take off in an F-100 at dawn and cut in the afterburner and hurtle twenty-five thousand feet up into the sky so suddenly that you felt not like a bird but like a trajectory, yet with full control, full control of five tons of thrust, all of which flowed from your will and through your fingertips, with the huge engine right beneath you, so close that it was as if you were riding it bareback, until you leveled out and went supersonic … <em>(keep reading in the book — it's one sentence to the end)</em></p>
+  <p>Romano's pick for "something of ongoingness: intense experiences, emotions, dreams, deep, urgent passions." The sentence doesn't stop because the pilot doesn't.</p>
+ </div>
+ <div class="ex">
+  <p class="by">Holly Jeric, quoted in WWM <span class="pg">p. 66</span></p>
+  <p>On those cloudy days when it's drizzling and you are running late so you can't grab your umbrella, and although it seems warmer, you somehow slip on a patch of unforeseen ice while rushing to get to the place you need to go, wishing you believed in shoes with traction and not style, and you are basically at odds with life because things are going wrong and the future can only hold unpleasant surprises, someone smiles at you.</p>
+  <p>The same passage as in move 1 — the labyrinth is the bad morning, and it only ends when someone smiles. Same writer, two moves, one paragraph.</p>
+ </div>
+ <div class="ex">
+  <p class="by">Tom Romano, WWM <span class="pg">p. 65</span> — doing it while describing it</p>
+  <p>Your words carry readers on a roller-coaster ride, hurtling and careening, dipping and rising, nearly out of control but not, since you are the one guiding the ride, braking only when you provide the period.</p>
+ </div>
 
-<h2>4 · Double Voice</h2>
-<p class="move">Two voices at once, set side by side — the reader hears both, and the gap between them is the point.</p>
-<div class="ex">
- <p class="by">Untitled two-voice piece — S.R., grade 12 (de-identified)</p>
- <p class="two">Girl friend . . . Girl friend
+ <p class="from">Classic + student examples</p>
+ <div class="ex">
+  <p class="by">Charles Dickens, <em>A Tale of Two Cities</em> (1859) — public domain</p>
+  <p>It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair…</p>
+  <p>One sentence, riding parallel construction — <em>it was… it was… it was…</em> — until the rhythm itself becomes the meaning.</p>
+ </div>
+ <div class="ex">
+  <p class="by">"Waiting for the Bus" — J.A., grade 11 (de-identified)</p>
+  <p>Opens on fragments — <em>Waiting. For the bus.</em> — then runs on and on through a frostbitten nose, a scarf blowing away, coughing, the bus lurching forward, all the way to one blunt word at the end: <em>CHARTERED.</em> The length <em>is</em> the wait.</p>
+ </div>
+ <p class="try"><strong>2-minute try:</strong> describe something tedious or endless in a single sentence you refuse to end.</p>
+</details>
+
+<details class="block b-spell">
+ <summary><h2>3 · Purposeful Misspelling</h2></summary>
+ <p class="move">Bend or respell a word so the spelling itself carries meaning or voice. Romano's two kinds (pp. 67–68): respelling to capture how someone actually talks, and inventing or altering a word "for meaningful effect." Every "error" is one you meant.</p>
+
+ <p class="from">From the reading — WWM ch15</p>
+ <div class="ex">
+  <p class="by">Tom Romano, WWM <span class="pg">p. 68</span> — the typo he kept</p>
+  <p>"I accidentally wrote once that someone self-satisfied and smug had become a victim of his own <strong>wisdoom</strong>. I appreciated the typo so much that I used it as a purposeful respelling."</p>
+  <p>Wednesday you'll watch the machine turn <em>wisdoom</em> back into <em>wisdom</em>. That is the whole lab in one word.</p>
+ </div>
+ <div class="ex">
+  <p class="by">e. e. cummings and Jeanie Tomasko, quoted in WWM <span class="pg">p. 68</span></p>
+  <p>cummings on spring: <strong>mud-luscious</strong> and <strong>puddle-wonderful</strong>. Tomasko on people walking about in April: "unburdened unbuttoned and <strong>umbrella'd</strong>."</p>
+  <p>Not misspellings so much as words that didn't exist until the writer needed them.</p>
+ </div>
+ <div class="ex">
+  <p class="by">John Dos Passos on Henry Ford's assembly line, quoted in WWM <span class="pg">p. 68</span></p>
+  <p>… reachunder, adjustwasher, screwdown bolt, shove in cotterpin, reachunder, screwdown bolt, reachunderadjustscrewdownreachunderadjust until every ounce of life was sucked off into production …</p>
+  <p>The words run together the way the motions do. Spelling as monotony.</p>
+ </div>
+ <div class="ex">
+  <p class="by">Harry Crews, <em>A Childhood</em>, quoted in WWM <span class="pg">p. 68</span> — a south Georgia faith healer, 1940</p>
+  <p>Now the thing about <strong>far</strong> is you don't want to drive it no deeper. That's how come it is doctors <strong>cain't</strong> do no good with burns is they drive the far deeper. But me, what I do is draw it out … drive it even to the <strong>holler</strong> of the body.</p>
+  <p>Respelling for voice: <em>far</em> is fire, <em>holler</em> is hollow. You hear him. (Romano's other dialect example, on p. 67, is Jim's speech in <em>Huckleberry Finn</em> — read it there.)</p>
+ </div>
+
+ <p class="from">Classic + student examples</p>
+ <div class="ex">
+  <p class="by">Mark Twain, <em>Adventures of Huckleberry Finn</em> (1884) — public domain</p>
+  <p>"You don't know about me without you have read a book by the name of <em>The Adventures of Tom Sawyer</em>; but that ain't no matter. … The Widow Douglas she took me for her son, and allowed she would <strong>sivilize</strong> me."</p>
+  <p>Huck's whole voice lives in the "wrong" grammar and spelling — <em>ain't no matter</em>, <em>sivilize</em> — a boy who's never been to school, spelled onto the page exactly as he'd say it.</p>
+ </div>
+ <div class="ex">
+  <p class="by">"Spring Break" — E.K., grade 12 (de-identified)</p>
+  <p>Ends by loading its misspellings with double meaning: <em>seven <strong>daze</strong> of <strong>onederful</strong> sites, clear beautiful <strong>sees</strong></em> — "days/daze," "wonderful/one-der-ful," "scenes/sees" all at once.</p>
+ </div>
+ <p class="try"><strong>2-minute try:</strong> respell three words so the misspelling means something the correct spelling can't.</p>
+</details>
+
+<details class="block b-voice">
+ <summary><h2>4 · Double Voice</h2></summary>
+ <p class="move">Two voices at once, set side by side — the reader hears both, and the gap between them is the point.</p>
+
+ <p class="from">From the reading — WWM ch14 (the nearest cousin)</p>
+ <div class="ex">
+  <p class="by">Tom Romano, the Dunkin' Donuts scene, WWM ch14 <span class="pg">pp. 59–60</span></p>
+  <p>"Don't be impatient. The line's moving fast."<br>"It's not moving at all," said the girl. "I don't even want a doughnut."<br>…<br>"That's not breakfast," Mom said, fluttering her eyelids.<br>The girl pounced. "But a doughnut is?"</p>
+  <p>Ch14–15 don't have a true double-voice piece, but this is its cousin. Dramatic narrative: two voices, one exchange, no agreement — and they <em>take turns</em>. Double voice is what happens when you stop taking turns and let them run side by side.</p>
+ </div>
+
+ <p class="from">Student example + a model to hear</p>
+ <div class="ex">
+  <p class="by">Untitled two-voice piece — S.R., grade 12 (de-identified)</p>
+  <p class="two">Girl friend . . . Girl friend
 I love you.
 Only one for me
 Always and forever.
@@ -87,12 +180,13 @@ Always be together.
                 Is she new here?
 Spend eternity together.
                 Do you know what her name is?</p>
- <p>One voice vows eternity; the indented second voice keeps asking who she even is. Two people, one exchange, no agreement.</p>
-</div>
-<p style="font-size:13px;color:#6b7280;">Modern model to hear read aloud (still in copyright, so not reprinted here): Paul Fleischman, "Fireflies," from <em>Joyful Noise: Poems for Two Voices</em> — printed in two columns for two readers, lines sometimes solo, sometimes spoken together.</p>
-<p class="try"><strong>2-minute try:</strong> write a short exchange where a second voice (indented) interrupts the first — doubt, memory, or a whole other person.</p>
+  <p>One voice vows eternity; the indented second voice keeps asking who she even is. Two people, one exchange, no agreement.</p>
+ </div>
+ <p class="aside">Modern model to hear read aloud (still in copyright, so not reprinted here): Paul Fleischman, "Fireflies," from <em>Joyful Noise: Poems for Two Voices</em> — printed in two columns for two readers, lines sometimes solo, sometimes spoken together.</p>
+ <p class="try"><strong>2-minute try:</strong> write a short exchange where a second voice (indented) interrupts the first — doubt, memory, or a whole other person. Or take the Dunkin' scene and stop letting them take turns.</p>
+</details>
 
-<p class="note">Published examples are public domain and reproduced in full. Student examples are de-identified (initials only) and used for class illustration; do not attach real names or post them to public pages without consent.</p>
+<p class="note">Excerpts from <em>Write What Matters</em> (Romano) are short quotations from the assigned reading, cited by page, for class discussion. Published classics are public domain and reproduced in full. Student examples are de-identified (initials only) and used for class illustration; do not attach real names or post them to public pages without consent.</p>
 </main>
 </body>
 </html>
