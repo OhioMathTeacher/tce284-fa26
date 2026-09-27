@@ -17,6 +17,23 @@
  .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
  .tag{background:#fff3a8;padding:1px 4px;border-radius:3px;font-weight:600;}
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ details.sub{margin:6px 0 6px 2px;padding:6px 10px;background:rgba(255,255,255,.55);border-radius:4px;}
+ details.sub > summary{cursor:pointer;list-style:none;font-weight:600;font-size:14px;display:flex;align-items:baseline;gap:6px;}
+ details.sub > summary::-webkit-details-marker{display:none;}
+ details.sub > summary::before{content:"\25B8";color:var(--accent);font-size:12px;flex:none;transition:transform .15s;}
+ details.sub[open] > summary::before{transform:rotate(90deg);}
+ details.sub ul{margin:6px 0 2px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
  .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
@@ -30,55 +47,58 @@
 <div class="sub">Act II · What is currere · <em>find your one thread</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Argue about how five real writers built theirs, see the journal you could publish in, and commit to the one <strong>thread</strong> you'll follow — the one that reaches back, sits in the present, and leans into your future.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "Tell all the truth but tell it slant" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>0 · Daily Poem — "Tell all the truth but tell it slant" <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Emily Dickinson, <a href="https://www.poetryfoundation.org/poems/56824/tell-all-the-truth-but-tell-it-slant-1263">"Tell all the truth but tell it slant"</a>. Read it aloud. What does she mean by telling the truth "slant" instead of straight out? When have you told something true by coming at it sideways?</li>
  </ul>
  <p class="purpose">Purpose: a currere tells a true thing slant — through scene, not statement. The poem sets that up before we ask them to do it.</p>
-</div>
+</details>
 
-<div class="block b-read">
- <h2>1 · What you found, and what you couldn't <span class="time">(~25 min)</span></h2>
+<details class="block b-read">
+ <summary><h2>1 · What you found, and what you couldn't <span class="time">(~25 min)</span></h2></summary>
  <ul>
-  <li>Half sheets out. Group up by which of the <a href="four-moments.html">five pieces</a> you worked on — one corner per piece. How many of you had to move to a second piece? A third?</li>
-  <li>Round one: read out the lines where you and I agree, and say what makes them that kind of attention.</li>
-  <li>Round two, the useful one: where did we disagree, or where could you find nothing at all? Bring that to the room and make me defend my answer.</li>
+  <li><strong>Hands up</strong> (~2 min). Who found all four in the first piece? Who had to move to a second? A third?</li>
+  <li><strong>Group up</strong> (~1 min). One corner per piece, by whichever of the <a href="four-moments.html">five</a> you worked on. Half sheets out.</li>
+  <li><strong>Round one — what you both found</strong> (~8 min). Read out the lines where your read and mine agree, and say what makes them that kind of attention.</li>
+  <li><strong>Round two — where we part</strong> (~10 min). Where did we disagree, or where could you find nothing at all? Bring it to the room and make me defend my answer. This is the round that matters.</li>
   <li>Nobody read these looking for the moments the first time through. If a moment was hard to find, that is a fact about the piece, not about you.</li>
   <li>Across the five: <strong>only "Beyond Presence" is built as four sections that match the four moments</strong>, and it is the only one in which the writer imagines a future. <strong>Four never look ahead in the writer's own voice</strong> — Daspit and O'Hara contain no future-tense sentence at all — and neither does Pastan's poem. Every one was published.</li>
   <li><strong>So is a piece missing a moment still a currere?</strong> Settle it from the sources, not from me. Moore never describes four parts of an essay — he says "method," "process," "four-step," and his own directions are headed <em>Stage 1 – Regression</em> through <em>Stage 4 – Synthesis</em>, with the writing coming <em>after</em> the four stages. The journal's call asks for work that "explore[s] the Currere process" and welcomes "poetry" and "experimental pieces." The moments are what the <strong>writer does</strong>; the essay is the trace.</li>
-  <li><strong>Then the harder question: what does a piece lose without it?</strong> Read O'Hara's last poem aloud. Eight poems about having watched, and nothing in them is becoming anything. Sit with that before answering. (Then: your guidelines ask you for the progressive because you are learning the method, not publishing an artifact — and it is the stage four of five writers skipped.)</li>
+  <li><strong>The harder question</strong> (~4 min): what does a piece <em>lose</em> without it? O'Hara's last poem, read aloud. Eight poems about having watched, and nothing in them is becoming anything. Sit with that before answering.</li>
+  <li>Which is why your <a href="Currere Guidelines.docx">guidelines</a> ask you for the progressive: you are learning the method, not publishing an artifact — and it is the stage four of these five writers skipped.</li>
   <li>Two minutes on the <a href="https://cej.lib.miamioh.edu/index.php/CEJ/issue/archive"><em>Currere Exchange Journal</em></a> itself — run out of Miami, and the <a href="https://cej.lib.miamioh.edu/index.php/CEJ/issue/view/21">current issue</a> is twenty-two pieces on scripted curriculum. Who writes here? What would it take for a piece of yours to belong?</li>
  </ul>
  <p class="purpose">Purpose: they have read these five, so checking their own read against mine is closer work than hunting a sixth piece — and the missing progressive shows up as a pattern rather than a rule.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>2 · Walk the Guidelines <span class="time">(~15 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>2 · Walk the Guidelines <span class="time">(~15 min)</span></h2></summary>
  <ul>
   <li>With a partner, read the <a href="Currere Guidelines.docx">Currere Guidelines</a> and skim the <a href="../index.html#work">assessments overview</a>, then write down every question a careful person should be able to answer: When is it due? How many drafts? How long? What is it actually about? How is it graded?</li>
-  <li>Answer them together as a class. Note the two one-on-one conferences and the author's audio at the end.</li>
+  <li><strong>Answers together</strong> (~7 min). Every question, out loud, as a class — including the two one-on-one conferences and the author's audio at the end.</li>
  </ul>
-</div>
+</details>
 
-<div class="block b-craft">
- <h2>3 · Pick your thread <span class="time">(~20 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>3 · Pick your thread <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li>Monday you named candidates. Today one of them gets chosen. In Journaler, <strong>Notebook → What keeps coming back</strong> shows you every thread chip you have made and how many pages sit under each. The count is not the answer, but it is evidence.</li>
   <li>Set your gushes, your moments page, and the piece you reread side by side. Which thread keeps showing up?</li>
   <li>Write for a few minutes toward the one that pulls hardest. Test it against time: does it reach into your past, sit in your present, <em>and</em> lean toward the teacher you're becoming? If it only lives in the past, keep looking.</li>
  </ul>
  <p class="purpose">Purpose: commit to a thread that can carry all four moments, before a single scene gets drafted.</p>
-</div>
+</details>
 
-<div class="block b-launch">
- <h2>4 · Set up the topic conference <span class="time">(~10 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>4 · Set up the topic conference <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Monday is your <strong>topic conference</strong> — one-on-one, no whole-class meeting. Come ready to talk your thread through with me.</li>
   <li>What to build first: the prep packet (below).</li>
  </ul>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; before Monday — your <a href="../week-07-regressive-the-scene/Conference%20Packet.docx">topic-conference packet</a>:</strong>
@@ -91,6 +111,24 @@
   <li><strong>Book your 15-minute topic conference</strong> (Monday, 9:00–4:00; no whole-class meeting): <a href="https://calendar.app.google/ZixmEV1kTF3Lhsvg8">Currere Topic Conference booking</a>.</li>
  </ul>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 
 </main>
 </body>

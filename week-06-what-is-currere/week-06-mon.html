@@ -17,14 +17,24 @@
  .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
  .tag{background:#fff3a8;padding:1px 4px;border-radius:3px;font-weight:600;}
  ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ details.sub{margin:6px 0 6px 2px;padding:6px 10px;background:rgba(255,255,255,.55);border-radius:4px;}
+ details.sub > summary{cursor:pointer;list-style:none;font-weight:600;font-size:14px;display:flex;align-items:baseline;gap:6px;}
+ details.sub > summary::-webkit-details-marker{display:none;}
+ details.sub > summary::before{content:"\25B8";color:var(--accent);font-size:12px;flex:none;transition:transform .15s;}
+ details.sub[open] > summary::before{transform:rotate(90deg);}
+ details.sub ul{margin:6px 0 2px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
  .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
- details.reveal{margin:8px 0 2px;background:rgba(255,255,255,.55);border:1px dashed #9ca3af;border-radius:4px;padding:7px 11px;}
- details.reveal > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:7px;font-weight:600;color:#b45309;font-size:13px;text-transform:uppercase;letter-spacing:.04em;}
- details.reveal > summary::-webkit-details-marker{display:none;}
- details.reveal > summary::before{content:"\25B8";color:#b45309;flex:none;transition:transform .15s;}
- details.reveal[open] > summary::before{transform:rotate(90deg);}
- details.reveal[open] > summary{margin-bottom:7px;}
- details.reveal ul{margin:4px 0;}
  table.moore{border-collapse:collapse;width:100%;font-size:13px;margin:4px 0 2px;}
  table.moore th{text-align:left;background:#f3f4f6;padding:5px 8px;border-bottom:2px solid #d1d5db;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#4b5563;}
  table.moore td{padding:6px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top;}
@@ -41,9 +51,10 @@
 <div class="sub">Act II · What is currere · <em>one thread, across your whole life in schools</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Learn the four moments, then find them in a poem. Close Act I with your own pages on the screen. Do the gushes — go back, go forward, look across — and find the one <strong>thread</strong> that runs through your life in schools.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-read">
- <h2>0 · The four moments <span class="time">(~5 min)</span></h2>
+<details class="block b-read">
+ <summary><h2>0 · The four moments <span class="time">(~5 min)</span></h2></summary>
  <ul>
   <li>From the <strong><a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277234">Moore reading</a></strong> over the weekend. Four words, on the board:</li>
   <li><strong>Regressive</strong> — go back and <em>gather</em>. Memories in a stream, no order, no choosing.</li>
@@ -52,7 +63,7 @@
   <li><strong>Synthetical</strong> — hold three things at once (where you've been, where you're going, and those themes) and write what it changes about the teacher you intend to be. In this course that writing <em>is</em> the currere.</li>
   <li>The one thing to hold onto: these are <strong>four kinds of attention you pay while you gather</strong>, not four sections of an essay. Currere is a <strong>thread across past, present, and future</strong> — not one dramatic moment, and not four labeled boxes.</li>
 
-  <details class="reveal">
+  <details class="sub">
    <summary>Moore's own directions, word for word</summary>
    <table class="moore">
     <thead><tr><th>Stage</th><th>What Moore tells his students to do</th></tr></thead>
@@ -69,17 +80,17 @@
   <li>What's new is the rest of it: <strong>stepping back</strong> from the moment to say what it means, and <strong>reaching forward</strong> into a future you haven't lived. OP3 and OP4 told you <em>not</em> to step back — the scene had to carry it by itself. Now you add what those assignments withheld, and you sustain it on one thread that matters.</li>
  </ul>
  <p class="purpose">Purpose: name the four before the poem, so the poem is something to practice on rather than a warm-up.</p>
-</div>
+</details>
 
-<div class="block b-poem">
- <h2>1 · Daily Poem — "Ethics," a currere in 25 lines <span class="time">(~15 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>1 · Daily Poem — "Ethics," a currere in 25 lines <span class="time">(~15 min)</span></h2></summary>
  <ul>
   <li>Linda Pastan, <a href="https://www.poetrynook.com/poem/ethics">"Ethics"</a> — read it aloud, then hear <a href="https://voca.arizona.edu/track/id/63414">Pastan read it herself</a>. An ethics teacher asked the same question every fall: in a museum fire, save the Rembrandt or the old woman? Years later the speaker stands in a real museum, before a real Rembrandt, an old woman herself.</li>
   <li>Now hunt, in pairs, with the poem in front of you. <strong>Where is the regressive? The analytical? The synthetical? The progressive?</strong> Mark the lines. Don't settle for "it's in there somewhere" — point at words.</li>
-  <li>Take the answers from the room first. Where did pairs disagree?</li>
+  <li><strong>Round the room</strong> (~4 min). One moment per pair, with the line you're pointing at. Where did pairs disagree?</li>
 
-  <details class="reveal">
-   <summary>Where they are — roll down after the hunt</summary>
+  <details class="sub">
+   <summary>Where they are — after the round</summary>
    <ul>
     <li><strong>Regressive:</strong> the ethics class itself. The hard chairs, the question asked "every fall," and the teacher's report — "Linda&hellip; eschews / the burdens of responsibility."</li>
     <li><strong>Analytical:</strong> "I know now that woman / and painting and season are almost one." Then-self and now-self in one sentence.</li>
@@ -92,19 +103,19 @@
   <li>The one thing to carry into the homework: <strong>"it isn't there" is a real finding.</strong> You just watched a published poem come up short by one moment. So when you go looking on your own and a moment won't come, write down that it isn't there. Don't manufacture one to fill the slot.</li>
  </ul>
  <p class="purpose">Purpose: twenty-five lines is small enough to mark in one sitting, and the missing progressive is the lesson — the four are attention, not architecture.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>2 · Housekeeping + Breaking the Rules on the screen <span class="time">(~10 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>2 · Housekeeping + Breaking the Rules on the screen <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Five One-Pagers, from "Trust the Gush" to a page that broke the rules on purpose. <strong>Act I is closed.</strong></li>
-  <li>Passages from your OP5s on the screen, no names. For each one: which rule is being broken, and what does breaking it buy the sentence?</li>
+  <li><strong>Six passages from your OP5s</strong>, on the screen, no names. For each one: which rule is being broken, and what does breaking it buy the sentence?</li>
  </ul>
  <p class="purpose">Purpose: Act I ends with their own pages, read for craft, the way OP4 ended last week.</p>
-</div>
+</details>
 
-<div class="block b-craft">
- <h2>3 · The gushes, in Journaler <span class="time">(~20 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>3 · The gushes, in Journaler <span class="time">(~20 min)</span></h2></summary>
  <p style="margin:2px 0 8px;">Open the <strong>Currere</strong> tab. Each moment is its own gush. The timer starts at 8:00, which is what you want for the first two — set it with − and ＋ if you need to. No stopping, no fixing. Gather the material; don't write "the essay" yet.</p>
  <ul class="moves">
   <li><strong>Regressive — go back. 8 minutes.</strong> Free-associate your life in schools, as far back as you can reach. Teachers, a classroom, a grade on a page, a thing said to you. No order. When the buzzer sounds, answer the question Romano asks about how the remembering went — that answer saves with the gush.</li>
@@ -113,10 +124,10 @@
   <li><strong>Synthetical — later.</strong> Putting it back together is the work of the coming weeks, not today.</li>
  </ul>
  <p class="purpose">Purpose: generate raw material for all four moments in one sitting, so the future gets written before the vivid past takes over. Eight minutes is long enough to get somewhere and short enough that nobody starts editing.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>4 · From moments to a thread <span class="time">(~20 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>4 · From moments to a thread <span class="time">(~20 min)</span></h2></summary>
  <p style="margin:2px 0 8px;">In Journaler: <strong>Freewrite/OPs → Open page</strong>. This is where you named your first thread last Wednesday.</p>
  <ul>
   <li>Pull <strong>five or six key moments</strong> from your life as a teacher and a learner. Concrete scenes, the kind that stay with you. One line each is enough.</li>
@@ -125,16 +136,16 @@
   <li>Your chips from last Wednesday are sitting right there. Same thread? Then you have it. Different? Then you have two candidates for the topic conference — that's fine too. Keep the page.</li>
  </ul>
  <p class="purpose">Purpose: start with moments, because that is where real memory lives, then let the thread surface from them. The chips make the recurrence visible, and the kept page is Currere work in the notebook.</p>
-</div>
+</details>
 
-<div class="block b-launch">
- <h2>5 · Launch the currere <span class="time">(~10 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>5 · Launch the currere <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Meet the <a href="Currere Guidelines.docx">Currere Guidelines</a> — the self-study you build from here. The arc is topic conference → draft → draft conference → final draft + audio; each piece has its own one-page guideline (see the <a href="../index.html#work">assessments overview</a> for points and due dates). Final draft is due <strong>Friday, October 30</strong>.</li>
   <li>Two shapes, both from pieces you've read: an <strong>open</strong> currere breaks into named parts that walk the four moments (<a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277231">J. Edwards, "Beyond Presence"</a>); a <strong>braided</strong> one runs as one piece and holds its meaning until late (<a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277230">M. T. Edwards, "Who's Cheating Whom?"</a>). Neither is right. Let your thread decide.</li>
   <li>Heads-up: the first conference is a <strong>topic conference</strong>, next Monday — you'll bring a short <a href="../week-07-regressive-the-scene/Conference%20Packet.docx">packet</a> (a couple of candidate threads, a currere whose form you admire, and Todd-in-a-Can's read of your threads).</li>
  </ul>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; before Wednesday:</strong>
@@ -146,6 +157,24 @@
   <li>There's a <strong><a href="four-moments.html#tester">Currere Tester</a></strong> on that sheet too — a prompt you paste into whatever AI you use. It may help. It is not a perfect tool, so use it with caution, and argue with it.</li>
  </ul>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 
 </main>
 </body>
