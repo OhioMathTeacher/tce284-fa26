@@ -20,6 +20,17 @@
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -29,32 +40,51 @@
 <div class="sub">Act II · currere · <em>two past · two present · two future</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Turn your thread into six scenes that reach across time, then write your way into each one.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-poem">
- <h2>0 · Daily Poem — "Those Winter Sundays" <span class="time">(~10 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>0 · Daily Poem — "Those Winter Sundays" <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>Robert Hayden, <a href="https://www.poetryfoundation.org/poems/46461/those-winter-sundays">"Those Winter Sundays"</a>. Read it aloud. A small remembered scene, and the meaning arrives only at the end — <em>"What did I know, what did I know of love's austere and lonely offices?"</em> How does one scene carry a whole relationship?</li>
  </ul>
  <p class="purpose">Purpose: a single rendered scene, understood in hindsight — exactly what your storyboard cards are reaching for.</p>
-</div>
+</details>
 
-<div class="block b-read">
- <h2>1 · Drawing it out (WWM ch18) <span class="time">(~10 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>1 · News, the conferences, and how this is going <span class="time">(~10 min)</span></h2></summary>
+ <ul>
+  <li><strong>Any news?</strong> Something you made, something that happened, something you read and couldn't put down. Two or three people, that's all.</li>
+  <li><strong>Monday's conferences &mdash; how did they land?</strong> What was useful, what you wish we had done with the fifteen minutes, what you walked out still unsure about. Say it plainly; I would rather hear it now, while there is still time to change how we run the second round.</li>
+  <li><strong>And the currere itself.</strong> Where are you with it &mdash; the gushes, the thread, the Guidelines? Who is still circling a topic? That is not a confession, it is useful information, and today is built to help.</li>
+  <li><strong>Missed the conference, or the packet didn't get in?</strong> Catch me on the way out and we will find fifteen minutes this week. You are not behind in any way that matters yet.</li>
+  <li><strong>Your writing can go somewhere besides my grade book.</strong> Two of these take exactly what you are drafting right now &mdash; and <em>published undergraduate writer</em> is a real line on a teaching résumé.
+   <ul>
+    <li><a href="https://sites.google.com/miamioh.edu/inklings/home">Inklings Arts &amp; Letters</a> &mdash; Miami's undergraduate literary magazine. Any kind of writing, any kind of art, up to five pieces, your name stripped off the file for anonymous reading. Writing to <a href="mailto:inklingswriting@miamioh.edu">inklingswriting@miamioh.edu</a>, art to <a href="mailto:inklingsart@miamioh.edu">inklingsart@miamioh.edu</a>. They answer in a week or two and they are always looking for staff. <strong>Their one rule: nothing written with AI.</strong> Your gushes are your own sentences &mdash; keep them that way and this door stays open.</li>
+    <li><a href="https://happycaptivemag.wixsite.com/happycaptivemag">Happy Captive</a> &mdash; also undergraduate, also annual, and it names <strong>creative nonfiction</strong> outright, which is what a currere is. Up to five pieces to <a href="mailto:hcmsubmissions@miamioh.edu">hcmsubmissions@miamioh.edu</a>, .docx or Google Docs (<em>not</em> PDFs), name off the work, year and genre in the email. Deadline falls in early February, so a piece you finish this month has months to sit.</li>
+    <li>Also at Miami: <a href="https://thefemellectual.wordpress.com/">The Femellectual</a> (this year's theme is "Flight Risk"), <a href="https://blogs.miamioh.edu/oxmag/">Oxford Magazine</a> (MFA-edited, open to undergraduates), and <a href="https://www.miamistudent.net/">The Miami Student</a>, which takes guest columns &mdash; I had one in it in August, so I can tell you exactly how that goes. The <a href="https://libguides.lib.miamioh.edu/c.php?g=850755&amp;p=10634167">library's list</a> has the rest.</li>
+    <li><strong>Past Miami:</strong> <a href="https://www.chillsubs.com/">Chill Subs</a> &mdash; five thousand-odd magazines you can filter by what they want, whether they charge a reading fee, and how long they take to answer, with a tracker for what you have sent where. One of you asked me this a few weeks ago and this is where I sent her. Start there rather than googling "where to publish."</li>
+   </ul></li>
+ </ul>
+ <p class="purpose">Purpose: ask how the process is landing while it can still be changed, and let the people who are stuck hear that they are not the only ones.</p>
+</details>
+
+<details class="block b-read">
+ <summary><h2>2 · Drawing it out (WWM ch18) <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>You read <strong>ch18, "Drawing It Out."</strong> With a partner: what does Romano say drawing does that outlining doesn't? Why might a picture find a scene your sentences would miss?</li>
  </ul>
  <p class="purpose">Purpose: give them permission to draw before they write — the picture surfaces the moment.</p>
-</div>
+</details>
 
-<div class="block b-craft">
- <h2>2 · Storyboard — six scenes across time <span class="time">(~30 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>3 · Storyboard — six scenes across time <span class="time">(~30 min)</span></h2></summary>
  <ul class="moves">
-  <li>Take <strong>six index cards.</strong> On each, <strong>draw</strong> a single scene from your thread — a moment, not a summary. Rough sketches; no one's grading the art.</li>
+  <li>Take <strong>six index cards.</strong> Cards, large sheets and tape are on the table &mdash; take what you need. On each card, <strong>draw</strong> a single scene from your thread — a moment, not a summary. Rough sketches; no one's grading the art.</li>
   <li>Spread them across time — and these are the moments you named last week:
    <ul>
     <li><strong>Regressive — two past.</strong> Two you lived as a learner or a young teacher.</li>
     <li><strong>Analytical — two present.</strong> Two from your life now. This is the in-between Moore talks about: the space between where you have been and where you are going, which is where you are standing.</li>
-    <li><strong>Progressive — two future.</strong> Two you can imagine ahead. Build them out of the past cards, the way Monday's second gush did.</li>
+    <li><strong>Progressive — two future.</strong> Two you can imagine ahead. Build them out of the past cards, the way last week's second gush did.</li>
    </ul></li>
   <li><strong>Six cards is not six sections.</strong> These are the material, not the outline. A braided currere may fold three of these into a single paragraph.</li>
   <li>Now lay them out and <strong>re-sequence</strong>. Timeline order is rarely the strongest one. Try it <em>two ways</em>, because this is you choosing the shape:
@@ -65,16 +95,16 @@
    Keep whichever picture makes your thread feel true. You are allowed to change your mind while drafting.</li>
  </ul>
  <p class="purpose">Purpose: force the thread across all three times before drafting, so the future and present don't get lost behind one vivid past — and make the open/braided choice something they do with their hands rather than something they read about.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>3 · Write around the card <span class="time">(~30 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>4 · Write around the card <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li>Tape your six cards onto a large sheet of paper. For each card, set a timer and <strong>write around it</strong> for a few minutes — what happened, what it looked and sounded like, what you notice now.</li>
   <li>Let it spill into the margins. As Romano puts it, writing is expansive, literally. Don't polish. Get the scene down.</li>
  </ul>
  <p class="purpose">Purpose: turn each drawn moment into raw prose while the picture is in front of you — the seed of every scene in the draft.</p>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; over the weekend:</strong>
@@ -82,6 +112,24 @@
   <li>Turn your six cards into <strong>six rough scene drafts</strong> — a paragraph or two each, still messy. Bring them Monday. This is the material your First Draft is built from.</li>
  </ul>
 </div>
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
+
 </main>
 </body>
 </html>
