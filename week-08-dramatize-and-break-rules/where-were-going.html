@@ -6,8 +6,8 @@
 <title>Where We're Going — TCE 284</title>
 
 <style>
- :root{--accent:#0f766e;--due:#b42318;--due-bg:#fde8e6;--conf:#6d28d9;--conf-bg:#efe7fb;--class-bg:#e9f3f1;}
- body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1100px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.45;font-size:14px;background:#fff;}
+ :root{--accent:#0f766e;--due:#b42318;--due-bg:#fde8e6;--conf:#6d28d9;--conf-bg:#efe7fb;--class-bg:#e9f3f1;--line:#d1d5db;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1180px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.4;font-size:13.5px;background:#fff;}
  h1{font-size:22px;margin:0 0 2px;} .sub{color:#6b7280;font-size:13px;margin-bottom:16px;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
@@ -16,25 +16,38 @@
  .legend span::before{content:"";display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;}
  .lg-class::before{background:var(--class-bg);border:1px solid var(--accent);}
  .lg-due::before{background:var(--due-bg);border:1px solid var(--due);}
+ .lg-own::before{background:#fff;border:1px dashed #6b7280;}
  .lg-conf::before{background:var(--conf-bg);border:1px solid var(--conf);}
- .weeks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,.55fr);gap:14px;align-items:start;}
- .week h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;padding-bottom:6px;border-bottom:2px solid var(--accent);}
- .week h2 small{display:block;text-transform:none;letter-spacing:0;color:#6b7280;font-weight:400;font-size:12px;margin-top:2px;}
- .stop{border-radius:6px;padding:9px 11px;margin:0 0 9px;background:var(--class-bg);border-left:4px solid var(--accent);}
- .stop .when{font-weight:700;font-size:12.5px;}
- .stop .what{margin-top:2px;}
- .stop .more{font-size:12.5px;color:#4b5563;margin-top:4px;}
- .due{background:var(--due-bg);border-left-color:var(--due);}
- .due .when{color:var(--due);}
- .conf{background:var(--conf-bg);border-left-color:var(--conf);}
- .conf .when{color:var(--conf);}
- .now{outline:2px solid var(--accent);outline-offset:2px;}
- .pts{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:9px;background:#fff;border:1px solid currentColor;margin-left:4px;}
+
+ .cal{display:grid;grid-template-columns:110px repeat(6,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);}
+ .cal > div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:7px;min-height:84px;}
+ .cal .hd{min-height:0;background:#f3f4f6;font-weight:700;font-size:12px;text-align:center;padding:6px;}
+ .cal .wk{background:#f9fafb;}
+ .wk b{display:block;color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.05em;}
+ .wk span{display:block;color:#6b7280;font-size:12px;margin-top:2px;}
+ .date{font-size:11.5px;color:#6b7280;font-weight:700;margin-bottom:4px;}
+ .dn{display:none;}
+ .stop{border-radius:5px;padding:6px 8px;margin:0 0 6px;background:var(--class-bg);border-left:3px solid var(--accent);}
+ .stop .what{font-weight:600;}
+ .stop .more{font-size:12px;color:#4b5563;margin-top:3px;}
+ .due{background:var(--due-bg);border-left-color:var(--due);} .due .what{color:var(--due);}
+ .conf{background:var(--conf-bg);border-left-color:var(--conf);} .conf .what{color:var(--conf);}
+ .home-work{background:#fff;border:1px dashed #9ca3af;border-left:3px solid #9ca3af;}
  .next{background:#f3f4f6;border-left-color:#9ca3af;}
- .next .when{color:#4b5563;}
+ .today{outline:2px solid var(--accent);outline-offset:-2px;}
+ .pts{display:inline-block;font-size:10.5px;font-weight:700;padding:0 5px;border-radius:9px;background:#fff;border:1px solid currentColor;margin-left:3px;}
  .tic{background:#fff7e0;border-radius:6px;padding:12px 16px;margin-top:18px;}
  .tic h2{font-size:15px;margin:0 0 4px;}
- @media (max-width:860px){ .weeks{grid-template-columns:1fr;} }
+
+ @media (max-width:860px){
+  .cal{display:block;border:0;}
+  .cal .hd{display:none;}
+  .cal > div{border:0;min-height:0;padding:0;}
+  .cal .wk{background:none;margin:18px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--accent);}
+  .cal .empty{display:none;}
+  .cal .day{margin:0 0 6px;}
+  .dn{display:inline;}
+ }
 </style>
 </head>
 <body>
@@ -43,78 +56,55 @@
 <h1>Where We're Going</h1>
 <div class="sub">The rest of Act II — the currere, from rendered scenes to Final Draft · Oct 12 – Nov 2</div>
 
-<div class="legend"><span class="lg-class">Class</span><span class="lg-due">Due on Canvas</span><span class="lg-conf">One-on-one conference</span></div>
+<div class="legend"><span class="lg-class">Class</span><span class="lg-due">Due on Canvas</span><span class="lg-conf">One-on-one conference</span><span class="lg-own">On your own</span></div>
 
-<div class="weeks">
+<div class="cal">
+ <div class="hd"></div><div class="hd">Mon</div><div class="hd">Tue</div><div class="hd">Wed</div><div class="hd">Thu</div><div class="hd">Fri</div><div class="hd">Sat–Sun</div>
 
-<section class="week">
- <h2>Week 8 <small>Build the draft</small></h2>
- <div class="stop now">
-  <div class="when">Mon Oct 12 · you are here</div>
-  <div class="what">Render the scenes that carry the weight</div>
-  <div class="more">Start your currere Google Doc — six cards, six pages.</div>
- </div>
- <div class="stop">
-  <div class="when">Wed Oct 14</div>
-  <div class="what">Break a rule · let the thread talk · currere check-in</div>
- </div>
- <div class="stop">
-  <div class="when">Weekend</div>
-  <div class="what">Finish a complete draft — all six scenes plus a real try at the close</div>
-  <div class="more">Bring it Monday. Real readers are waiting.</div>
- </div>
-</section>
+ <!-- Week 8 -->
+ <div class="wk"><b>Week 8</b><span>Build the draft</span></div>
+ <div class="day today"><div class="date"><span class="dn">Mon </span>Oct 12 · you are here</div>
+  <div class="stop"><div class="what">Render the scenes that carry the weight</div><div class="more">Start your currere Google Doc.</div></div></div>
+ <div class="empty"></div>
+ <div class="day"><div class="date"><span class="dn">Wed </span>Oct 14</div>
+  <div class="stop"><div class="what">Break a rule · let the thread talk · currere check-in</div></div></div>
+ <div class="empty"></div>
+ <div class="empty"></div>
+ <div class="day"><div class="date"><span class="dn">Weekend </span>Oct 17–18</div>
+  <div class="stop home-work"><div class="what">Finish a complete draft</div><div class="more">All six scenes plus a real try at the close. Bring it Monday.</div></div></div>
 
-<section class="week">
- <h2>Week 9 <small>Get readers</small></h2>
- <div class="stop">
-  <div class="when">Mon Oct 19</div>
-  <div class="what">Read your draft aloud · <strong>human</strong> peer review in threes</div>
-  <div class="more">Two lenses: a lede that pulls the reader in, a metaphor that carries the thread (WWM ch16–17).</div>
- </div>
- <div class="stop">
-  <div class="when">Monday night</div>
-  <div class="what">Revise · <em>then</em> Todd-in-a-Can · pick your ONE thing · book your slot</div>
-  <div class="more">Humans first, the machine second. The booking form asks for your one thing — a place or a move you can point to, not "is it good?"</div>
- </div>
- <div class="stop due">
-  <div class="when">Tue Oct 20 · 11:59 p.m. · DUE <span class="pts">10 + 5 pts</span></div>
-  <div class="what"><strong>First Draft</strong> + Todd-in-a-Can review + AI-use log, and your <strong>cover page</strong>: your ONE thing</div>
-  <div class="more">I read your draft with that one thing in mind. <a href="Currere%20First%20Draft.docx">First Draft</a> · <a href="../week-09-metaphor-and-leads/Draft%20Conference.docx">Draft Conference</a></div>
- </div>
- <div class="stop conf">
-  <div class="when">Wed Oct 21 or Thu Oct 22</div>
-  <div class="what"><strong>Draft Conference</strong> — 15 minutes, one-on-one, on Zoom</div>
-  <div class="more">Wed noon–4:00 or Thu 4:00–7:00. No class Wednesday.</div>
- </div>
-</section>
+ <!-- Week 9 -->
+ <div class="wk"><b>Week 9</b><span>Get readers</span></div>
+ <div class="day"><div class="date"><span class="dn">Mon </span>Oct 19</div>
+  <div class="stop"><div class="what">Read aloud · <em>human</em> peer review in threes</div><div class="more">Ledes and metaphor (WWM ch16–17).</div></div>
+  <div class="stop home-work"><div class="what">That night: revise, <em>then</em> Todd-in-a-Can, pick your ONE thing, book your slot</div></div></div>
+ <div class="day"><div class="date"><span class="dn">Tue </span>Oct 20</div>
+  <div class="stop due"><div class="what">First Draft due · 11:59 p.m. <span class="pts">15 pts</span></div><div class="more">Draft + Todd-in-a-Can review + AI-use log + cover page (your ONE thing). No grace period. <a href="Currere%20First%20Draft.docx">Guideline</a></div></div></div>
+ <div class="day"><div class="date"><span class="dn">Wed </span>Oct 21</div>
+  <div class="stop conf"><div class="what">Draft Conference</div><div class="more">15 min on Zoom, noon–4:00. No class.</div></div></div>
+ <div class="day"><div class="date"><span class="dn">Thu </span>Oct 22</div>
+  <div class="stop conf"><div class="what">Draft Conference</div><div class="more">15 min on Zoom, 4:00–7:00.</div></div></div>
+ <div class="empty"></div>
+ <div class="empty"></div>
 
-<section class="week">
- <h2>Week 10 <small>Land it</small></h2>
- <div class="stop">
-  <div class="when">Mon Oct 26</div>
-  <div class="what">Mentors &amp; the synthetical close · revision studio</div>
-  <div class="more">Revise from your conference and peer review.</div>
- </div>
- <div class="stop">
-  <div class="when">Wed Oct 28</div>
-  <div class="what">Author-page audio — record a piece of it aloud</div>
- </div>
-</section>
+ <!-- Week 10 -->
+ <div class="wk"><b>Week 10</b><span>Land it</span></div>
+ <div class="day"><div class="date"><span class="dn">Mon </span>Oct 26</div>
+  <div class="stop"><div class="what">Mentors &amp; the synthetical close · revision studio</div></div></div>
+ <div class="empty"></div>
+ <div class="day"><div class="date"><span class="dn">Wed </span>Oct 28</div>
+  <div class="stop"><div class="what">Author-page audio</div><div class="more">Record a piece of it aloud.</div></div></div>
+ <div class="empty"></div>
+ <div class="empty"></div>
+ <div class="day"><div class="date"><span class="dn">Weekend </span>Oct 31–Nov 1</div>
+  <div class="stop home-work"><div class="what">Finish the Final Draft</div></div></div>
 
-<section class="week">
- <h2>Then <small>Land it, start Act III</small></h2>
- <div class="stop due">
-  <div class="when">Mon Nov 2 · 11:59 p.m. · DUE <span class="pts">30 pts</span></div>
-  <div class="what"><strong>Final Draft</strong> + your audio + AI-use log</div>
-  <div class="more">Last questions in class that day. <a href="../week-10-mentors-and-the-hinge/Currere%20Final%20Draft.docx">The guideline</a></div>
- </div>
- <div class="stop next">
-  <div class="when">Mon Nov 2</div>
-  <div class="what">The Multimodal Research Project begins</div>
- </div>
-</section>
-
+ <!-- Week 11 -->
+ <div class="wk"><b>Week 11</b><span>Act III begins</span></div>
+ <div class="day"><div class="date"><span class="dn">Mon </span>Nov 2</div>
+  <div class="stop due"><div class="what">Final Draft due · 11:59 p.m. <span class="pts">30 pts</span></div><div class="more">+ your audio + AI-use log. Last questions in class. <a href="../week-10-mentors-and-the-hinge/Currere%20Final%20Draft.docx">Guideline</a></div></div>
+  <div class="stop next"><div class="what">The Multimodal Research Project begins</div></div></div>
+ <div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div>
 </div>
 
 <div class="tic">
