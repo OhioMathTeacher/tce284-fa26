@@ -6,35 +6,36 @@
 <title>Sample Multigenre Projects — TCE 284</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
- :root{--paper:#faf7f1;--ink:#22201c;--soft:#5b564d;--rule:#d9d2c4;
-  --t0:#7a2e2e;--t1:#1f5e5b;--t2:#9a6a1f;--t3:#3b4f74;--t4:#5e3a63;}
+ :root{--paper:#faf7f1;--ink:#22201c;--soft:#5b564d;}
  *{box-sizing:border-box;}
- body{margin:0;background:var(--paper);color:var(--ink);font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:16px;line-height:1.6;}
- main{max-width:860px;margin:0 auto;padding:28px 16px 72px;}
- .home{display:inline-block;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:var(--soft);text-decoration:none;letter-spacing:.02em;}
+ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.55;}
+ main{max-width:1080px;margin:0 auto;padding:28px 16px 72px;}
+ .home{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:var(--soft);text-decoration:none;}
  .home:hover{color:var(--ink);text-decoration:underline;}
- header{text-align:center;margin:36px 0 44px;}
- .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--t0);margin:0 0 10px;}
+ header{text-align:center;margin:34px 0 40px;}
+ .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#7a2e2e;margin:0 0 10px;}
  h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.05;margin:0;}
- .orn{width:64px;height:1px;background:var(--t0);margin:18px auto 14px;}
+ .orn{width:64px;height:1px;background:#7a2e2e;margin:18px auto 14px;}
  .dek{font-style:italic;color:var(--soft);margin:0;font-size:15px;}
- ol{list-style:none;margin:0;padding:0;}
- li{display:grid;grid-template-columns:3.2rem 15rem 1fr;gap:0 1.6rem;padding:22px 0;}
- li + li{border-top:1px solid var(--rule);}
- .no{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;line-height:1;color:var(--accent);opacity:.85;padding-top:2px;}
- h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:23px;line-height:1.15;margin:0 0 6px;}
- h2 a{color:var(--ink);text-decoration:none;background-image:linear-gradient(var(--accent),var(--accent));background-size:0 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s;}
- h2 a:hover,h2 a:focus-visible{background-size:100% 1px;color:var(--accent);outline:none;}
- .topic{margin:0;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;line-height:1.5;}
- .syn{margin:0;color:var(--soft);font-size:15.5px;}
- li.t0{--accent:var(--t0);} li.t1{--accent:var(--t1);} li.t2{--accent:var(--t2);} li.t3{--accent:var(--t3);} li.t4{--accent:var(--t4);} 
- @media (max-width:700px){
-  li{grid-template-columns:2.4rem 1fr;}
-  .syn{grid-column:2;margin-top:8px;}
-  .no{font-size:22px;}
- }
+ ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:34px 26px;}
+ .book{position:relative;display:block;aspect-ratio:2/3;text-decoration:none;border-radius:2px 6px 6px 2px;
+   box-shadow:0 1px 1px rgba(0,0,0,.15),0 10px 20px -8px rgba(40,30,20,.5);transition:transform .25s ease,box-shadow .25s ease;}
+ .cover{position:absolute;inset:0;border-radius:inherit;background:var(--bg);overflow:hidden;}
+ .cover svg{position:absolute;inset:0;width:100%;height:100%;}
+ .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.1) 4%,rgba(255,255,255,.14) 6%,rgba(0,0,0,0) 9%),linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.12));pointer-events:none;}
+ .label{position:absolute;left:18px;right:12px;display:flex;flex-direction:column;gap:6px;color:var(--tc);z-index:1;}
+ .label.top{top:16px;} .label.bottom{bottom:16px;} .label.mid{top:50%;transform:translateY(-50%);text-align:center;left:14px;}
+ .title{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:21px;line-height:1.05;letter-spacing:-.005em;}
+ .topic{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.85;line-height:1.4;}
+ .blurb{position:absolute;inset:0;border-radius:inherit;background:rgba(250,247,241,.97);color:var(--ink);padding:14px 14px 14px 18px;font-size:13.5px;line-height:1.45;
+   opacity:0;transition:opacity .2s ease;overflow:auto;border:1px solid #e3dccd;z-index:2;}
+ .bt{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:17px;line-height:1.15;margin-bottom:8px;color:var(--ink);}
+ .book:hover,.book:focus-visible{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 2px 2px rgba(0,0,0,.12),0 18px 30px -10px rgba(40,30,20,.55);outline:none;}
+ .book:hover .blurb,.book:focus-visible .blurb,.book.show .blurb{opacity:1;}
+ .book:focus-visible{box-shadow:0 0 0 3px var(--paper),0 0 0 5px #7a2e2e;}
+ @media (max-width:520px){ol{grid-template-columns:repeat(2,1fr);gap:24px 16px;} .title{font-size:18px;}}
 </style>
 </head>
 <body>
@@ -44,186 +45,200 @@
  <p class="kicker">Act III · Multimodal Research Project</p>
  <h1>Sample Multigenre Projects</h1>
  <div class="orn"></div>
- <p class="dek">Each title opens the PDF in our Canvas course.</p>
+ <p class="dek">Hover over a book to read about the project. Click to open the PDF in our Canvas course.</p>
 </header>
 <ol>
- <li class="t0">
-  <span class="no">01</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973751/preview">The Allosaurs in Phoenix</a></h2>
-   <p class="topic">Dinosaurs</p>
-  </div>
-  <p class="syn">A science-fiction story of allosaurs loose in Phoenix, told in a diary, a newspaper article, a two-voice poem, a cartoon, and an encyclopedia entry. The writer says which parts are true.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973751/preview" style="--bg:#f2a541;--tc:#2b1408">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="100" cy="190" r="70" fill="#f9d36b"/><path d="M0 230 L30 200 L55 222 L80 185 L105 215 L130 180 L160 215 L185 195 L200 210 L200 300 L0 300Z" fill="#7a2e14"/><path d="M20 300 L40 262 L58 268 L76 250 L96 262 L120 244 L134 262 L160 252 L182 270 L200 266 L200 300Z" fill="#3d1508"/></svg>
+    <span class="label top"><span class="title">The Allosaurs in Phoenix</span><span class="topic">Dinosaurs</span></span>
+   </span>
+   <span class="blurb"><span class="bt">The Allosaurs in Phoenix</span>A science-fiction story of allosaurs loose in Phoenix, told in a diary, a newspaper article, a two-voice poem, a cartoon, and an encyclopedia entry. The writer says which parts are true.</span>
+  </a>
  </li>
- <li class="t1">
-  <span class="no">02</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973721/preview">Blood and Bravery</a></h2>
-   <p class="topic">Bram Stoker&#x27;s Dracula</p>
-  </div>
-  <p class="syn">Retells Dracula through maps, poems, and Jonathan Harker&#x27;s travels, and gives the Count the voice the novel never does. The novel is itself told in letters and diaries.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973721/preview" style="--bg:#121014;--tc:#efe3cf">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M100 70 C100 70 62 128 62 152 A38 38 0 0 0 138 152 C138 128 100 70 100 70Z" fill="#9e1b22"/><path d="M84 140 a16 16 0 0 0 6 24" stroke="#d9535b" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+    <span class="label bottom"><span class="title">Blood and Bravery</span><span class="topic">Bram Stoker&#x27;s Dracula</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Blood and Bravery</span>Retells Dracula through maps, poems, and Jonathan Harker&#x27;s travels, and gives the Count the voice the novel never does. The novel is itself told in letters and diaries.</span>
+  </a>
  </li>
- <li class="t2">
-  <span class="no">03</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973725/preview">Call to Change</a></h2>
-   <p class="topic">Racial profiling and policing</p>
-  </div>
-  <p class="syn">Song lyrics, protest poems, a definition, and federal crime statistics ask whether racial profiling is a serious problem in American law enforcement.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973725/preview" style="--bg:#141821;--tc:#f4efe6">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="20" y="40" width="24" height="150" rx="3" fill="#c62828" opacity="1"/><rect x="54" y="40" width="24" height="150" rx="3" fill="#1e5bd6" opacity="0.9"/><rect x="88" y="40" width="24" height="150" rx="3" fill="#c62828" opacity="0.7"/><rect x="122" y="40" width="24" height="150" rx="3" fill="#1e5bd6" opacity="0.5"/><rect x="156" y="40" width="24" height="150" rx="3" fill="#c62828" opacity="0.3"/></svg>
+    <span class="label bottom"><span class="title">Call to Change</span><span class="topic">Racial profiling and policing</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Call to Change</span>Song lyrics, protest poems, a definition, and federal crime statistics ask whether racial profiling is a serious problem in American law enforcement.</span>
+  </a>
  </li>
- <li class="t3">
-  <span class="no">04</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973728/preview">Calumet Country Club: New Members Packet</a></h2>
-   <p class="topic">Working at a country club</p>
-  </div>
-  <p class="syn">Built as a welcome packet for new members: the manager&#x27;s letter, a waitress&#x27;s unofficial glossary of terms, and poems about golf, all from the staff side of the club.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973728/preview" style="--bg:#1f4d34;--tc:#f6f0dc">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="-17" y="150" width="34" height="34" fill="#2c6a49" transform="rotate(45 0 167)"/><rect x="-17" y="198" width="34" height="34" fill="#173b28" transform="rotate(45 0 215)"/><rect x="-17" y="246" width="34" height="34" fill="#2c6a49" transform="rotate(45 0 263)"/><rect x="-17" y="294" width="34" height="34" fill="#173b28" transform="rotate(45 0 311)"/><rect x="31" y="150" width="34" height="34" fill="#2c6a49" transform="rotate(45 48 167)"/><rect x="31" y="198" width="34" height="34" fill="#173b28" transform="rotate(45 48 215)"/><rect x="31" y="246" width="34" height="34" fill="#2c6a49" transform="rotate(45 48 263)"/><rect x="31" y="294" width="34" height="34" fill="#173b28" transform="rotate(45 48 311)"/><rect x="79" y="150" width="34" height="34" fill="#2c6a49" transform="rotate(45 96 167)"/><rect x="79" y="198" width="34" height="34" fill="#173b28" transform="rotate(45 96 215)"/><rect x="79" y="246" width="34" height="34" fill="#2c6a49" transform="rotate(45 96 263)"/><rect x="79" y="294" width="34" height="34" fill="#173b28" transform="rotate(45 96 311)"/><rect x="127" y="150" width="34" height="34" fill="#2c6a49" transform="rotate(45 144 167)"/><rect x="127" y="198" width="34" height="34" fill="#173b28" transform="rotate(45 144 215)"/><rect x="127" y="246" width="34" height="34" fill="#2c6a49" transform="rotate(45 144 263)"/><rect x="127" y="294" width="34" height="34" fill="#173b28" transform="rotate(45 144 311)"/><rect x="175" y="150" width="34" height="34" fill="#2c6a49" transform="rotate(45 192 167)"/><rect x="175" y="198" width="34" height="34" fill="#173b28" transform="rotate(45 192 215)"/><rect x="175" y="246" width="34" height="34" fill="#2c6a49" transform="rotate(45 192 263)"/><rect x="175" y="294" width="34" height="34" fill="#173b28" transform="rotate(45 192 311)"/><line x1="140" y1="132" x2="140" y2="200" stroke="#f6f0dc" stroke-width="3"/><path d="M142 132 L172 143 L142 154Z" fill="#d6453a"/><ellipse cx="140" cy="202" rx="20" ry="5" fill="#0e2a1b"/></svg>
+    <span class="label top"><span class="title">Calumet Country Club: New Members Packet</span><span class="topic">Working at a country club</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Calumet Country Club: New Members Packet</span>Built as a welcome packet for new members: the manager&#x27;s letter, a waitress&#x27;s unofficial glossary of terms, and poems about golf, all from the staff side of the club.</span>
+  </a>
  </li>
- <li class="t4">
-  <span class="no">05</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973715/preview">A Columbine Connection</a></h2>
-   <p class="topic">The Columbine shooting</p>
-  </div>
-  <p class="syn">Written the summer after the 1999 shooting. A teacher at her students&#x27; funerals, a shooter&#x27;s inner voice, and a poem about waiting by the TV ask questions that have no answers.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973715/preview" style="--bg:#2e3a4f;--tc:#eef2f8">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><ellipse cx="100" cy="74" rx="19.3" ry="46.0" fill="#a9c6ea" transform="rotate(0.0 100 120)"/><ellipse cx="100" cy="74" rx="19.3" ry="46.0" fill="#a9c6ea" transform="rotate(72.0 100 120)"/><ellipse cx="100" cy="74" rx="19.3" ry="46.0" fill="#a9c6ea" transform="rotate(144.0 100 120)"/><ellipse cx="100" cy="74" rx="19.3" ry="46.0" fill="#a9c6ea" transform="rotate(216.0 100 120)"/><ellipse cx="100" cy="74" rx="19.3" ry="46.0" fill="#a9c6ea" transform="rotate(288.0 100 120)"/><ellipse cx="100" cy="94" rx="10.9" ry="26.0" fill="#e9eef7" transform="rotate(36.0 100 120)"/><ellipse cx="100" cy="94" rx="10.9" ry="26.0" fill="#e9eef7" transform="rotate(108.0 100 120)"/><ellipse cx="100" cy="94" rx="10.9" ry="26.0" fill="#e9eef7" transform="rotate(180.0 100 120)"/><ellipse cx="100" cy="94" rx="10.9" ry="26.0" fill="#e9eef7" transform="rotate(252.0 100 120)"/><ellipse cx="100" cy="94" rx="10.9" ry="26.0" fill="#e9eef7" transform="rotate(324.0 100 120)"/><circle cx="100" cy="120" r="9" fill="#f2c94c"/></svg>
+    <span class="label bottom"><span class="title">A Columbine Connection</span><span class="topic">The Columbine shooting</span></span>
+   </span>
+   <span class="blurb"><span class="bt">A Columbine Connection</span>Written the summer after the 1999 shooting. A teacher at her students&#x27; funerals, a shooter&#x27;s inner voice, and a poem about waiting by the TV ask questions that have no answers.</span>
+  </a>
  </li>
- <li class="t0">
-  <span class="no">06</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973729/preview">Cracking the Egg</a></h2>
-   <p class="topic">The egg</p>
-  </div>
-  <p class="syn">Starts with childhood breakfasts, then follows the egg as a creation myth, a word (“egged on”), a hidden message, and the first step of a controversial science.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973729/preview" style="--bg:#f3c623;--tc:#3a2a05">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><ellipse cx="100" cy="118" rx="54" ry="70" fill="#fffaf0"/><path d="M48 112 L64 102 L76 118 L92 100 L106 120 L122 102 L136 118 L152 106" stroke="#3a2a05" stroke-width="3" fill="none" stroke-linejoin="round"/></svg>
+    <span class="label bottom"><span class="title">Cracking the Egg</span><span class="topic">The egg</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Cracking the Egg</span>Starts with childhood breakfasts, then follows the egg as a creation myth, a word (“egged on”), a hidden message, and the first step of a controversial science.</span>
+  </a>
  </li>
- <li class="t1">
-  <span class="no">07</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973730/preview">Frozen Mourning</a></h2>
-   <p class="topic">The Titanic</p>
-  </div>
-  <p class="syn">Asks what flaws doomed a ship that could have been saved. A newspaper scene, a timeline, the disaster in numbers, and poems put you on board.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973730/preview" style="--bg:#0d1b2e;--tc:#e8f1fb">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="0" y="190" width="200" height="110" fill="#14304f"/><path d="M60 190 L92 112 L104 128 L118 98 L146 190Z" fill="#e8f1fb"/><path d="M60 190 L146 190 L132 262 L82 270Z" fill="#9fc0de" opacity=".45"/><line x1="0" y1="190" x2="200" y2="190" stroke="#e8f1fb" stroke-width="1.5"/></svg>
+    <span class="label top"><span class="title">Frozen Mourning</span><span class="topic">The Titanic</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Frozen Mourning</span>Asks what flaws doomed a ship that could have been saved. A newspaper scene, a timeline, the disaster in numbers, and poems put you on board.</span>
+  </a>
  </li>
- <li class="t2">
-  <span class="no">08</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973732/preview">Giving a Voice to Women - with Long or Short Hair</a></h2>
-   <p class="topic">Hurston&#x27;s Their Eyes Were Watching God</p>
-  </div>
-  <p class="syn">The writer reads Janie&#x27;s search for her own voice beside her own, and stages Hurston&#x27;s critics, including an imagined interview with Richard Wright.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973732/preview" style="--bg:#25412f;--tc:#fbeef0">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M100 200 L100 130 M100 160 L74 140 M100 150 L128 126" stroke="#5a3b22" stroke-width="6" stroke-linecap="round"/><circle cx="100" cy="92" r="34" fill="#f4c6cf"/><circle cx="66" cy="116" r="24" fill="#f8dbe1"/><circle cx="134" cy="108" r="26" fill="#eeb2bf"/><circle cx="84" cy="70" r="18" fill="#fbe6ea"/><circle cx="122" cy="74" r="20" fill="#f4c6cf"/></svg>
+    <span class="label bottom"><span class="title">Giving a Voice to Women - with Long or Short Hair</span><span class="topic">Hurston&#x27;s Their Eyes Were Watching God</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Giving a Voice to Women - with Long or Short Hair</span>The writer reads Janie&#x27;s search for her own voice beside her own, and stages Hurston&#x27;s critics, including an imagined interview with Richard Wright.</span>
+  </a>
  </li>
- <li class="t3">
-  <span class="no">09</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973733/preview">Growing Up Spanglish</a></h2>
-   <p class="topic">Spanglish and Latino identity</p>
-  </div>
-  <p class="syn">Treats Spanglish as more than mixed language: a way of living between two worlds. History, statistics, and definitions follow one girl&#x27;s search for where she belongs.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973733/preview" style="--bg:#faf3e6;--tc:#3a1d10">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="78" cy="118" r="52" fill="#d1495b" opacity=".85"/><circle cx="122" cy="118" r="52" fill="#00798c" opacity=".85"/></svg>
+    <span class="label bottom"><span class="title">Growing Up Spanglish</span><span class="topic">Spanglish and Latino identity</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Growing Up Spanglish</span>Treats Spanglish as more than mixed language: a way of living between two worlds. History, statistics, and definitions follow one girl&#x27;s search for where she belongs.</span>
+  </a>
  </li>
- <li class="t4">
-  <span class="no">10</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973735/preview">Inside Out - A Taming of Disorderly Anxiety</a></h2>
-   <p class="topic">Anxiety disorders</p>
-  </div>
-  <p class="syn">Anxiety from the inside out: first what it feels like, in metaphor and dialogue, then the options and consequences of treatment.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973735/preview" style="--bg:#dcd8d0;--tc:#232323">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="100" cy="118" r="14" fill="none" stroke="#3b3b3b" stroke-width="1.2"/><circle cx="103" cy="116" r="25" fill="none" stroke="#3b3b3b" stroke-width="1.2"/><circle cx="106" cy="114" r="36" fill="none" stroke="#3b3b3b" stroke-width="1.2"/><circle cx="109" cy="112" r="47" fill="none" stroke="#3b3b3b" stroke-width="1.2"/><circle cx="112" cy="110" r="58" fill="none" stroke="#c0392b" stroke-width="2.5"/><circle cx="115" cy="108" r="69" fill="none" stroke="#3b3b3b" stroke-width="1.2"/><circle cx="118" cy="106" r="80" fill="none" stroke="#3b3b3b" stroke-width="1.2"/></svg>
+    <span class="label bottom"><span class="title">Inside Out - A Taming of Disorderly Anxiety</span><span class="topic">Anxiety disorders</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Inside Out - A Taming of Disorderly Anxiety</span>Anxiety from the inside out: first what it feels like, in metaphor and dialogue, then the options and consequences of treatment.</span>
+  </a>
  </li>
- <li class="t0">
-  <span class="no">11</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973737/preview">Long Strange Trip: The Interstate Highway System and the American Imagination</a></h2>
-   <p class="topic">The Interstate Highway System</p>
-  </div>
-  <p class="syn">A children&#x27;s-book welcome to the interstates, the numbers behind them, and voices from the road, like a long-haul trucker&#x27;s.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973737/preview" style="--bg:#e9b44c;--tc:#1b1b1b">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="0" y="170" width="200" height="130" fill="#3f3f3f"/><path d="M0 300 L88 170 L112 170 L200 300Z" fill="#2a2a2a"/><rect x="99.0" y="178" width="2.0" height="6" fill="#f3d36b"/><rect x="98.5" y="196" width="3.0" height="9" fill="#f3d36b"/><rect x="98.0" y="222" width="4.0" height="13" fill="#f3d36b"/><rect x="97.0" y="258" width="6.0" height="20" fill="#f3d36b"/><circle cx="100" cy="150" r="26" fill="#f6dc8a" opacity=".7"/></svg>
+    <span class="label top"><span class="title">Long Strange Trip: The Interstate Highway System and the American Imagination</span><span class="topic">The Interstate Highway System</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Long Strange Trip: The Interstate Highway System and the American Imagination</span>A children&#x27;s-book welcome to the interstates, the numbers behind them, and voices from the road, like a long-haul trucker&#x27;s.</span>
+  </a>
  </li>
- <li class="t1">
-  <span class="no">12</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973754/preview">The Lunchroom</a></h2>
-   <p class="topic">The high school cafeteria</p>
-  </div>
-  <p class="syn">Four years in one room: from the new girl with no one to sit with to the cafeteria as the stage for high school&#x27;s social wars.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973754/preview" style="--bg:#e7eef2;--tc:#1d2b36">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="50" cy="160" r="18" fill="#f08a5d"/><circle cx="50" cy="160" r="9" fill="#e7eef2"/><circle cx="50" cy="215" r="18" fill="#f08a5d"/><circle cx="50" cy="215" r="9" fill="#e7eef2"/><circle cx="50" cy="270" r="18" fill="#f08a5d"/><circle cx="50" cy="270" r="9" fill="#e7eef2"/><circle cx="100" cy="160" r="18" fill="#f08a5d"/><circle cx="100" cy="160" r="9" fill="#e7eef2"/><circle cx="100" cy="215" r="18" fill="#f08a5d"/><circle cx="100" cy="215" r="9" fill="#e7eef2"/><circle cx="100" cy="270" r="18" fill="#f08a5d"/><circle cx="100" cy="270" r="9" fill="#e7eef2"/><circle cx="150" cy="160" r="18" fill="#f08a5d"/><circle cx="150" cy="160" r="9" fill="#e7eef2"/><circle cx="150" cy="215" r="18" fill="#f08a5d"/><circle cx="150" cy="215" r="9" fill="#e7eef2"/><circle cx="150" cy="270" r="18" fill="#f08a5d"/><circle cx="150" cy="270" r="9" fill="#e7eef2"/><circle cx="150" cy="270" r="18" fill="#1d2b36"/></svg>
+    <span class="label top"><span class="title">The Lunchroom</span><span class="topic">The high school cafeteria</span></span>
+   </span>
+   <span class="blurb"><span class="bt">The Lunchroom</span>Four years in one room: from the new girl with no one to sit with to the cafeteria as the stage for high school&#x27;s social wars.</span>
+  </a>
  </li>
- <li class="t2">
-  <span class="no">13</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973757/preview">The Man Behind the Movies: The Life and Career of Steven Speilberg</a></h2>
-   <p class="topic">Steven Spielberg</p>
-  </div>
-  <p class="syn">Spielberg&#x27;s life and films, opening with a young boy watching Jurassic Park for the first time on a family road trip.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973757/preview" style="--bg:#101820;--tc:#f2e8c9">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="0" y="18" width="200" height="34" fill="#2a2f38"/><rect x="6" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="6" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="22" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="22" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="38" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="38" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="54" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="54" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="70" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="70" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="86" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="86" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="102" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="102" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="118" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="118" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="134" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="134" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="150" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="150" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="166" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="166" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="182" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="182" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="198" y="22" width="9" height="6" rx="1" fill="#101820"/><rect x="198" y="42" width="9" height="6" rx="1" fill="#101820"/><rect x="8" y="30" width="34" height="10" fill="#f2e8c9" opacity=".25"/><rect x="50" y="30" width="34" height="10" fill="#f2e8c9" opacity=".25"/><rect x="92" y="30" width="34" height="10" fill="#f2e8c9" opacity=".25"/><rect x="134" y="30" width="34" height="10" fill="#f2e8c9" opacity=".25"/><rect x="176" y="30" width="34" height="10" fill="#f2e8c9" opacity=".25"/><circle cx="112" cy="122" r="50" fill="#f2e8c9"/><circle cx="96" cy="108" r="7" fill="#e3d6ae"/><circle cx="126" cy="136" r="10" fill="#e3d6ae"/></svg>
+    <span class="label bottom"><span class="title">The Man Behind the Movies: The Life and Career of Steven Speilberg</span><span class="topic">Steven Spielberg</span></span>
+   </span>
+   <span class="blurb"><span class="bt">The Man Behind the Movies: The Life and Career of Steven Speilberg</span>Spielberg&#x27;s life and films, opening with a young boy watching Jurassic Park for the first time on a family road trip.</span>
+  </a>
  </li>
- <li class="t3">
-  <span class="no">14</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973742/preview">Marilyn</a></h2>
-   <p class="topic">Marilyn Monroe</p>
-  </div>
-  <p class="syn">Looks past the screen goddess to the woman, through her own quotes and pieces on her highs and lows.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973742/preview" style="--bg:#e84a6f;--tc:#fff4f6">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="10" cy="12" r="0.6" fill="#ffd6e0"/><circle cx="10" cy="28" r="0.6" fill="#ffd6e0"/><circle cx="10" cy="44" r="0.9" fill="#ffd6e0"/><circle cx="10" cy="60" r="1.2" fill="#ffd6e0"/><circle cx="10" cy="76" r="1.4" fill="#ffd6e0"/><circle cx="10" cy="92" r="1.5" fill="#ffd6e0"/><circle cx="10" cy="108" r="1.5" fill="#ffd6e0"/><circle cx="10" cy="124" r="1.4" fill="#ffd6e0"/><circle cx="10" cy="140" r="1.2" fill="#ffd6e0"/><circle cx="10" cy="156" r="0.9" fill="#ffd6e0"/><circle cx="10" cy="172" r="0.6" fill="#ffd6e0"/><circle cx="10" cy="188" r="0.6" fill="#ffd6e0"/><circle cx="10" cy="204" r="0.6" fill="#ffd6e0"/><circle cx="26" cy="12" r="0.6" fill="#ffd6e0"/><circle cx="26" cy="28" r="1.1" fill="#ffd6e0"/><circle cx="26" cy="44" r="1.5" fill="#ffd6e0"/><circle cx="26" cy="60" r="1.9" fill="#ffd6e0"/><circle cx="26" cy="76" r="2.1" fill="#ffd6e0"/><circle cx="26" cy="92" r="2.2" fill="#ffd6e0"/><circle cx="26" cy="108" r="2.2" fill="#ffd6e0"/><circle cx="26" cy="124" r="2.1" fill="#ffd6e0"/><circle cx="26" cy="140" r="1.9" fill="#ffd6e0"/><circle cx="26" cy="156" r="1.5" fill="#ffd6e0"/><circle cx="26" cy="172" r="1.1" fill="#ffd6e0"/><circle cx="26" cy="188" r="0.6" fill="#ffd6e0"/><circle cx="26" cy="204" r="0.6" fill="#ffd6e0"/><circle cx="42" cy="12" r="1.2" fill="#ffd6e0"/><circle cx="42" cy="28" r="1.7" fill="#ffd6e0"/><circle cx="42" cy="44" r="2.1" fill="#ffd6e0"/><circle cx="42" cy="60" r="2.5" fill="#ffd6e0"/><circle cx="42" cy="76" r="2.8" fill="#ffd6e0"/><circle cx="42" cy="92" r="2.9" fill="#ffd6e0"/><circle cx="42" cy="108" r="2.9" fill="#ffd6e0"/><circle cx="42" cy="124" r="2.8" fill="#ffd6e0"/><circle cx="42" cy="140" r="2.5" fill="#ffd6e0"/><circle cx="42" cy="156" r="2.1" fill="#ffd6e0"/><circle cx="42" cy="172" r="1.7" fill="#ffd6e0"/><circle cx="42" cy="188" r="1.2" fill="#ffd6e0"/><circle cx="42" cy="204" r="0.6" fill="#ffd6e0"/><circle cx="58" cy="12" r="1.6" fill="#ffd6e0"/><circle cx="58" cy="28" r="2.2" fill="#ffd6e0"/><circle cx="58" cy="44" r="2.7" fill="#ffd6e0"/><circle cx="58" cy="60" r="3.1" fill="#ffd6e0"/><circle cx="58" cy="76" r="3.5" fill="#ffd6e0"/><circle cx="58" cy="92" r="3.7" fill="#ffd6e0"/><circle cx="58" cy="108" r="3.7" fill="#ffd6e0"/><circle cx="58" cy="124" r="3.5" fill="#ffd6e0"/><circle cx="58" cy="140" r="3.1" fill="#ffd6e0"/><circle cx="58" cy="156" r="2.7" fill="#ffd6e0"/><circle cx="58" cy="172" r="2.2" fill="#ffd6e0"/><circle cx="58" cy="188" r="1.6" fill="#ffd6e0"/><circle cx="58" cy="204" r="1.0" fill="#ffd6e0"/><circle cx="74" cy="12" r="2.0" fill="#ffd6e0"/><circle cx="74" cy="28" r="2.6" fill="#ffd6e0"/><circle cx="74" cy="44" r="3.2" fill="#ffd6e0"/><circle cx="74" cy="60" r="3.7" fill="#ffd6e0"/><circle cx="74" cy="76" r="4.1" fill="#ffd6e0"/><circle cx="74" cy="92" r="4.4" fill="#ffd6e0"/><circle cx="74" cy="108" r="4.4" fill="#ffd6e0"/><circle cx="74" cy="124" r="4.1" fill="#ffd6e0"/><circle cx="74" cy="140" r="3.7" fill="#ffd6e0"/><circle cx="74" cy="156" r="3.2" fill="#ffd6e0"/><circle cx="74" cy="172" r="2.6" fill="#ffd6e0"/><circle cx="74" cy="188" r="2.0" fill="#ffd6e0"/><circle cx="74" cy="204" r="1.3" fill="#ffd6e0"/><circle cx="90" cy="12" r="2.3" fill="#ffd6e0"/><circle cx="90" cy="28" r="3.0" fill="#ffd6e0"/><circle cx="90" cy="44" r="3.6" fill="#ffd6e0"/><circle cx="90" cy="60" r="4.2" fill="#ffd6e0"/><circle cx="90" cy="76" r="4.8" fill="#ffd6e0"/><circle cx="90" cy="92" r="5.1" fill="#ffd6e0"/><circle cx="90" cy="108" r="5.1" fill="#ffd6e0"/><circle cx="90" cy="124" r="4.8" fill="#ffd6e0"/><circle cx="90" cy="140" r="4.2" fill="#ffd6e0"/><circle cx="90" cy="156" r="3.6" fill="#ffd6e0"/><circle cx="90" cy="172" r="3.0" fill="#ffd6e0"/><circle cx="90" cy="188" r="2.3" fill="#ffd6e0"/><circle cx="90" cy="204" r="1.6" fill="#ffd6e0"/><circle cx="106" cy="12" r="2.4" fill="#ffd6e0"/><circle cx="106" cy="28" r="3.2" fill="#ffd6e0"/><circle cx="106" cy="44" r="3.9" fill="#ffd6e0"/><circle cx="106" cy="60" r="4.6" fill="#ffd6e0"/><circle cx="106" cy="76" r="5.2" fill="#ffd6e0"/><circle cx="106" cy="92" r="5.8" fill="#ffd6e0"/><circle cx="106" cy="108" r="5.8" fill="#ffd6e0"/><circle cx="106" cy="124" r="5.2" fill="#ffd6e0"/><circle cx="106" cy="140" r="4.6" fill="#ffd6e0"/><circle cx="106" cy="156" r="3.9" fill="#ffd6e0"/><circle cx="106" cy="172" r="3.2" fill="#ffd6e0"/><circle cx="106" cy="188" r="2.4" fill="#ffd6e0"/><circle cx="106" cy="204" r="1.7" fill="#ffd6e0"/><circle cx="122" cy="12" r="2.5" fill="#ffd6e0"/><circle cx="122" cy="28" r="3.2" fill="#ffd6e0"/><circle cx="122" cy="44" r="4.0" fill="#ffd6e0"/><circle cx="122" cy="60" r="4.7" fill="#ffd6e0"/><circle cx="122" cy="76" r="5.4" fill="#ffd6e0"/><circle cx="122" cy="92" r="6.1" fill="#ffd6e0"/><circle cx="122" cy="108" r="6.1" fill="#ffd6e0"/><circle cx="122" cy="124" r="5.4" fill="#ffd6e0"/><circle cx="122" cy="140" r="4.7" fill="#ffd6e0"/><circle cx="122" cy="156" r="4.0" fill="#ffd6e0"/><circle cx="122" cy="172" r="3.2" fill="#ffd6e0"/><circle cx="122" cy="188" r="2.5" fill="#ffd6e0"/><circle cx="122" cy="204" r="1.8" fill="#ffd6e0"/><circle cx="138" cy="12" r="2.4" fill="#ffd6e0"/><circle cx="138" cy="28" r="3.1" fill="#ffd6e0"/><circle cx="138" cy="44" r="3.8" fill="#ffd6e0"/><circle cx="138" cy="60" r="4.5" fill="#ffd6e0"/><circle cx="138" cy="76" r="5.1" fill="#ffd6e0"/><circle cx="138" cy="92" r="5.6" fill="#ffd6e0"/><circle cx="138" cy="108" r="5.6" fill="#ffd6e0"/><circle cx="138" cy="124" r="5.1" fill="#ffd6e0"/><circle cx="138" cy="140" r="4.5" fill="#ffd6e0"/><circle cx="138" cy="156" r="3.8" fill="#ffd6e0"/><circle cx="138" cy="172" r="3.1" fill="#ffd6e0"/><circle cx="138" cy="188" r="2.4" fill="#ffd6e0"/><circle cx="138" cy="204" r="1.7" fill="#ffd6e0"/><circle cx="154" cy="12" r="2.2" fill="#ffd6e0"/><circle cx="154" cy="28" r="2.9" fill="#ffd6e0"/><circle cx="154" cy="44" r="3.5" fill="#ffd6e0"/><circle cx="154" cy="60" r="4.1" fill="#ffd6e0"/><circle cx="154" cy="76" r="4.6" fill="#ffd6e0"/><circle cx="154" cy="92" r="4.9" fill="#ffd6e0"/><circle cx="154" cy="108" r="4.9" fill="#ffd6e0"/><circle cx="154" cy="124" r="4.6" fill="#ffd6e0"/><circle cx="154" cy="140" r="4.1" fill="#ffd6e0"/><circle cx="154" cy="156" r="3.5" fill="#ffd6e0"/><circle cx="154" cy="172" r="2.9" fill="#ffd6e0"/><circle cx="154" cy="188" r="2.2" fill="#ffd6e0"/><circle cx="154" cy="204" r="1.5" fill="#ffd6e0"/><circle cx="170" cy="12" r="1.9" fill="#ffd6e0"/><circle cx="170" cy="28" r="2.5" fill="#ffd6e0"/><circle cx="170" cy="44" r="3.1" fill="#ffd6e0"/><circle cx="170" cy="60" r="3.6" fill="#ffd6e0"/><circle cx="170" cy="76" r="4.0" fill="#ffd6e0"/><circle cx="170" cy="92" r="4.2" fill="#ffd6e0"/><circle cx="170" cy="108" r="4.2" fill="#ffd6e0"/><circle cx="170" cy="124" r="4.0" fill="#ffd6e0"/><circle cx="170" cy="140" r="3.6" fill="#ffd6e0"/><circle cx="170" cy="156" r="3.1" fill="#ffd6e0"/><circle cx="170" cy="172" r="2.5" fill="#ffd6e0"/><circle cx="170" cy="188" r="1.9" fill="#ffd6e0"/><circle cx="170" cy="204" r="1.3" fill="#ffd6e0"/><circle cx="186" cy="12" r="1.5" fill="#ffd6e0"/><circle cx="186" cy="28" r="2.1" fill="#ffd6e0"/><circle cx="186" cy="44" r="2.6" fill="#ffd6e0"/><circle cx="186" cy="60" r="3.0" fill="#ffd6e0"/><circle cx="186" cy="76" r="3.3" fill="#ffd6e0"/><circle cx="186" cy="92" r="3.5" fill="#ffd6e0"/><circle cx="186" cy="108" r="3.5" fill="#ffd6e0"/><circle cx="186" cy="124" r="3.3" fill="#ffd6e0"/><circle cx="186" cy="140" r="3.0" fill="#ffd6e0"/><circle cx="186" cy="156" r="2.6" fill="#ffd6e0"/><circle cx="186" cy="172" r="2.1" fill="#ffd6e0"/><circle cx="186" cy="188" r="1.5" fill="#ffd6e0"/><circle cx="186" cy="204" r="0.9" fill="#ffd6e0"/></svg>
+    <span class="label bottom"><span class="title">Marilyn</span><span class="topic">Marilyn Monroe</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Marilyn</span>Looks past the screen goddess to the woman, through her own quotes and pieces on her highs and lows.</span>
+  </a>
  </li>
- <li class="t4">
-  <span class="no">15</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973746/preview">May the Roads Rise to Meet You</a></h2>
-   <p class="topic">Addiction and grief</p>
-  </div>
-  <p class="syn">Opens as a fairy tale about a girl whose father has a disease she does not yet understand, then turns to warning labels and other genres about addiction, relapse, and loss.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973746/preview" style="--bg:#cfe3c4;--tc:#1e3b22">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 170 Q60 140 120 160 T200 150 L200 300 L0 300Z" fill="#7fb069"/><path d="M0 210 Q80 180 140 205 T200 200 L200 300 L0 300Z" fill="#4c8a3f"/><path d="M118 165 C120 190 70 210 80 240 C88 266 140 270 130 300 L104 300 C112 276 58 266 54 240 C50 212 100 192 108 165Z" fill="#efe2c2"/></svg>
+    <span class="label top"><span class="title">May the Roads Rise to Meet You</span><span class="topic">Addiction and grief</span></span>
+   </span>
+   <span class="blurb"><span class="bt">May the Roads Rise to Meet You</span>Opens as a fairy tale about a girl whose father has a disease she does not yet understand, then turns to warning labels and other genres about addiction, relapse, and loss.</span>
+  </a>
  </li>
- <li class="t0">
-  <span class="no">16</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973747/preview">Opening Closed Doors</a></h2>
-   <p class="topic">Adoption</p>
-  </div>
-  <p class="syn">The real and imagined story of the writer&#x27;s own adoption, told from several sides: the birth mother, the parents who waited years, and the child.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973747/preview" style="--bg:#1c1d26;--tc:#f7f0dd">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="62" y="56" width="76" height="150" fill="#2b2d3a" stroke="#6b5a3a" stroke-width="3"/><path d="M138 56 L138 206 L200 236 L200 30Z" fill="#f6d77a" opacity=".22"/><path d="M62 56 L104 64 L104 214 L62 206Z" fill="#8a5a2b"/><circle cx="96" cy="140" r="3" fill="#e8c46a"/><path d="M104 64 L138 56 L138 206 L104 214Z" fill="#f6d77a"/></svg>
+    <span class="label bottom"><span class="title">Opening Closed Doors</span><span class="topic">Adoption</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Opening Closed Doors</span>The real and imagined story of the writer&#x27;s own adoption, told from several sides: the birth mother, the parents who waited years, and the child.</span>
+  </a>
  </li>
- <li class="t1">
-  <span class="no">17</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973762/preview">They Say She Ain&#x27;t No Hero</a></h2>
-   <p class="topic">Wonder Woman</p>
-  </div>
-  <p class="syn">Asks why girls don&#x27;t say they want to be Wonder Woman, retells her origin in verse, and looks at her creator&#x27;s hopes and the sexism she met.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973762/preview" style="--bg:#a6192e;--tc:#fff6e0">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="100" cy="118" r="62" fill="#1d3f8f"/><circle cx="100" cy="118" r="70" fill="none" stroke="#f2c14e" stroke-width="5"/><path d="M100 66 L113 104 L153 104 L121 128 L133 166 L100 143 L67 166 L79 128 L47 104 L87 104Z" fill="#fff6e0"/></svg>
+    <span class="label bottom"><span class="title">They Say She Ain&#x27;t No Hero</span><span class="topic">Wonder Woman</span></span>
+   </span>
+   <span class="blurb"><span class="bt">They Say She Ain&#x27;t No Hero</span>Asks why girls don&#x27;t say they want to be Wonder Woman, retells her origin in verse, and looks at her creator&#x27;s hopes and the sexism she met.</span>
+  </a>
  </li>
- <li class="t2">
-  <span class="no">18</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973763/preview">Third Culture Kid</a></h2>
-   <p class="topic">Growing up abroad</p>
-  </div>
-  <p class="syn">Life as a kid who moved from Illinois to Luxembourg at six: lists, letters, a map of the people she loves, and a seven-part story about coming home.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973763/preview" style="--bg:#0f4c5c;--tc:#f5efe2">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="100" cy="118" r="62" fill="none" stroke="#e8d6a8" stroke-width="2"/><ellipse cx="100" cy="118" rx="30" ry="62" fill="none" stroke="#e8d6a8" stroke-width="1.5"/><ellipse cx="100" cy="118" rx="52" ry="62" fill="none" stroke="#e8d6a8" stroke-width="1"/><line x1="38" y1="118" x2="162" y2="118" stroke="#e8d6a8" stroke-width="1.5"/><path d="M48 88 L152 88 M48 148 L152 148" stroke="#e8d6a8" stroke-width="1"/><path d="M70 70 Q100 40 140 66" stroke="#e36414" stroke-width="2.5" fill="none" stroke-dasharray="5 4"/><circle cx="140" cy="66" r="4" fill="#e36414"/></svg>
+    <span class="label bottom"><span class="title">Third Culture Kid</span><span class="topic">Growing up abroad</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Third Culture Kid</span>Life as a kid who moved from Illinois to Luxembourg at six: lists, letters, a map of the people she loves, and a seven-part story about coming home.</span>
+  </a>
  </li>
- <li class="t3">
-  <span class="no">19</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973764/preview">Viva Viola</a></h2>
-   <p class="topic">The viola</p>
-  </div>
-  <p class="syn">The viola introduces itself in a Dear Reader letter, then an epic tells its rise from forgotten instrument to solo voice. Meant to be read with a soundtrack of two viola concertos.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973764/preview" style="--bg:#7b3f1d;--tc:#fbeedb">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M64 104 C78 138 50 200 64 236" stroke="#1b0d05" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="59" cy="102" r="7" fill="#1b0d05"/><circle cx="69" cy="238" r="7" fill="#1b0d05"/><path d="M55 170 L73 170" stroke="#1b0d05" stroke-width="3"/><path d="M136 104 C122 138 150 200 136 236" stroke="#1b0d05" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="141" cy="102" r="7" fill="#1b0d05"/><circle cx="131" cy="238" r="7" fill="#1b0d05"/><path d="M127 170 L145 170" stroke="#1b0d05" stroke-width="3"/></svg>
+    <span class="label top"><span class="title">Viva Viola</span><span class="topic">The viola</span></span>
+   </span>
+   <span class="blurb"><span class="bt">Viva Viola</span>The viola introduces itself in a Dear Reader letter, then an epic tells its rise from forgotten instrument to solo voice. Meant to be read with a soundtrack of two viola concertos.</span>
+  </a>
  </li>
- <li class="t4">
-  <span class="no">20</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973769/preview">We Matter: Black Lives in Today&#x27;s America</a></h2>
-   <p class="topic">Black Lives Matter</p>
-  </div>
-  <p class="syn">Opens with a letter telling every reader they matter, then an obituary for Trayvon Martin, a birth certificate for Black Lives Matter, and more.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973769/preview" style="--bg:#111111;--tc:#f7c948">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="0" y="40" width="200" height="6" fill="#f7c948" opacity="0.9"/><rect x="0" y="54" width="200" height="6" fill="#f7c948" opacity="0.6"/><rect x="0" y="68" width="200" height="6" fill="#f7c948" opacity="0.35"/><rect x="0" y="238" width="200" height="6" fill="#f7c948" opacity="0.35"/><rect x="0" y="252" width="200" height="6" fill="#f7c948" opacity="0.6"/><rect x="0" y="266" width="200" height="6" fill="#f7c948" opacity="0.9"/></svg>
+    <span class="label mid"><span class="title">We Matter: Black Lives in Today&#x27;s America</span><span class="topic">Black Lives Matter</span></span>
+   </span>
+   <span class="blurb"><span class="bt">We Matter: Black Lives in Today&#x27;s America</span>Opens with a letter telling every reader they matter, then an obituary for Trayvon Martin, a birth certificate for Black Lives Matter, and more.</span>
+  </a>
  </li>
- <li class="t0">
-  <span class="no">21</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973773/preview">When Life Hands You Lemons</a></h2>
-   <p class="topic">Wolff&#x27;s Make Lemonade</p>
-  </div>
-  <p class="syn">A novel of poverty, young motherhood, and a fourteen-year-old babysitter saving for college, explored through poems and other genres.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973773/preview" style="--bg:#2f6f4e;--tc:#fff7d6">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="100" cy="118" r="64" fill="#f7d23e"/><circle cx="100" cy="118" r="56" fill="#fdf1a6"/><path d="M100 118 L150.0 118.0 A50 50 0 0 1 140.5 147.4Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L140.5 147.4 A50 50 0 0 1 115.5 165.6Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L115.5 165.6 A50 50 0 0 1 84.5 165.6Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L84.5 165.6 A50 50 0 0 1 59.5 147.4Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L59.5 147.4 A50 50 0 0 1 50.0 118.0Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L50.0 118.0 A50 50 0 0 1 59.5 88.6Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L59.5 88.6 A50 50 0 0 1 84.5 70.4Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L84.5 70.4 A50 50 0 0 1 115.5 70.4Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L115.5 70.4 A50 50 0 0 1 140.5 88.6Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><path d="M100 118 L140.5 88.6 A50 50 0 0 1 150.0 118.0Z" fill="#f7d23e" stroke="#fffbe0" stroke-width="3"/><circle cx="100" cy="118" r="6" fill="#fffbe0"/></svg>
+    <span class="label bottom"><span class="title">When Life Hands You Lemons</span><span class="topic">Wolff&#x27;s Make Lemonade</span></span>
+   </span>
+   <span class="blurb"><span class="bt">When Life Hands You Lemons</span>A novel of poverty, young motherhood, and a fourteen-year-old babysitter saving for college, explored through poems and other genres.</span>
+  </a>
  </li>
- <li class="t1">
-  <span class="no">22</span>
-  <div class="hd">
-   <h2><a href="https://miamioh.instructure.com/courses/258319/files/40973759/preview">The Wizard of Oz</a></h2>
-   <p class="topic">The making of the 1939 film</p>
-  </div>
-  <p class="syn">Ten screenwriters, four directors, and a film that lost money, plus a letter from an imagined studio hand whose name is in no book.</p>
+ <li>
+  <a class="book" href="https://miamioh.instructure.com/courses/258319/files/40973759/preview" style="--bg:#0b5d3b;--tc:#fdf6dc">
+   <span class="cover"><svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M16 222 A84 84 0 0 1 184 222" stroke="#e4572e" stroke-width="9" fill="none"/><path d="M27 222 A73 73 0 0 1 173 222" stroke="#f3a712" stroke-width="9" fill="none"/><path d="M38 222 A62 62 0 0 1 162 222" stroke="#f7e15a" stroke-width="9" fill="none"/><path d="M49 222 A51 51 0 0 1 151 222" stroke="#6bbf59" stroke-width="9" fill="none"/><path d="M60 222 A40 40 0 0 1 140 222" stroke="#3d84c6" stroke-width="9" fill="none"/><path d="M66 300 L92 222 L108 222 L134 300Z" fill="#f2c94c"/><line x1="70" y1="236" x2="130" y2="236" stroke="#b8860b" stroke-width="1"/><line x1="70" y1="252" x2="130" y2="252" stroke="#b8860b" stroke-width="1"/><line x1="70" y1="270" x2="130" y2="270" stroke="#b8860b" stroke-width="1"/><line x1="70" y1="290" x2="130" y2="290" stroke="#b8860b" stroke-width="1"/></svg>
+    <span class="label top"><span class="title">The Wizard of Oz</span><span class="topic">The making of the 1939 film</span></span>
+   </span>
+   <span class="blurb"><span class="bt">The Wizard of Oz</span>Ten screenwriters, four directors, and a film that lost money, plus a letter from an imagined studio hand whose name is in no book.</span>
+  </a>
  </li>
 </ol>
 </main>
+<script>
+// Touch screens have no hover: the first tap shows the description, the second opens the PDF.
+(function(){
+  if (!window.matchMedia("(hover: none)").matches) return;
+  document.querySelectorAll(".book").forEach(function(a){
+    a.addEventListener("click", function(e){
+      if (a.classList.contains("show")) return;
+      e.preventDefault();
+      document.querySelectorAll(".book.show").forEach(function(b){ b.classList.remove("show"); });
+      a.classList.add("show");
+    });
+  });
+})();
+</script>
 </body>
 </html>
