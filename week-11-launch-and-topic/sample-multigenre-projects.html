@@ -5,71 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sample Multigenre Projects — TCE 284</title>
 <style>
- :root{--accent:#0f766e;--accent2:#b45309;}
- body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:15px;background:#fff;}
- h1{font-size:22px;margin:0 0 2px;} .sub{color:#6b7280;font-size:13px;margin-bottom:18px;}
+ :root{--ink:#1f2937;--muted:#4b5563;
+  --c0:#0f766e;--c0b:#e3f4f1;--c1:#b45309;--c1b:#fdf0dc;--c2:#7c3aed;--c2b:#f1eafd;
+  --c3:#1d4ed8;--c3b:#e6edfc;--c4:#be185d;--c4b:#fce8f1;--c5:#15803d;--c5b:#e5f5ea;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:980px;margin:0 auto;padding:20px 16px 48px;color:var(--ink);line-height:1.5;font-size:15px;background:#fff;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
- ol.pairs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
- .pair{position:relative;background:#f2f8f7;border-left:4px solid var(--accent);border-radius:6px;padding:12px 14px 12px 50px;}
- .pair .n{position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
- .pair a{display:block;color:#0f5f59;font-weight:600;text-decoration:none;padding:3px 0;}
- .pair a + a{border-top:1px solid #d5e7e4;margin-top:4px;padding-top:7px;}
- .pair a:hover{color:var(--accent2);text-decoration:underline;}
- .pair a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px;}
+ header.band{background:linear-gradient(120deg,#0f766e 0%,#1d4ed8 55%,#7c3aed 100%);color:#fff;border-radius:10px;padding:18px 20px;margin-bottom:18px;}
+ header.band h1{font-size:24px;margin:0 0 4px;}
+ header.band p{margin:0;font-size:14px;opacity:.95;}
+ table{border-collapse:separate;border-spacing:0 8px;width:100%;}
+ thead th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 14px 2px;}
+ td{padding:12px 14px;vertical-align:top;}
+ tr td:first-child{border-radius:8px 0 0 8px;} tr td:last-child{border-radius:0 8px 8px 0;}
+ td.ti{width:30%;font-weight:700;} td.tp{width:20%;} td.sy{color:var(--ink);}
+ td.ti a{text-decoration:none;} td.ti a:hover{text-decoration:underline;}
+ td.ti a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px;}
+ td.tp span{display:inline-block;color:#fff;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;line-height:1.4;}
+ tr.c0 td{background:var(--c0b);} tr.c0 td:first-child{box-shadow:inset 5px 0 0 var(--c0);} tr.c0 td.ti a{color:var(--c0);} tr.c0 td.tp span{background:var(--c0);} tr.c1 td{background:var(--c1b);} tr.c1 td:first-child{box-shadow:inset 5px 0 0 var(--c1);} tr.c1 td.ti a{color:var(--c1);} tr.c1 td.tp span{background:var(--c1);} tr.c2 td{background:var(--c2b);} tr.c2 td:first-child{box-shadow:inset 5px 0 0 var(--c2);} tr.c2 td.ti a{color:var(--c2);} tr.c2 td.tp span{background:var(--c2);} tr.c3 td{background:var(--c3b);} tr.c3 td:first-child{box-shadow:inset 5px 0 0 var(--c3);} tr.c3 td.ti a{color:var(--c3);} tr.c3 td.tp span{background:var(--c3);} tr.c4 td{background:var(--c4b);} tr.c4 td:first-child{box-shadow:inset 5px 0 0 var(--c4);} tr.c4 td.ti a{color:var(--c4);} tr.c4 td.tp span{background:var(--c4);} tr.c5 td{background:var(--c5b);} tr.c5 td:first-child{box-shadow:inset 5px 0 0 var(--c5);} tr.c5 td.ti a{color:var(--c5);} tr.c5 td.tp span{background:var(--c5);} 
+ @media (max-width:640px){
+  thead{display:none;} table,tbody,tr,td{display:block;width:auto;}
+  table{border-spacing:0;} tr{margin:0 0 10px;border-radius:8px;overflow:hidden;}
+  td{padding:6px 14px;} td.ti{width:auto;padding-top:12px;} td.tp{width:auto;} td.sy{padding-bottom:12px;}
+  tr td:first-child,tr td:last-child{border-radius:0;}
+ }
 </style>
 </head>
 <body>
 <main>
 <a class="home" href="../index.html">← Course home</a>
-<h1>Sample Multigenre Projects</h1>
-<div class="sub">Act III · Multimodal Research Project</div>
-<ol class="pairs">
- <li class="pair"><span class="n">1</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973725">Call to Change</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973715">A Columbine Connection</a>
- </li>
- <li class="pair"><span class="n">2</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973721">Blood and Bravery</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973729">Cracking the Egg</a>
- </li>
- <li class="pair"><span class="n">3</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973730">Frozen Mourning</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973732">Giving a Voice to Women - with Long or Short Hair</a>
- </li>
- <li class="pair"><span class="n">4</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973733">Growing Up Spanglish</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973735">Inside Out - A Taming of Disorderly Anxiety</a>
- </li>
- <li class="pair"><span class="n">5</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973737">Long Strange Trip: The Interstate Highway System and the American Imagination</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973769">We Matter: Black Lives in Today&#x27;s America</a>
- </li>
- <li class="pair"><span class="n">6</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973746">May the Roads Rise to Meet You</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973728">Calumet Country Club: New Members Packet</a>
- </li>
- <li class="pair"><span class="n">7</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973747">Opening Closed Doors</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973757">The Man Behind the Movies: The Life and Career of Steven Speilberg</a>
- </li>
- <li class="pair"><span class="n">8</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973763">Third Culture Kid</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973764">Viva Viola</a>
- </li>
- <li class="pair"><span class="n">9</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973742">Marilyn</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973759">The Wizard of Oz</a>
- </li>
- <li class="pair"><span class="n">10</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973773">When Life Hands You Lemons</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973762">They Say She Ain&#x27;t No Hero</a>
- </li>
- <li class="pair"><span class="n">11</span>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973751">The Allosaurs in Phoenix</a>
-  <a href="https://miamioh.instructure.com/courses/258319/files/40973754">The Lunchroom</a>
- </li>
-</ol>
+<header class="band">
+ <h1>Sample Multigenre Projects</h1>
+ <p>Act III · Multimodal Research Project · each title opens the PDF in our Canvas course</p>
+</header>
+<table>
+ <thead><tr><th>Title</th><th>Topic</th><th>Synopsis</th></tr></thead>
+ <tbody>
+ <tr class="c0">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973751">The Allosaurs in Phoenix</a></td>
+  <td class="tp"><span>Dinosaurs</span></td>
+  <td class="sy">A science-fiction story of allosaurs loose in Phoenix, told in a diary, a newspaper article, a two-voice poem, a cartoon, and an encyclopedia entry. The writer says which parts are true.</td>
+ </tr>
+ <tr class="c1">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973721">Blood and Bravery</a></td>
+  <td class="tp"><span>Bram Stoker&#x27;s Dracula</span></td>
+  <td class="sy">Retells Dracula through maps, poems, and Jonathan Harker&#x27;s travels, and gives the Count the voice the novel never does. The novel is itself told in letters and diaries.</td>
+ </tr>
+ <tr class="c2">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973725">Call to Change</a></td>
+  <td class="tp"><span>Racial profiling and policing</span></td>
+  <td class="sy">Song lyrics, protest poems, a definition, and federal crime statistics ask whether racial profiling is a serious problem in American law enforcement.</td>
+ </tr>
+ <tr class="c3">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973728">Calumet Country Club: New Members Packet</a></td>
+  <td class="tp"><span>Working at a country club</span></td>
+  <td class="sy">Built as a welcome packet for new members: the manager&#x27;s letter, a waitress&#x27;s unofficial glossary of terms, and poems about golf, all from the staff side of the club.</td>
+ </tr>
+ <tr class="c4">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973715">A Columbine Connection</a></td>
+  <td class="tp"><span>The Columbine shooting</span></td>
+  <td class="sy">Written the summer after the 1999 shooting. A teacher at her students&#x27; funerals, a shooter&#x27;s inner voice, and a poem about waiting by the TV ask questions that have no answers.</td>
+ </tr>
+ <tr class="c5">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973729">Cracking the Egg</a></td>
+  <td class="tp"><span>The egg</span></td>
+  <td class="sy">Starts with childhood breakfasts, then follows the egg as a creation myth, a word (“egged on”), a hidden message, and the first step of a controversial science.</td>
+ </tr>
+ <tr class="c0">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973730">Frozen Mourning</a></td>
+  <td class="tp"><span>The Titanic</span></td>
+  <td class="sy">Asks what flaws doomed a ship that could have been saved. A newspaper scene, a timeline, the disaster in numbers, and poems put you on board.</td>
+ </tr>
+ <tr class="c1">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973732">Giving a Voice to Women - with Long or Short Hair</a></td>
+  <td class="tp"><span>Hurston&#x27;s Their Eyes Were Watching God</span></td>
+  <td class="sy">The writer reads Janie&#x27;s search for her own voice beside her own, and stages Hurston&#x27;s critics, including an imagined interview with Richard Wright.</td>
+ </tr>
+ <tr class="c2">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973733">Growing Up Spanglish</a></td>
+  <td class="tp"><span>Spanglish and Latino identity</span></td>
+  <td class="sy">Treats Spanglish as more than mixed language: a way of living between two worlds. History, statistics, and definitions follow one girl&#x27;s search for where she belongs.</td>
+ </tr>
+ <tr class="c3">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973735">Inside Out - A Taming of Disorderly Anxiety</a></td>
+  <td class="tp"><span>Anxiety disorders</span></td>
+  <td class="sy">Anxiety from the inside out: first what it feels like, in metaphor and dialogue, then the options and consequences of treatment.</td>
+ </tr>
+ <tr class="c4">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973737">Long Strange Trip: The Interstate Highway System and the American Imagination</a></td>
+  <td class="tp"><span>The Interstate Highway System</span></td>
+  <td class="sy">A children&#x27;s-book welcome to the interstates, the numbers behind them, and voices from the road, like a long-haul trucker&#x27;s.</td>
+ </tr>
+ <tr class="c5">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973754">The Lunchroom</a></td>
+  <td class="tp"><span>The high school cafeteria</span></td>
+  <td class="sy">Four years in one room: from the new girl with no one to sit with to the cafeteria as the stage for high school&#x27;s social wars.</td>
+ </tr>
+ <tr class="c0">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973757">The Man Behind the Movies: The Life and Career of Steven Speilberg</a></td>
+  <td class="tp"><span>Steven Spielberg</span></td>
+  <td class="sy">Spielberg&#x27;s life and films, opening with a young boy watching Jurassic Park for the first time on a family road trip.</td>
+ </tr>
+ <tr class="c1">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973742">Marilyn</a></td>
+  <td class="tp"><span>Marilyn Monroe</span></td>
+  <td class="sy">Looks past the screen goddess to the woman, through her own quotes and pieces on her highs and lows.</td>
+ </tr>
+ <tr class="c2">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973746">May the Roads Rise to Meet You</a></td>
+  <td class="tp"><span>Addiction and grief</span></td>
+  <td class="sy">Opens as a fairy tale about a girl whose father has a disease she does not yet understand, then turns to warning labels and other genres about addiction, relapse, and loss.</td>
+ </tr>
+ <tr class="c3">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973747">Opening Closed Doors</a></td>
+  <td class="tp"><span>Adoption</span></td>
+  <td class="sy">The real and imagined story of the writer&#x27;s own adoption, told from several sides: the birth mother, the parents who waited years, and the child.</td>
+ </tr>
+ <tr class="c4">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973762">They Say She Ain&#x27;t No Hero</a></td>
+  <td class="tp"><span>Wonder Woman</span></td>
+  <td class="sy">Asks why girls don&#x27;t say they want to be Wonder Woman, retells her origin in verse, and looks at her creator&#x27;s hopes and the sexism she met.</td>
+ </tr>
+ <tr class="c5">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973763">Third Culture Kid</a></td>
+  <td class="tp"><span>Growing up abroad</span></td>
+  <td class="sy">Life as a kid who moved from Illinois to Luxembourg at six: lists, letters, a map of the people she loves, and a seven-part story about coming home.</td>
+ </tr>
+ <tr class="c0">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973764">Viva Viola</a></td>
+  <td class="tp"><span>The viola</span></td>
+  <td class="sy">The viola introduces itself in a Dear Reader letter, then an epic tells its rise from forgotten instrument to solo voice. Meant to be read with a soundtrack of two viola concertos.</td>
+ </tr>
+ <tr class="c1">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973769">We Matter: Black Lives in Today&#x27;s America</a></td>
+  <td class="tp"><span>Black Lives Matter</span></td>
+  <td class="sy">Opens with a letter telling every reader they matter, then an obituary for Trayvon Martin, a birth certificate for Black Lives Matter, and more.</td>
+ </tr>
+ <tr class="c2">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973773">When Life Hands You Lemons</a></td>
+  <td class="tp"><span>Wolff&#x27;s Make Lemonade</span></td>
+  <td class="sy">A novel of poverty, young motherhood, and a fourteen-year-old babysitter saving for college, explored through poems and other genres.</td>
+ </tr>
+ <tr class="c3">
+  <td class="ti"><a href="https://miamioh.instructure.com/courses/258319/files/40973759">The Wizard of Oz</a></td>
+  <td class="tp"><span>The making of the 1939 film</span></td>
+  <td class="sy">Ten screenwriters, four directors, and a film that lost money, plus a letter from an imagined studio hand whose name is in no book.</td>
+ </tr>
+ </tbody>
+</table>
 </main>
 </body>
 </html>
