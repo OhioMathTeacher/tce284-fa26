@@ -18,6 +18,7 @@
  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#7a2e2e;margin:0 0 10px;}
  h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.05;margin:0;}
  .orn{width:64px;height:1px;background:#7a2e2e;margin:18px auto 14px;}
+ .caveat{max-width:600px;margin:18px auto 0;padding:12px 16px;background:#f1e7d6;border-left:3px solid #7a2e2e;border-radius:4px;text-align:left;font-size:14.5px;color:var(--ink);line-height:1.5}
  .dek{font-style:italic;color:var(--soft);margin:0;font-size:15px;}
  ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:34px 26px;}
  .book{position:relative;display:block;aspect-ratio:2/3;text-decoration:none;border-radius:2px 6px 6px 2px;
@@ -35,6 +36,11 @@
  .book:hover,.book:focus-visible{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 2px 2px rgba(0,0,0,.12),0 18px 30px -10px rgba(40,30,20,.55);outline:none;}
  .book:hover .blurb,.book:focus-visible .blurb,.book.show .blurb{opacity:1;}
  .book:focus-visible{box-shadow:0 0 0 3px var(--paper),0 0 0 5px #7a2e2e;}
+ .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+ .aitag{position:absolute;bottom:8px;right:8px;z-index:1;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;color:#fff;background:#7a2e2e;border-radius:3px;padding:2px 6px;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+ .ainote{display:block;margin-top:8px;font-style:italic;color:#7a2e2e}
+ .foot{margin:48px auto 0;max-width:640px;text-align:center;font-size:13.5px;color:var(--soft);border-top:1px solid #d9d2c4;padding-top:14px}
+ .foot b{color:#7a2e2e}
  @media (max-width:520px){ol{grid-template-columns:repeat(2,1fr);gap:24px 16px;} .title{font-size:18px;}}
 </style>
 </head>
@@ -46,6 +52,7 @@
  <h1>Sample Multigenre Projects</h1>
  <div class="orn"></div>
  <p class="dek">Hover over a book to read about the project. Click to open the PDF in our Canvas course.</p>
+ <p class="caveat">These are multigenre papers, not multimodal projects: words and pictures on paper, with no audio or video. Many were made by K-12 students. Read them with that in mind. Your work will be different, for sure!</p>
 </header>
 <ol>
  <li>
@@ -54,6 +61,12 @@
     <span class="label top"><span class="title">The Allosaurs in Phoenix</span><span class="topic">Dinosaurs</span></span>
    </span>
    <span class="blurb"><span class="bt">The Allosaurs in Phoenix</span>A science-fiction story of allosaurs loose in Phoenix, told in a diary, a newspaper article, a two-voice poem, a cartoon, and an encyclopedia entry. The writer says which parts are true.</span>
+  </a>
+ </li>
+ <li>
+  <a class="book ai" href="https://miamioh.instructure.com/courses/258319/files/40975464/preview">
+   <span class="cover"><img src="covers/allosaurs-ai.jpg" alt="" style="object-position:left center"><span class="aitag" aria-label="AI edition">AI*</span></span>
+   <span class="blurb"><span class="bt">The Allosaurs in Phoenix <em>(AI edition)</em></span>A science-fiction story of allosaurs loose in Phoenix, told in a diary, a newspaper article, a two-voice poem, a cartoon, and an encyclopedia entry. The writer says which parts are true. <span class="ainote">The writer's words, newly typeset and illustrated with AI. Compare with the original.</span></span>
   </a>
  </li>
  <li>
@@ -118,6 +131,12 @@
     <span class="label bottom"><span class="title">Growing Up Spanglish</span><span class="topic">Spanglish and Latino identity</span></span>
    </span>
    <span class="blurb"><span class="bt">Growing Up Spanglish</span>Treats Spanglish as more than mixed language: a way of living between two worlds. History, statistics, and definitions follow one girl&#x27;s search for where she belongs.</span>
+  </a>
+ </li>
+ <li>
+  <a class="book ai" href="https://miamioh.instructure.com/courses/258319/files/40975465/preview">
+   <span class="cover"><img src="covers/spanglish-ai.jpg" alt=""><span class="aitag" aria-label="AI edition">AI*</span></span>
+   <span class="blurb"><span class="bt">Growing Up Spanglish <em>(AI edition)</em></span>Treats Spanglish as more than mixed language: a way of living between two worlds. History, statistics, and definitions follow one girl&#x27;s search for where she belongs. <span class="ainote">The writer's words, newly typeset and illustrated with AI. Compare with the original.</span></span>
   </a>
  </li>
  <li>
@@ -225,6 +244,7 @@
   </a>
  </li>
 </ol>
+<p class="foot"><b>AI*</b> The writer's words exactly as written, typeset and illustrated with AI (Claude) in October 2026, to compare with the original from before AI.</p>
 </main>
 <script>
 // Touch screens have no hover: the first tap shows the description, the second opens the PDF.
