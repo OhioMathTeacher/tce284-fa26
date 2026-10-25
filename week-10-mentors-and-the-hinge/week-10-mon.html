@@ -20,6 +20,17 @@
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -29,49 +40,50 @@
 <div class="sub">Act II · currere · <em>mentors · endings · your close · work time</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Hear what Romano says about learning from writers you admire, read four currere endings in groups of three, gush a possible ending of your own, then work on your draft with your group.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-read">
- <h2>1 · Learning from mentors (WWM ch19) <span class="time">(~10 min)</span> · <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p1#slide=id.p1">slides</a> <span class="time">(private link)</span></h2>
+<details class="block b-read">
+ <summary><h2>1 · Learning from mentors (WWM ch19) <span class="time">(~10 min)</span> · <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p1#slide=id.p1">slides</a> <span class="time">(private link)</span></h2></summary>
  <ul>
   <li>A few passages from <strong>WWM ch19, "Mentors, Imitation, Apprenticeship,"</strong> on the slides.</li>
   <li>Open ch19 in <a href="https://ohiomathteacher.github.io/journaler-284/">Journaler</a>'s Readings as we go. Mark a passage and type what you would borrow.</li>
  </ul>
  <p class="purpose">Purpose: Romano learned from writers he never met. Today the mentors are four currere writers, and the move you borrow is an ending.</p>
-</div>
+</details>
 
-<div class="block b-craft">
- <h2>2 · How a currere closes, in threes <span class="time">(~20 min)</span></h2>
+<details class="block b-craft">
+ <summary><h2>2 · How a currere closes, in threes <span class="time">(~20 min)</span></h2></summary>
  <ul>
   <li>Count off into groups of three. Each of you takes one ending from the slides:
    <ul>
-    <li>1 · <a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277227">Daspit, "None of Us"</a></li>
-    <li>2 · <a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277239">Romano, "The Anchor, the Bridge, the Lesson"</a></li>
-    <li>3 · <a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277226">Bird, "Self-Coaching Emotions"</a></li>
+    <li>1 · <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p5#slide=id.p5">Daspit, "None of Us"</a></li>
+    <li>2 · <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p6#slide=id.p6">J. Edwards, "Beyond Presence"</a></li>
+    <li>3 · <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p7#slide=id.p7">Wiederhold, "How to Read a Blank Page of Writing"</a></li>
    </ul>
   </li>
   <li>Read yours, then tell your group what your writer does on the last page.</li>
-  <li>Then, as a whole class, listen to me read the fourth ending: <a class="rdg" data-rdg="currere" href="https://miamioh.instructure.com/courses/258319/files/40277230">Edwards, "Who's Cheating Whom?"</a></li>
+  <li>Then, as a whole class, listen to me read the fourth ending: <a href="https://docs.google.com/presentation/d/16XnQ-zYw2015PkM9YhKUEhytqin4UsSL/edit?slide=id.p8#slide=id.p8">Edwards, "Who's Cheating Whom?"</a></li>
  </ul>
  <p class="purpose">Purpose: each of you reads one ending closely, your group hears three, and the whole class hears the fourth read aloud.</p>
-</div>
+</details>
 
-<div class="block b-write">
- <h2>3 · Gush a possible ending <span class="time">(~10 min)</span></h2>
+<details class="block b-write">
+ <summary><h2>3 · Gush a possible ending <span class="time">(~10 min)</span></h2></summary>
  <ul>
   <li>In Journaler, <strong>Freewrite/OPs → Open page.</strong> Set the timer to <strong>5:00</strong> and go. Don't stop, don't fix. When it ends, press <strong>+ Add to notebook.</strong></li>
   <li>Your <a href="../writers-notebook/Writers%20Notebook%20Guidelines.docx">Writer's Notebook</a> is due <strong>Wednesday, December 2</strong>, and it lives in Journaler. Open <strong>My Progress</strong> to see where you stand. If you haven't opened Journaler in a while and saved a backup of your work, you really should: <strong>Save my work.</strong></li>
  </ul>
  <p class="purpose">Purpose: get a first try at your close on the page, and keep the notebook moving.</p>
-</div>
+</details>
 
-<div class="block b-launch">
- <h2>4 · Work time, with your group <span class="time">(~40 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>4 · Work time, with your group <span class="time">(~40 min)</span></h2></summary>
  <ul>
   <li>Read each other your endings. Talk. Then keep going on your draft, starting with what your conference named.</li>
   <li>I'll circulate. Grab me for the one thing you're stuck on.</li>
  </ul>
  <p class="purpose">Purpose: the longest block of the day goes to your own draft, with your group in reach.</p>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; before Wednesday:</strong>
@@ -80,6 +92,24 @@
   <li>Wednesday we record the audio for your author page and go hunting for the genres buried in your currere — the start of Act III.</li>
  </ul>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 
 </main>
 </body>
