@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quick Quiz: The Project Guidelines — TCE 284</title>
+<title>Quick Quiz: Does It Count? — TCE 284</title>
 
 <style>
  :root{--accent:#0f766e;--ink:#1f2937;--muted:#6b7280;--bg:#f6f4ee;--card:#fffdf8;
@@ -21,6 +21,7 @@
  .bar span.got{background:#4ade80;} .bar span.miss{background:#f87171;}
  .card{background:var(--card);border-radius:14px;padding:22px 22px 18px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 6px 18px rgba(0,0,0,.05);}
  .count{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;}
+ .ask{font-size:16px;color:var(--muted);margin:6px 0 0;}
  .q{font-size:22px;font-weight:600;line-height:1.4;margin:6px 0 4px;}
  .all{display:inline-block;margin:6px 0 2px;padding:3px 10px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:15px;font-weight:600;}
  .opts{display:grid;gap:12px;margin:16px 0 6px;}
@@ -58,73 +59,50 @@
 <body>
 <main>
 <a class="home" href="week-11-mon.html">← Week 11 · Monday</a>
-<h1>Quick Quiz: The Project Guidelines</h1>
-<div class="sub">Act III · Multimodal Research Project · <em>six questions · keep the <a href="Multimodal%20Research%20Project%20TCE%20284.docx">guidelines</a> open</em></div>
+<h1>Quick Quiz: Does It Count?</h1>
+<div class="sub">Act III · Multimodal Research Project · <em>seven questions · keep the <a href="Multimodal%20Research%20Project%20TCE%20284.docx">guidelines</a> open</em></div>
 
 <div class="bar" id="bar" aria-hidden="true"></div>
 <div class="card" id="card" aria-live="polite"></div>
 
-<p class="note">These questions were made by AI from the project guidelines. Where the two disagree, the guidelines win.</p>
+<p class="note">Every question asks the same thing: does this count as one of your twelve pieces? Where this quiz and the guidelines disagree, the guidelines win.</p>
 
 <script>
 var QUIZ = [
- {q:"A student submits a Multimodal Research Project containing a Preface, Informational Essay, Free Verse Poem, Visual Element, Unifying Elements, Note Pages, Works Cited, and Finale, along with three additional choice genres (a speech, an op-ed, and a recipe). Why does this submission fail to meet the baseline project requirements?",
+ {q:"A Suno song set to lyrics you wrote.",
   opts:[
-   {t:"Audio and video pieces must be submitted as separate standalone entries outside the eight core elements and four choice genres.",
-    why:"Audio and video items do not need to be extra standalone items; they can fulfill slots within either the eight required pieces or the four chosen genres."},
-   {t:"The total piece count is only eleven. The student's list is missing the audio and video pieces, transformed AI artifact, reflective note, and table of contents.", ok:true,
-    why:"The requirement mandates eight specified core pieces plus at least four additional student-chosen genres. A complete project includes audio and video pieces, a transformed AI artifact, reflective note, and a table of contents."},
-   {t:"The student omitted the mandatory reflective note on AI, which must serve as a ninth required core piece.",
-    why:"While a reflective note on AI is required, it is evaluated as a reflective component rather than being classified as one of the eight core required creative pieces."},
-   {t:"Choice genres are capped at two, meaning that including three additional genres violates the project structure.",
-    why:"Four or more choice genres are required, so having additional choice genres is encouraged rather than capped."}
+   {t:"Yes, it counts.", why:"What AI makes is others' work, even when it is made from yours."},
+   {t:"No, it doesn't count.", ok:true, why:"The song is AI's work. Your lyric sheet, written by you, does count."}
   ]},
- {q:"Which of the following source combinations fulfill the minimum source standards ('source floor') required for the project?", multi:true,
+ {q:"A collage you cut from magazine photos.",
   opts:[
-   {t:"Three peer-reviewed journal articles, two archived news clips, and a long-form article from a national magazine."},
-   {t:"A student-conducted survey, two peer-reviewed journal articles, and a collection of audio soundscapes."},
-   {t:"A firsthand observation recorded by the student, a peer-reviewed journal article, and a feature-length documentary.", ok:true},
-   {t:"An interview conducted by the student with a subject expert, a peer-reviewed journal article, and a published academic book.", ok:true}
+   {t:"Yes, it counts.", why:"The photos are others' work. A collage counts when it is made of your own drawings or photographs."},
+   {t:"No, it doesn't count.", ok:true, why:"A collage counts when it is made of your own drawings or photographs."}
   ]},
- {q:"Regarding the 1-to-3 minute audio and video components created by the student, how must they be integrated into the project framework?",
+ {q:"Your 400-word op-ed, which quotes your interviewee in about 30 words, cited.",
   opts:[
-   {t:"They must be linked within the single submitted PDF and can count toward either the eight required pieces or the four choice genres.", ok:true,
-    why:"Audio and video pieces are embedded via links in the main PDF and TOC, and they can count toward either the core eight or the chosen four genres."},
-   {t:"They must be included as optional extra credit elements that do not count toward the baseline piece total.",
-    why:"Audio and video elements are mandatory requirements of the project, not optional extra credit additions."},
-   {t:"They must be generated entirely through automated AI software without any original student voice or footage.",
-    why:"Audio and video pieces must be made by the student, utilizing original framing, voiceover, footage, or scripted content."},
-   {t:"They must be uploaded as separate raw media files directly to Canvas without being referenced in the PDF table of contents.",
-    why:"The submission guidelines require everything to be turned in as one unified PDF with external audio/video links named in the table of contents."}
+   {t:"Yes, it counts.", ok:true, why:"Others' work can appear inside your piece if you cite it and it stays under about a tenth. 30 words out of 400 is under a tenth."},
+   {t:"No, it doesn't count.", why:"It does count. The quote is cited, and 30 words out of 400 is under a tenth of the piece."}
   ]},
- {q:"A student uses NotebookLM to create an audio podcast for their project. Under what condition does this podcast count as the student's own project piece rather than an external source or raw AI output?",
+ {q:"Your 400-word op-ed, half of it quoted from your interviewee, cited.",
   opts:[
-   {t:"The podcast includes an unedited audio clip from an archivist interviewed on a news broadcast.",
-    why:"Unframed clips of someone else's work function as external sources for the Works Cited page, not as student-created project pieces."},
-   {t:"The podcast is left completely raw and inserted directly without any student commentary or reflection.",
-    why:"Raw AI generation from external material lacks the required student transformation and reflective commentary needed to count as a student piece."},
-   {t:"The podcast is generated from the student's own journal entries and is accompanied by the student's written reflection on it.", ok:true,
-    why:"The underlying source material determines ownership; using personal journal entries makes the generation the student's work, and adding a reflection establishes it as a completed project piece."},
-   {t:"The podcast is synthesized directly from a secondary peer-reviewed journal article without modifying the text.",
-    why:"AI output derived from someone else's journal article does not count as the student's own creative piece."}
+   {t:"Yes, it counts.", why:"Citing is not enough. Others' work inside your piece has to stay under about a tenth. 200 words out of 400 is half."},
+   {t:"No, it doesn't count.", ok:true, why:"Others' work inside your piece has to stay under about a tenth. 200 words out of 400 is half. Cut the quotes back and it counts."}
   ]},
- {q:"Which of the following guidelines accurately reflect project rules regarding AI usage, labeling, and raw outputs?", multi:true,
+ {q:"A 2-minute audio piece: your narration, with interview clips that run 45 seconds in all.",
   opts:[
-   {t:"Generative AI tools are strictly required to write the preliminary draft of every written genre in the project."},
-   {t:"Every AI-made piece must be explicitly labeled as AI-made and describe the student's specific actions in transforming or reacting to it.", ok:true},
-   {t:"A maximum of two NotebookLM outputs may appear in raw form across the entire project.", ok:true},
-   {t:"An AI artifact can take a critical stance, as a piece exposing machine flaws counts as fully as one putting AI to productive work.", ok:true}
+   {t:"Yes, it counts.", why:"For audio, count running time. 45 seconds out of 120 is more than a third, well over a tenth."},
+   {t:"No, it doesn't count.", ok:true, why:"Not as it stands. 45 seconds out of 120 is more than a third. Trim the clips to about 12 seconds and it counts."}
   ]},
- {q:"When assessing the mandatory Reflection on AI, which approach aligns with the criteria for earning full credit on this evaluation component?",
+ {q:"You reading a commentary you wrote over an AI-generated video.",
   opts:[
-   {t:"Writing a generalized essay on the societal ethics and broad future implications of artificial intelligence in higher education.",
-    why:"General statements about AI do not satisfy the requirement for a candid, project-specific reflection."},
-   {t:"Submitting a log of raw user prompts without analyzing editorial modifications or machine limitations.",
-    why:"Prompt logs alone do not fulfill the requirement to reflect on where AI helped, flattened, or required human modification."},
-   {t:"Proving that AI tools were completely avoided to demonstrate complete human independence in research.",
-    why:"The project specifically requires working alongside AI and reflecting on that interaction, rather than avoiding it entirely."},
-   {t:"Providing a candid, project-specific narrative detailing where AI helped, where it flattened expression, and why specific changes were made.", ok:true,
-    why:"Full credit requires specific and candid analysis of AI's actual impact on the individual student's research and creative decisions."}
+   {t:"Yes, it counts.", ok:true, why:"The script counts. It is your writing, so include it along with the video link. The video itself does not count. Its pictures are AI's work, about half of what it holds, and that is far over a tenth."},
+   {t:"No, it doesn't count.", why:"The script counts. It is your writing, so include it along with the video link. The video itself does not count. Its pictures are AI's work, about half of what it holds."}
+  ]},
+ {q:"Your recorded commentary over an AI-generated video, as your transformed artifact.",
+  opts:[
+   {t:"Yes, it counts.", why:"The transformed artifact is required, but it doesn't count toward your twelve."},
+   {t:"No, it doesn't count.", ok:true, why:"The transformed artifact is required, but it doesn't count toward your twelve."}
   ]}
 ];
 
@@ -147,6 +125,7 @@ function draw(){
   if (i >= QUIZ.length) return drawResults(card);
   var Q = QUIZ[i], checked = done[i] !== null;
   card.appendChild(el("div","count","Question " + (i+1) + " of " + QUIZ.length));
+  card.appendChild(el("div","ask","Does this count as one of your twelve pieces?"));
   card.appendChild(el("div","q",Q.q));
   if (Q.multi) card.appendChild(el("span","all","Select all that apply"));
   var box = el("div","opts");
