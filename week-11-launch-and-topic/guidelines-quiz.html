@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quick Quiz: The Project Guidelines — TCE 284</title>
+
+<style>
+ :root{--accent:#0f766e;--ink:#1f2937;--muted:#6b7280;--bg:#f6f4ee;--card:#fffdf8;
+   --right:#15803d;--rightbg:#dcfce7;--wrong:#b91c1c;--wrongbg:#fee2e2;}
+ *{box-sizing:border-box;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);margin:0;line-height:1.5;font-size:17px;}
+ main{max-width:860px;margin:0 auto;padding:20px 16px 48px;}
+ a{color:#2563eb;}
+ .home{display:inline-block;margin:0 0 10px;font-size:14px;color:var(--muted);text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ h1{font-size:26px;margin:0 0 2px;} .sub{color:var(--muted);font-size:14px;margin-bottom:16px;}
+ .bar{display:flex;gap:6px;margin:14px 0 18px;}
+ .bar span{flex:1;height:10px;border-radius:5px;background:#e5e1d6;}
+ .bar span.now{background:var(--accent);}
+ .bar span.got{background:#4ade80;} .bar span.miss{background:#f87171;}
+ .card{background:var(--card);border-radius:14px;padding:22px 22px 18px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 6px 18px rgba(0,0,0,.05);}
+ .count{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;}
+ .q{font-size:22px;font-weight:600;line-height:1.4;margin:6px 0 4px;}
+ .all{display:inline-block;margin:6px 0 2px;padding:3px 10px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:15px;font-weight:600;}
+ .opts{display:grid;gap:12px;margin:16px 0 6px;}
+ .opt{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:inherit;
+   padding:14px 16px;border-radius:12px;border:2px solid transparent;cursor:pointer;transition:transform .08s,border-color .15s,box-shadow .15s;}
+ .opt:hover:not([disabled]){transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.08);}
+ .opt:focus-visible{outline:3px solid #2563eb;outline-offset:2px;}
+ .opt[disabled]{cursor:default;}
+ .c0{background:#e0f2fe;} .c1{background:#ede9fe;} .c2{background:#fef3c7;} .c3{background:#fce7f3;}
+ .opt .k{flex:none;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-weight:700;color:#fff;font-size:17px;}
+ .c0 .k{background:#0369a1;} .c1 .k{background:#6d28d9;} .c2 .k{background:#b45309;} .c3 .k{background:#be185d;}
+ .opt[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink) inset;}
+ .opt .txt{flex:1;}
+ .opt .why{display:block;margin-top:6px;font-size:15px;color:#374151;}
+ .opt .verdict{display:block;margin-top:6px;font-size:15px;font-weight:700;}
+ .opt.is-right{background:var(--rightbg);border-color:var(--right);box-shadow:none;}
+ .opt.is-right .k{background:var(--right);}
+ .opt.is-right .verdict{color:var(--right);}
+ .opt.picked-wrong{background:var(--wrongbg);border-color:var(--wrong);box-shadow:none;}
+ .opt.picked-wrong .k{background:var(--wrong);}
+ .opt.picked-wrong .verdict{color:var(--wrong);}
+ .opt.faded{opacity:.6;}
+ .result{font-size:19px;font-weight:700;margin:10px 0 0;min-height:1.5em;}
+ .result.ok{color:var(--right);} .result.no{color:var(--wrong);}
+ .nav{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px;}
+ .btn{font:inherit;font-size:17px;font-weight:600;padding:10px 20px;border-radius:999px;border:2px solid var(--accent);background:#fff;color:var(--accent);cursor:pointer;}
+ .btn.primary{background:var(--accent);color:#fff;}
+ .btn[disabled]{opacity:.4;cursor:default;}
+ .btn:focus-visible{outline:3px solid #2563eb;outline-offset:2px;}
+ .score{font-size:56px;font-weight:800;margin:4px 0 0;color:var(--accent);}
+ .missed{margin:14px 0 0;padding-left:22px;} .missed li{margin:8px 0;}
+ .note{font-size:14px;color:var(--muted);margin-top:18px;}
+</style>
+</head>
+<body>
+<main>
+<a class="home" href="week-11-mon.html">← Week 11 · Monday</a>
+<h1>Quick Quiz: The Project Guidelines</h1>
+<div class="sub">Act III · Multimodal Research Project · <em>six questions · keep the <a href="Multimodal%20Research%20Project%20TCE%20284.docx">guidelines</a> open</em></div>
+
+<div class="bar" id="bar" aria-hidden="true"></div>
+<div class="card" id="card" aria-live="polite"></div>
+
+<p class="note">These questions were made by AI from the project guidelines. Where the two disagree, the guidelines win.</p>
+
+<script>
+var QUIZ = [
+ {q:"A student submits a Multimodal Research Project containing a Preface, Informational Essay, Free Verse Poem, Visual Element, Unifying Elements, Note Pages, Works Cited, and Finale, along with three additional choice genres (a speech, an op-ed, and a recipe). Why does this submission fail to meet the baseline project requirements?",
+  opts:[
+   {t:"Audio and video pieces must be submitted as separate standalone entries outside the eight core elements and four choice genres.",
+    why:"Audio and video items do not need to be extra standalone items; they can fulfill slots within either the eight required pieces or the four chosen genres."},
+   {t:"The total piece count is only eleven. The student's list is missing the audio and video pieces, transformed AI artifact, reflective note, and table of contents.", ok:true,
+    why:"The requirement mandates eight specified core pieces plus at least four additional student-chosen genres. A complete project includes audio and video pieces, a transformed AI artifact, reflective note, and a table of contents."},
+   {t:"The student omitted the mandatory reflective note on AI, which must serve as a ninth required core piece.",
+    why:"While a reflective note on AI is required, it is evaluated as a reflective component rather than being classified as one of the eight core required creative pieces."},
+   {t:"Choice genres are capped at two, meaning that including three additional genres violates the project structure.",
+    why:"Four or more choice genres are required, so having additional choice genres is encouraged rather than capped."}
+  ]},
+ {q:"Which of the following source combinations fulfill the minimum source standards ('source floor') required for the project?", multi:true,
+  opts:[
+   {t:"Three peer-reviewed journal articles, two archived news clips, and a long-form article from a national magazine."},
+   {t:"A student-conducted survey, two peer-reviewed journal articles, and a collection of audio soundscapes."},
+   {t:"A firsthand observation recorded by the student, a peer-reviewed journal article, and a feature-length documentary.", ok:true},
+   {t:"An interview conducted by the student with a subject expert, a peer-reviewed journal article, and a published academic book.", ok:true}
+  ]},
+ {q:"Regarding the 1-to-3 minute audio and video components created by the student, how must they be integrated into the project framework?",
+  opts:[
+   {t:"They must be linked within the single submitted PDF and can count toward either the eight required pieces or the four choice genres.", ok:true,
+    why:"Audio and video pieces are embedded via links in the main PDF and TOC, and they can count toward either the core eight or the chosen four genres."},
+   {t:"They must be included as optional extra credit elements that do not count toward the baseline piece total.",
+    why:"Audio and video elements are mandatory requirements of the project, not optional extra credit additions."},
+   {t:"They must be generated entirely through automated AI software without any original student voice or footage.",
+    why:"Audio and video pieces must be made by the student, utilizing original framing, voiceover, footage, or scripted content."},
+   {t:"They must be uploaded as separate raw media files directly to Canvas without being referenced in the PDF table of contents.",
+    why:"The submission guidelines require everything to be turned in as one unified PDF with external audio/video links named in the table of contents."}
+  ]},
+ {q:"A student uses NotebookLM to create an audio podcast for their project. Under what condition does this podcast count as the student's own project piece rather than an external source or raw AI output?",
+  opts:[
+   {t:"The podcast includes an unedited audio clip from an archivist interviewed on a news broadcast.",
+    why:"Unframed clips of someone else's work function as external sources for the Works Cited page, not as student-created project pieces."},
+   {t:"The podcast is left completely raw and inserted directly without any student commentary or reflection.",
+    why:"Raw AI generation from external material lacks the required student transformation and reflective commentary needed to count as a student piece."},
+   {t:"The podcast is generated from the student's own journal entries and is accompanied by the student's written reflection on it.", ok:true,
+    why:"The underlying source material determines ownership; using personal journal entries makes the generation the student's work, and adding a reflection establishes it as a completed project piece."},
+   {t:"The podcast is synthesized directly from a secondary peer-reviewed journal article without modifying the text.",
+    why:"AI output derived from someone else's journal article does not count as the student's own creative piece."}
+  ]},
+ {q:"Which of the following guidelines accurately reflect project rules regarding AI usage, labeling, and raw outputs?", multi:true,
+  opts:[
+   {t:"Generative AI tools are strictly required to write the preliminary draft of every written genre in the project."},
+   {t:"Every AI-made piece must be explicitly labeled as AI-made and describe the student's specific actions in transforming or reacting to it.", ok:true},
+   {t:"A maximum of two NotebookLM outputs may appear in raw form across the entire project.", ok:true},
+   {t:"An AI artifact can take a critical stance, as a piece exposing machine flaws counts as fully as one putting AI to productive work.", ok:true}
+  ]},
+ {q:"When assessing the mandatory Reflection on AI, which approach aligns with the criteria for earning full credit on this evaluation component?",
+  opts:[
+   {t:"Writing a generalized essay on the societal ethics and broad future implications of artificial intelligence in higher education.",
+    why:"General statements about AI do not satisfy the requirement for a candid, project-specific reflection."},
+   {t:"Submitting a log of raw user prompts without analyzing editorial modifications or machine limitations.",
+    why:"Prompt logs alone do not fulfill the requirement to reflect on where AI helped, flattened, or required human modification."},
+   {t:"Proving that AI tools were completely avoided to demonstrate complete human independence in research.",
+    why:"The project specifically requires working alongside AI and reflecting on that interaction, rather than avoiding it entirely."},
+   {t:"Providing a candid, project-specific narrative detailing where AI helped, where it flattened expression, and why specific changes were made.", ok:true,
+    why:"Full credit requires specific and candid analysis of AI's actual impact on the individual student's research and creative decisions."}
+  ]}
+];
+
+var LETTERS = "ABCD", i = 0, picks = [], done = [];
+function reset(){ i = 0; picks = QUIZ.map(function(){ return []; }); done = QUIZ.map(function(){ return null; }); }
+function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function correct(n){ var want = []; QUIZ[n].opts.forEach(function(o,k){ if (o.ok) want.push(k); });
+  var got = picks[n].slice().sort(); return want.length === got.length && want.every(function(w,k){ return w === got[k]; }); }
+
+function drawBar(){
+  var bar = document.getElementById("bar"); bar.innerHTML = "";
+  QUIZ.forEach(function(_,n){ var s = el("span");
+    if (done[n] === true) s.className = "got"; else if (done[n] === false) s.className = "miss"; else if (n === i) s.className = "now";
+    bar.appendChild(s); });
+}
+
+function draw(){
+  drawBar();
+  var card = document.getElementById("card"); card.innerHTML = "";
+  if (i >= QUIZ.length) return drawResults(card);
+  var Q = QUIZ[i], checked = done[i] !== null;
+  card.appendChild(el("div","count","Question " + (i+1) + " of " + QUIZ.length));
+  card.appendChild(el("div","q",Q.q));
+  if (Q.multi) card.appendChild(el("span","all","Select all that apply"));
+  var box = el("div","opts");
+  Q.opts.forEach(function(o,k){
+    var b = el("button","opt c" + k); b.type = "button";
+    var on = picks[i].indexOf(k) >= 0;
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.appendChild(el("span","k",LETTERS[k]));
+    var t = el("span","txt",o.t);
+    if (checked){
+      b.disabled = true;
+      if (o.ok) b.classList.add("is-right");
+      else if (on) b.classList.add("picked-wrong");
+      else b.classList.add("faded");
+      if (o.ok || on) t.appendChild(el("span","verdict", o.ok ? (on ? "✓ Right answer · your pick" : "✓ Right answer · you didn't pick it") : "✗ Not this one"));
+      if (o.why) t.appendChild(el("span","why",o.why));
+    }
+    b.appendChild(t);
+    b.addEventListener("click", function(){
+      if (Q.multi){ var p = picks[i].indexOf(k); if (p >= 0) picks[i].splice(p,1); else picks[i].push(k); }
+      else picks[i] = [k];
+      draw();
+    });
+    box.appendChild(b);
+  });
+  card.appendChild(box);
+  var res = el("div","result");
+  if (checked){ res.textContent = done[i] ? "Got it!" : "Not quite."; res.classList.add(done[i] ? "ok" : "no"); }
+  card.appendChild(res);
+  var nav = el("div","nav");
+  var prev = el("button","btn","Previous"); prev.type = "button"; prev.disabled = i === 0;
+  prev.addEventListener("click", function(){ i--; draw(); });
+  nav.appendChild(prev);
+  if (!checked){
+    var chk = el("button","btn primary","Check"); chk.type = "button"; chk.disabled = picks[i].length === 0;
+    chk.addEventListener("click", function(){ done[i] = correct(i); draw(); });
+    nav.appendChild(chk);
+  } else {
+    var nx = el("button","btn primary", i === QUIZ.length - 1 ? "See results" : "Next"); nx.type = "button";
+    nx.addEventListener("click", function(){ i++; draw(); });
+    nav.appendChild(nx);
+  }
+  card.appendChild(nav);
+}
+
+function drawResults(card){
+  var got = done.filter(function(d){ return d === true; }).length;
+  card.appendChild(el("div","count","Your score"));
+  card.appendChild(el("div","score",got + " / " + QUIZ.length));
+  var missed = []; done.forEach(function(d,n){ if (d !== true) missed.push(n); });
+  if (missed.length){
+    card.appendChild(el("p",null,"Look again at these in the guidelines:"));
+    var ul = el("ul","missed");
+    missed.forEach(function(n){ var li = el("li"); var a = el("a",null,"Question " + (n+1)); a.href = "#";
+      a.addEventListener("click", function(e){ e.preventDefault(); i = n; draw(); }); li.appendChild(a); ul.appendChild(li); });
+    card.appendChild(ul);
+  } else card.appendChild(el("p",null,"Every one right."));
+  var nav = el("div","nav");
+  var again = el("button","btn primary","Try again"); again.type = "button";
+  again.addEventListener("click", function(){ reset(); draw(); });
+  nav.appendChild(again); card.appendChild(nav);
+}
+
+reset(); draw();
+</script>
+</main>
+</body>
+</html>
