@@ -24,6 +24,12 @@
  button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
  button.primary:hover{background:#0b5f58;}
  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+ button:disabled,button:disabled:hover{opacity:.45;cursor:not-allowed;background:var(--accent);border-color:var(--accent);}
+ .passok{font-size:14px;color:#166534;font-weight:600;white-space:nowrap;}
+ .passok[hidden]{display:none;}
+ .linkbtn{border:0;background:transparent;color:#2563eb;padding:0 4px;font-size:13px;font-weight:400;text-decoration:underline;cursor:pointer;}
+ .linkbtn:hover{background:transparent;}
+ input.pass[readonly]{background:#f3f4f1;color:#374151;}
  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-left:auto;}
  .legend span{display:inline-flex;align-items:center;gap:5px;}
  .sw{display:inline-block;width:14px;height:14px;border-radius:3px;}
@@ -91,7 +97,8 @@
 
 <div class="bar">
  <label class="passlabel" for="pass">Class passcode</label>
- <input type="text" class="pass" id="pass" placeholder="type it here" autocomplete="off" spellcheck="false" autocapitalize="off">
+ <input type="text" class="pass" id="pass" placeholder="type it, then press Enter" autocomplete="off" spellcheck="false" autocapitalize="off">
+ <span class="passok" id="passok" hidden>✓ Passcode accepted <button type="button" class="linkbtn" id="passchange">Change</button></span>
  <div class="split" id="split">
   <button type="button" class="primary main" id="compareAI">Compare</button><button type="button" class="primary arrow" id="more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to compare">▾</button>
   <div class="menu" id="menu" hidden><button type="button" id="compare">Compare without AI</button></div>
@@ -276,8 +283,8 @@
  function mine(key){ return state.lists[key].filter(function(it){ return !it.found; }).map(function(it){ return it.text; }); }
 
  function compareAI(){
-  var pass = $("pass").value.trim();
-  if (!pass){ status("Type the class passcode first, or click ▾ and choose Compare without AI.", true); $("pass").focus(); return; }
+  var pass = passOK ? acceptedPass : "";
+  if (!pass){ status("Type the class passcode and press Enter, or click ▾ and choose Compare without AI.", true); $("pass").focus(); return; }
   if (!state.textA.trim() || !state.textB.trim()){ status(MESSAGES.empty, true); return; }
   var btn = $("compareAI"); btn.disabled = true; status("Asking the AI to compare the two answers…");
   fetch(AI_URL, { method:"POST", headers:{ "content-type":"application/json" },
@@ -318,7 +325,7 @@
    status("Compared by " + (d.model || "the AI") + ". Edit the lists as you talk.");
   })
   .catch(function(){ status("Couldn't reach the AI. Click ▾ and choose Compare without AI.", true); })
-  .then(function(){ btn.disabled = false; });
+  .then(function(){ btn.disabled = !passOK; });
  }
 
  // ---------- drawing ----------
@@ -420,9 +427,37 @@
  document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") menu(false); });
  $("compare").addEventListener("click", function(){ menu(false); compare(); status("Compared without AI. Edit the lists as you talk."); });
  $("compareAI").addEventListener("click", compareAI);
- $("pass").addEventListener("input", function(){ setPass(this.value.trim()); });
- $("pass").addEventListener("keydown", function(ev){
-  if (ev.key === "Enter" && state.textA.trim() && state.textB.trim()) compareAI();
+ // The passcode is checked with the Worker using two empty texts. The Worker checks the
+ // passcode first and stops at "empty" before any AI call, so the check is free and is not
+ // counted against the daily cap. Compare (with AI) stays greyed out until it passes.
+ var passOK = false, acceptedPass = "", checking = false;
+ function setAccepted(ok, p){
+  passOK = ok; acceptedPass = ok ? p : "";
+  var inp = $("pass");
+  inp.type = ok ? "password" : "text"; inp.readOnly = ok;
+  $("passok").hidden = !ok;
+  $("compareAI").disabled = !ok;
+  if (ok) setPass(p);
+ }
+ function verifyPass(quiet){
+  var p = $("pass").value.trim();
+  if (!p || checking || passOK) return;
+  checking = true; if (!quiet) status("Checking the passcode…");
+  fetch(AI_URL, { method:"POST", headers:{ "content-type":"application/json" },
+   body: JSON.stringify({ passcode:p, a:"", b:"" }) })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+   if (d && d.error === "empty"){ setAccepted(true, p); status(""); }
+   else if (d && d.error === "passcode"){ setAccepted(false); if (!quiet) status(MESSAGES.passcode, true); else $("pass").value = ""; }
+   else if (!quiet) status("Couldn't check the passcode right now. Compare without AI still works.", true);
+  })
+  .catch(function(){ if (!quiet) status("Couldn't reach the course server to check the passcode. Compare without AI still works.", true); })
+  .then(function(){ checking = false; });
+ }
+ $("pass").addEventListener("keydown", function(ev){ if (ev.key === "Enter"){ ev.preventDefault(); verifyPass(false); } });
+ $("pass").addEventListener("blur", function(){ verifyPass(false); });
+ $("passchange").addEventListener("click", function(){
+  setAccepted(false); setPass(""); var inp = $("pass"); inp.value = ""; inp.focus(); status("");
  });
  $("edit").addEventListener("click", function(){ state.viewing = false; save(); render(); $("textA").focus(); });
  var armed = false;
@@ -456,6 +491,8 @@
 
  load();
  $("pass").value = getPass();
+ setAccepted(false);
+ if ($("pass").value) verifyPass(true);
  showTab(state.tab || "both");
  if (state.viewing && !state._marks) compare(); else render();
  fit();
