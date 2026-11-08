@@ -37,7 +37,7 @@
  .fhead input:hover{border-color:var(--line);}
  .stats{font-size:12px;color:var(--muted);white-space:nowrap;}
  .fbody{flex:1 1 auto;min-height:120px;overflow:auto;}
- .lists{overflow:auto;}
+ .lists{display:flex;flex-direction:column;min-height:0;}
  textarea{width:100%;height:100%;border:0;resize:none;padding:12px;font:inherit;font-size:15px;line-height:1.55;background:transparent;color:var(--ink);}
  .view{padding:12px 14px;font-size:15px;line-height:1.6;white-space:pre-wrap;}
  .view[hidden],textarea[hidden]{display:none;}
@@ -45,10 +45,16 @@
  mark.both{background:var(--both);color:var(--both-ink);}
  mark.oa{background:var(--a);color:var(--a-ink);}
  mark.ob{background:var(--b);color:var(--b-ink);}
- .lists{display:grid;gap:12px;}
- .list{background:var(--card);border:1px solid var(--line);border-radius:8px;}
- .list h2{font-size:15px;margin:0;padding:8px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;}
- .list h2 .n{font-weight:400;color:var(--muted);font-size:13px;}
+ .tabs{display:flex;flex-wrap:wrap;gap:4px;}
+ .tab{font-size:13px;font-weight:600;padding:6px 9px;white-space:nowrap;border-radius:7px 7px 0 0;border:1px solid var(--line);border-bottom:0;background:#f1f0ec;color:#4b5563;}
+ .tab:hover{background:#e9e7e1;border-color:var(--line);}
+ .tab .n{font-weight:700;}
+ .tab[aria-selected="true"]{background:var(--card);color:var(--ink);}
+ .t-both[aria-selected="true"]{box-shadow:inset 0 4px 0 #f59e0b;} .t-a[aria-selected="true"]{box-shadow:inset 0 4px 0 #a855f7;} .t-b[aria-selected="true"]{box-shadow:inset 0 4px 0 #14b8a6;}
+ .list{background:var(--card);border:1px solid var(--line);border-radius:0 8px 8px 8px;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;}
+ .list ul.items{flex:1 1 auto;min-height:0;overflow:auto;}
+ .list .add{flex:none;border-top:1px solid #eeede8;padding-top:8px;}
+ .list[hidden]{display:none;}
  .l-both{border-left:6px solid #f59e0b;} .l-a{border-left:6px solid #a855f7;} .l-b{border-left:6px solid #14b8a6;}
  ul.items{list-style:none;margin:0;padding:6px 8px;}
  ul.items li{display:flex;align-items:flex-start;gap:6px;padding:4px 4px;border-radius:4px;}
@@ -112,11 +118,16 @@
  </div>
 
  <div class="lists" id="lists">
-  <section class="list l-both"><h2>In both <span class="n" id="nBoth"></span></h2><ul class="items" id="listBoth"></ul>
+  <div class="tabs" role="tablist" aria-label="Lists">
+   <button type="button" role="tab" class="tab t-both" data-tab="both" aria-selected="true">In both <span class="n" id="nBoth">(0)</span></button>
+   <button type="button" role="tab" class="tab t-a" data-tab="a" aria-selected="false">Only in <span id="hA">Plain chatbot</span> <span class="n" id="nA">(0)</span></button>
+   <button type="button" role="tab" class="tab t-b" data-tab="b" aria-selected="false">Only in <span id="hB">Gemini Notebook</span> <span class="n" id="nB">(0)</span></button>
+  </div>
+  <section class="list l-both" role="tabpanel" data-panel="both"><ul class="items" id="listBoth"></ul>
    <div class="add"><input data-list="both" placeholder="Add something both answers have" aria-label="Add to In both"></div></section>
-  <section class="list l-a"><h2>Only in <span id="hA">Plain chatbot</span> <span class="n" id="nA"></span></h2><ul class="items" id="listA"></ul>
+  <section class="list l-a" role="tabpanel" data-panel="a" hidden><ul class="items" id="listA"></ul>
    <div class="add"><input data-list="a" placeholder="Add something only this answer has" aria-label="Add to the first answer's list"></div></section>
-  <section class="list l-b"><h2>Only in <span id="hB">Gemini Notebook</span> <span class="n" id="nB"></span></h2><ul class="items" id="listB"></ul>
+  <section class="list l-b" role="tabpanel" data-panel="b" hidden><ul class="items" id="listB"></ul>
    <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div></section>
   <p class="note">Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic; Compare sends both answers to Claude through the course server, which stores nothing. Items marked <span class="found">found</span> came from Compare without AI, which runs only in this browser and finds concrete details, not ideas. The class's own items matter most.</p>
  </div>
@@ -334,7 +345,7 @@
  function drawList(key, ul, countEl){
   ul.innerHTML = "";
   var items = state.lists[key];
-  countEl.textContent = items.length ? "(" + items.length + ")" : "";
+  countEl.textContent = "(" + items.length + ")";
   if (!items.length){ var e = document.createElement("li"); e.className = "empty"; e.textContent = "Nothing yet."; ul.appendChild(e); return; }
   items.forEach(function(it, i){
    var li = document.createElement("li");
@@ -380,6 +391,14 @@
  $("textB").addEventListener("input", function(){ state.textB = this.value; save(); $("statsB").textContent = stats(state.textB); });
  $("nameA").addEventListener("input", function(){ state.nameA = this.value; save(); render(); });
  $("nameB").addEventListener("input", function(){ state.nameB = this.value; save(); render(); });
+ function showTab(key){
+  state.tab = key;
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){ t.setAttribute("aria-selected", t.getAttribute("data-tab") === key ? "true" : "false"); });
+  Array.prototype.forEach.call(document.querySelectorAll(".list"), function(p){ p.hidden = p.getAttribute("data-panel") !== key; });
+ }
+ Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
+  t.addEventListener("click", function(){ showTab(t.getAttribute("data-tab")); save(); });
+ });
  function menu(open){ $("menu").hidden = !open; $("more").setAttribute("aria-expanded", open ? "true" : "false"); }
  $("more").addEventListener("click", function(ev){ ev.stopPropagation(); menu($("menu").hidden); });
  document.addEventListener("click", function(ev){ if (!$("split").contains(ev.target)) menu(false); });
@@ -421,6 +440,7 @@
 
  load();
  $("pass").value = getPass();
+ showTab(state.tab || "both");
  if (state.viewing && !state._marks) compare(); else render();
  fit();
 })();
