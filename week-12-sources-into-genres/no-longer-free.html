@@ -6,32 +6,32 @@
 <title>No longer free · Week 12 · TCE 284</title>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
 <style>
- :root{--accent:#0f766e;}
- body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1400px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:17px;background:#fbfaf7;}
- .home{display:inline-block;margin:0 0 10px;font-size:13px;color:#6b7280;text-decoration:none;}
+ :root{--accent:#0f766e;--f:18px;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1900px;margin:0 auto;padding:10px 16px 8px;color:#1f2937;line-height:1.5;font-size:17px;background:#fbfaf7;}
+ .home{display:inline-block;margin:0 0 2px;font-size:13px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
- h1{font-size:24px;margin:0 0 2px;} .sub{color:#6b7280;font-size:14px;margin-bottom:18px;}
- .cols{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1.75fr);gap:18px;align-items:start;}
+ h1{font-size:22px;margin:0;display:inline;} .sub{color:#6b7280;font-size:14px;display:inline;margin-left:10px;}
+ .head{margin:0 0 8px;}
+ .cols{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.15fr) minmax(0,1.9fr);gap:18px;align-items:start;}
  @media (max-width:900px){.cols{grid-template-columns:1fr;}}
- .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:14px 16px;}
- .col h2{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
- .node{display:inline-block;background:#9eeec0;border:1px solid #86d9aa;border-radius:8px;padding:12px 16px;font-family:"Literata",Charter,Georgia,serif;font-size:21px;line-height:1.35;color:#111;}
+ .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;}
+ .col h2{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;}
+ .node{display:inline-block;background:#9eeec0;border:1px solid #86d9aa;border-radius:8px;padding:12px 16px;font-family:"Literata",Charter,Georgia,serif;font-size:calc(var(--f) * 1.1);line-height:1.35;color:#111;}
  .nodefrom{font-size:14px;color:#6b7280;margin:10px 0 0;}
- .src{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:19px;line-height:1.6;margin:0;}
+ .src{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:var(--f);line-height:1.5;margin:0;}
  .cite{font-size:14px;color:#6b7280;margin:10px 0 0;}
- .poem h3{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:22px;font-weight:600;margin:0 0 10px;}
- .stanza{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:18px;line-height:1.45;margin:0 0 12px;}
+ .poem h3{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:calc(var(--f) * 1.15);font-weight:600;margin:0 0 4px;}
+ .stanza{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:var(--f);line-height:1.32;margin:0 0 calc(var(--f) * .55);}
  .stanza span{display:block;padding-left:1.4em;text-indent:-1.4em;}
- .after{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-style:italic;font-size:16px;color:#4b5563;margin:4px 0 0;}
- .note{font-size:14px;color:#6b7280;margin:18px 0 0;}
+ .after{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-style:italic;font-size:calc(var(--f) * .85);color:#4b5563;margin:2px 0 0;}
+ .note{font-size:14px;color:#6b7280;margin:8px 0 0;line-height:1.4;}
  a{color:#2563eb;}
 </style>
 </head>
 <body>
 <main>
 <a class="home" href="week-12-wed.html">← Week 12 · Wednesday</a>
-<h1>No longer free</h1>
-<div class="sub">Week 12 · Wednesday · from a Mind Map node, to the source, to a poem</div>
+<div class="head"><h1>No longer free</h1><span class="sub">Week 12 · Wednesday · from a Mind Map node, to the source, to a poem</span></div>
 
 <div class="cols">
  <section class="col">
@@ -60,7 +60,24 @@
  </section>
 </div>
 
-<p class="note">Romano does this in WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship"</a>: his "Awe" is written after Gendler's <em>The Book of Qualities</em>.</p>
+<p class="note">Romano does this in WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship"</a>: his "Awe" is written after Gendler's <em>The Book of Qualities</em>.<br>On repeating a pattern ("when… when… when…," "to be… to be… to be…"), see WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154844">ch11, "Riding the Rhythm of Parallel Structure"</a>: parallel structures "lift readers and propel them forward."</p>
 </main>
+<script>
+// Fit the whole page in the window with no scrolling: start large and step the type
+// size down until nothing overflows. Runs again when the window changes size.
+(function(){
+  var root = document.documentElement, wide = window.matchMedia("(min-width: 901px)");
+  function fit(){
+    if (!wide.matches){ root.style.setProperty("--f", "18px"); return; }
+    var f = 24;
+    root.style.setProperty("--f", f + "px");
+    while (f > 10 && root.scrollHeight > window.innerHeight){ f -= 0.5; root.style.setProperty("--f", f + "px"); }
+  }
+  window.addEventListener("resize", fit);
+  window.addEventListener("load", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+})();
+</script>
 </body>
 </html>
