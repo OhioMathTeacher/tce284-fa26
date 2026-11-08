@@ -63,6 +63,13 @@
  .note{font-size:12px;color:var(--muted);margin-top:10px;}
  .pass{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:5px;width:11em;}
  .passlabel{font-size:14px;font-weight:600;color:#374151;}
+ .split{position:relative;display:inline-flex;}
+ .split .main{border-radius:5px 0 0 5px;}
+ .split .arrow{border-radius:0 5px 5px 0;border-left:1px solid rgba(255,255,255,.45);padding:6px 9px;}
+ .menu{position:absolute;top:calc(100% + 4px);left:0;z-index:5;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.12);padding:4px;min-width:100%;}
+ .menu[hidden]{display:none;}
+ .menu button{display:block;width:100%;text-align:left;white-space:nowrap;border:0;background:transparent;color:var(--ink);}
+ .menu button:hover{background:#f2f8f7;}
  .ai{font-size:11px;color:#fff;background:#4b5563;border-radius:10px;padding:0 7px;margin-top:3px;white-space:nowrap;}
  .status{flex-basis:100%;font-size:14px;color:#374151;min-height:1.4em;}
  .status.err{color:#b91c1c;}
@@ -72,13 +79,15 @@
 <div class="page">
 <a class="home" href="week-12-mon.html">← Week 12 · Monday</a>
 <h1>Side by Side</h1>
-<p class="how">Ask two tools the same question. Paste each answer into a box on the left and press <strong>Compare</strong>. The page lists the specific details it can find (names, dates, numbers, quotations, cited sources) that both answers share and the ones only one answer has. <strong>Compare with AI</strong> also looks for ideas and for the same fact said two ways; it needs the class passcode. Then add, edit, or delete items as you talk.</p>
+<p class="how">Ask two tools the same question. Type the class passcode, paste each answer into a box on the left, and press <strong>Compare</strong>. An AI reads both answers and lists what they share, what only one has, and where they say the same thing two ways. To compare without AI, click the ▾ beside Compare; the page then lists only concrete details (names, dates, numbers, quotations, cited sources). Then add, edit, or delete items as you talk.</p>
 
 <div class="bar">
  <label class="passlabel" for="pass">Class passcode</label>
  <input type="text" class="pass" id="pass" placeholder="type it here" autocomplete="off" spellcheck="false" autocapitalize="off">
- <button type="button" class="primary" id="compare">Compare</button>
- <button type="button" id="compareAI">Compare with AI</button>
+ <div class="split" id="split">
+  <button type="button" class="primary main" id="compareAI">Compare</button><button type="button" class="primary arrow" id="more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to compare">▾</button>
+  <div class="menu" id="menu" hidden><button type="button" id="compare">Compare without AI</button></div>
+ </div>
  <button type="button" id="edit">Edit the text</button>
  <button type="button" id="clear">Clear everything</button>
  <div class="legend" aria-label="Highlight colors">
@@ -108,7 +117,7 @@
    <div class="add"><input data-list="a" placeholder="Add something only this answer has" aria-label="Add to the first answer's list"></div></section>
   <section class="list l-b"><h2>Only in <span id="hB">Gemini Notebook</span> <span class="n" id="nB"></span></h2><ul class="items" id="listB"></ul>
    <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div></section>
-  <p class="note">Items marked <span class="found">found</span> came from the page's own rules, which find concrete details, not ideas. Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic. Compare with AI sends both answers to Claude through the course server, which stores nothing. Everything else stays in this browser. The class's own items matter most.</p>
+  <p class="note">Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic; Compare sends both answers to Claude through the course server, which stores nothing. Items marked <span class="found">found</span> came from Compare without AI, which runs only in this browser and finds concrete details, not ideas. The class's own items matter most.</p>
  </div>
 </div>
 </div>
@@ -134,7 +143,11 @@
    "Was Were Be Can Could Would Should Will May Might Must Do Does Did Has Have Had In-short Example Examples Note " +
    "Summary Conclusion Introduction Sources Source Key Main Another Every All Any Few Several Much Let Use Using").split(" ");
  var STOPSET = {}; STOP.forEach(function(w){ STOPSET[w] = 1; });
- var CONNECT = { "of":1, "de":1, "la":1, "le":1, "van":1, "von":1, "der":1, "da":1, "del":1, "du":1, "and":1, "&":1 };
+ var CONNECT = { "of":1, "de":1, "la":1, "le":1, "van":1, "von":1, "der":1, "da":1, "del":1, "du":1 };
+ // Ordinary words that headings capitalize ("Late", "Century Peak"). A name made only of these is dropped.
+ var COMMON = {}; ("Late Early Mid Century Centuries Peak Decline Rise Fall Invention Adoption Popularity " +
+   "Chronological History Origins Origin Background Overview Today Modern Era Period Age Years Decade Decades " +
+   "Part Section Chapter Timeline Key Points Point Takeaways").split(" ").forEach(function(w){ COMMON[w] = 1; });
 
  function norm(s){
   return " " + s.toLowerCase().replace(/[’']/g,"").replace(/[^a-z0-9%]+/g," ").replace(/\s+/g," ").trim() + " ";
@@ -148,7 +161,7 @@
  }
 
  function names(text){
-  var out = [], re = /[A-Z][A-Za-z’'\-]*[A-Za-z](?:\s+(?:(?:of|de|la|le|van|von|der|da|del|du|and|&)\s+)?[A-Z][A-Za-z’'\-]*[A-Za-z])*/g, m;
+  var out = [], re = /[A-Z][A-Za-z’'\-]*[A-Za-z](?:\s+(?:(?:of|de|la|le|van|von|der|da|del|du)\s+)?[A-Z][A-Za-z’'\-]*[A-Za-z])*/g, m;
   while ((m = re.exec(text))){
    var words = m[0].split(/\s+/), start = m.index;
    if (sentenceStart(text, start) && STOPSET[words[0]]){
@@ -167,6 +180,7 @@
     }
    }
    while (words.length && CONNECT[words[words.length-1].toLowerCase()]) words.pop();
+   if (words.every(function(w){ return COMMON[w] || STOPSET[w]; })) continue;
    out.push(words.join(" "));
   }
   return out;
@@ -233,7 +247,7 @@
  }
  var MESSAGES = {
   passcode: "That passcode didn't work. Check it with your instructor.",
-  cap: "The class has used today's AI compares. The Compare button still works.",
+  cap: "The class has used today's AI compares. Click ▾ and choose Compare without AI.",
   refusal: "The AI declined to compare these two texts.",
   empty: "Paste an answer into both boxes first.",
   "too-long": "One of the answers is too long for the AI. Try a shorter excerpt."
@@ -244,7 +258,7 @@
 
  function compareAI(){
   var pass = $("pass").value.trim();
-  if (!pass){ status("Type the class passcode first.", true); $("pass").focus(); return; }
+  if (!pass){ status("Type the class passcode first, or click ▾ and choose Compare without AI.", true); $("pass").focus(); return; }
   if (!state.textA.trim() || !state.textB.trim()){ status(MESSAGES.empty, true); return; }
   var btn = $("compareAI"); btn.disabled = true; status("Asking the AI to compare the two answers…");
   fetch(AI_URL, { method:"POST", headers:{ "content-type":"application/json" },
@@ -254,7 +268,7 @@
    var d = res.d || {};
    if (d.error){
     var why = d.error + (d.status ? " " + d.status : "") + (d.detail ? ": " + d.detail : "");
-    status((MESSAGES[d.error] || "The AI couldn't answer this time. The Compare button still works.") + " (" + why + ")", true);
+    status((MESSAGES[d.error] || "The AI couldn't answer this time. Click ▾ and choose Compare without AI.") + " (" + why + ")", true);
     return;
    }
    setPass(pass);
@@ -277,7 +291,7 @@
    save(); render();
    status("Compared by " + (d.model || "the AI") + ". Edit the lists as you talk.");
   })
-  .catch(function(){ status("Couldn't reach the AI. The Compare button still works.", true); })
+  .catch(function(){ status("Couldn't reach the AI. Click ▾ and choose Compare without AI.", true); })
   .then(function(){ btn.disabled = false; });
  }
 
@@ -365,7 +379,11 @@
  $("textB").addEventListener("input", function(){ state.textB = this.value; save(); $("statsB").textContent = stats(state.textB); });
  $("nameA").addEventListener("input", function(){ state.nameA = this.value; save(); render(); });
  $("nameB").addEventListener("input", function(){ state.nameB = this.value; save(); render(); });
- $("compare").addEventListener("click", function(){ compare(); status(""); });
+ function menu(open){ $("menu").hidden = !open; $("more").setAttribute("aria-expanded", open ? "true" : "false"); }
+ $("more").addEventListener("click", function(ev){ ev.stopPropagation(); menu($("menu").hidden); });
+ document.addEventListener("click", function(ev){ if (!$("split").contains(ev.target)) menu(false); });
+ document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") menu(false); });
+ $("compare").addEventListener("click", function(){ menu(false); compare(); status("Compared without AI. Edit the lists as you talk."); });
  $("compareAI").addEventListener("click", compareAI);
  $("pass").addEventListener("input", function(){ setPass(this.value.trim()); });
  $("pass").addEventListener("keydown", function(ev){
