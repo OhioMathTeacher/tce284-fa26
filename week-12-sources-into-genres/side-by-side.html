@@ -38,7 +38,7 @@
  .stats{font-size:12px;color:var(--muted);white-space:nowrap;}
  .fbody{flex:1 1 auto;min-height:120px;overflow:auto;}
  .lists{display:flex;flex-direction:column;min-height:0;}
- textarea{width:100%;height:100%;border:0;resize:none;padding:12px;font:inherit;font-size:15px;line-height:1.55;background:transparent;color:var(--ink);}
+ textarea{display:block;width:100%;height:100%;border:0;resize:none;padding:12px;font:inherit;font-size:15px;line-height:1.55;background:transparent;color:var(--ink);}
  .view{padding:12px 14px;font-size:15px;line-height:1.6;white-space:pre-wrap;}
  .view[hidden],textarea[hidden]{display:none;}
  mark{border-radius:3px;padding:0 2px;}
@@ -53,7 +53,7 @@
  .t-both[aria-selected="true"]{box-shadow:inset 0 4px 0 #f59e0b;} .t-a[aria-selected="true"]{box-shadow:inset 0 4px 0 #a855f7;} .t-b[aria-selected="true"]{box-shadow:inset 0 4px 0 #14b8a6;}
  .list{background:var(--card);border:1px solid var(--line);border-radius:0 8px 8px 8px;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;}
  .list ul.items{flex:1 1 auto;min-height:0;overflow:auto;}
- .list .add{flex:none;border-top:1px solid #eeede8;padding-top:8px;}
+ .list .add{flex:none;border-bottom:1px solid #eeede8;padding:10px 12px;}
  .list[hidden]{display:none;}
  .l-both{border-left:6px solid #f59e0b;} .l-a{border-left:6px solid #a855f7;} .l-b{border-left:6px solid #14b8a6;}
  ul.items{list-style:none;margin:0;padding:6px 8px;}
@@ -123,12 +123,15 @@
    <button type="button" role="tab" class="tab t-a" data-tab="a" aria-selected="false">Only in <span id="hA">Plain chatbot</span> <span class="n" id="nA">(0)</span></button>
    <button type="button" role="tab" class="tab t-b" data-tab="b" aria-selected="false">Only in <span id="hB">Gemini Notebook</span> <span class="n" id="nB">(0)</span></button>
   </div>
-  <section class="list l-both" role="tabpanel" data-panel="both"><ul class="items" id="listBoth"></ul>
-   <div class="add"><input data-list="both" placeholder="Add something both answers have" aria-label="Add to In both"></div></section>
-  <section class="list l-a" role="tabpanel" data-panel="a" hidden><ul class="items" id="listA"></ul>
-   <div class="add"><input data-list="a" placeholder="Add something only this answer has" aria-label="Add to the first answer's list"></div></section>
-  <section class="list l-b" role="tabpanel" data-panel="b" hidden><ul class="items" id="listB"></ul>
-   <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div></section>
+  <section class="list l-both" role="tabpanel" data-panel="both">
+   <div class="add"><input data-list="both" placeholder="Add something both answers have" aria-label="Add to In both"></div>
+   <ul class="items" id="listBoth"></ul></section>
+  <section class="list l-a" role="tabpanel" data-panel="a" hidden>
+   <div class="add"><input data-list="a" placeholder="Add something only this answer has" aria-label="Add to the first answer's list"></div>
+   <ul class="items" id="listA"></ul></section>
+  <section class="list l-b" role="tabpanel" data-panel="b" hidden>
+   <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div>
+   <ul class="items" id="listB"></ul></section>
   <p class="note">Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic; Compare sends both answers to Claude through the course server, which stores nothing. Items marked <span class="found">found</span> came from Compare without AI, which runs only in this browser and finds concrete details, not ideas. The class's own items matter most.</p>
  </div>
 </div>
@@ -423,6 +426,7 @@
    var t = inp.value.trim(); if (!t) return;
    state.lists[inp.getAttribute("data-list")].push({ text:t, found:false });
    inp.value = ""; save(); render(); inp.focus();
+   var ul = inp.closest(".list").querySelector("ul.items"); ul.scrollTop = ul.scrollHeight;
   });
  });
 
@@ -430,10 +434,10 @@
  // so the page itself never scrolls; long text scrolls inside its own box.
  function fit(){
   var fr = $("frames"), li = $("lists");
-  if (window.innerWidth <= 860){ fr.style.height = ""; li.style.maxHeight = ""; return; }
+  if (window.innerWidth <= 860){ fr.style.height = ""; li.style.height = ""; return; }
   var top = fr.getBoundingClientRect().top + window.scrollY;
   var h = Math.max(380, window.innerHeight - top - 14);
-  fr.style.height = h + "px"; li.style.maxHeight = h + "px";
+  fr.style.height = h + "px"; li.style.height = h + "px";
  }
  window.addEventListener("resize", fit);
  window.addEventListener("load", fit);
