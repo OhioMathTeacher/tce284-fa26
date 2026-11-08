@@ -13,7 +13,7 @@
  }
  *{box-sizing:border-box;}
  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;}
- .page{max-width:1280px;margin:0 auto;padding:16px 16px 40px;}
+ .page{max-width:1280px;margin:0 auto;padding:16px 16px 12px;}
  .home{display:inline-block;margin:0 0 6px;font-size:13px;color:var(--muted);text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
  h1{font-size:22px;margin:0 0 4px;}
@@ -29,14 +29,15 @@
  .sw{display:inline-block;width:14px;height:14px;border-radius:3px;}
  .grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px;align-items:start;}
  @media (max-width:860px){.grid{grid-template-columns:1fr;}}
- .frames{display:grid;grid-template-rows:auto auto;gap:12px;}
- .frame{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;}
+ .frames{display:flex;flex-direction:column;gap:12px;}
+ .frame{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;flex:1 1 0;min-height:0;}
  .frame-a{border-top:5px solid #a855f7;} .frame-b{border-top:5px solid #14b8a6;}
  .fhead{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);}
  .fhead input{font:inherit;font-weight:700;font-size:16px;border:1px solid transparent;border-radius:4px;padding:2px 6px;background:transparent;color:var(--ink);min-width:0;flex:1;}
  .fhead input:hover{border-color:var(--line);}
  .stats{font-size:12px;color:var(--muted);white-space:nowrap;}
- .fbody{height:42vh;min-height:220px;overflow:auto;}
+ .fbody{flex:1 1 auto;min-height:120px;overflow:auto;}
+ .lists{overflow:auto;}
  textarea{width:100%;height:100%;border:0;resize:none;padding:12px;font:inherit;font-size:15px;line-height:1.55;background:transparent;color:var(--ink);}
  .view{padding:12px 14px;font-size:15px;line-height:1.6;white-space:pre-wrap;}
  .view[hidden],textarea[hidden]{display:none;}
@@ -99,7 +100,7 @@
 </div>
 
 <div class="grid">
- <div class="frames">
+ <div class="frames" id="frames">
   <section class="frame frame-a">
    <div class="fhead"><input id="nameA" value="Plain chatbot" aria-label="Name of the first answer"><span class="stats" id="statsA"></span></div>
    <div class="fbody"><textarea id="textA" placeholder="Paste the first answer here."></textarea><div class="view" id="viewA" hidden></div></div>
@@ -110,7 +111,7 @@
   </section>
  </div>
 
- <div class="lists">
+ <div class="lists" id="lists">
   <section class="list l-both"><h2>In both <span class="n" id="nBoth"></span></h2><ul class="items" id="listBoth"></ul>
    <div class="add"><input data-list="both" placeholder="Add something both answers have" aria-label="Add to In both"></div></section>
   <section class="list l-a"><h2>Only in <span id="hA">Plain chatbot</span> <span class="n" id="nA"></span></h2><ul class="items" id="listA"></ul>
@@ -406,9 +407,22 @@
   });
  });
 
+ // The two answer boxes share the space below the buttons equally and fit the window,
+ // so the page itself never scrolls; long text scrolls inside its own box.
+ function fit(){
+  var fr = $("frames"), li = $("lists");
+  if (window.innerWidth <= 860){ fr.style.height = ""; li.style.maxHeight = ""; return; }
+  var top = fr.getBoundingClientRect().top + window.scrollY;
+  var h = Math.max(380, window.innerHeight - top - 14);
+  fr.style.height = h + "px"; li.style.maxHeight = h + "px";
+ }
+ window.addEventListener("resize", fit);
+ window.addEventListener("load", fit);
+
  load();
  $("pass").value = getPass();
  if (state.viewing && !state._marks) compare(); else render();
+ fit();
 })();
 </script>
 </body>
