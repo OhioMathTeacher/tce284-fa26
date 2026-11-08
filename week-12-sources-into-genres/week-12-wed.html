@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Week 12 · Wednesday — TCE 284</title>
+<title>Week 12 · Wednesday · TCE 284</title>
 
 <style>
  :root{--accent:#0f766e;}
@@ -20,59 +20,92 @@
  a{color:#2563eb;}
  .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
 </style>
 </head>
 <body>
 <main>
 <a class="home" href="../index.html">← Course home</a>
-<h1>Week 12 · Wednesday — Poem, Image &amp; the First AI Move</h1>
+<h1>Week 12 · Wednesday: Poem, Image &amp; the First AI Move</h1>
 <div class="sub">Act III · Multimodal Research Project · <em>free-verse poem · visual element · the Moves List</em></div>
 
 <div class="goals"><strong>Today's goals:</strong> Draft a free-verse poem from one concrete detail, plan your visual element, and start your <strong>transformed AI artifact</strong>.</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
 
-<div class="block b-poem">
- <h2>1 · Mini-lesson — the free-verse poem <span class="time">(~15 min)</span></h2>
+<details class="block b-poem">
+ <summary><h2>1 · Mini-lesson: the free-verse poem <span class="time">(~15 min)</span></h2></summary>
  <ul>
-  <li>I'll model it quickly: sensory image, specific detail, attention to line and space, precise words — the poem criteria in the <a href="../week-11-launch-and-topic/Multimodal%20Research%20Project%20TCE%20284.docx">guidelines</a>.</li>
-  <li>You: draft a poem from a single item on your Topic Map — one Object or one Moment, rendered close.</li>
+  <li>I'll share a poem I wrote from a node on my Mind Map: <a href="no-longer-free.html">No longer free</a>.</li>
+  <li>Remember Romano's mentors chapter, WWM <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship."</a> My poem is written after King, the way Romano's "Awe" is written after Gendler.</li>
+  <li>The poem criteria in the <a href="../week-11-launch-and-topic/Multimodal%20Research%20Project%20TCE%20284.docx">guidelines</a>: sensory image, specific detail, attention to line and space, precise words.</li>
+  <li>You: draft a poem from one Object or one Moment in your topic, rendered close.</li>
+  <li>Hint: a Mind Map can help. Have you generated one for your sources in Gemini Notebook?</li>
  </ul>
  <p class="purpose">Purpose: the poem grounded in a real particular, not a topic in general.</p>
-</div>
+</details>
 
-<div class="block b-house">
- <h2>2 · Mini-lesson — the visual element <span class="time">(~10 min)</span></h2>
+<details class="block b-house">
+ <summary><h2>2 · Mini-lesson: the visual element <span class="time">(~10 min)</span></h2></summary>
  <ul>
-  <li>I'll name the bar: a visual element does something <em>words alone can't</em> — not a decorative frill dropped in.</li>
-  <li>You: plan yours — what image, map, or made object carries meaning in your project.</li>
+  <li>I'll name the bar: a visual element does something <em>words alone can't</em>.</li>
+  <li>You: plan yours. What image, map, or made object carries meaning in your project?</li>
  </ul>
  <p class="purpose">Purpose: the arts as a load-bearing piece, chosen for payoff.</p>
-</div>
+</details>
 
-<div class="block b-launch">
- <h2>3 · The Moves List — try one <span class="time">(~30 min)</span></h2>
+<details class="block b-launch">
+ <summary><h2>3 · The Moves List: try one <span class="time">(~30 min)</span></h2></summary>
  <ul>
   <li>I'll walk the <a href="../week-11-launch-and-topic/ai-multimodal-moves-list.html">AI Multimodal Moves List</a> and the rule: AI work and others' work can appear, labeled or cited, but never count toward your twelve.</li>
-  <li>You: pick <strong>one</strong> move and start it — a grounded persona interview, a marked-up draft, a side-by-side against your "before," a data-to-song. Your move has to show.</li>
+  <li>You: pick <strong>one</strong> move and start it. For example: a grounded persona interview, a marked-up draft, a side-by-side against your "before," a data-to-song. Your move has to show.</li>
  </ul>
  <p class="purpose">Purpose: begin the transformed AI artifact now, while there's studio time and I'm in reach.</p>
-</div>
+</details>
 
-<div class="block b-write">
- <h2>4 · Work time <span class="time">(~25 min)</span></h2>
+<details class="block b-write">
+ <summary><h2>4 · Work time <span class="time">(~25 min)</span></h2></summary>
  <ul>
-  <li>You read <strong>WWM <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154854">ch20, &quot;It Ain't Bourbon Yet&quot;</a></strong> — Romano's bourbon has to sit in the barrel. Before you build: name one piece of yours that is not aged yet, and say what it still needs.</li>
-     <li>You: keep building — the poem, the visual, or the AI move. I'll circulate.</li>
+  <li>You read <strong>WWM <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154854">ch20, &quot;It Ain't Bourbon Yet&quot;</a></strong>. Romano's bourbon has to sit in the barrel. Before you build: name one piece of yours that is not aged yet, and say what it still needs.</li>
+     <li>You: keep building the poem, the visual, or the AI move. I'll circulate.</li>
  </ul>
-</div>
+</details>
 
 <div class="wrap">
  <strong>Wrap-up &amp; before Monday:</strong>
  <ul>
-  <li>Keep drafting toward a real full draft. The <strong>draft is due Fri Nov 20</strong> — all core elements present, plus a writer's note.</li>
-  <li>Monday: the note page and the unifying element that make a pile of genres cohere.</li>
-      <li>Read <strong>WWM <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154855">ch21, &quot;Befriending Revision&quot;</a> · <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154856">ch22, &quot;Dwelling in Your Words.&quot;</a></strong> Monday we make a pile of genres cohere. These two are the argument for why revision is not a punishment — and what it feels like to raise your own standards.</li>
+  <li>Keep drafting toward a real full draft. The <strong>draft is due Fri Nov 20</strong>, with all core elements present, plus a writer's note.</li>
+  <li>Monday: the note page and the unifying element that make a pile of pieces cohere.</li>
+      <li>Read <strong>WWM <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154855">ch21, &quot;Befriending Revision&quot;</a> · <a class="rdg" data-rdg="romano" href="https://miamioh.instructure.com/courses/258319/files/40154856">ch22, &quot;Dwelling in Your Words.&quot;</a></strong> Monday we make a pile of pieces cohere. These two argue that revision is not a punishment. They also show what it feels like to raise your own standards.</li>
 </ul>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
 
 </main>
 </body>
