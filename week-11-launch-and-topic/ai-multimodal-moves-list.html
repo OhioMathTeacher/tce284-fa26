@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Multimodal Moves List · TCE 284</title>
+
+<style>
+ :root{--accent:#0f766e;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:20px 16px 48px;color:#1f2937;line-height:1.5;font-size:14px;}
+ h1{font-size:20px;margin:0 0 2px;} .sub{color:#6b7280;font-size:12px;margin-bottom:16px;}
+ .goals{background:#e7f3ff;padding:12px 16px;border-radius:6px;margin:12px 0;}
+ .block{padding:14px 16px;margin:14px 0;border-left:4px solid var(--accent);border-radius:2px;}
+ .b-poem{background:#f3e8d6;} .b-house{background:#fff3e0;} .b-read{background:#e8dcf0;} .b-craft{background:#d6e8f0;} .b-launch{background:#d6f0e8;} .b-write{background:#d6f0e8;}
+ .block h2{font-size:15px;margin:0 0 8px;} .block .time{font-weight:400;font-size:12px;color:#6b7280;}
+ .moves{margin:6px 0;padding-left:20px;} .moves li{margin:5px 0;}
+ .purpose{font-style:italic;color:#374151;margin:8px 0 0;}
+ ul{margin:6px 0;padding-left:20px;} li{margin:3px 0;}
+ .wrap{background:#fff3cd;padding:14px 16px;border-radius:6px;margin-top:22px;}
+ a{color:#2563eb;}
+ .home{display:inline-block;margin:0 0 10px;font-size:12px;color:#6b7280;text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+ details.block > summary::-webkit-details-marker{display:none;}
+ details.block > summary::before{content:"\25B8";color:var(--accent);font-size:13px;flex:none;transition:transform .15s;}
+ details.block[open] > summary::before{transform:rotate(90deg);}
+ details.block > summary h2{margin:0;}
+ details.block[open] > summary{margin-bottom:8px;}
+ .toggleall{display:block;margin:10px 0 0 auto;font:inherit;font-size:12px;padding:5px 11px;
+   border:1px solid #bcd3d0;border-radius:4px;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ .toggleall[hidden]{display:none;}
+ .toggleall:hover{background:#e4f0ee;border-color:#0f766e;}
+ .toggleall:focus-visible{outline:2px solid #0f766e;outline-offset:2px;}
+ .desc{margin:0 0 6px;}
+ .note{background:#fff8e6;border-left:3px solid #d4a017;padding:8px 12px;margin:10px 0 4px;}
+ .block h3{font-size:14px;margin:12px 0 2px;}
+ .tablewrap{overflow-x:auto;margin:8px 0;}
+ table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px;background:#fff;}
+ th,td{border:1px solid #cbd5e1;padding:5px 8px;text-align:left;vertical-align:top;}
+ tr:first-child th{background:#eef2f7;}
+</style>
+
+</head>
+<body>
+<main>
+<a class="home" href="../index.html">← Course home</a>
+<h1>The AI Multimodal Moves List</h1>
+<div class="sub">A companion to Tom Romano&#x27;s genre list, for the AI-multimodal work of the project</div>
+
+<div class="goals">
+ <p style="margin:0 0 8px">Romano&#x27;s list names forms (the obituary, the recipe, the letter). This one names moves — things you do with what a machine produces.</p>
+ <p style="margin:0">The principle under every entry: the output is not the point. What you do with it is. A generated song, summary, or image is raw material, like a photograph or a quotation. Your focus should be on the human-interaction step — the revision, the argument, the recombination — not the production of the product alone. Move widely, and keep at least one foot in Anchor with the Real so the machine is never the only voice in the room.</p>
+</div>
+<button type="button" class="toggleall" id="toggleall" hidden>Expand all</button>
+
+<details class="block b-craft">
+ <summary><h2>1 · React &amp; Talk Back</h2></summary>
+ <p class="desc">Put your own voice in dialogue with what the machine produced.</p>
+ <ul class="moves">
+  <li><strong>Recorded reaction.</strong> Generate an Audio or Video Overview of your sources in Gemini Notebook, play an excerpt, and record yourself responding — agreeing, arguing, correcting it against your primary source. The focus is the exchange, not the overview.</li>
+  <li><strong>Director&#x27;s commentary.</strong> Record your own narration over a genAI piece, walking through where it turns generic and what it leaves out.</li>
+  <li><strong>Joining the conversation.</strong> Use Gemini Notebook&#x27;s interactive Audio Overview to speak into the discussion; record the moment you intervene.</li>
+  <li><strong>Marginalia.</strong> Answer a genAI text in the margins, line by line — an argument a reader can follow.</li>
+ </ul>
+</details>
+
+<details class="block b-launch">
+ <summary><h2>2 · Remix &amp; Recombine</h2></summary>
+ <p class="desc">Bring outputs from more than one tool together into something neither made alone.</p>
+ <ul class="moves">
+  <li><strong>Compose with a text-to-music model.</strong> Draft and revise lyrics with a language model (Claude, Gemini), then generate a setting in a text-to-music tool such as Suno or Udio. The work worth doing is the revision — rewriting the lyrics against what the music exposes, or singing over the take — not the song alone.</li>
+  <li><strong>Avatar collage.</strong> Use an image generator (Midjourney, DALL-E) to make several portrait &#x27;personas&#x27; of your topic, then arrange them into one composed scene. The arrangement is the work.</li>
+  <li><strong>Sampled audio.</strong> Cut an excerpt of a genAI podcast into your own edited piece — reorder it, interrupt it, interleave your own lines.</li>
+  <li><strong>Assembled video.</strong> Combine a generated song, generated images, and your own footage into a short edited video.</li>
+  <li><strong>Staged debate.</strong> Prompt two AI personas into disagreement, then frame and cut their exchange so your reading comes through.</li>
+ </ul>
+</details>
+
+<details class="block b-read">
+ <summary><h2>3 · Deconstruct &amp; Expose</h2></summary>
+ <p class="desc">Make the machine&#x27;s limits and habits visible as your subject.</p>
+ <ul class="moves">
+  <li><strong>Side-by-side.</strong> Place the AI&#x27;s generic passage next to the specific version you wrote from your primary source.</li>
+  <li><strong>Regression sequence.</strong> Pass one detail back through the model five or ten times, showing how it drifts toward the average.</li>
+  <li><strong>Annotated transcript.</strong> Mark up a genAI output for every invention or empty generality, footnoted against your real sources.</li>
+  <li><strong>Marked-up draft.</strong> Have a model write a passage in Google Docs, then revise it in suggesting mode with margin comments. The tracked revisions are the piece.</li>
+  <li><strong>What the machine could not know.</strong> Build a piece entirely from what your interview or artifact holds and the model got wrong.</li>
+ </ul>
+</details>
+
+<details class="block b-house">
+ <summary><h2>4 · Recast the Modality</h2></summary>
+ <p class="desc">Take something the machine made in one form and remake it in another.</p>
+ <ul class="moves">
+  <li><strong>Timeline to illustration.</strong> Turn a Gemini Notebook timeline into a hand-drawn one.</li>
+  <li><strong>Briefing to performance.</strong> Turn an AI briefing into a spoken-word poem you perform.</li>
+  <li><strong>Data to song.</strong> Turn a research finding into a ballad or protest song.</li>
+  <li><strong>Dialogue to script.</strong> Turn genAI dialogue into a short skit you cast and act.</li>
+ </ul>
+</details>
+
+<details class="block b-poem">
+ <summary><h2>5 · Persona &amp; Voice</h2></summary>
+ <p class="desc">Have the machine speak as someone, then complicate the impersonation.</p>
+ <ul class="moves">
+  <li><strong>Grounded persona interview.</strong> Load a model with a real corpus about a figure — a memoir, interviews, primary documents — and interview them. With the sources the answers gain specifics; without them you get generic mush. Then set the answers beside the person&#x27;s actual words and mark where it invents.</li>
+  <li><strong>Synthetic panel.</strong> Generate a panel of &#x27;experts,&#x27; then fact-check their claims against your peer-reviewed source.</li>
+  <li><strong>Synthetic narration.</strong> Use a voice tool (such as ElevenLabs) to narrate an archival passage — with a note on what a synthetic voice adds and costs.</li>
+ </ul>
+ <p class="note"><strong>Ethics note — grounding a persona on a private or deceased person.</strong> A public figure with a published record is one thing; a private person — a late grandmother, a family member — is another. Treat the work as synthesizing a memory-corpus (letters, recordings, the family&#x27;s recollections) and marking its limits, not as resurrecting a voice. Ask the family first. And consider whether the more honest piece is the one that shows what the machine could not recover.</p>
+</details>
+
+<details class="block b-write">
+ <summary><h2>6 · Anchor with the Real</h2></summary>
+ <p class="desc">The counterweights — no AI at all.</p>
+ <ul class="moves">
+  <li><strong>Your recorded real interview.</strong> Unedited — the primary source in its own voice.</li>
+  <li>Your own photographs, field footage, or a scanned artifact.</li>
+  <li>A handwritten or hand-made piece, scanned in.</li>
+  <li>Your raw field notes.</li>
+ </ul>
+</details>
+
+<details class="block b-craft">
+ <summary><h2>Worked examples — good AI moves by topic</h2></summary>
+ <p class="desc">Every topic is built from the same seven facets — the who / what / when / where / why of it. Here they are filled for three very different subjects:</p>
+ <div class="tablewrap"><table>
+  <tr><th>Facet</th><th>your grandmother</th><th>Kendrick Lamar</th><th>veganism</th></tr>
+  <tr><th scope="row">People (who)</th><td>her; your parent; siblings; coworkers</td><td>Kendrick; collaborators; a critic; a fan</td><td>Peter Singer; an activist; a farmer; a vegan friend</td></tr>
+  <tr><th scope="row">Moments (when)</th><td>wedding; immigration; the day she died</td><td>the Pulitzer; an album drop; the Compton years</td><td>the 1944 coining; a film&#x27;s release; your first meatless week</td></tr>
+  <tr><th scope="row">Places (where)</th><td>her kitchen; hometown; the church</td><td>Compton; the studio; the stage</td><td>a farm; the grocery aisle; the dinner table</td></tr>
+  <tr><th scope="row">Objects (what)</th><td>recipe card; letters; photos; her ring</td><td>the album; the mic; liner notes</td><td>a product label; a menu; a cookbook</td></tr>
+  <tr><th scope="row">Words (said)</th><td>her sayings; the obituary; a letter</td><td>the lyrics; an interview quote; the citation</td><td>the manifesto; the etymology; a slogan</td></tr>
+  <tr><th scope="row">Questions (why)</th><td>what was lost? what you never asked</td><td>art vs. commerce? who speaks for a place?</td><td>is it healthier? ethical? can it scale?</td></tr>
+  <tr><th scope="row">Numbers</th><td>dates; ages; children; miles migrated</td><td>chart positions; awards; streams</td><td>emissions %; water use; market size</td></tr>
+ </table></div>
+ <h3>A public figure — Kendrick Lamar.</h3>
+ <p><strong>Good AI moves:</strong> grounded persona interview (his voice is specific enough that the generic version collapses fast); side-by-side (&#x27;write a verse like Kendrick&#x27; vs. a real verse); data or briefing to performance. Generic vs. specific: the model gives &#x27;acclaimed, socially conscious rapper&#x27;; the specific is one bar, one sample, the thing the superfan told you.</p>
+ <h3>A private person — your grandmother.</h3>
+ <p><strong>Good AI moves:</strong> anchor with the real (the unedited interview with your parent); what the machine could not know; persona and voice with the ethics note. Generic vs. specific: the encyclopedic decade she lived in vs. the particular her obituary and recipe card carry.</p>
+ <h3>An idea/practice — veganism.</h3>
+ <p><strong>Good AI moves:</strong> staged debate (an ethicist against a rancher, fact-checked against your peer-reviewed source); data to song; marked-up draft (revise a model&#x27;s &#x27;why go vegan&#x27; toward honesty). Generic vs. specific: the machine gives the both-sides average; your one real interview and one real dataset give the stakes.</p>
+</details>
+
+<script>
+(function(){
+  var btn = document.getElementById("toggleall");
+  if (!btn) return;
+  function secs(){ return Array.prototype.slice.call(document.querySelectorAll("details.block")); }
+  function allOpen(){ var s = secs(); return s.length > 0 && s.every(function(d){ return d.open; }); }
+  function sync(){ btn.textContent = allOpen() ? "Collapse all" : "Expand all"; }
+  btn.hidden = false;
+  btn.addEventListener("click", function(){
+    var open = !allOpen();
+    secs().forEach(function(d){ d.open = open; });
+    sync();
+  });
+  document.addEventListener("toggle", sync, true);
+  sync();
+})();
+</script>
+
+</main>
+</body>
+</html>
