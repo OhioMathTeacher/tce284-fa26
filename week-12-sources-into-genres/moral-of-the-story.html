@@ -12,7 +12,8 @@
  .home{display:inline-block;margin:0 0 10px;font-size:13px;color:#6b7280;text-decoration:none;}
  .home:hover{color:#2563eb;text-decoration:underline;}
  .q{background:#e7f3ff;padding:12px 16px;border-radius:6px;margin:12px 0 18px;}
- ol.found{margin:0;padding-left:28px;} ol.found li{margin:0 0 14px;padding-left:4px;}
+ ol.found{margin:0;padding-left:28px;} ol.found li{margin:0 0 10px;padding:4px 8px;border-radius:6px;cursor:pointer;}
+ ol.found li.now{background:#fde68a;}
  a{color:#2563eb;}
 </style>
 </head>
@@ -33,5 +34,23 @@
  <li>Read carefully.</li>
 </ol>
 </main>
+<script>
+// One finding is highlighted at a time. Click a finding to highlight it; the right arrow
+// or the space bar moves the highlight to the next one.
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll("ol.found li"));
+  var now = 0;
+  function show(i){
+    now = Math.max(0, Math.min(items.length - 1, i));
+    items.forEach(function(li, k){ li.classList.toggle("now", k === now); });
+    items[now].scrollIntoView({ block: "nearest" });
+  }
+  items.forEach(function(li, k){ li.addEventListener("click", function(){ show(k); }); });
+  document.addEventListener("keydown", function(ev){
+    if (ev.key === "ArrowRight" || ev.key === " "){ ev.preventDefault(); show(now + 1); }
+  });
+  show(0);
+})();
+</script>
 </body>
 </html>
