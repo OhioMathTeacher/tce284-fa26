@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Side by Side · TCE 284</title>
+<style>
+ :root{
+  --accent:#0f766e; --ink:#1f2937; --muted:#6b7280; --line:#d1d5db; --bg:#fbfaf7; --card:#ffffff;
+  --both:#fde68a; --both-ink:#78350f;
+  --a:#e9d5ff; --a-ink:#581c87;      /* only in the first answer */
+  --b:#ccfbf1; --b-ink:#115e59;      /* only in the second answer */
+ }
+ *{box-sizing:border-box;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;}
+ .page{max-width:1280px;margin:0 auto;padding:16px 16px 40px;}
+ .home{display:inline-block;margin:0 0 6px;font-size:13px;color:var(--muted);text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ h1{font-size:22px;margin:0 0 4px;}
+ .how{color:#374151;font-size:14px;margin:0 0 12px;max-width:900px;}
+ .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px;}
+ button{font:inherit;font-size:14px;padding:6px 14px;border-radius:5px;border:1px solid #bcd3d0;background:#f2f8f7;color:#0f5f59;cursor:pointer;}
+ button:hover{background:#e4f0ee;border-color:var(--accent);}
+ button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+ button.primary:hover{background:#0b5f58;}
+ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+ .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-left:auto;}
+ .legend span{display:inline-flex;align-items:center;gap:5px;}
+ .sw{display:inline-block;width:14px;height:14px;border-radius:3px;}
+ .grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px;align-items:start;}
+ @media (max-width:860px){.grid{grid-template-columns:1fr;}}
+ .frames{display:grid;grid-template-rows:auto auto;gap:12px;}
+ .frame{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;}
+ .frame-a{border-top:5px solid #a855f7;} .frame-b{border-top:5px solid #14b8a6;}
+ .fhead{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);}
+ .fhead input{font:inherit;font-weight:700;font-size:16px;border:1px solid transparent;border-radius:4px;padding:2px 6px;background:transparent;color:var(--ink);min-width:0;flex:1;}
+ .fhead input:hover{border-color:var(--line);}
+ .stats{font-size:12px;color:var(--muted);white-space:nowrap;}
+ .fbody{height:42vh;min-height:220px;overflow:auto;}
+ textarea{width:100%;height:100%;border:0;resize:none;padding:12px;font:inherit;font-size:15px;line-height:1.55;background:transparent;color:var(--ink);}
+ .view{padding:12px 14px;font-size:15px;line-height:1.6;white-space:pre-wrap;}
+ .view[hidden],textarea[hidden]{display:none;}
+ mark{border-radius:3px;padding:0 2px;}
+ mark.both{background:var(--both);color:var(--both-ink);}
+ mark.oa{background:var(--a);color:var(--a-ink);}
+ mark.ob{background:var(--b);color:var(--b-ink);}
+ .lists{display:grid;gap:12px;}
+ .list{background:var(--card);border:1px solid var(--line);border-radius:8px;}
+ .list h2{font-size:15px;margin:0;padding:8px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;}
+ .list h2 .n{font-weight:400;color:var(--muted);font-size:13px;}
+ .l-both{border-left:6px solid #f59e0b;} .l-a{border-left:6px solid #a855f7;} .l-b{border-left:6px solid #14b8a6;}
+ ul.items{list-style:none;margin:0;padding:6px 8px;}
+ ul.items li{display:flex;align-items:flex-start;gap:6px;padding:4px 4px;border-radius:4px;}
+ ul.items li:hover{background:#f6f6f3;}
+ .it{flex:1;outline:none;padding:1px 4px;border-radius:3px;font-size:15px;}
+ .it:focus{background:#fff8dc;}
+ .found{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:0 6px;margin-top:3px;white-space:nowrap;}
+ .x{border:0;background:transparent;color:#9ca3af;font-size:16px;line-height:1;padding:2px 6px;cursor:pointer;}
+ .x:hover{color:#b91c1c;background:transparent;}
+ .add{display:flex;gap:6px;padding:4px 12px 10px;}
+ .add input{flex:1;font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:4px;}
+ .empty{color:var(--muted);font-size:13px;padding:4px 8px;font-style:italic;}
+ .note{font-size:12px;color:var(--muted);margin-top:10px;}
+ .pass{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:5px;width:11em;}
+ .ai{font-size:11px;color:#fff;background:#4b5563;border-radius:10px;padding:0 7px;margin-top:3px;white-space:nowrap;}
+ .status{flex-basis:100%;font-size:14px;color:#374151;min-height:1.4em;}
+ .status.err{color:#b91c1c;}
+</style>
+</head>
+<body>
+<div class="page">
+<a class="home" href="week-12-mon.html">← Week 12 · Monday</a>
+<h1>Side by Side</h1>
+<p class="how">Ask two tools the same question. Paste each answer into a box on the left and press <strong>Compare</strong>. The page lists the specific details it can find (names, dates, numbers, quotations, cited sources) that both answers share and the ones only one answer has. <strong>Compare with AI</strong> also looks for ideas and for the same fact said two ways; it needs the class passcode. Then add, edit, or delete items as you talk.</p>
+
+<div class="bar">
+ <button type="button" class="primary" id="compare">Compare</button>
+ <input type="password" class="pass" id="pass" placeholder="Class passcode" aria-label="Class passcode for the AI" autocomplete="off">
+ <button type="button" id="compareAI">Compare with AI</button>
+ <button type="button" id="edit">Edit the text</button>
+ <button type="button" id="clear">Clear everything</button>
+ <div class="legend" aria-label="Highlight colors">
+  <span><i class="sw" style="background:var(--both)"></i>In both</span>
+  <span><i class="sw" style="background:var(--a)"></i>Only in <b id="lgA">Plain chatbot</b></span>
+  <span><i class="sw" style="background:var(--b)"></i>Only in <b id="lgB">Gemini Notebook</b></span>
+ </div>
+ <div class="status" id="status" role="status"></div>
+</div>
+
+<div class="grid">
+ <div class="frames">
+  <section class="frame frame-a">
+   <div class="fhead"><input id="nameA" value="Plain chatbot" aria-label="Name of the first answer"><span class="stats" id="statsA"></span></div>
+   <div class="fbody"><textarea id="textA" placeholder="Paste the first answer here."></textarea><div class="view" id="viewA" hidden></div></div>
+  </section>
+  <section class="frame frame-b">
+   <div class="fhead"><input id="nameB" value="Gemini Notebook" aria-label="Name of the second answer"><span class="stats" id="statsB"></span></div>
+   <div class="fbody"><textarea id="textB" placeholder="Paste the second answer here."></textarea><div class="view" id="viewB" hidden></div></div>
+  </section>
+ </div>
+
+ <div class="lists">
+  <section class="list l-both"><h2>In both <span class="n" id="nBoth"></span></h2><ul class="items" id="listBoth"></ul>
+   <div class="add"><input data-list="both" placeholder="Add something both answers have" aria-label="Add to In both"></div></section>
+  <section class="list l-a"><h2>Only in <span id="hA">Plain chatbot</span> <span class="n" id="nA"></span></h2><ul class="items" id="listA"></ul>
+   <div class="add"><input data-list="a" placeholder="Add something only this answer has" aria-label="Add to the first answer's list"></div></section>
+  <section class="list l-b"><h2>Only in <span id="hB">Gemini Notebook</span> <span class="n" id="nB"></span></h2><ul class="items" id="listB"></ul>
+   <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div></section>
+  <p class="note">Items marked <span class="found">found</span> came from the page's own rules, which find concrete details, not ideas. Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic. Compare with AI sends both answers to Claude through the course server, which stores nothing. Everything else stays in this browser. The class's own items matter most.</p>
+ </div>
+</div>
+</div>
+
+<script>
+(function(){
+ "use strict";
+ var KEY = "tce284-side-by-side-v1";
+ var $ = function(id){ return document.getElementById(id); };
+ var state = { nameA:"Plain chatbot", nameB:"Gemini Notebook", textA:"", textB:"", viewing:false,
+               lists:{ both:[], a:[], b:[] } };   // item: {text, found:bool}
+
+ function load(){ try{ var s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.lists) state = s; }catch(e){} }
+ function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+ // ---------- finding specifics ----------
+ var STOP = ("The A An In It Its This That These Those However While When Although Though Because As According " +
+   "Their There Some Many Most For From By With Today Unlike Like Also But And Or So If Yet Even Over Since One Each " +
+   "Both Such Other More What Why How Who Where Which Here We You I He She They His Her Our Your My Not No Yes " +
+   "Overall Additionally Furthermore Moreover Ultimately Finally First Second Third Then Now Often Sometimes Despite " +
+   "Through During After Before Under Into Whether Still Perhaps Indeed Notably Historically Instead Similarly " +
+   "Generally Typically Essentially Rather Thus Therefore Meanwhile Later Earlier Once Only Just To Of On At Is Are " +
+   "Was Were Be Can Could Would Should Will May Might Must Do Does Did Has Have Had In-short Example Examples Note " +
+   "Summary Conclusion Introduction Sources Source Key Main Another Every All Any Few Several Much Let Use Using").split(" ");
+ var STOPSET = {}; STOP.forEach(function(w){ STOPSET[w] = 1; });
+ var CONNECT = { "of":1, "de":1, "la":1, "le":1, "van":1, "von":1, "der":1, "da":1, "del":1, "du":1, "and":1, "&":1 };
+
+ function norm(s){
+  return " " + s.toLowerCase().replace(/[’']/g,"").replace(/[^a-z0-9%]+/g," ").replace(/\s+/g," ").trim() + " ";
+ }
+ function contains(normText, term){ var k = norm(term); return k.length > 2 && normText.indexOf(k) !== -1; }
+
+ function sentenceStart(text, i){
+  var j = i - 1;
+  while (j >= 0 && /[\s"“‘'(\-–—•*#>]/.test(text[j])) j--;
+  return j < 0 || /[.!?:;\n]/.test(text[j]) || text[j] === undefined;
+ }
+
+ function names(text){
+  var out = [], re = /[A-Z][A-Za-z’'\-]*[A-Za-z](?:\s+(?:(?:of|de|la|le|van|von|der|da|del|du|and|&)\s+)?[A-Z][A-Za-z’'\-]*[A-Za-z])*/g, m;
+  while ((m = re.exec(text))){
+   var words = m[0].split(/\s+/), start = m.index;
+   if (sentenceStart(text, start) && STOPSET[words[0]]){
+    // drop a sentence-opening stop word: "The Renaissance" -> "Renaissance"
+    var first = words.shift(); start += first.length; while (/\s/.test(text[start])) start++;
+    while (words.length && CONNECT[words[0].toLowerCase()]){ var c = words.shift(); start += c.length; while (/\s/.test(text[start])) start++; }
+    if (!words.length) continue;
+   }
+   if (words.length === 1){
+    var w = words[0];
+    if (STOPSET[w] || w.length < 3) continue;
+    // a lone capitalized word at the start of a sentence counts only if it is also capitalized mid-sentence somewhere
+    if (sentenceStart(text, start)){
+     var mid = new RegExp("[a-z,]\\s+" + w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + "\\b");
+     if (!mid.test(text)) continue;
+    }
+   }
+   while (words.length && CONNECT[words[words.length-1].toLowerCase()]) words.pop();
+   out.push(words.join(" "));
+  }
+  return out;
+ }
+ function numbers(text){
+  var out = [], m, re = /(?:\$\s?)?\b\d{1,3}(?:,\d{3})+(?:\.\d+)?%?|\b\d{3,4}s?\b|\b\d+(?:\.\d+)?\s?%|\b\d{1,2}(?:st|nd|rd|th)\s+centur(?:y|ies)\b|\b\d+(?:\.\d+)?\s+(?:percent|years?|centuries|million|billion|thousand|hundred)\b/gi;
+  while ((m = re.exec(text))){
+   // skip citation markers such as [12] or a footnote number glued to a word
+   var before = text.slice(Math.max(0, m.index - 1), m.index);
+   if (before === "[" || /[A-Za-z.)]/.test(before) && /^\d{1,2}$/.test(m[0])) continue;
+   out.push(m[0].trim());
+  }
+  return out;
+ }
+ function quotes(text){
+  var out = [], m, re = /[“"]([^”"\n]{8,160})[”"]/g;
+  while ((m = re.exec(text))) out.push("“" + m[1].trim() + "”");
+  return out;
+ }
+ function citations(text){
+  var m = text.match(/\[\s?\d{1,3}(?:\s?[,–-]\s?\d{1,3})*\s?\]/g);
+  return m ? m.length : 0;
+ }
+ function specifics(text){
+  var seen = {}, list = [];
+  quotes(text).concat(names(text), numbers(text)).forEach(function(s){
+   var k = norm(s); if (k.length < 3 || seen[k]) return; seen[k] = 1; list.push(s);
+  });
+  // drop an item that sits inside a longer item from the same answer ("Watson" inside "Cecelia Watson")
+  return list.filter(function(s){
+   var k = norm(s);
+   return !list.some(function(t){ return t !== s && norm(t).length > k.length && norm(t).indexOf(k) !== -1; });
+  });
+ }
+
+ function compare(){
+  var A = state.textA, B = state.textB, nA = norm(A), nB = norm(B);
+  var sA = specifics(A), sB = specifics(B);
+  var both = [], onlyA = [], onlyB = [], bothKeys = {};
+  function addBoth(s){ var k = norm(s); if (!bothKeys[k]){ bothKeys[k] = 1; both.push(s); } }
+  sA.forEach(function(s){ contains(nB, s) ? addBoth(s) : onlyA.push(s); });
+  sB.forEach(function(s){ if (contains(nA, s)) addBoth(s); else onlyB.push(s); });
+  var cA = citations(A), cB = citations(B);
+  if (cA && cB) both.push("Cites its sources");
+  else if (cA) onlyA.push("Cites its sources (" + cA + " citation" + (cA === 1 ? "" : "s") + ")");
+  else if (cB) onlyB.push("Cites its sources (" + cB + " citation" + (cB === 1 ? "" : "s") + ")");
+  function merge(key, found){
+   var keep = state.lists[key].filter(function(it){ return !it.found; });
+   state.lists[key] = found.map(function(t){ return { text:t, found:true }; }).concat(keep);
+  }
+  merge("both", both); merge("a", onlyA); merge("b", onlyB);
+  state.viewing = true;
+  state.mode = "rules";
+  state._marks = { bothA:both, bothB:both, a:onlyA, b:onlyB };
+  save(); render();
+ }
+
+ // ---------- the AI compare ----------
+ // The page never holds an API key. It sends the class passcode and the two answers to the
+ // course server (a Cloudflare Worker), which asks Claude and returns the three lists.
+ var AI_URL = "https://course-ai.ohiomathteacher.workers.dev/compare";
+ if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){
+  var o = new URLSearchParams(location.search).get("ai"); if (o) AI_URL = o.replace(/\/$/, "") + "/compare";
+ }
+ var MESSAGES = {
+  passcode: "That passcode didn't work. Check it with your instructor.",
+  cap: "The class has used today's AI compares. The Compare button still works.",
+  refusal: "The AI declined to compare these two texts.",
+  empty: "Paste an answer into both boxes first.",
+  "too-long": "One of the answers is too long for the AI. Try a shorter excerpt."
+ };
+ function status(msg, err){ var el = $("status"); el.textContent = msg || ""; el.className = "status" + (err ? " err" : ""); }
+ function getPass(){ try{ return sessionStorage.getItem(KEY + "-pass") || ""; }catch(e){ return ""; } }
+ function setPass(p){ try{ sessionStorage.setItem(KEY + "-pass", p); }catch(e){} }
+
+ function compareAI(){
+  var pass = $("pass").value.trim();
+  if (!pass){ status("Type the class passcode first.", true); $("pass").focus(); return; }
+  if (!state.textA.trim() || !state.textB.trim()){ status(MESSAGES.empty, true); return; }
+  var btn = $("compareAI"); btn.disabled = true; status("Asking the AI to compare the two answers…");
+  fetch(AI_URL, { method:"POST", headers:{ "content-type":"application/json" },
+   body: JSON.stringify({ passcode:pass, a:state.textA, b:state.textB, nameA:state.nameA, nameB:state.nameB }) })
+  .then(function(r){ return r.json().then(function(d){ return { ok:r.ok, d:d }; }); })
+  .then(function(res){
+   var d = res.d || {};
+   if (d.error){ status(MESSAGES[d.error] || "The AI couldn't answer this time. The Compare button still works.", true); return; }
+   setPass(pass);
+   function merge(key, items){
+    var keep = state.lists[key].filter(function(it){ return !it.found; });
+    state.lists[key] = items.map(function(t){ return { text:t, found:"ai" }; }).concat(keep);
+   }
+   var both = d.both || [], oa = d.only_a || [], ob = d.only_b || [];
+   merge("both", both.map(function(x){ return x.point; }));
+   merge("a", oa.map(function(x){ return x.point; }));
+   merge("b", ob.map(function(x){ return x.point; }));
+   var q = function(v){ return v ? [v] : []; };
+   state.mode = "ai"; state.viewing = true;
+   state._marks = {
+    bothA: [].concat.apply([], both.map(function(x){ return q(x.quote_a); })),
+    bothB: [].concat.apply([], both.map(function(x){ return q(x.quote_b); })),
+    a: [].concat.apply([], oa.map(function(x){ return q(x.quote); })),
+    b: [].concat.apply([], ob.map(function(x){ return q(x.quote); }))
+   };
+   save(); render();
+   status("Compared by " + (d.model || "the AI") + ". Edit the lists as you talk.");
+  })
+  .catch(function(){ status("Couldn't reach the AI. The Compare button still works.", true); })
+  .then(function(){ btn.disabled = false; });
+ }
+
+ // ---------- drawing ----------
+ function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+ function rx(term){
+  var t = term.replace(/^[“"]|[”"]$/g, "").replace(/\s*\(\d+ citations?\)$/, "");
+  t = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+").replace(/['’]/g, "['’]");
+  return new RegExp("(^|[^A-Za-z0-9])(" + t + ")(?![A-Za-z0-9])", "gi");
+ }
+ function highlight(text, marks, own){
+  // own: "a" or "b"; collect ranges, longest terms first, no overlaps
+  var ranges = [];
+  function take(list, cls){
+   (list || []).slice().sort(function(x, y){ return y.length - x.length; }).forEach(function(term){
+    if (/^Cites its sources/.test(term)) return;
+    var re = rx(term), m;
+    while ((m = re.exec(text))){
+     var s = m.index + m[1].length, e = s + m[2].length;
+     if (!ranges.some(function(r){ return s < r[1] && e > r[0]; })) ranges.push([s, e, cls]);
+     if (re.lastIndex === m.index) re.lastIndex++;
+    }
+   });
+  }
+  take(own === "a" ? marks.bothA : marks.bothB, "both");
+  take(own === "a" ? marks.a : marks.b, own === "a" ? "oa" : "ob");
+  ranges.sort(function(x, y){ return x[0] - y[0]; });
+  var html = "", pos = 0;
+  ranges.forEach(function(r){ html += esc(text.slice(pos, r[0])) + '<mark class="' + r[2] + '">' + esc(text.slice(r[0], r[1])) + "</mark>"; pos = r[1]; });
+  return html + esc(text.slice(pos));
+ }
+ function words(t){ var m = t.trim().match(/\S+/g); return m ? m.length : 0; }
+ function stats(t){
+  if (!t.trim()) return "";
+  var c = citations(t);
+  return words(t) + " words" + (c ? " · " + c + " citation" + (c === 1 ? "" : "s") : "");
+ }
+
+ function drawList(key, ul, countEl){
+  ul.innerHTML = "";
+  var items = state.lists[key];
+  countEl.textContent = items.length ? "(" + items.length + ")" : "";
+  if (!items.length){ var e = document.createElement("li"); e.className = "empty"; e.textContent = "Nothing yet."; ul.appendChild(e); return; }
+  items.forEach(function(it, i){
+   var li = document.createElement("li");
+   var span = document.createElement("span"); span.className = "it"; span.contentEditable = "true"; span.spellcheck = false;
+   span.textContent = it.text;
+   span.addEventListener("keydown", function(ev){ if (ev.key === "Enter"){ ev.preventDefault(); span.blur(); } });
+   span.addEventListener("blur", function(){
+    var t = span.textContent.trim();
+    if (!t){ items.splice(i, 1); }
+    else if (t !== it.text){ it.text = t; it.found = false; }
+    save(); render();
+   });
+   li.appendChild(span);
+   if (it.found === "ai"){ var g = document.createElement("span"); g.className = "ai"; g.textContent = "AI"; li.appendChild(g); }
+   else if (it.found){ var f = document.createElement("span"); f.className = "found"; f.textContent = "found"; li.appendChild(f); }
+   var x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "×"; x.setAttribute("aria-label", "Delete " + it.text);
+   x.addEventListener("click", function(){ items.splice(i, 1); save(); render(); });
+   li.appendChild(x);
+   ul.appendChild(li);
+  });
+ }
+
+ function render(){
+  $("nameA").value = state.nameA; $("nameB").value = state.nameB;
+  ["lgA","hA"].forEach(function(id){ $(id).textContent = state.nameA || "the first answer"; });
+  ["lgB","hB"].forEach(function(id){ $(id).textContent = state.nameB || "the second answer"; });
+  if (document.activeElement !== $("textA")) $("textA").value = state.textA;
+  if (document.activeElement !== $("textB")) $("textB").value = state.textB;
+  $("statsA").textContent = stats(state.textA); $("statsB").textContent = stats(state.textB);
+  var marks = state._marks || { bothA:[], bothB:[], a:[], b:[] };
+  var v = state.viewing && (state.textA.trim() || state.textB.trim());
+  $("textA").hidden = $("textB").hidden = !!v;
+  $("viewA").hidden = $("viewB").hidden = !v;
+  if (v){ $("viewA").innerHTML = highlight(state.textA, marks, "a"); $("viewB").innerHTML = highlight(state.textB, marks, "b"); }
+  $("edit").hidden = !v;
+  drawList("both", $("listBoth"), $("nBoth"));
+  drawList("a", $("listA"), $("nA"));
+  drawList("b", $("listB"), $("nB"));
+ }
+
+ // ---------- wiring ----------
+ $("textA").addEventListener("input", function(){ state.textA = this.value; save(); $("statsA").textContent = stats(state.textA); });
+ $("textB").addEventListener("input", function(){ state.textB = this.value; save(); $("statsB").textContent = stats(state.textB); });
+ $("nameA").addEventListener("input", function(){ state.nameA = this.value; save(); render(); });
+ $("nameB").addEventListener("input", function(){ state.nameB = this.value; save(); render(); });
+ $("compare").addEventListener("click", function(){ compare(); status(""); });
+ $("compareAI").addEventListener("click", compareAI);
+ $("pass").addEventListener("keydown", function(ev){ if (ev.key === "Enter") compareAI(); });
+ $("edit").addEventListener("click", function(){ state.viewing = false; save(); render(); $("textA").focus(); });
+ var armed = false;
+ $("clear").addEventListener("click", function(){
+  if (!armed){ armed = true; this.textContent = "Click again to clear"; var b = this; setTimeout(function(){ armed = false; b.textContent = "Clear everything"; }, 3000); return; }
+  armed = false; this.textContent = "Clear everything";
+  state = { nameA:state.nameA, nameB:state.nameB, textA:"", textB:"", viewing:false, lists:{ both:[], a:[], b:[] } };
+  save(); render();
+ });
+ Array.prototype.forEach.call(document.querySelectorAll(".add input"), function(inp){
+  inp.addEventListener("keydown", function(ev){
+   if (ev.key !== "Enter") return;
+   var t = inp.value.trim(); if (!t) return;
+   state.lists[inp.getAttribute("data-list")].push({ text:t, found:false });
+   inp.value = ""; save(); render(); inp.focus();
+  });
+ });
+
+ load();
+ $("pass").value = getPass();
+ if (state.viewing && !state._marks) compare(); else render();
+})();
+</script>
+</body>
+</html>
