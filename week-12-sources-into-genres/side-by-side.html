@@ -36,6 +36,9 @@
  .grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px;align-items:start;}
  @media (max-width:860px){.grid{grid-template-columns:1fr;}}
  .frames{display:flex;flex-direction:column;gap:12px;}
+ .question{flex:none;background:var(--card);border:1px solid var(--line);border-top:5px solid #6b7280;border-radius:8px;padding:8px 12px;}
+ .question label{display:block;font-size:13px;font-weight:600;color:#374151;margin:0 0 4px;}
+ .question input{display:block;width:100%;font:inherit;font-size:16px;font-weight:600;padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);}
  .frame{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;flex:1 1 0;min-height:0;}
  .frame-a{border-top:5px solid #a855f7;} .frame-b{border-top:5px solid #14b8a6;}
  .fhead{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);}
@@ -121,6 +124,7 @@
 
 <div class="grid">
  <div class="frames" id="frames">
+  <div class="question"><label for="question">The question you asked both tools</label><input id="question" placeholder="Type the question here." autocomplete="off"></div>
   <section class="frame frame-a">
    <div class="fhead"><input id="nameA" value="Plain chatbot" aria-label="Name of the first answer"><span class="stats" id="statsA"></span></div>
    <div class="fbody"><textarea id="textA" placeholder="Paste the first answer here."></textarea><div class="view" id="viewA" hidden></div></div>
@@ -156,7 +160,7 @@
  "use strict";
  var KEY = "tce284-side-by-side-v1";
  var $ = function(id){ return document.getElementById(id); };
- var state = { nameA:"Plain chatbot", nameB:"Gemini Notebook", textA:"", textB:"", viewing:false,
+ var state = { nameA:"Plain chatbot", nameB:"Gemini Notebook", question:"", textA:"", textB:"", viewing:false,
                lists:{ both:[], a:[], b:[] } };   // item: {text, found:bool}
 
  function load(){ try{ var s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.lists) state = s; }catch(e){} }
@@ -442,6 +446,7 @@
   $("nameA").value = state.nameA; $("nameB").value = state.nameB;
   ["lgA","hA"].forEach(function(id){ $(id).textContent = state.nameA || "the first answer"; });
   ["lgB","hB"].forEach(function(id){ $(id).textContent = state.nameB || "the second answer"; });
+  if (document.activeElement !== $("question")) $("question").value = state.question || "";
   if (document.activeElement !== $("textA")) $("textA").value = state.textA;
   if (document.activeElement !== $("textB")) $("textB").value = state.textB;
   $("statsA").textContent = stats(state.textA); $("statsB").textContent = stats(state.textB);
@@ -457,6 +462,7 @@
  }
 
  // ---------- wiring ----------
+ $("question").addEventListener("input", function(){ state.question = this.value; save(); });
  $("textA").addEventListener("input", function(){ state.textA = this.value; save(); $("statsA").textContent = stats(state.textA); });
  $("textB").addEventListener("input", function(){ state.textB = this.value; save(); $("statsB").textContent = stats(state.textB); });
  $("nameA").addEventListener("input", function(){ state.nameA = this.value; save(); render(); });
@@ -512,7 +518,7 @@
  $("clear").addEventListener("click", function(){
   if (!armed){ armed = true; this.textContent = "Click again to clear"; var b = this; setTimeout(function(){ armed = false; b.textContent = "Clear everything"; }, 3000); return; }
   armed = false; this.textContent = "Clear everything";
-  state = { nameA:state.nameA, nameB:state.nameB, textA:"", textB:"", viewing:false, lists:{ both:[], a:[], b:[] } };
+  state = { nameA:state.nameA, nameB:state.nameB, question:"", textA:"", textB:"", viewing:false, lists:{ both:[], a:[], b:[] } };
   save(); render();
  });
  Array.prototype.forEach.call(document.querySelectorAll(".add input"), function(inp){
