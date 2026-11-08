@@ -22,7 +22,20 @@
  .cite{font-size:14px;color:#6b7280;margin:10px 0 0;}
  .poem h3{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:calc(var(--f) * 1.15);font-weight:600;margin:0 0 4px;}
  .stanza{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-size:var(--f);line-height:1.32;margin:0 0 calc(var(--f) * .55);}
- .stanza span{display:block;padding-left:1.4em;text-indent:-1.4em;}
+ .stanza .ln{display:block;padding-left:1.4em;text-indent:-1.4em;}
+ .t{border-radius:3px;transition:background .15s;}
+ .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px;}
+ .tags button{font:inherit;font-size:13px;font-weight:600;padding:3px 10px;border-radius:14px;border:1px solid #cfcabd;background:#f6f4ee;color:#374151;cursor:pointer;}
+ .tags button:hover{border-color:#9ca3af;}
+ .tags button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+ .tags button[data-show="specific"][aria-pressed="true"]{background:#fde68a;border-color:#d97706;}
+ .tags button[data-show="parallel"][aria-pressed="true"]{background:#bfdbfe;border-color:#2563eb;}
+ .tags button[data-show="fragment"][aria-pressed="true"]{background:#fbcfe8;border-color:#db2777;}
+ .tags button[data-show="semi"][aria-pressed="true"]{background:#ddd6fe;border-color:#7c3aed;}
+ body[data-show="specific"] .t[data-tags~="specific"]{background:#fde68a;}
+ body[data-show="parallel"] .t[data-tags~="parallel"]{background:#bfdbfe;}
+ body[data-show="fragment"] .t[data-tags~="fragment"]{background:#fbcfe8;}
+ body[data-show="semi"] .t[data-tags~="semi"]{background:#ddd6fe;}
  .after{font-family:"Literata",Charter,"Iowan Old Style",Georgia,serif;font-style:italic;font-size:calc(var(--f) * .85);color:#4b5563;margin:2px 0 0;}
  .note{font-size:14px;color:#6b7280;margin:8px 0 0;line-height:1.4;}
  a{color:#2563eb;}
@@ -48,14 +61,20 @@
 
  <section class="col poem">
   <h2>The poem</h2>
+  <div class="tags" role="group" aria-label="Show examples in the poem">
+   <button type="button" data-show="specific">Specific detail</button>
+   <button type="button" data-show="parallel">Parallel structure</button>
+   <button type="button" data-show="fragment">Fragment</button>
+   <button type="button" data-show="semi">Semicolon as a pause</button>
+  </div>
   <h3>No longer free</h3>
-  <p class="stanza"><span>When you are told that you are no longer able</span><span>to talk to your friend because he's Chinese;</span><span>when you're told that your colleagues are now suspects;</span><span>when you're told to be quiet by those in charge.</span></p>
-  <p class="stanza"><span>The powerlessness, the anger, the sadness</span><span>is too much to bear;</span><span>you begin to understand .&nbsp;.&nbsp;.&nbsp;.&nbsp;.</span></p>
-  <p class="stanza"><span>What it means to be silenced; to be oppressed; to be confined.</span></p>
-  <p class="stanza"><span>Something that used to happen to other people,</span><span>those on the margins.</span><span>While I can't claim to understand others' pain or longing,</span><span>somehow it seems more real to me than before.</span></p>
-  <p class="stanza"><span>I wait for things to change;</span><span>patiently;</span><span>but the day never seems to come.</span></p>
-  <p class="stanza"><span>I've choked back more tears;</span><span>held my tongue more times than I can count;</span><span>how much longer can I wait?</span></p>
-  <p class="stanza"><span>When we're no longer able to express our feelings to others,</span><span>we're no longer fully alive—</span><span>no longer free.</span></p>
+  <p class="stanza"><span class="ln"><span class="t" data-tags="fragment"><span class="t" data-tags="parallel">When you are told</span> that you are no longer able</span></span><span class="ln"><span class="t" data-tags="fragment">to talk to <span class="t" data-tags="specific">your friend because he's Chinese</span>;</span></span><span class="ln"><span class="t" data-tags="fragment"><span class="t" data-tags="parallel">when you're told</span> that <span class="t" data-tags="specific">your colleagues are now suspects</span>;</span></span><span class="ln"><span class="t" data-tags="fragment"><span class="t" data-tags="parallel">when you're told</span> <span class="t" data-tags="specific">to be quiet by those in charge</span>.</span></span></p>
+  <p class="stanza"><span class="ln"><span class="t" data-tags="parallel">The powerlessness, the anger, the sadness</span></span><span class="ln">is too much to bear;</span><span class="ln">you begin to understand .&nbsp;.&nbsp;.&nbsp;.&nbsp;.</span></p>
+  <p class="stanza"><span class="ln"><span class="t" data-tags="fragment">What it means <span class="t" data-tags="parallel">to be silenced; to be oppressed; to be confined</span>.</span></span></p>
+  <p class="stanza"><span class="ln"><span class="t" data-tags="fragment">Something that used to happen to other people,</span></span><span class="ln"><span class="t" data-tags="fragment">those on the margins.</span></span><span class="ln">While I can't claim to understand others' pain or longing,</span><span class="ln">somehow it seems more real to me than before.</span></p>
+  <p class="stanza"><span class="ln">I wait for things to change;</span><span class="ln"><span class="t" data-tags="semi">patiently;</span></span><span class="ln">but the day never seems to come.</span></p>
+  <p class="stanza"><span class="ln"><span class="t" data-tags="specific">Talking to colleagues in whispers</span>,</span><span class="ln">I know I'm not alone;</span><span class="ln">but I think twice now before I speak;</span><span class="ln">how much longer can I wait?</span></p>
+  <p class="stanza"><span class="ln">When we're no longer able to express our feelings to others,</span><span class="ln">we're no longer fully alive—</span><span class="ln">no longer free.</span></p>
   <p class="after">(after Martin Luther King Jr., "Letter from Birmingham Jail")</p>
  </section>
 </div>
@@ -63,6 +82,19 @@
 <p class="note">Romano does this in WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship"</a>: his "Awe" is written after Gendler's <em>The Book of Qualities</em>.<br>On repeating a pattern ("when… when… when…," "to be… to be… to be…"), see WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154844">ch11, "Riding the Rhythm of Parallel Structure"</a>: parallel structures "lift readers and propel them forward."</p>
 </main>
 <script>
+// The tag buttons: one category lit at a time. Click a lit one again to clear it.
+(function(){
+  var btns = Array.prototype.slice.call(document.querySelectorAll(".tags button"));
+  btns.forEach(function(b){
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function(){
+      var on = b.getAttribute("aria-pressed") !== "true";
+      btns.forEach(function(x){ x.setAttribute("aria-pressed", "false"); });
+      if (on){ b.setAttribute("aria-pressed", "true"); document.body.setAttribute("data-show", b.getAttribute("data-show")); }
+      else document.body.removeAttribute("data-show");
+    });
+  });
+})();
 // Fit the whole page in the window with no scrolling: start large and step the type
 // size down until nothing overflows. Runs again when the window changes size.
 (function(){
