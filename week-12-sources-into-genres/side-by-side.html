@@ -84,7 +84,13 @@
  .menu button{display:block;width:100%;text-align:left;white-space:nowrap;border:0;background:transparent;color:var(--ink);}
  .menu button:hover{background:#f2f8f7;}
  .ai{font-size:11px;color:#fff;background:#4b5563;border-radius:10px;padding:0 7px;margin-top:3px;white-space:nowrap;}
- .agree{font-size:11px;color:#374151;border:1px solid #4b5563;border-radius:10px;padding:0 6px;margin-top:3px;white-space:nowrap;}
+ .agree{font:inherit;font-size:11px;line-height:1.5;color:#374151;background:transparent;border:1px solid #4b5563;border-radius:10px;padding:0 6px;margin-top:3px;white-space:nowrap;cursor:help;}
+ .agree:hover{background:#f3f4f6;border-color:#4b5563;}
+ .disagree{color:#9a3412;border-color:#c2410c;background:#fff7ed;}
+ .disagree:hover{background:#ffedd5;border-color:#c2410c;}
+ .bubble{position:fixed;z-index:20;background:#1f2937;color:#fff;font-size:14px;line-height:1.45;padding:9px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.25);}
+ .bubble[hidden]{display:none;}
+ .bubble-dis{background:#7c2d12;}
  .status{flex-basis:100%;font-size:14px;color:#374151;min-height:1.4em;}
  .status.err{color:#b91c1c;}
 </style>
@@ -140,7 +146,7 @@
   <section class="list l-b" role="tabpanel" data-panel="b" hidden>
    <div class="add"><input data-list="b" placeholder="Add something only this answer has" aria-label="Add to the second answer's list"></div>
    <ul class="items" id="listB"></ul></section>
-  <p class="note">Items with no mark are the class's own, and they come first. <span class="agree">AI agrees</span> means the AI found the same thing. Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic; Compare sends both answers to Claude through the course server, which stores nothing. Items marked <span class="found">found</span> came from Compare without AI, which runs only in this browser and finds concrete details, not ideas. The class's own items matter most.</p>
+  <p class="note">Items with no mark are the class's own, and they come first. <span class="agree">AI agrees</span> and <span class="agree disagree">AI disagrees</span> are the AI's check on them; point at the tag (or tap it) to see why. Items marked <span class="ai">AI</span> came from Claude, an AI made by Anthropic; Compare sends both answers to Claude through the course server, which stores nothing. Items marked <span class="found">found</span> came from Compare without AI, which runs only in this browser and finds concrete details, not ideas. The class's own items matter most.</p>
  </div>
 </div>
 </div>
@@ -299,17 +305,16 @@
     return;
    }
    setPass(pass);
+   var checks = d.class_checks || [], LIST = { both:"both", only_a:"a", only_b:"b" };
    function merge(key, items){
     var keep = state.lists[key].filter(function(it){ return !it.found; });
-    keep.forEach(function(it){ it.agree = false; });
-    var added = [];
-    items.forEach(function(x){
-     var k = (x.class_item || "").toLowerCase(), hit = null;
-     if (k) keep.forEach(function(it){ if (!hit && it.text.toLowerCase() === k) hit = it; });
-     if (hit) hit.agree = true;
-     else added.push({ text:x.point, found:"ai" });
+    keep.forEach(function(it){ it.verdict = ""; it.reason = ""; delete it.agree; });
+    checks.forEach(function(c){
+     if (LIST[c.list] !== key || c.verdict === "no_view") return;
+     var k = (c.class_item || "").toLowerCase();
+     keep.forEach(function(it){ if (it.text.toLowerCase() === k){ it.verdict = c.verdict; it.reason = c.reason || ""; } });
     });
-    state.lists[key] = keep.concat(added);
+    state.lists[key] = keep.concat(items.map(function(x){ return { text:x.point, found:"ai" }; }));
    }
    var both = d.both || [], oa = d.only_a || [], ob = d.only_b || [];
    merge("both", both); merge("a", oa); merge("b", ob);
@@ -321,12 +326,41 @@
     a: [].concat.apply([], oa.map(function(x){ return q(x.quote); })),
     b: [].concat.apply([], ob.map(function(x){ return q(x.quote); }))
    };
+   checks.forEach(function(c){
+    if (c.verdict === "no_view") return;
+    var key = LIST[c.list];
+    if (key === "both"){ state._marks.bothA = state._marks.bothA.concat(q(c.quote_a)); state._marks.bothB = state._marks.bothB.concat(q(c.quote_b)); }
+    else if (key === "a") state._marks.a = state._marks.a.concat(q(c.quote_a));
+    else state._marks.b = state._marks.b.concat(q(c.quote_b));
+   });
    save(); render();
    status("Compared by " + (d.model || "the AI") + ". Edit the lists as you talk.");
   })
   .catch(function(){ status("Couldn't reach the AI. Click ▾ and choose Compare without AI.", true); })
   .then(function(){ btn.disabled = !passOK; });
  }
+
+ // ---------- the reason bubble ----------
+ // One small balloon, placed next to the tag that was pointed at or tapped. It sits on top
+ // of the page (fixed), so a scrolling list can't clip it.
+ var bubbleEl = null, bubbleFor = null, bubbleSticky = false;
+ function bubble(tag, sticky){
+  if (!bubbleEl){ bubbleEl = document.createElement("div"); bubbleEl.className = "bubble"; bubbleEl.setAttribute("role", "tooltip"); document.body.appendChild(bubbleEl); }
+  if (!tag){ bubbleEl.hidden = true; bubbleFor = null; bubbleSticky = false; return; }
+  bubbleFor = tag; bubbleSticky = !!sticky;
+  bubbleEl.className = "bubble" + (tag.classList.contains("disagree") ? " bubble-dis" : "");
+  bubbleEl.textContent = tag.getAttribute("data-reason");
+  bubbleEl.hidden = false;
+  var r = tag.getBoundingClientRect(), w = Math.min(300, window.innerWidth - 24);
+  bubbleEl.style.width = w + "px";
+  var left = Math.max(12, Math.min(r.right - w, window.innerWidth - w - 12));
+  bubbleEl.style.left = left + "px";
+  var h = bubbleEl.offsetHeight, below = r.bottom + 8;
+  bubbleEl.style.top = (below + h < window.innerHeight - 8 ? below : Math.max(8, r.top - h - 8)) + "px";
+ }
+ document.addEventListener("click", function(){ if (bubbleSticky) bubble(null); });
+ document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") bubble(null); });
+ document.addEventListener("scroll", function(){ bubble(null); }, true);
 
  // ---------- drawing ----------
  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -376,12 +410,26 @@
    span.addEventListener("blur", function(){
     var t = span.textContent.trim();
     if (!t){ items.splice(i, 1); }
-    else if (t !== it.text){ it.text = t; it.found = false; it.agree = false; }
+    else if (t !== it.text){ it.text = t; it.found = false; it.agree = false; it.verdict = ""; it.reason = ""; }
     save(); render();
    });
    li.appendChild(span);
    if (it.found === "ai"){ var g = document.createElement("span"); g.className = "ai"; g.textContent = "AI"; li.appendChild(g); }
-   else if (!it.found && it.agree){ var y = document.createElement("span"); y.className = "agree"; y.textContent = "AI agrees"; li.appendChild(y); }
+   else if (!it.found && (it.verdict === "agrees" || it.agree || it.verdict === "disagrees")){
+    var dis = it.verdict === "disagrees";
+    var y = document.createElement("button"); y.type = "button";
+    y.className = dis ? "agree disagree" : "agree"; y.textContent = dis ? "AI disagrees" : "AI agrees";
+    if (it.reason){
+     y.setAttribute("aria-label", y.textContent + ": " + it.reason);
+     y.setAttribute("data-reason", it.reason);
+     y.addEventListener("mouseenter", function(){ bubble(y, false); });
+     y.addEventListener("mouseleave", function(){ if (!bubbleSticky) bubble(null); });
+     y.addEventListener("focus", function(){ bubble(y, false); });
+     y.addEventListener("blur", function(){ if (!bubbleSticky) bubble(null); });
+     y.addEventListener("click", function(ev){ ev.stopPropagation(); bubble(bubbleFor === y && bubbleSticky ? null : y, true); });
+    }
+    li.appendChild(y);
+   }
    else if (it.found){ var f = document.createElement("span"); f.className = "found"; f.textContent = "found"; li.appendChild(f); }
    var x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "×"; x.setAttribute("aria-label", "Delete " + it.text);
    x.addEventListener("click", function(){ items.splice(i, 1); save(); render(); });
