@@ -39,6 +39,8 @@
  .hot{position:relative;}
  .spot{position:absolute;border:2px solid transparent;border-radius:6px;background:transparent;cursor:pointer;padding:0;}
  .spot:hover,.spot:focus-visible,.spot.open{border-color:#fde68a;box-shadow:0 0 0 3px rgba(253,230,138,.55);outline:none;}
+ .swap{position:absolute;object-fit:cover;border-radius:0!important;}
+ .pop ol.prompts li{cursor:pointer;} .pop ol.prompts li.now .prompt{background:#fde68a;}
  .linkish{font:inherit;color:#2563eb;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;}
  .pop{position:fixed;z-index:20;max-width:min(520px,92vw);background:#fff;border:1px solid #d1d5db;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:10px 14px;font-size:calc(var(--f) * .9);}
  .pop strong{display:block;color:var(--accent);margin:0 0 6px;}
@@ -100,15 +102,17 @@
    <h2>Punctuation Man, three ways</h2>
    <div class="hot">
     <img src="punctuation-man-triptych.jpg" alt="Three framed versions of Punctuation Man on a gallery wall: on the left, my hand drawing on lined notebook paper; in the middle, a clean redrawing with a question-mark nose and a signature; on the right, a cubist painting.">
+    <img class="swap" id="swap-pm-mid" src="punctuation-man-split.jpg" alt="Gemini's first try: one picture, split down the middle, half clean drawing and half cubist painting with bananas." style="left:40.3%;top:25.2%;width:20.1%;height:51.9%" hidden>
+    <img class="swap" id="swap-pm-right" src="punctuation-man-split.jpg" alt="" style="left:69.2%;top:25.2%;width:17.0%;height:52.9%" hidden>
     <button type="button" class="spot" data-pop="pm-left" style="left:9.6%;top:20.5%;width:23.8%;height:60%" aria-label="Prompts for my drawing"></button>
     <button type="button" class="spot" data-pop="pm-mid" style="left:37.9%;top:20.5%;width:24.5%;height:60%" aria-label="Prompts for the cleaned-up version"></button>
     <button type="button" class="spot" data-pop="pm-right" style="left:67.2%;top:20.5%;width:24.2%;height:60%" aria-label="Prompts for the cubist version"></button>
    </div>
    <p class="credit">Left: my drawing, placed in Gemini's frame. Middle and right: Gemini's versions. <button type="button" class="linkish" data-pop="pm-wall">The frames and the wall are AI-made.</button> Click a picture to see the prompts that made it.</p>
   <template id="pm-left"><strong>My drawing</strong><p>No prompt. I drew it in my notebook.</p></template>
-  <template id="pm-mid"><strong>The cleaned-up version</strong><ol class="prompts"><li><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li><span class="prompt">I want two full images, not a combination of the two in one image!</span></li></ol></template>
-  <template id="pm-right"><strong>The cubist version</strong><ol class="prompts"><li><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li><span class="prompt">I want two full images, not a combination of the two in one image!</span></li><li><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
-  <template id="pm-wall"><strong>The frames and the wall</strong><ol class="prompts"><li><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li><li><span class="prompt">could we just have a panel with the 3 framed images and not all of the room stuff?</span></li><li><span class="prompt">I don't want the 3 in a big frame. Come on. How about a landscape image that just contains the 3 framed images. No plate below. No larger frame.</span></li></ol></template>
+  <template id="pm-mid"><strong>The cleaned-up version</strong><ol class="prompts"><li data-show="split"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="final"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li></ol></template>
+  <template id="pm-right"><strong>The cubist version</strong><ol class="prompts"><li data-show="split"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="final"><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
+  <template id="pm-wall"><strong>The frames and the wall</strong><ol class="prompts"><li data-show=""><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li><li data-show=""><span class="prompt">could we just have a panel with the 3 framed images and not all of the room stuff?</span></li><li data-show=""><span class="prompt">I don't want the 3 in a big frame. Come on. How about a landscape image that just contains the 3 framed images. No plate below. No larger frame.</span></li></ol></template>
   </section>
   <section class="col">
    <h2>Talk about it</h2>
@@ -192,14 +196,37 @@
   var pop = document.createElement("div"); pop.className = "pop"; pop.hidden = true; pop.setAttribute("role", "dialog");
   document.body.appendChild(pop);
   var popFor = null;
-  function closePop(){ pop.hidden = true; if (popFor) popFor.classList.remove("open"); popFor = null; }
+  var popStep = 0;
+  function swapFor(b){ return b ? document.getElementById("swap-" + b.getAttribute("data-pop")) : null; }
+  function popGo(n){
+    var items = pop.querySelectorAll("li[data-show]");
+    if (!items.length) return;
+    popStep = Math.max(0, Math.min(items.length - 1, n));
+    Array.prototype.forEach.call(items, function(li, i){ li.classList.toggle("now", i === popStep); });
+    var sw = swapFor(popFor), show = items[popStep].getAttribute("data-show");
+    if (sw) sw.hidden = show !== "split";
+  }
+  function closePop(){
+    pop.hidden = true;
+    var sw = swapFor(popFor); if (sw) sw.hidden = true;
+    if (popFor) popFor.classList.remove("open"); popFor = null;
+  }
+  pop.addEventListener("click", function(ev){
+    var li = ev.target.closest("li[data-show]"); if (!li) return;
+    popGo(Array.prototype.indexOf.call(pop.querySelectorAll("li[data-show]"), li));
+  });
+  document.addEventListener("keydown", function(ev){
+    if (pop.hidden || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    if (ev.key === "ArrowRight" || ev.key === " "){ ev.preventDefault(); popGo(popStep + 1); }
+    else if (ev.key === "ArrowLeft"){ ev.preventDefault(); popGo(popStep - 1); }
+  });
   Array.prototype.forEach.call(document.querySelectorAll("[data-pop]"), function(b){
     b.addEventListener("click", function(ev){
       ev.stopPropagation(); b.blur();
       if (popFor === b){ closePop(); return; }
       closePop();
       pop.innerHTML = document.getElementById(b.getAttribute("data-pop")).innerHTML;
-      pop.hidden = false; popFor = b; b.classList.add("open");
+      pop.hidden = false; popFor = b; b.classList.add("open"); popGo(0);
       // On a wide screen the bubble sits in the empty space under "Talk about it", so it never
       // covers the pictures. On a narrow screen it sits under the picture that was clicked.
       var side = document.querySelector(".p2 .col:last-child").getBoundingClientRect(), w, h, left, top;
