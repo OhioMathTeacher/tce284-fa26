@@ -109,13 +109,12 @@
     <div class="curtain" id="curtain-pm-mid" style="left:37.8%;top:20.5%;width:25.1%;height:60%"></div>
     <div class="curtain" id="curtain-pm-right" style="left:67.2%;top:20.5%;width:24.2%;height:60%"></div>
     <button type="button" class="spot" data-pop="pm-left" style="left:9.6%;top:20.5%;width:23.8%;height:60%" aria-label="Prompts for my drawing"></button>
-    <button type="button" class="spot" data-pop="pm-mid" style="left:37.9%;top:20.5%;width:24.5%;height:60%" aria-label="Prompts for the cleaned-up version"></button>
-    <button type="button" class="spot" data-pop="pm-right" style="left:67.2%;top:20.5%;width:24.2%;height:60%" aria-label="Prompts for the cubist version"></button>
+    <button type="button" class="spot" data-pop="pm-ai" data-frame="mid" style="left:37.9%;top:20.5%;width:24.5%;height:60%" aria-label="Prompts for Gemini's two versions"></button>
+    <button type="button" class="spot" data-pop="pm-ai" data-frame="right" style="left:67.2%;top:20.5%;width:24.2%;height:60%" aria-label="Prompts for Gemini's two versions"></button>
    </div>
    <p class="credit">Click a curtain to open it. Left: my drawing, placed in Gemini's frame. Middle and right: Gemini's versions. <button type="button" class="linkish" data-pop="pm-wall">The frames and the wall are AI-made.</button> Click a picture to see the prompts that made it.</p>
   <template id="pm-left"><strong>My drawing</strong><p>No prompt. I drew it in my notebook.</p></template>
-  <template id="pm-mid"><strong>The cleaned-up version</strong><ol class="prompts"><li data-show="punctuation-man-split.jpg"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="final"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li></ol></template>
-  <template id="pm-right" data-start="1"><strong>The cubist version</strong><ol class="prompts"><li data-show="punctuation-man-split.jpg"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="punctuation-man-cubist-banana.jpg"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li><li data-show="final"><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
+  <template id="pm-ai"><strong>Gemini's two versions</strong><ol class="prompts"><li data-mid="punctuation-man-split.jpg" data-right="curtain"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-mid="final" data-right="punctuation-man-cubist-banana.jpg"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li><li data-mid="final" data-right="final"><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
   <template id="pm-wall"><strong>The frames and the wall</strong><ol class="prompts"><li data-show=""><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li><li data-show=""><span class="prompt">could we just have a panel with the 3 framed images and not all of the room stuff?</span></li><li data-show=""><span class="prompt">I don't want the 3 in a big frame. Come on. How about a landscape image that just contains the 3 framed images. No plate below. No larger frame.</span></li></ol></template>
   </section>
   <section class="col">
@@ -201,53 +200,57 @@
   document.body.appendChild(pop);
   var popFor = null;
   var popStep = 0;
-  function swapFor(b){ return b ? document.getElementById("swap-" + b.getAttribute("data-pop")) : null; }
+  function frame(which, state){
+    // state: "curtain" keeps the curtain shut; "final" shows the triptych as is; a file name shows that picture
+    var cur = document.getElementById("curtain-pm-" + which), sw = document.getElementById("swap-pm-" + which);
+    cur.classList.toggle("open", state !== "curtain");
+    if (state && state !== "final" && state !== "curtain"){ sw.src = state; sw.hidden = false; } else sw.hidden = true;
+  }
   function popGo(n){
-    var items = pop.querySelectorAll("li[data-show]");
+    var items = pop.querySelectorAll("li[data-mid]");
     if (!items.length) return;
     popStep = Math.max(0, Math.min(items.length - 1, n));
     Array.prototype.forEach.call(items, function(li, i){ li.classList.toggle("now", i === popStep); });
-    // data-show names the picture Gemini made at that step; "final" shows the triptych as is.
-    var sw = swapFor(popFor), show = items[popStep].getAttribute("data-show");
-    if (sw){ if (show && show !== "final"){ sw.src = show; sw.hidden = false; } else sw.hidden = true; }
+    frame("mid", items[popStep].getAttribute("data-mid"));
+    frame("right", items[popStep].getAttribute("data-right"));
   }
   function closePop(){
     pop.hidden = true;
-    var sw = swapFor(popFor); if (sw) sw.hidden = true;
+    ["mid", "right"].forEach(function(w){ document.getElementById("swap-pm-" + w).hidden = true; });
     if (popFor) popFor.classList.remove("open"); popFor = null;
   }
   pop.addEventListener("click", function(ev){
-    var li = ev.target.closest("li[data-show]"); if (!li) return;
-    popGo(Array.prototype.indexOf.call(pop.querySelectorAll("li[data-show]"), li));
+    var li = ev.target.closest("li[data-mid]"); if (!li) return;
+    popGo(Array.prototype.indexOf.call(pop.querySelectorAll("li[data-mid]"), li));
   });
   document.addEventListener("keydown", function(ev){
     if (pop.hidden || ev.altKey || ev.ctrlKey || ev.metaKey) return;
     if (ev.key === "ArrowRight" || ev.key === " "){ ev.preventDefault(); popGo(popStep + 1); }
     else if (ev.key === "ArrowLeft"){ ev.preventDefault(); popGo(popStep - 1); }
   });
+  var aiStep = 0;   // where the AI story was left, so reopening picks up there
   Array.prototype.forEach.call(document.querySelectorAll("[data-pop]"), function(b){
     b.addEventListener("click", function(ev){
       ev.stopPropagation(); b.blur();
       if (popFor === b){ closePop(); return; }
+      if (popFor && popFor.getAttribute("data-pop") === "pm-ai") aiStep = popStep;
       closePop();
       var tp = document.getElementById(b.getAttribute("data-pop"));
       pop.innerHTML = tp.innerHTML;
-      var cur = document.getElementById("curtain-" + b.getAttribute("data-pop")); if (cur) cur.classList.add("open");
-      pop.hidden = false; popFor = b; b.classList.add("open"); popGo(parseInt(tp.getAttribute("data-start") || "0", 10));
+      pop.hidden = false; popFor = b; b.classList.add("open");
+      if (b.getAttribute("data-pop") === "pm-ai") popGo(aiStep);
       // On a wide screen the bubble sits in the empty space under "Talk about it", so it never
       // covers the pictures. On a narrow screen it sits under the picture that was clicked.
-      var side = document.querySelector(".p2 .col:last-child").getBoundingClientRect(), w, h, left, top;
-      if (wide.matches){
-        pop.style.maxWidth = side.width + "px";
-        left = side.left; top = side.bottom + 10;
-      } else {
+      var side = document.querySelector(".p2 .col:last-child").getBoundingClientRect(), w, left, top;
+      if (wide.matches){ pop.style.maxWidth = side.width + "px"; left = side.left; top = side.bottom + 10; }
+      else {
         var r = b.getBoundingClientRect(); pop.style.maxWidth = "";
         w = pop.offsetWidth; left = Math.max(10, Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 10)); top = r.bottom + 8;
       }
       pop.style.left = left + "px"; pop.style.top = top + "px";
     });
   });
-  document.addEventListener("click", function(ev){ if (!pop.contains(ev.target)) closePop(); });
+  document.addEventListener("click", function(ev){ if (!pop.contains(ev.target)){ if (popFor && popFor.getAttribute("data-pop") === "pm-ai") aiStep = popStep; closePop(); } });
   document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") closePop(); });
   // Reveal buttons: talk first, then show. Click again to hide.
   Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function(b){
