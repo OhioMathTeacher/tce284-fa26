@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompting and what counts · Week 12 · TCE 284</title>
+<style>
+ :root{--accent:#0f766e;--f:17px;}
+ *{box-sizing:border-box;}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1900px;margin:0 auto;padding:10px 16px 8px;color:#1f2937;line-height:1.45;font-size:var(--f);background:#fbfaf7;}
+ .home{display:inline-block;margin:0 0 2px;font-size:13px;color:#6b7280;text-decoration:none;}
+ .home:hover{color:#2563eb;text-decoration:underline;}
+ .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:0 0 8px;}
+ h1{font-size:22px;margin:0;} .sub{color:#6b7280;font-size:14px;}
+ .tabs{display:flex;gap:6px;margin-left:auto;}
+ .tabs button{font:inherit;font-size:15px;font-weight:700;padding:5px 14px;border-radius:8px;border:1px solid #cfcabd;background:#f6f4ee;color:#374151;cursor:pointer;}
+ .tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+ .tabs button:focus-visible,.bar button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+ .cols{display:grid;gap:16px;align-items:start;}
+ .p1 .cols{grid-template-columns:minmax(0,1fr) minmax(0,2fr);}
+ .p2 .cols{grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);}
+ @media (max-width:900px){.p1 .cols,.p2 .cols{grid-template-columns:1fr;}}
+ .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;}
+ .col h2{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
+ ol.prompts{margin:0;padding-left:1.3em;} ol.prompts li{margin:0 0 .6em;}
+ .prompt{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:calc(var(--f) * .82);background:#f6f4ee;border-radius:5px;padding:4px 8px;display:block;margin-top:2px;}
+ .col img{display:block;width:100%;height:auto;border-radius:6px;}
+ .bar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px;}
+ .bar button{font:inherit;font-size:13px;font-weight:600;padding:3px 10px;border-radius:14px;border:1px solid #cfcabd;background:#f6f4ee;color:#374151;cursor:pointer;}
+ .bar button:hover{border-color:#9ca3af;}
+ .bar button[aria-pressed="true"]{background:#ccfbf1;border-color:var(--accent);color:#0f5f59;}
+ .reveal{margin:10px 0 0;padding:8px 12px;border-left:4px solid var(--accent);background:#f2f8f7;border-radius:3px;}
+ .reveal ul{margin:0;padding-left:1.2em;} .reveal li{margin:.15em 0;}
+ .reveal p{margin:.3em 0;} .reveal q{font-style:italic;}
+ .credit{font-size:13px;color:#6b7280;margin:6px 0 0;}
+ [hidden]{display:none!important;}
+ a{color:#2563eb;}
+</style>
+</head>
+<body>
+<main>
+<a class="home" href="week-12-wed.html">← Week 12 · Wednesday</a>
+<div class="head">
+ <h1>Prompting and what counts</h1><span class="sub">Week 12 · Wednesday · the visual element</span>
+ <div class="tabs" role="tablist" aria-label="Parts">
+  <button type="button" role="tab" data-part="p1" aria-selected="true">1 · Prompting</button>
+  <button type="button" role="tab" data-part="p2" aria-selected="false">2 · What counts</button>
+ </div>
+</div>
+
+<div class="part p1" id="p1" role="tabpanel">
+ <div class="cols">
+  <section class="col">
+   <h2>My three prompts to Gemini</h2>
+   <ol class="prompts">
+    <li><span class="prompt">I need a photorealistic image of diverse folks waiting in line at the grocery store in a clear line from the side (like Mario Bros).</span></li>
+    <li><span class="prompt">Now put large semicolons between each person. Different colors, same size. Maybe half the height of the average person in line?</span></li>
+    <li><span class="prompt">Make those semicolons cream colored. I don't think black will pop well.</span></li>
+   </ol>
+   <div class="bar" role="group" aria-label="Talk about it">
+    <button type="button" data-reveal="followed">What it followed</button>
+    <button type="button" data-reveal="ignored">What it ignored</button>
+    <button type="button" data-reveal="gives">What gives it away</button>
+   </div>
+   <div class="reveal" id="followed" hidden><ul>
+    <li>A grocery store line.</li>
+    <li>Large semicolons, different colors, the same size.</li>
+    <li>Then cream semicolons.</li>
+   </ul></div>
+   <div class="reveal" id="ignored" hidden><ul>
+    <li>"From the side (like Mario Bros)." The line faces the camera.</li>
+    <li>"Half the height." The semicolons are closer to a third.</li>
+   </ul></div>
+   <div class="reveal" id="gives" hidden><ul>
+    <li>Signs and boxes that don't read: "Chundet" after prompt 2, "Cimmdet" after prompt 3.</li>
+    <li>A line posed for the camera, not a real checkout line.</li>
+    <li>I asked for one change, the color, and it redrew the whole picture.</li>
+   </ul></div>
+  </section>
+  <section class="col">
+   <h2>What Gemini made</h2>
+   <div class="bar" role="group" aria-label="Which version">
+    <button type="button" data-img="2" aria-pressed="true">After prompt 2</button>
+    <button type="button" data-img="3" aria-pressed="false">After prompt 3</button>
+   </div>
+   <img id="ai2" src="waiting-line-prompt2.jpg" alt="AI-made image: people waiting in a grocery store checkout line, with a large semicolon in a different color between each person.">
+   <img id="ai3" src="waiting-line-prompt3.jpg" alt="AI-made image: the same checkout line redrawn, now with a cream semicolon between each person." hidden>
+   <p class="credit">AI-made with Gemini.</p>
+  </section>
+ </div>
+</div>
+
+<div class="part p2" id="p2" role="tabpanel" hidden>
+ <div class="cols">
+  <section class="col">
+   <h2>Punctuation Man, three ways</h2>
+   <img src="punctuation-man-triptych.jpg" alt="Three framed versions of Punctuation Man on a gallery wall: on the left, my hand drawing on lined notebook paper; in the middle, a clean redrawing with a question-mark nose and a signature; on the right, a cubist painting.">
+   <p class="credit">Left: my drawing, placed in Gemini's frame. Middle and right: Gemini's versions. The frames and the wall are AI-made.</p>
+  </section>
+  <section class="col">
+   <h2>Talk about it</h2>
+   <div class="bar" role="group" aria-label="Talk about it">
+    <button type="button" data-reveal="changed">What Gemini changed</button>
+    <button type="button" data-reveal="counts">Which could be your visual element?</button>
+   </div>
+   <div class="reveal" id="changed" hidden><ul>
+    <li>The middle version "fixed" the nose into a plain question mark and cleaned up the paper.</li>
+    <li>It signed a name that isn't mine.</li>
+    <li>The cubist version kept the stitched mouth.</li>
+   </ul></div>
+   <div class="reveal" id="counts" hidden>
+    <p>The guidelines: <q>A visual element: a photograph, drawing, collage, map, or design of your own.</q></p>
+    <p><q>AI can extend or transform your work, but what AI makes is others' work. What you fed it is yours.</q></p>
+    <p>Does not count: <q>Anything an AI made, even when it was made from your work.</q></p>
+    <p>So only the drawing on the left. The other two, labeled AI-made, with what I did and why, could be my transformed AI artifact.</p>
+   </div>
+  </section>
+ </div>
+</div>
+</main>
+<script>
+(function(){
+  var root = document.documentElement, wide = window.matchMedia("(min-width: 901px)");
+  // Fit the page in the window: step the type size down until nothing overflows.
+  function fit(){
+    if (!wide.matches){ root.style.setProperty("--f", "17px"); return; }
+    var f = 22; root.style.setProperty("--f", f + "px");
+    while (f > 10 && root.scrollHeight > window.innerHeight){ f -= 0.5; root.style.setProperty("--f", f + "px"); }
+  }
+  // Two parts, one on screen at a time.
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("[data-part]"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(x){
+        var on = x === t; x.setAttribute("aria-selected", on ? "true" : "false");
+        document.getElementById(x.getAttribute("data-part")).hidden = !on;
+      });
+      fit();
+    });
+  });
+  // The two image versions: one shown at a time.
+  var imgBtns = Array.prototype.slice.call(document.querySelectorAll("[data-img]"));
+  imgBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      imgBtns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      document.getElementById("ai2").hidden = b.getAttribute("data-img") !== "2";
+      document.getElementById("ai3").hidden = b.getAttribute("data-img") !== "3";
+      fit();
+    });
+  });
+  // Reveal buttons: talk first, then show. Click again to hide.
+  Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function(b){
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function(){
+      var box = document.getElementById(b.getAttribute("data-reveal")), on = box.hidden;
+      box.hidden = !on; b.setAttribute("aria-pressed", on ? "true" : "false"); fit();
+    });
+  });
+  window.addEventListener("resize", fit); window.addEventListener("load", fit); fit();
+})();
+</script>
+</body>
+</html>
