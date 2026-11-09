@@ -14,7 +14,13 @@
  .head{margin:0 0 8px;}
  .cols{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.15fr) minmax(0,1.9fr);gap:18px;align-items:start;}
  @media (max-width:900px){.cols{grid-template-columns:1fr;}}
- .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;}
+ .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;position:relative;}
+ /* The curtain: covers a column until it is revealed, then sweeps away to the right. */
+ .col::after{content:"";position:absolute;inset:-1px;border-radius:8px;background:repeating-linear-gradient(90deg,#0f5f59 0 18px,#0f766e 18px 36px);transform-origin:right center;transform:scaleX(0);transition:transform .55s ease;pointer-events:none;}
+ .col.covered::after{transform:scaleX(1);pointer-events:auto;cursor:pointer;}
+ .col.covered > *{visibility:hidden;}
+ .note.covered{visibility:hidden;}
+ .hint{position:fixed;right:14px;bottom:10px;font-size:12px;color:#9ca3af;}
  .col h2{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;}
  .node{display:inline-block;background:#9eeec0;border:1px solid #86d9aa;border-radius:8px;padding:12px 16px;font-family:"Literata",Charter,Georgia,serif;font-size:calc(var(--f) * 1.1);line-height:1.35;color:#111;}
  .nodefrom{font-size:14px;color:#6b7280;margin:10px 0 0;}
@@ -79,15 +85,37 @@
  </section>
 </div>
 
-<p class="note">Romano does this in WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship"</a>: his "Awe" is written after Gendler's <em>The Book of Qualities</em>.<br>On repeating a pattern ("when… when… when…," "to be… to be… to be…"), see WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154844">ch11, "Riding the Rhythm of Parallel Structure"</a>: parallel structures "lift readers and propel them forward."</p>
+<p class="note" id="note">Romano does this in WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154852">ch19, "Mentors, Imitation, Apprenticeship"</a>: his "Awe" is written after Gendler's <em>The Book of Qualities</em>.<br>On repeating a pattern ("when… when… when…," "to be… to be… to be…"), see WWM <a href="https://miamioh.instructure.com/courses/258319/files/40154844">ch11, "Riding the Rhythm of Parallel Structure"</a>: parallel structures "lift readers and propel them forward."</p>
 </main>
+<p class="hint" id="hint">Space or → opens the next column · ← closes it</p>
 <script>
+// The curtain: one column at a time, left to right. Space or the right arrow opens the
+// next column; the left arrow closes the last one opened. Clicking a curtain opens it.
+(function(){
+  var cols = Array.prototype.slice.call(document.querySelectorAll(".cols > .col"));
+  var note = document.getElementById("note"), hint = document.getElementById("hint");
+  var shown = 1;
+  function show(n){
+    shown = Math.max(1, Math.min(cols.length, n));
+    cols.forEach(function(c, i){ c.classList.toggle("covered", i >= shown); });
+    note.classList.toggle("covered", shown < cols.length);
+    hint.hidden = shown === cols.length;
+  }
+  document.addEventListener("keydown", function(ev){
+    if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    if (ev.key === "ArrowRight" || ev.key === " "){ ev.preventDefault(); show(shown + 1); }
+    else if (ev.key === "ArrowLeft"){ ev.preventDefault(); show(shown - 1); }
+  });
+  cols.forEach(function(c, i){ c.addEventListener("click", function(){ if (c.classList.contains("covered")) show(i + 1); }); });
+  show(1);
+})();
 // The tag buttons: one category lit at a time. Click a lit one again to clear it.
 (function(){
   var btns = Array.prototype.slice.call(document.querySelectorAll(".tags button"));
   btns.forEach(function(b){
     b.setAttribute("aria-pressed", "false");
     b.addEventListener("click", function(){
+      b.blur();
       var on = b.getAttribute("aria-pressed") !== "true";
       btns.forEach(function(x){ x.setAttribute("aria-pressed", "false"); });
       if (on){ b.setAttribute("aria-pressed", "true"); document.body.setAttribute("data-show", b.getAttribute("data-show")); }

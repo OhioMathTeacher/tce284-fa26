@@ -60,7 +60,7 @@
    <div class="bar" role="group" aria-label="Talk about it">
     <button type="button" data-reveal="followed">What it followed</button>
     <button type="button" data-reveal="ignored">What it ignored</button>
-    <button type="button" data-reveal="gives">What gives it away</button>
+    <button type="button" data-reveal="gives">How you can tell AI made it</button>
    </div>
    <div class="reveal" id="followed" hidden><ul>
     <li>A grocery store line.</li>
@@ -156,6 +156,7 @@
       box.hidden = !on; b.setAttribute("aria-pressed", on ? "true" : "false"); fit();
     });
   });
+  if (location.hash === "#p2") document.querySelector('[data-part="p2"]').click();
   window.addEventListener("resize", fit); window.addEventListener("load", fit); fit();
 })();
 </script>
