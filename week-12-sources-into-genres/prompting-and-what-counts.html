@@ -115,7 +115,7 @@
    <p class="credit">Click a curtain to open it. Left: my drawing, placed in Gemini's frame. Middle and right: Gemini's versions. <button type="button" class="linkish" data-pop="pm-wall">The frames and the wall are AI-made.</button> Click a picture to see the prompts that made it.</p>
   <template id="pm-left"><strong>My drawing</strong><p>No prompt. I drew it in my notebook.</p></template>
   <template id="pm-mid"><strong>The cleaned-up version</strong><ol class="prompts"><li data-show="punctuation-man-split.jpg"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="final"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li></ol></template>
-  <template id="pm-right"><strong>The cubist version</strong><ol class="prompts"><li data-show="punctuation-man-split.jpg"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="punctuation-man-cubist-banana.jpg"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li><li data-show="final"><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
+  <template id="pm-right" data-start="1"><strong>The cubist version</strong><ol class="prompts"><li data-show="punctuation-man-split.jpg"><span class="prompt">I'd like to create two new versions of this image. One cleaned up but still clearly based on my handdrawn draft, then a third one that is full-on Nano Banana artistic, cool, fully realized----maybe in the style of picasso?</span></li><li data-show="punctuation-man-cubist-banana.jpg"><span class="prompt">I want two full images, not a combination of the two in one image!</span></li><li data-show="final"><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li></ol></template>
   <template id="pm-wall"><strong>The frames and the wall</strong><ol class="prompts"><li data-show=""><span class="prompt">please remove nano banana from the picasso image. I'd like three images on the same wall. My original; then your white punctuation man; then picasso-style punctuation man (from left to right)</span></li><li data-show=""><span class="prompt">could we just have a panel with the 3 framed images and not all of the room stuff?</span></li><li data-show=""><span class="prompt">I don't want the 3 in a big frame. Come on. How about a landscape image that just contains the 3 framed images. No plate below. No larger frame.</span></li></ol></template>
   </section>
   <section class="col">
@@ -230,9 +230,10 @@
       ev.stopPropagation(); b.blur();
       if (popFor === b){ closePop(); return; }
       closePop();
-      pop.innerHTML = document.getElementById(b.getAttribute("data-pop")).innerHTML;
+      var tp = document.getElementById(b.getAttribute("data-pop"));
+      pop.innerHTML = tp.innerHTML;
       var cur = document.getElementById("curtain-" + b.getAttribute("data-pop")); if (cur) cur.classList.add("open");
-      pop.hidden = false; popFor = b; b.classList.add("open"); popGo(0);
+      pop.hidden = false; popFor = b; b.classList.add("open"); popGo(parseInt(tp.getAttribute("data-start") || "0", 10));
       // On a wide screen the bubble sits in the empty space under "Talk about it", so it never
       // covers the pictures. On a narrow screen it sits under the picture that was clicked.
       var side = document.querySelector(".p2 .col:last-child").getBoundingClientRect(), w, h, left, top;
