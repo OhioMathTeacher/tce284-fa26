@@ -22,7 +22,8 @@
  @media (max-width:900px){.p1 .cols,.p2 .cols{grid-template-columns:1fr;}}
  .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;}
  .col h2{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
- ol.prompts{margin:0;padding-left:1.3em;} ol.prompts li{margin:0 0 .6em;}
+ ol.prompts{margin:0;padding-left:1.3em;} ol.prompts li{margin:0 0 .6em;cursor:pointer;}
+ ol.prompts li.now .prompt{background:#fde68a;}
  .prompt{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:calc(var(--f) * .82);background:#f6f4ee;border-radius:5px;padding:4px 8px;display:block;margin-top:2px;}
  .col img{display:block;width:100%;height:auto;border-radius:6px;}
  .bar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px;}
@@ -53,9 +54,9 @@
   <section class="col">
    <h2>My three prompts to Gemini</h2>
    <ol class="prompts">
-    <li><span class="prompt">I need a photorealistic image of diverse folks waiting in line at the grocery store in a clear line from the side (like Mario Bros).</span></li>
-    <li><span class="prompt">Now put large semicolons between each person. Different colors, same size. Maybe half the height of the average person in line?</span></li>
-    <li><span class="prompt">Make those semicolons cream colored. I don't think black will pop well.</span></li>
+    <li data-step="1"><span class="prompt">I need a photorealistic image of diverse folks waiting in line at the grocery store in a clear line from the side (like Mario Bros).</span></li>
+    <li data-step="2"><span class="prompt">Now put large semicolons between each person. Different colors, same size. Maybe half the height of the average person in line?</span></li>
+    <li data-step="3"><span class="prompt">Make those semicolons cream colored. I don't think black will pop well.</span></li>
    </ol>
    <div class="bar" role="group" aria-label="Talk about it">
     <button type="button" data-reveal="followed">What it followed</button>
@@ -79,11 +80,6 @@
   </section>
   <section class="col">
    <h2>What Gemini made</h2>
-   <div class="bar" role="group" aria-label="Which version">
-    <button type="button" data-img="1" aria-pressed="true">After prompt 1</button>
-   <button type="button" data-img="2" aria-pressed="false">After prompt 2</button>
-    <button type="button" data-img="3" aria-pressed="false">After prompt 3</button>
-   </div>
    <img id="ai1" src="waiting-line-prompt1.jpg" alt="AI-made image: people waiting in a grocery store checkout line, seen from the front, with no semicolons.">
    <img id="ai2" hidden src="waiting-line-prompt2.jpg" alt="AI-made image: people waiting in a grocery store checkout line, with a large semicolon in a different color between each person.">
    <img id="ai3" src="waiting-line-prompt3.jpg" alt="AI-made image: the same checkout line redrawn, now with a cream semicolon between each person." hidden>
@@ -133,6 +129,7 @@
   var tabs = Array.prototype.slice.call(document.querySelectorAll("[data-part]"));
   tabs.forEach(function(t){
     t.addEventListener("click", function(){
+      t.blur();
       tabs.forEach(function(x){
         var on = x === t; x.setAttribute("aria-selected", on ? "true" : "false");
         document.getElementById(x.getAttribute("data-part")).hidden = !on;
@@ -140,21 +137,26 @@
       fit();
     });
   });
-  // The two image versions: one shown at a time.
-  var imgBtns = Array.prototype.slice.call(document.querySelectorAll("[data-img]"));
-  imgBtns.forEach(function(b){
-    b.addEventListener("click", function(){
-      imgBtns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      document.getElementById("ai1").hidden = b.getAttribute("data-img") !== "1";
-      document.getElementById("ai2").hidden = b.getAttribute("data-img") !== "2";
-      document.getElementById("ai3").hidden = b.getAttribute("data-img") !== "3";
-      fit();
-    });
+  // The prompts: one at a time, each with the picture it produced. Click a prompt, or use
+  // Space / the right arrow for the next and the left arrow for the one before.
+  var steps = Array.prototype.slice.call(document.querySelectorAll("[data-step]")), step = 1;
+  function go(n){
+    step = Math.max(1, Math.min(steps.length, n));
+    steps.forEach(function(li, i){ li.classList.toggle("now", i + 1 === step); });
+    [1, 2, 3].forEach(function(k){ document.getElementById("ai" + k).hidden = k !== step; });
+  }
+  steps.forEach(function(li, i){ li.addEventListener("click", function(){ go(i + 1); }); });
+  document.addEventListener("keydown", function(ev){
+    if (document.getElementById("p1").hidden || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    if (ev.key === "ArrowRight" || ev.key === " "){ ev.preventDefault(); go(step + 1); }
+    else if (ev.key === "ArrowLeft"){ ev.preventDefault(); go(step - 1); }
   });
+  go(1);
   // Reveal buttons: talk first, then show. Click again to hide.
   Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function(b){
     b.setAttribute("aria-pressed", "false");
     b.addEventListener("click", function(){
+      b.blur();
       var box = document.getElementById(b.getAttribute("data-reveal")), on = box.hidden;
       box.hidden = !on; b.setAttribute("aria-pressed", on ? "true" : "false"); fit();
     });
