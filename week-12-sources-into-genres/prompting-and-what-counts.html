@@ -58,7 +58,7 @@
     <li data-step="2"><span class="prompt">Now put large semicolons between each person. Different colors, same size. Maybe half the height of the average person in line?</span></li>
     <li data-step="3"><span class="prompt">Make those semicolons cream colored. I don't think black will pop well.</span></li>
    </ol>
-   <div class="bar" role="group" aria-label="Talk about it">
+   <div class="bar" id="talk1" role="group" aria-label="Talk about it" style="visibility:hidden">
     <button type="button" data-reveal="followed">What it followed</button>
     <button type="button" data-reveal="ignored">What it ignored</button>
     <button type="button" data-reveal="gives">How you can tell AI made it</button>
@@ -144,6 +144,8 @@
     step = Math.max(1, Math.min(steps.length, n));
     steps.forEach(function(li, i){ li.classList.toggle("now", i + 1 === step); });
     [1, 2, 3].forEach(function(k){ document.getElementById("ai" + k).hidden = k !== step; });
+    // The talk buttons appear once all three results have been seen, and then stay.
+    if (step === steps.length) document.getElementById("talk1").style.visibility = "visible";
   }
   steps.forEach(function(li, i){ li.addEventListener("click", function(){ go(i + 1); }); });
   document.addEventListener("keydown", function(ev){
