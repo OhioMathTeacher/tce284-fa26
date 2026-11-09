@@ -19,7 +19,9 @@
  .cols{display:grid;gap:16px;align-items:start;}
  .p1 .cols{grid-template-columns:minmax(0,1fr) minmax(0,2fr);}
  .p2 .cols{grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);}
- @media (max-width:900px){.p1 .cols,.p2 .cols{grid-template-columns:1fr;}}
+ .p3 .cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+ .p3 p{margin:0 0 .6em;} .p3 ul{margin:0 0 .6em;padding-left:1.2em;} .p3 li{margin:.15em 0;}
+ @media (max-width:900px){.p1 .cols,.p2 .cols,.p3 .cols{grid-template-columns:1fr;}}
  .col{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:10px 16px;}
  .col h2{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
  ol.prompts{margin:0;padding-left:1.3em;} ol.prompts li{margin:0 0 .6em;cursor:pointer;}
@@ -54,6 +56,7 @@
  <div class="tabs" role="tablist" aria-label="Parts">
   <button type="button" role="tab" data-part="p1" aria-selected="true">1 · Prompting</button>
   <button type="button" role="tab" data-part="p2" aria-selected="false">2 · What counts</button>
+  <button type="button" role="tab" data-part="p3" aria-selected="false">3 · Guideline excerpts</button>
  </div>
 </div>
 
@@ -124,6 +127,24 @@
     <p>Does not count: <q>Anything an AI made, even when it was made from your work.</q></p>
     <p>So only the drawing on the left. The other two, labeled AI-made, with what I did and why, could be my transformed AI artifact.</p>
    </div>
+  </section>
+ </div>
+</div>
+<div class="part p3" id="p3" role="tabpanel" hidden>
+ <div class="cols">
+  <section class="col">
+   <h2>From the guidelines</h2>
+   <p>A visual element: a photograph, drawing, collage, map, or design of your own</p>
+   <p>At least one AI-generated artifact, transformed. Your move is visible: reacted to, taken apart, or recombined. Label every AI-generated work as AI-made and say what you did with it. Ideas: a Suno song set to lyrics you wrote, your commentary over a generated piece, or a screen recording of you taking a genAI output apart line by line. See the AI Multimodal Moves List for more.</p>
+   <p>What counts. It comes down to your work and others’ work. Your twelve pieces are your work: writing, drawings, photographs, footage and voice that you made. AI can extend or transform your work, but what AI makes is others’ work. What you fed it is yours. Others’ work, whether a person or an AI made it, is welcome in your project. It is icing. It does not count as a piece, but it can make the project better. Label every AI-generated work as AI-made and say what you did with it. Cite everything made by someone else.</p>
+   <p class="credit"><a href="../week-11-launch-and-topic/Multimodal%20Research%20Project%20TCE%20284.docx">The full guidelines: Multimodal Research Project</a></p>
+  </section>
+  <section class="col">
+   <h2>Counts</h2>
+   <ul><li>Writing, drawings, photographs, footage and voice that you made</li><li>The lyrics you wrote for a Suno song. The song does not count.</li><li>The journal entries you fed an AI. The podcast it made does not count.</li><li>The script of a commentary you recorded over an AI-generated video. Include the script with the video link. The video does not count.</li><li>A collage of your own drawings or photographs</li><li>Your piece with a short quote from someone else, cited, under about a tenth of the piece</li></ul>
+   <h2 style="margin-top:12px">Does not count</h2>
+   <ul><li>Anything an AI made, even when it was made from your work</li><li>Other people’s photographs, clips and writing</li><li>A collage cut from magazine photos</li><li>A piece that is mostly someone else’s words, such as a 400-word op-ed that is half quotation</li><li>The table of contents, the reflective note and your transformed AI artifact. They are required, but they do not count toward the twelve.</li></ul>
+   <p>Others’ work can appear inside one of your pieces if you cite it and it stays under about a tenth of that piece. Count words in writing, running time in audio and video, and space in an image. A scrapbook of others’ work is not a project.</p>
   </section>
  </div>
 </div>
@@ -203,6 +224,7 @@
       box.hidden = !on; b.setAttribute("aria-pressed", on ? "true" : "false"); fit();
     });
   });
+  if (location.hash === "#p3") document.querySelector('[data-part="p3"]').click();
   if (location.hash === "#p2") document.querySelector('[data-part="p2"]').click();
   window.addEventListener("resize", fit); window.addEventListener("load", fit); fit();
 })();
