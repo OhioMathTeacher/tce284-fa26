@@ -80,10 +80,12 @@
   <section class="col">
    <h2>What Gemini made</h2>
    <div class="bar" role="group" aria-label="Which version">
-    <button type="button" data-img="2" aria-pressed="true">After prompt 2</button>
+    <button type="button" data-img="1" aria-pressed="true">After prompt 1</button>
+   <button type="button" data-img="2" aria-pressed="false">After prompt 2</button>
     <button type="button" data-img="3" aria-pressed="false">After prompt 3</button>
    </div>
-   <img id="ai2" src="waiting-line-prompt2.jpg" alt="AI-made image: people waiting in a grocery store checkout line, with a large semicolon in a different color between each person.">
+   <img id="ai1" src="waiting-line-prompt1.jpg" alt="AI-made image: people waiting in a grocery store checkout line, seen from the front, with no semicolons.">
+   <img id="ai2" hidden src="waiting-line-prompt2.jpg" alt="AI-made image: people waiting in a grocery store checkout line, with a large semicolon in a different color between each person.">
    <img id="ai3" src="waiting-line-prompt3.jpg" alt="AI-made image: the same checkout line redrawn, now with a cream semicolon between each person." hidden>
    <p class="credit">AI-made with Gemini.</p>
   </section>
@@ -143,6 +145,7 @@
   imgBtns.forEach(function(b){
     b.addEventListener("click", function(){
       imgBtns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      document.getElementById("ai1").hidden = b.getAttribute("data-img") !== "1";
       document.getElementById("ai2").hidden = b.getAttribute("data-img") !== "2";
       document.getElementById("ai3").hidden = b.getAttribute("data-img") !== "3";
       fit();
