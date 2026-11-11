@@ -219,9 +219,10 @@
     frame("mid", items[popStep].getAttribute("data-mid"));
     frame("right", items[popStep].getAttribute("data-right"));
   }
+  // Closing the bubble leaves the wall at the last prompt shown, so the pictures never
+  // jump ahead of the story.
   function closePop(){
     pop.hidden = true;
-    ["mid", "right"].forEach(function(w){ document.getElementById("swap-pm-" + w).hidden = true; });
     if (popFor) popFor.classList.remove("open"); popFor = null;
   }
   pop.addEventListener("click", function(ev){
@@ -237,13 +238,22 @@
   Array.prototype.forEach.call(document.querySelectorAll("[data-pop]"), function(b){
     b.addEventListener("click", function(ev){
       ev.stopPropagation(); b.blur();
+      // While Gemini's bubble is open, clicking either Gemini picture does nothing: only the
+      // prompts, the arrow keys and Space move the story, so the wall always matches the prompt.
+      if (popFor && popFor.getAttribute("data-pop") === "pm-ai" && b.hasAttribute("data-frame")) return;
       if (popFor === b){ closePop(); return; }
       if (popFor && popFor.getAttribute("data-pop") === "pm-ai") aiStep = popStep;
       closePop();
       var tp = document.getElementById(b.getAttribute("data-pop"));
       pop.innerHTML = tp.innerHTML;
       pop.hidden = false; popFor = b; b.classList.add("open");
-      if (b.getAttribute("data-pop") === "pm-ai") popGo(aiStep);
+      if (b.getAttribute("data-pop") === "pm-ai"){
+        // Clicking a frame opens it: start no earlier than the first prompt that put a
+        // picture in that frame, so the right frame never opens on a prompt that leaves it shut.
+        var fr = b.getAttribute("data-frame"), first = 0, lis = pop.querySelectorAll("li[data-mid]");
+        if (fr) for (var i = 0; i < lis.length; i++){ if (lis[i].getAttribute("data-" + fr) !== "curtain"){ first = i; break; } }
+        popGo(Math.max(aiStep, first));
+      }
       // On a wide screen the bubble sits in the empty space under "Talk about it", so it never
       // covers the pictures. On a narrow screen it sits under the picture that was clicked.
       var side = document.querySelector(".p2 .col:last-child").getBoundingClientRect(), w, left, top;
@@ -255,7 +265,7 @@
       pop.style.left = left + "px"; pop.style.top = top + "px";
     });
   });
-  document.addEventListener("click", function(ev){ if (!pop.contains(ev.target)){ if (popFor && popFor.getAttribute("data-pop") === "pm-ai") aiStep = popStep; closePop(); } });
+  document.addEventListener("click", function(ev){ if (!pop.contains(ev.target) && !ev.target.closest(".hot")){ if (popFor && popFor.getAttribute("data-pop") === "pm-ai") aiStep = popStep; closePop(); } });
   document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") closePop(); });
   // Guideline excerpts: the second box waits behind a curtain. Space or the right arrow
   // opens it; the left arrow closes it; clicking the curtain opens it too.
